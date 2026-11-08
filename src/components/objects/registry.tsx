@@ -7,6 +7,7 @@ import { BUILDINGS } from "./buildings";
 import { FURNITURE } from "./furniture";
 import { MISC } from "./misc";
 import { MYTHIC } from "./mythic";
+import { STONE_AGE } from "../../../projects/video-003/assets/objects";
 import { NATURE } from "./nature";
 import { EVERYDAY } from "./everyday";
 import { STORY } from "./story";
@@ -28,6 +29,7 @@ export const OBJECTS: Record<string, ObjectDef> = {
   ...EVERYDAY,
   ...WILDLIFE,
   ...MYTHIC,
+  ...STONE_AGE,
 };
 
 export const ObjectView: React.FC<{
