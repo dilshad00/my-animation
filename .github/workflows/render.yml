@@ -42,8 +42,8 @@ jobs:
     outputs:
       matrix: ${{ steps.plan.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with: { node-version: 22, cache: npm }
       - run: npm ci
       - run: npm run validate -- "$PROJECT"
@@ -59,8 +59,8 @@ jobs:
       matrix:
         chunk: ${{ fromJson(needs.plan.outputs.matrix).chunks }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with: { node-version: 22, cache: npm }
       - run: npm ci
       - run: npx remotion browser ensure
@@ -69,7 +69,7 @@ jobs:
         run: npx remotion render "$PROJECT" out/audio${{ matrix.chunk.i }}.wav --codec=wav --frames=${{ matrix.chunk.range }} --log=info
       - name: Render video (muted H.264)
         run: npx remotion render "$PROJECT" out/part${{ matrix.chunk.i }}.mp4 --codec=h264 $SCALE_ARGS --muted --frames=${{ matrix.chunk.range }} --log=info
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: chunk-${{ matrix.chunk.i }}
           path: out/
@@ -79,11 +79,11 @@ jobs:
     needs: [plan, chunk]
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with: { node-version: 22, cache: npm }
       - run: npm ci
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v7
         with: { path: parts, pattern: chunk-*, merge-multiple: true }
       - name: Join chunks
         run: |
@@ -96,7 +96,7 @@ jobs:
             -c:v copy -c:a aac -b:a 320k -movflags +faststart "../$PROJECT.mp4"
           cd ..
           npx remotion ffprobe -v error -show_entries format=duration:stream=codec_type,width,height -of compact "$PROJECT.mp4"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: ${{ inputs.project }}-final
           path: ${{ inputs.project }}.mp4
