@@ -220,7 +220,22 @@ npm run thumbnails -- <id> [--only=thumb-A] [--full]   # YouTube thumbnails (128
 Studio → **Library-Tests** has visual test sheets for the cast, all 16 actions, all environments,
 all objects, all diagrams and all effects.
 
-## 6. Notes
+## 6. Free cloud rendering (GitHub Actions)
+
+This PC has too little RAM for long renders, so final renders can run on GitHub's servers
+(`.github/workflows/render.yml`). The video is split into chunks that render **in parallel**
+on separate machines. Each chunk is muted H.264 plus WAV audio, and the chunks are then joined
+losslessly into one MP4.
+
+1. Push this repo to GitHub. Standard runners are free and unlimited on **public** repos;
+   private repos use the account's free monthly Actions minutes.
+2. Go to GitHub → **Actions** → **Render video** → **Run workflow**. Enter the project id
+   (e.g. `video-001`), the number of chunks (default 8), and whether this is a draft.
+3. When it finishes, download `<project>-final` from the run's **Artifacts**.
+
+`npx tsx scripts/cloud-plan.ts <id> 8` prints the chunk frame ranges the workflow uses.
+
+## 7. Notes
 - `npm run transcribe` downloads whisper.cpp and a model into `.whisper/` on first use
   (`--model=base.en` ≈150 MB by default; `small.en`/`medium.en` are more accurate). Nothing is sent to any server.
 - If you replace `narration.mp3`, run `npm run transcribe` again (`npm run sync` warns when captions are older than the audio).
