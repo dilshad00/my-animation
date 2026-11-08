@@ -1,0 +1,307 @@
+{
+  "thumbnails": [
+    {
+      "id": "thumb-A-hes-back",
+      "notes": "Close-up angry Zeus crackling with electricity, storm and a bolt over the city.",
+      "at": 2.5,
+      "scene": {
+        "id": "thumb-A-hes-back",
+        "tag": "none",
+        "duration": 4,
+        "environment": {
+          "type": "city",
+          "time": "night"
+        },
+        "camera": {
+          "keys": [
+            {
+              "t": 0,
+              "zoom": 1.05,
+              "x": 960,
+              "y": 540
+            }
+          ]
+        },
+        "elements": [
+          {
+            "kind": "object",
+            "type": "thunderbolt",
+            "x": 860,
+            "y": 520,
+            "scale": 2,
+            "zIndex": 3,
+            "color": "#8fd0ff"
+          },
+          {
+            "kind": "character",
+            "who": "zeus",
+            "x": 1370,
+            "y": 1720,
+            "scale": 3.9,
+            "depth": 1.2,
+            "expressions": [
+              {
+                "t": 0,
+                "is": "angry"
+              }
+            ],
+            "look": "camera"
+          },
+          {
+            "kind": "object",
+            "type": "lightorb",
+            "x": 1453,
+            "y": 326,
+            "scale": 1,
+            "color": "#35b6ff",
+            "zIndex": 45,
+            "props": {
+              "r": 15
+            }
+          },
+          {
+            "kind": "object",
+            "type": "lightorb",
+            "x": 1571,
+            "y": 350,
+            "scale": 1,
+            "color": "#35b6ff",
+            "zIndex": 45,
+            "props": {
+              "r": 15
+            }
+          }
+        ]
+      },
+      "look": {
+        "saturate": 1.5,
+        "contrast": 1.3,
+        "brightness": 1.1,
+        "vignette": 0.6
+      },
+      "texts": [
+        {
+          "text": "HE'S",
+          "x": 470,
+          "y": 300,
+          "size": 230,
+          "rotate": -3,
+          "strokeWidth": 18
+        },
+        {
+          "text": "BACK",
+          "x": 470,
+          "y": 560,
+          "size": 300,
+          "rotate": -3,
+          "color": "#ffd23f",
+          "strokeWidth": 20
+        }
+      ]
+    },
+    {
+      "id": "thumb-B-nuke",
+      "notes": "Zeus furious over the night sea with a warhead incoming: the warhead scene at 9:53.",
+      "at": 2.5,
+      "scene": {
+        "id": "thumb-B-nuke",
+        "tag": "none",
+        "duration": 4,
+        "environment": {
+          "type": "aegean",
+          "time": "night",
+          "props": {
+            "island": 0
+          }
+        },
+        "grade": "crimson",
+        "camera": {
+          "keys": [
+            {
+              "t": 0,
+              "zoom": 1.05,
+              "x": 960,
+              "y": 540
+            }
+          ]
+        },
+        "elements": [
+          {
+            "kind": "object",
+            "type": "lightorb",
+            "x": 500,
+            "y": 560,
+            "scale": 1,
+            "color": "#ff6a00",
+            "zIndex": 2,
+            "props": {
+              "r": 190
+            }
+          },
+          {
+            "kind": "character",
+            "who": "zeus",
+            "x": 1400,
+            "y": 1720,
+            "scale": 3.9,
+            "depth": 1.2,
+            "expressions": [
+              {
+                "t": 0,
+                "is": "angry"
+              }
+            ],
+            "look": "camera"
+          },
+          {
+            "kind": "object",
+            "type": "lightorb",
+            "x": 1474,
+            "y": 332,
+            "scale": 1,
+            "color": "#ff8a1a",
+            "zIndex": 45,
+            "props": {
+              "r": 22
+            }
+          },
+          {
+            "kind": "object",
+            "type": "lightorb",
+            "x": 1603,
+            "y": 351,
+            "scale": 1,
+            "color": "#ff8a1a",
+            "zIndex": 45,
+            "props": {
+              "r": 22
+            }
+          }
+        ]
+      },
+      "look": {
+        "saturate": 1.5,
+        "contrast": 1.3,
+        "brightness": 1.1,
+        "vignette": 0.6,
+        "tint": "rgba(200,50,0,0.12)"
+      },
+      "texts": [
+        {
+          "text": "NUKE",
+          "x": 470,
+          "y": 250,
+          "size": 260,
+          "rotate": -3,
+          "color": "#ff3b30",
+          "strokeWidth": 20
+        },
+        {
+          "text": "VS ZEUS",
+          "x": 470,
+          "y": 930,
+          "size": 170,
+          "rotate": -3,
+          "strokeWidth": 16
+        }
+      ]
+    },
+    {
+      "id": "thumb-C-door",
+      "notes": "The ending's mystery: the disguised old man at a lit door, lightning in the dark.",
+      "at": 2.5,
+      "scene": {
+        "id": "thumb-C-door",
+        "tag": "none",
+        "duration": 4,
+        "environment": {
+          "type": "wall",
+          "time": "night"
+        },
+        "camera": {
+          "keys": [
+            {
+              "t": 0,
+              "zoom": 1.05,
+              "x": 960,
+              "y": 540
+            }
+          ]
+        },
+        "elements": [
+          {
+            "kind": "object",
+            "type": "door",
+            "x": 430,
+            "y": 1000,
+            "scale": 2.4
+          },
+          {
+            "kind": "character",
+            "who": "oldman",
+            "x": 1400,
+            "y": 1720,
+            "scale": 3.7,
+            "depth": 1.2,
+            "expressions": [
+              {
+                "t": 0,
+                "is": "neutral"
+              }
+            ],
+            "look": "camera"
+          },
+          {
+            "kind": "object",
+            "type": "lightorb",
+            "x": 1471,
+            "y": 407,
+            "scale": 1,
+            "color": "#ffd23f",
+            "zIndex": 45,
+            "props": {
+              "r": 20
+            }
+          },
+          {
+            "kind": "object",
+            "type": "lightorb",
+            "x": 1593,
+            "y": 426,
+            "scale": 1,
+            "color": "#ffd23f",
+            "zIndex": 45,
+            "props": {
+              "r": 20
+            }
+          }
+        ]
+      },
+      "look": {
+        "saturate": 1.4,
+        "contrast": 1.3,
+        "brightness": 0.92,
+        "vignette": 0.7
+      },
+      "texts": [
+        {
+          "text": "OPEN",
+          "x": 470,
+          "y": 210,
+          "size": 210,
+          "rotate": -3,
+          "strokeWidth": 18
+        },
+        {
+          "text": "IT?",
+          "x": 980,
+          "y": 190,
+          "size": 230,
+          "rotate": -3,
+          "color": "#ffd23f",
+          "strokeWidth": 18
+        }
+      ]
+    }
+  ]
+}
