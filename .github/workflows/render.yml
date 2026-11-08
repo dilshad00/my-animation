@@ -20,6 +20,10 @@ on:
         description: "Parallel chunks (1–20)"
         required: true
         default: "8"
+      seconds:
+        description: "Only render the first N seconds (0 = whole video) – for test runs"
+        required: true
+        default: "0"
       draft:
         description: "Half-resolution draft instead of final 1080p"
         type: boolean
@@ -44,7 +48,7 @@ jobs:
       - run: npm ci
       - run: npm run validate -- "$PROJECT"
       - id: plan
-        run: echo "matrix=$(npx tsx scripts/cloud-plan.ts "$PROJECT" "${{ inputs.chunks }}")" >> "$GITHUB_OUTPUT"
+        run: echo "matrix=$(npx tsx scripts/cloud-plan.ts "$PROJECT" "${{ inputs.chunks }}" "${{ inputs.seconds }}")" >> "$GITHUB_OUTPUT"
 
   chunk:
     needs: plan

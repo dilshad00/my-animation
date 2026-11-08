@@ -2,7 +2,7 @@
  * Splits a project's frames into N equal chunks for parallel rendering
  * (used by .github/workflows/render.yml; also handy locally).
  *
- *   npx tsx scripts/cloud-plan.ts <project-id> [chunks=8]
+ *   npx tsx scripts/cloud-plan.ts <project-id> [chunks=8] [seconds=0]   (seconds > 0 = only the first N seconds, for test runs)
  *
  * Prints JSON: {"total":21248,"chunks":[{"i":0,"range":"0-2655"},…]}
  */
@@ -10,14 +10,15 @@ import fs from "node:fs";
 import { normalizeCaptionsJson, parseProject, projectTimeline } from "../src/utils/project";
 import { captionsFile, readJson, storyboardFile } from "./lib/files";
 
-const [id, n = "8"] = process.argv.slice(2);
+const [id, n = "8", secs = "0"] = process.argv.slice(2);
 if (!id) {
   console.error("Usage: npx tsx scripts/cloud-plan.ts <project-id> [chunks]");
   process.exit(1);
 }
 const project = parseProject(readJson(storyboardFile(id)));
 const captions = fs.existsSync(captionsFile(id)) ? normalizeCaptionsJson(readJson(captionsFile(id))) : null;
-const total = projectTimeline(project, captions).totalFrames;
+const full = projectTimeline(project, captions).totalFrames;
+const total = Number(secs) > 0 ? Math.min(full, Math.round(Number(secs) * project.fps)) : full;
 const count = Math.max(1, Math.min(Number(n), Math.ceil(total / 30)));
 const size = Math.ceil(total / count);
 const chunks = Array.from({ length: count }, (_, i) => {

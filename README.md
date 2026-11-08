@@ -230,7 +230,8 @@ losslessly into one MP4.
 1. Push this repo to GitHub. Standard runners are free and unlimited on **public** repos;
    private repos use the account's free monthly Actions minutes.
 2. Go to GitHub → **Actions** → **Render video** → **Run workflow**. Enter the project id
-   (e.g. `video-001`), the number of chunks (default 8), and whether this is a draft.
+   (e.g. `video-001`), the number of chunks (default 8), whether this is a draft, and optionally
+   "seconds" to render only the first N seconds (handy for a quick test).
 3. When it finishes, download `<project>-final` from the run's **Artifacts**.
 
 `npx tsx scripts/cloud-plan.ts <id> 8` prints the chunk frame ranges the workflow uses.
