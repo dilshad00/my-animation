@@ -1,0 +1,99 @@
+# Free cloud render on GitHub Actions.
+# Splits the video into N chunks, renders them in parallel on separate runners
+# (muted H.264 + WAV audio per chunk), then joins them losslessly into one MP4.
+#
+# Run it: GitHub → Actions → "Render video" → Run workflow → project id (e.g. video-001).
+# Download: the run's "Artifacts" section → <project>-final.
+#
+# Cost: free and unlimited on PUBLIC repos. On private repos it uses your free monthly
+# Actions minutes (≈ chunks × 20–40 min per render).
+name: Render video
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: "Project id (folder in projects/)"
+        required: true
+        default: "video-001"
+      chunks:
+        description: "Parallel chunks (1–20)"
+        required: true
+        default: "8"
+      draft:
+        description: "Half-resolution draft instead of final 1080p"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  PROJECT: ${{ inputs.project }}
+  SCALE_ARGS: ${{ inputs.draft && '--scale=0.5 --crf=28' || '--crf=18' }}
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run validate -- "$PROJECT"
+      - id: plan
+        run: echo "matrix=$(npx tsx scripts/cloud-plan.ts "$PROJECT" "${{ inputs.chunks }}")" >> "$GITHUB_OUTPUT"
+
+  chunk:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: ${{ fromJson(needs.plan.outputs.matrix).chunks }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx remotion browser ensure
+      - run: npm run sync
+      - name: Render audio (WAV)
+        run: npx remotion render "$PROJECT" out/audio${{ matrix.chunk.i }}.wav --codec=wav --frames=${{ matrix.chunk.range }} --log=info
+      - name: Render video (muted H.264)
+        run: npx remotion render "$PROJECT" out/part${{ matrix.chunk.i }}.mp4 --codec=h264 $SCALE_ARGS --muted --frames=${{ matrix.chunk.range }} --log=info
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chunk-${{ matrix.chunk.i }}
+          path: out/
+          retention-days: 2
+
+  join:
+    needs: [plan, chunk]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with: { path: parts, pattern: chunk-*, merge-multiple: true }
+      - name: Join chunks
+        run: |
+          N=$(echo '${{ needs.plan.outputs.matrix }}' | node -e "process.stdin.on('data',d=>console.log(JSON.parse(d).chunks.length))")
+          cd parts
+          : > list.txt; : > alist.txt
+          for i in $(seq 0 $((N-1))); do echo "file 'part$i.mp4'" >> list.txt; echo "file 'audio$i.wav'" >> alist.txt; done
+          npx remotion ffmpeg -y -loglevel error -f concat -safe 0 -i alist.txt -c:a pcm_s16le audio.wav
+          npx remotion ffmpeg -y -loglevel error -f concat -safe 0 -i list.txt -i audio.wav -map 0:v -map 1:a \
+            -c:v copy -c:a aac -b:a 320k -movflags +faststart "../$PROJECT.mp4"
+          cd ..
+          npx remotion ffprobe -v error -show_entries format=duration:stream=codec_type,width,height -of compact "$PROJECT.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.project }}-final
+          path: ${{ inputs.project }}.mp4
+          retention-days: 14
