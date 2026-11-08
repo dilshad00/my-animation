@@ -1,0 +1,2911 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9-]+$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "fps": {
+      "default": 30,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "width": {
+      "default": 1920,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "height": {
+      "default": 1080,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "theme": {
+      "default": {
+        "accent": "#ffb703",
+        "accent2": "#3a86ff",
+        "text": "#ffffff",
+        "dark": "#14213d",
+        "font": "Poppins"
+      },
+      "type": "object",
+      "properties": {
+        "accent": {
+          "default": "#ffb703",
+          "type": "string"
+        },
+        "accent2": {
+          "default": "#3a86ff",
+          "type": "string"
+        },
+        "text": {
+          "default": "#ffffff",
+          "type": "string"
+        },
+        "dark": {
+          "default": "#14213d",
+          "type": "string"
+        },
+        "font": {
+          "default": "Poppins",
+          "type": "string"
+        }
+      }
+    },
+    "audio": {
+      "default": {
+        "wordsPerMinute": 155,
+        "voiceVolume": 1
+      },
+      "type": "object",
+      "properties": {
+        "wordsPerMinute": {
+          "default": 155,
+          "type": "number"
+        },
+        "voiceVolume": {
+          "default": 1,
+          "type": "number"
+        },
+        "music": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "src": {
+                  "type": "string"
+                },
+                "from": {
+                  "type": "string"
+                },
+                "crossfade": {
+                  "default": 2.5,
+                  "type": "number"
+                },
+                "volume": {
+                  "default": 0.18,
+                  "type": "number"
+                },
+                "duckTo": {
+                  "default": 0.07,
+                  "type": "number"
+                },
+                "loop": {
+                  "default": true,
+                  "type": "boolean"
+                },
+                "fadeIn": {
+                  "default": 1.5,
+                  "type": "number"
+                },
+                "fadeOut": {
+                  "default": 2.5,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "src"
+              ]
+            },
+            {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "src": {
+                    "type": "string"
+                  },
+                  "from": {
+                    "type": "string"
+                  },
+                  "crossfade": {
+                    "default": 2.5,
+                    "type": "number"
+                  },
+                  "volume": {
+                    "default": 0.18,
+                    "type": "number"
+                  },
+                  "duckTo": {
+                    "default": 0.07,
+                    "type": "number"
+                  },
+                  "loop": {
+                    "default": true,
+                    "type": "boolean"
+                  },
+                  "fadeIn": {
+                    "default": 1.5,
+                    "type": "number"
+                  },
+                  "fadeOut": {
+                    "default": 2.5,
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "src"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "subtitles": {
+      "default": {
+        "enabled": true,
+        "position": "bottom",
+        "maxWords": 7,
+        "size": 46
+      },
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "position": {
+          "default": "bottom",
+          "type": "string",
+          "enum": [
+            "bottom",
+            "top"
+          ]
+        },
+        "highlight": {
+          "type": "string"
+        },
+        "maxWords": {
+          "default": 7,
+          "type": "number"
+        },
+        "size": {
+          "default": 46,
+          "type": "number"
+        }
+      }
+    },
+    "cast": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "preset": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string",
+            "enum": [
+              "slim",
+              "average",
+              "athletic",
+              "heavy",
+              "child",
+              "elder"
+            ]
+          },
+          "skin": {
+            "type": "string"
+          },
+          "hair": {
+            "type": "string",
+            "enum": [
+              "short",
+              "side",
+              "spiky",
+              "bob",
+              "long",
+              "ponytail",
+              "bun",
+              "curly",
+              "afro",
+              "bald"
+            ]
+          },
+          "hairColor": {
+            "type": "string"
+          },
+          "outfit": {
+            "type": "string",
+            "enum": [
+              "tshirt",
+              "hoodie",
+              "shirt",
+              "suit",
+              "dress",
+              "labcoat",
+              "jacket",
+              "spacesuit",
+              "robe",
+              "overalls",
+              "armor",
+              "hivis"
+            ]
+          },
+          "top": {
+            "type": "string"
+          },
+          "bottom": {
+            "type": "string"
+          },
+          "shoes": {
+            "type": "string"
+          },
+          "accent": {
+            "type": "string"
+          },
+          "glasses": {
+            "type": "boolean"
+          },
+          "beard": {
+            "type": "boolean"
+          },
+          "headwear": {
+            "type": "string",
+            "enum": [
+              "none",
+              "crown",
+              "helmet",
+              "hardhat",
+              "cap"
+            ]
+          },
+          "mask": {
+            "type": "boolean"
+          },
+          "eyeColor": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "defaultTag": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "none",
+            "real",
+            "hypothetical"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "color": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text"
+          ]
+        }
+      ]
+    },
+    "defaultTransition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "none",
+            "fade",
+            "slide",
+            "wipe",
+            "iris",
+            "whip",
+            "zoom",
+            "clock",
+            "flip"
+          ]
+        },
+        "duration": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "up",
+            "down"
+          ]
+        },
+        "sfx": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "scenes": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "narration": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "hold": {
+            "type": "number",
+            "minimum": 0
+          },
+          "transition": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "fade",
+                  "slide",
+                  "wipe",
+                  "iris",
+                  "whip",
+                  "zoom",
+                  "clock",
+                  "flip"
+                ]
+              },
+              "duration": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "left",
+                  "right",
+                  "up",
+                  "down"
+                ]
+              },
+              "sfx": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "environment": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "time": {
+                "type": "string",
+                "enum": [
+                  "dawn",
+                  "day",
+                  "sunset",
+                  "night"
+                ]
+              },
+              "weather": {
+                "type": "string",
+                "enum": [
+                  "clear",
+                  "cloudy",
+                  "rain",
+                  "storm",
+                  "snow",
+                  "fog",
+                  "wind"
+                ]
+              },
+              "seed": {
+                "type": "number"
+              },
+              "color": {
+                "type": "string"
+              },
+              "rainColor": {
+                "type": "string"
+              },
+              "intensity": {
+                "type": "number"
+              },
+              "props": {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string"
+                },
+                "additionalProperties": {}
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "camera": {
+            "type": "object",
+            "properties": {
+              "keys": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "t": {
+                      "type": [
+                        "number",
+                        "string"
+                      ]
+                    },
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    },
+                    "zoom": {
+                      "type": "number"
+                    },
+                    "rotate": {
+                      "type": "number"
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "t"
+                  ]
+                }
+              },
+              "follow": {
+                "type": "string"
+              },
+              "shake": {
+                "type": "number"
+              },
+              "drift": {
+                "type": "boolean"
+              }
+            }
+          },
+          "grade": {
+            "type": "string",
+            "enum": [
+              "none",
+              "warm",
+              "cool",
+              "dramatic",
+              "vintage",
+              "dream",
+              "sepia",
+              "crimson",
+              "murky",
+              "rust",
+              "clean"
+            ]
+          },
+          "tag": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "real",
+                  "hypothetical"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "color": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ]
+              }
+            ]
+          },
+          "vignette": {
+            "type": "number"
+          },
+          "elements": {
+            "default": [],
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/__schema0"
+            }
+          },
+          "sfx": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "at": {
+                  "type": [
+                    "number",
+                    "string"
+                  ]
+                },
+                "src": {
+                  "type": "string"
+                },
+                "volume": {
+                  "type": "number"
+                },
+                "loop": {
+                  "type": "boolean"
+                },
+                "until": {
+                  "type": [
+                    "number",
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "at",
+                "src"
+              ]
+            }
+          },
+          "subtitles": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      }
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "scenes"
+  ],
+  "$defs": {
+    "__schema0": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "character"
+            },
+            "who": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "at": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "until": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "enter": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "exit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "scale": {
+              "type": "number"
+            },
+            "rotate": {
+              "type": "number"
+            },
+            "opacity": {
+              "type": "number"
+            },
+            "path": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "scale": {
+                    "type": "number"
+                  },
+                  "rotate": {
+                    "type": "number"
+                  },
+                  "opacity": {
+                    "type": "number"
+                  },
+                  "ease": {
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "in",
+                      "out",
+                      "inOut",
+                      "spring",
+                      "bounce",
+                      "back",
+                      "smooth"
+                    ]
+                  }
+                },
+                "required": [
+                  "t"
+                ]
+              }
+            },
+            "depth": {
+              "type": "number"
+            },
+            "screen": {
+              "type": "boolean"
+            },
+            "float": {
+              "type": "number"
+            },
+            "shadow": {
+              "type": "boolean"
+            },
+            "flip": {
+              "type": "boolean"
+            },
+            "zIndex": {
+              "type": "number"
+            },
+            "facing": {
+              "type": "string",
+              "enum": [
+                "left",
+                "right",
+                "auto"
+              ]
+            },
+            "turns": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "to": {
+                    "type": "string",
+                    "enum": [
+                      "left",
+                      "right"
+                    ]
+                  }
+                },
+                "required": [
+                  "t",
+                  "to"
+                ]
+              }
+            },
+            "actions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "do": {
+                    "type": "string",
+                    "enum": [
+                      "idle",
+                      "walk",
+                      "run",
+                      "talk",
+                      "point",
+                      "wave",
+                      "sit",
+                      "sitTalk",
+                      "type",
+                      "cheer",
+                      "think",
+                      "shrug",
+                      "react",
+                      "present",
+                      "jump",
+                      "nod"
+                    ]
+                  },
+                  "angle": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "t",
+                  "do"
+                ]
+              }
+            },
+            "expressions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "is": {
+                    "type": "string",
+                    "enum": [
+                      "neutral",
+                      "happy",
+                      "joy",
+                      "sad",
+                      "angry",
+                      "surprised",
+                      "thinking",
+                      "worried",
+                      "confident",
+                      "wink"
+                    ]
+                  }
+                },
+                "required": [
+                  "t",
+                  "is"
+                ]
+              }
+            },
+            "expression": {
+              "type": "string",
+              "enum": [
+                "neutral",
+                "happy",
+                "joy",
+                "sad",
+                "angry",
+                "surprised",
+                "thinking",
+                "worried",
+                "confident",
+                "wink"
+              ]
+            },
+            "speaks": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": [
+                          "number",
+                          "string"
+                        ]
+                      },
+                      {
+                        "type": [
+                          "number",
+                          "string"
+                        ]
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 2,
+                    "maxItems": 2
+                  }
+                }
+              ]
+            },
+            "look": {
+              "type": "string",
+              "enum": [
+                "camera",
+                "left",
+                "right",
+                "up",
+                "down"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "who"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "object"
+            },
+            "type": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "at": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "until": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "enter": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "exit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "scale": {
+              "type": "number"
+            },
+            "rotate": {
+              "type": "number"
+            },
+            "opacity": {
+              "type": "number"
+            },
+            "path": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "scale": {
+                    "type": "number"
+                  },
+                  "rotate": {
+                    "type": "number"
+                  },
+                  "opacity": {
+                    "type": "number"
+                  },
+                  "ease": {
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "in",
+                      "out",
+                      "inOut",
+                      "spring",
+                      "bounce",
+                      "back",
+                      "smooth"
+                    ]
+                  }
+                },
+                "required": [
+                  "t"
+                ]
+              }
+            },
+            "depth": {
+              "type": "number"
+            },
+            "screen": {
+              "type": "boolean"
+            },
+            "float": {
+              "type": "number"
+            },
+            "shadow": {
+              "type": "boolean"
+            },
+            "flip": {
+              "type": "boolean"
+            },
+            "zIndex": {
+              "type": "number"
+            },
+            "color": {
+              "type": "string"
+            },
+            "color2": {
+              "type": "string"
+            },
+            "props": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            },
+            "speed": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "kind",
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "text"
+            },
+            "id": {
+              "type": "string"
+            },
+            "at": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "until": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "enter": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "exit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "scale": {
+              "type": "number"
+            },
+            "rotate": {
+              "type": "number"
+            },
+            "opacity": {
+              "type": "number"
+            },
+            "path": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "scale": {
+                    "type": "number"
+                  },
+                  "rotate": {
+                    "type": "number"
+                  },
+                  "opacity": {
+                    "type": "number"
+                  },
+                  "ease": {
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "in",
+                      "out",
+                      "inOut",
+                      "spring",
+                      "bounce",
+                      "back",
+                      "smooth"
+                    ]
+                  }
+                },
+                "required": [
+                  "t"
+                ]
+              }
+            },
+            "depth": {
+              "type": "number"
+            },
+            "screen": {
+              "type": "boolean"
+            },
+            "float": {
+              "type": "number"
+            },
+            "shadow": {
+              "type": "boolean"
+            },
+            "flip": {
+              "type": "boolean"
+            },
+            "zIndex": {
+              "type": "number"
+            },
+            "text": {
+              "type": "string"
+            },
+            "style": {
+              "type": "string",
+              "enum": [
+                "title",
+                "headline",
+                "subtitle",
+                "label",
+                "caption",
+                "quote",
+                "number"
+              ]
+            },
+            "color": {
+              "type": "string"
+            },
+            "background": {
+              "type": "string"
+            },
+            "size": {
+              "type": "number"
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ]
+            },
+            "maxWidth": {
+              "type": "number"
+            },
+            "reveal": {
+              "type": "string",
+              "enum": [
+                "none",
+                "words",
+                "letters",
+                "typewriter"
+              ]
+            },
+            "highlight": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "drip": {
+              "type": [
+                "boolean",
+                "string"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "text"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "diagram"
+            },
+            "type": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "at": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "until": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "enter": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "exit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "scale": {
+              "type": "number"
+            },
+            "rotate": {
+              "type": "number"
+            },
+            "opacity": {
+              "type": "number"
+            },
+            "path": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "scale": {
+                    "type": "number"
+                  },
+                  "rotate": {
+                    "type": "number"
+                  },
+                  "opacity": {
+                    "type": "number"
+                  },
+                  "ease": {
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "in",
+                      "out",
+                      "inOut",
+                      "spring",
+                      "bounce",
+                      "back",
+                      "smooth"
+                    ]
+                  }
+                },
+                "required": [
+                  "t"
+                ]
+              }
+            },
+            "depth": {
+              "type": "number"
+            },
+            "screen": {
+              "type": "boolean"
+            },
+            "float": {
+              "type": "number"
+            },
+            "shadow": {
+              "type": "boolean"
+            },
+            "flip": {
+              "type": "boolean"
+            },
+            "zIndex": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            },
+            "title": {
+              "type": "string"
+            },
+            "data": {},
+            "color": {
+              "type": "string"
+            },
+            "build": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "kind",
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "effect"
+            },
+            "type": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "at": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "until": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "enter": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "exit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "scale": {
+              "type": "number"
+            },
+            "rotate": {
+              "type": "number"
+            },
+            "opacity": {
+              "type": "number"
+            },
+            "path": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "scale": {
+                    "type": "number"
+                  },
+                  "rotate": {
+                    "type": "number"
+                  },
+                  "opacity": {
+                    "type": "number"
+                  },
+                  "ease": {
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "in",
+                      "out",
+                      "inOut",
+                      "spring",
+                      "bounce",
+                      "back",
+                      "smooth"
+                    ]
+                  }
+                },
+                "required": [
+                  "t"
+                ]
+              }
+            },
+            "depth": {
+              "type": "number"
+            },
+            "screen": {
+              "type": "boolean"
+            },
+            "float": {
+              "type": "number"
+            },
+            "shadow": {
+              "type": "boolean"
+            },
+            "flip": {
+              "type": "boolean"
+            },
+            "zIndex": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            },
+            "intensity": {
+              "type": "number"
+            },
+            "color": {
+              "type": "string"
+            },
+            "seed": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "kind",
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "arrow"
+            },
+            "id": {
+              "type": "string"
+            },
+            "at": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "until": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "enter": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "exit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "scale": {
+              "type": "number"
+            },
+            "rotate": {
+              "type": "number"
+            },
+            "opacity": {
+              "type": "number"
+            },
+            "path": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "scale": {
+                    "type": "number"
+                  },
+                  "rotate": {
+                    "type": "number"
+                  },
+                  "opacity": {
+                    "type": "number"
+                  },
+                  "ease": {
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "in",
+                      "out",
+                      "inOut",
+                      "spring",
+                      "bounce",
+                      "back",
+                      "smooth"
+                    ]
+                  }
+                },
+                "required": [
+                  "t"
+                ]
+              }
+            },
+            "depth": {
+              "type": "number"
+            },
+            "screen": {
+              "type": "boolean"
+            },
+            "float": {
+              "type": "number"
+            },
+            "shadow": {
+              "type": "boolean"
+            },
+            "flip": {
+              "type": "boolean"
+            },
+            "zIndex": {
+              "type": "number"
+            },
+            "from": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "to": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "curve": {
+              "type": "number"
+            },
+            "color": {
+              "type": "string"
+            },
+            "thickness": {
+              "type": "number"
+            },
+            "dashed": {
+              "type": "boolean"
+            },
+            "label": {
+              "type": "string"
+            },
+            "build": {
+              "type": "number"
+            },
+            "flow": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "kind",
+            "from",
+            "to"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "image"
+            },
+            "id": {
+              "type": "string"
+            },
+            "at": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "until": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "enter": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "exit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "scale": {
+              "type": "number"
+            },
+            "rotate": {
+              "type": "number"
+            },
+            "opacity": {
+              "type": "number"
+            },
+            "path": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "scale": {
+                    "type": "number"
+                  },
+                  "rotate": {
+                    "type": "number"
+                  },
+                  "opacity": {
+                    "type": "number"
+                  },
+                  "ease": {
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "in",
+                      "out",
+                      "inOut",
+                      "spring",
+                      "bounce",
+                      "back",
+                      "smooth"
+                    ]
+                  }
+                },
+                "required": [
+                  "t"
+                ]
+              }
+            },
+            "depth": {
+              "type": "number"
+            },
+            "screen": {
+              "type": "boolean"
+            },
+            "float": {
+              "type": "number"
+            },
+            "shadow": {
+              "type": "boolean"
+            },
+            "flip": {
+              "type": "boolean"
+            },
+            "zIndex": {
+              "type": "number"
+            },
+            "src": {
+              "type": "string"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            },
+            "radius": {
+              "type": "number"
+            },
+            "frame": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "kind",
+            "src"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "group"
+            },
+            "id": {
+              "type": "string"
+            },
+            "at": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "until": {
+              "type": [
+                "number",
+                "string"
+              ]
+            },
+            "enter": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "exit": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "fade",
+                    "pop",
+                    "rise",
+                    "drop",
+                    "slideLeft",
+                    "slideRight",
+                    "slideUp",
+                    "slideDown",
+                    "zoom",
+                    "spin",
+                    "draw",
+                    "wipe",
+                    "blur"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "fade",
+                        "pop",
+                        "rise",
+                        "drop",
+                        "slideLeft",
+                        "slideRight",
+                        "slideUp",
+                        "slideDown",
+                        "zoom",
+                        "spin",
+                        "draw",
+                        "wipe",
+                        "blur"
+                      ]
+                    },
+                    "duration": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    },
+                    "ease": {
+                      "type": "string",
+                      "enum": [
+                        "linear",
+                        "in",
+                        "out",
+                        "inOut",
+                        "spring",
+                        "bounce",
+                        "back",
+                        "smooth"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ]
+                }
+              ]
+            },
+            "x": {
+              "type": "number"
+            },
+            "y": {
+              "type": "number"
+            },
+            "scale": {
+              "type": "number"
+            },
+            "rotate": {
+              "type": "number"
+            },
+            "opacity": {
+              "type": "number"
+            },
+            "path": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "t": {
+                    "type": [
+                      "number",
+                      "string"
+                    ]
+                  },
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  },
+                  "scale": {
+                    "type": "number"
+                  },
+                  "rotate": {
+                    "type": "number"
+                  },
+                  "opacity": {
+                    "type": "number"
+                  },
+                  "ease": {
+                    "type": "string",
+                    "enum": [
+                      "linear",
+                      "in",
+                      "out",
+                      "inOut",
+                      "spring",
+                      "bounce",
+                      "back",
+                      "smooth"
+                    ]
+                  }
+                },
+                "required": [
+                  "t"
+                ]
+              }
+            },
+            "depth": {
+              "type": "number"
+            },
+            "screen": {
+              "type": "boolean"
+            },
+            "float": {
+              "type": "number"
+            },
+            "shadow": {
+              "type": "boolean"
+            },
+            "flip": {
+              "type": "boolean"
+            },
+            "zIndex": {
+              "type": "number"
+            },
+            "children": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema0"
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "children"
+          ]
+        }
+      ]
+    }
+  }
+}
