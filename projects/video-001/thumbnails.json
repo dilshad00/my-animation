@@ -1,0 +1,235 @@
+{
+  "thumbnails": [
+    {
+      "id": "thumb-A-day7",
+      "notes": "Day 7 street (like s03/s84): masked Maya close-up, shocked, crimson storm. Big DAY 7.",
+      "at": 2.5,
+      "scene": {
+        "id": "thumb-A-day7",
+        "tag": "none",
+        "duration": 4,
+        "environment": {
+          "type": "street",
+          "time": "dawn",
+          "weather": "storm",
+          "rainColor": "#9b111e",
+          "props": {
+            "traffic": false
+          }
+        },
+        "grade": "crimson",
+        "camera": {
+          "keys": [
+            {
+              "t": 0,
+              "zoom": 1.1,
+              "x": 960,
+              "y": 540
+            }
+          ]
+        },
+        "elements": [
+          {
+            "kind": "object",
+            "type": "puddle",
+            "x": 620,
+            "y": 975,
+            "scale": 2.4,
+            "color": "#5e0b14"
+          },
+          {
+            "kind": "character",
+            "who": "mayamask",
+            "x": 1430,
+            "y": 1640,
+            "scale": 3.1,
+            "depth": 1.2,
+            "expressions": [
+              {
+                "t": 0,
+                "is": "worried"
+              }
+            ],
+            "look": "camera"
+          }
+        ]
+      },
+      "look": {
+        "saturate": 1.4,
+        "contrast": 1.25,
+        "brightness": 0.95,
+        "vignette": 0.75,
+        "tint": "rgba(150,10,25,0.35)"
+      },
+      "texts": [
+        {
+          "text": "DAY 7",
+          "x": 560,
+          "y": 380,
+          "size": 320,
+          "rotate": -4,
+          "drip": "#c1121f",
+          "strokeWidth": 18,
+          "dripLength": 0.5
+        },
+        {
+          "text": "OF BLOOD RAIN",
+          "x": 560,
+          "y": 650,
+          "size": 82,
+          "rotate": -4,
+          "background": "#c1121f"
+        }
+      ]
+    },
+    {
+      "id": "thumb-B-notwater",
+      "notes": "Cold-open window (s02): red streaks on the glass, Maya shocked in the foreground.",
+      "at": 2.5,
+      "scene": {
+        "id": "thumb-B-notwater",
+        "tag": "none",
+        "duration": 4,
+        "environment": {
+          "type": "window",
+          "time": "dawn",
+          "rainColor": "#9b111e",
+          "props": {
+            "open": 1,
+            "streaks": 2,
+            "view": "city"
+          }
+        },
+        "camera": {
+          "keys": [
+            {
+              "t": 0,
+              "zoom": 1.12,
+              "x": 1010,
+              "y": 520
+            }
+          ]
+        },
+        "elements": [
+          {
+            "kind": "character",
+            "who": "maya",
+            "x": 390,
+            "y": 1760,
+            "scale": 2.75,
+            "depth": 1.2,
+            "expressions": [
+              {
+                "t": 0,
+                "is": "worried"
+              }
+            ],
+            "look": "camera"
+          }
+        ]
+      },
+      "look": {
+        "saturate": 1.4,
+        "contrast": 1.2,
+        "brightness": 0.97,
+        "vignette": 0.7,
+        "tint": "rgba(170,20,30,0.18)"
+      },
+      "texts": [
+        {
+          "text": "IT'S NOT",
+          "x": 1300,
+          "y": 330,
+          "size": 190,
+          "rotate": -3
+        },
+        {
+          "text": "WATER",
+          "x": 1300,
+          "y": 560,
+          "size": 270,
+          "rotate": -3,
+          "color": "#e3172d",
+          "strokeWidth": 18
+        }
+      ]
+    },
+    {
+      "id": "thumb-C-rivers",
+      "notes": "Day 4 river (s63–s66): blood-red water, dead fish floating; Walter shocked on the bank.",
+      "at": 2.5,
+      "scene": {
+        "id": "thumb-C-rivers",
+        "tag": "none",
+        "duration": 4,
+        "environment": {
+          "type": "river",
+          "time": "sunset",
+          "weather": "rain",
+          "rainColor": "#9b111e",
+          "intensity": 0.6,
+          "props": {
+            "water": "#7a1a1a",
+            "fish": 0,
+            "dead": 10,
+            "murk": 0.3,
+            "life": 0.1,
+            "flow": 0.4
+          }
+        },
+        "grade": "crimson",
+        "camera": {
+          "keys": [
+            {
+              "t": 0,
+              "zoom": 1.1,
+              "x": 1000,
+              "y": 560
+            }
+          ]
+        },
+        "elements": [
+          {
+            "kind": "character",
+            "who": "walter",
+            "x": 420,
+            "y": 1620,
+            "scale": 2.6,
+            "depth": 1.2,
+            "expressions": [
+              {
+                "t": 0,
+                "is": "worried"
+              }
+            ],
+            "look": "camera"
+          }
+        ]
+      },
+      "look": {
+        "saturate": 1.4,
+        "contrast": 1.22,
+        "brightness": 1.0,
+        "vignette": 0.7
+      },
+      "texts": [
+        {
+          "text": "THE RIVERS",
+          "x": 1290,
+          "y": 300,
+          "size": 150,
+          "rotate": -3
+        },
+        {
+          "text": "DIE",
+          "x": 1290,
+          "y": 520,
+          "size": 300,
+          "rotate": -3,
+          "color": "#e3172d",
+          "strokeWidth": 18
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "$schema": "../../storyboard.schema.json",
+  "id": "demo",
+  "title": "Where Does Electricity Come From?",
+  "topic": "A short engine demo: the journey of electricity from the Sun to your home.",
+  "theme": { "accent": "#ffb703", "accent2": "#3a86ff", "text": "#ffffff", "dark": "#14213d", "font": "Poppins" },
+  "audio": {
+    "wordsPerMinute": 150,
+    "music": { "src": "music/calm-explainer.wav", "volume": 0.22, "duckTo": 0.08 }
+  },
+  "subtitles": { "enabled": true, "position": "bottom", "maxWords": 7, "size": 44 },
+  "cast": {
+    "alex": {},
+    "maya": {},
+    "drlee": {},
+    "sam": {}
+  },
+  "defaultTransition": { "type": "fade", "duration": 0.6 },
+  "scenes": [
+    {
+      "id": "s01-intro",
+      "narration": "Have you ever wondered where electricity actually comes from?",
+      "hold": 0.8,
+      "environment": { "type": "city", "time": "dawn", "props": { "traffic": true } },
+      "camera": { "keys": [{ "t": 0, "x": 1060, "y": 600, "zoom": 1.25 }, { "t": 4.5, "x": 960, "y": 540, "zoom": 1.0, "ease": "inOut" }] },
+      "elements": [
+        { "kind": "character", "id": "alex", "who": "alex", "x": 280, "path": [{ "t": 0.2, "x": 280 }, { "t": 2.4, "x": 820, "ease": "smooth" }], "expressions": [{ "t": "@electricity", "is": "thinking" }], "actions": [{ "t": "@electricity", "do": "think" }], "look": "camera" },
+        { "kind": "object", "type": "icon", "x": 900, "y": 360, "scale": 0.45, "at": "@electricity+0.2", "float": 8, "props": { "name": "question" }, "enter": "pop" },
+        { "kind": "text", "text": "Where Does Electricity Come From?", "style": "title", "x": 960, "y": 200, "at": 0.6, "highlight": ["Electricity"], "size": 88 }
+      ],
+      "sfx": [{ "at": 0, "src": "riser", "volume": 0.25 }, { "at": "@electricity+0.2", "src": "pop" }]
+    },
+    {
+      "id": "s02-switch",
+      "narration": "Every time you flip a switch, a tiny miracle of engineering happens in an instant.",
+      "transition": { "type": "iris", "duration": 0.7, "sfx": "swoosh" },
+      "environment": { "type": "apartment", "time": "night" },
+      "camera": { "keys": [{ "t": 0, "zoom": 1.05, "x": 900 }, { "t": "end", "zoom": 1.14, "x": 1020 }] },
+      "elements": [
+        { "kind": "character", "id": "alex", "who": "alex", "x": 720, "speaks": true, "actions": [{ "t": "@switch", "do": "point", "angle": 25 }, { "t": "@miracle", "do": "present", "angle": 10 }], "expressions": [{ "t": 0, "is": "happy" }, { "t": "@miracle", "is": "surprised" }, { "t": "@instant", "is": "joy" }] },
+        { "kind": "effect", "type": "glow", "x": 1380, "y": 340, "width": 520, "at": "@switch", "color": "#ffd166" },
+        { "kind": "object", "type": "lightbulb", "x": 1380, "y": 340, "scale": 0.9, "at": "@switch", "enter": "pop", "float": 6 },
+        { "kind": "effect", "type": "sparkles", "x": 1380, "y": 330, "width": 420, "height": 380, "at": "@miracle" },
+        { "kind": "text", "text": "⚡ instant", "style": "label", "x": 1380, "y": 600, "at": "@instant", "enter": "pop" }
+      ],
+      "sfx": [{ "at": "@switch", "src": "tick", "volume": 0.9 }, { "at": "@miracle", "src": "sparkle", "volume": 0.5 }]
+    },
+    {
+      "id": "s03-sun",
+      "narration": "It begins one hundred and fifty million kilometers away, with our Sun.",
+      "transition": { "type": "whip", "direction": "left", "duration": 0.5, "sfx": "swoosh" },
+      "environment": { "type": "space" },
+      "camera": { "keys": [{ "t": 0, "zoom": 1.15 }, { "t": "end", "zoom": 1.0, "ease": "inOut" }] },
+      "elements": [
+        { "kind": "effect", "type": "glow", "x": 1380, "y": 640, "width": 900, "color": "#ffb703" },
+        { "kind": "object", "type": "sun", "x": 1380, "y": 640, "scale": 1.5, "depth": 0.7 },
+        { "kind": "object", "type": "globe", "x": 380, "y": 620, "scale": 0.8, "speed": 0.5, "at": 0.4, "enter": "zoom" },
+        { "kind": "arrow", "from": [1140, 650], "to": [540, 640], "curve": -0.12, "dashed": true, "at": "@million", "color": "#ffd166", "label": "150,000,000 km", "screen": true },
+        { "kind": "diagram", "type": "counter", "x": 760, "y": 220, "height": 110, "at": "@one", "build": 2.2, "data": { "from": 0, "to": 150000000, "suffix": " km" } }
+      ]
+    },
+    {
+      "id": "s04-harvest",
+      "narration": "Solar panels catch that sunlight, while wind turbines turn moving air into power.",
+      "transition": { "type": "slide", "direction": "left", "duration": 0.7 },
+      "environment": { "type": "suburb", "time": "day", "weather": "wind" },
+      "camera": { "keys": [{ "t": 0, "x": 760, "zoom": 1.08 }, { "t": "@wind", "x": 1180, "zoom": 1.08, "ease": "inOut" }, { "t": "end", "x": 1180, "zoom": 1.0 }] },
+      "elements": [
+        { "kind": "object", "type": "windturbine", "x": 1500, "y": 800, "scale": 0.85, "depth": 0.8 },
+        { "kind": "object", "type": "windturbine", "x": 1780, "y": 790, "scale": 0.7, "depth": 0.8, "speed": 1.3 },
+        { "kind": "object", "type": "solarpanel", "x": 260, "y": 855, "scale": 0.9 },
+        { "kind": "object", "type": "solarpanel", "x": 560, "y": 855, "scale": 0.9 },
+        { "kind": "effect", "type": "sparkles", "x": 410, "y": 690, "width": 560, "height": 200, "at": "@sunlight" },
+        { "kind": "character", "id": "maya", "who": "maya", "x": 1150, "speaks": true, "path": [{ "t": "@while", "x": 1150 }, { "t": "@turbines", "x": 1300 }], "actions": [{ "t": "@panels", "do": "present", "angle": 0 }, { "t": "@turn", "do": "point", "angle": 35 }], "facing": "left", "turns": [{ "t": "@while", "to": "right" }], "expressions": [{ "t": 0, "is": "happy" }] },
+        { "kind": "text", "text": "Solar", "style": "label", "x": 410, "y": 560, "at": "@panels", "enter": "pop", "screen": false },
+        { "kind": "text", "text": "Wind", "style": "label", "x": 1640, "y": 260, "at": "@wind", "enter": "pop", "screen": false }
+      ],
+      "sfx": [{ "at": "@panels", "src": "pop" }, { "at": "@wind", "src": "pop" }]
+    },
+    {
+      "id": "s05-grid",
+      "narration": "That energy then races through a vast grid of cables, all the way to your home.",
+      "transition": { "type": "zoom", "duration": 0.7, "sfx": "swoosh" },
+      "environment": { "type": "blueprint" },
+      "elements": [
+        { "kind": "diagram", "type": "flow", "x": 960, "y": 520, "width": 1640, "height": 520, "title": "From sunlight to socket", "build": 3.2, "at": 0.3, "data": { "nodes": [{ "id": "sun", "label": "Sunlight", "object": "sun" }, { "id": "panel", "label": "Panels & turbines", "object": "solarpanel" }, { "id": "grid", "label": "Power grid", "object": "windturbine" }, { "id": "home", "label": "Your home", "object": "house" }], "edges": [["sun", "panel", "light"], ["panel", "grid", "current"], ["grid", "home", "cables"]] } },
+        { "kind": "effect", "type": "energy", "x": 960, "y": 880, "width": 1500, "height": 60, "at": "@cables", "color": "#9bf6ff" }
+      ],
+      "sfx": [{ "at": 0.5, "src": "bubble" }, { "at": 1.4, "src": "bubble" }, { "at": 2.3, "src": "bubble" }]
+    },
+    {
+      "id": "s06-mix",
+      "narration": "Today, nearly a third of the world's electricity already comes from renewable sources.",
+      "transition": { "type": "wipe", "direction": "left", "duration": 0.6 },
+      "environment": { "type": "lab", "color": "#4cc9f0" },
+      "camera": { "keys": [{ "t": 0, "x": 900, "zoom": 1.1 }, { "t": "end", "x": 960, "zoom": 1.0 }] },
+      "elements": [
+        { "kind": "character", "id": "lee", "who": "drlee", "x": 430, "speaks": true, "actions": [{ "t": "@third", "do": "present", "angle": 5 }, { "t": "@renewable", "do": "nod" }], "expressions": [{ "t": 0, "is": "confident" }, { "t": "@renewable", "is": "happy" }] },
+        { "kind": "diagram", "type": "donut", "x": 1220, "y": 470, "width": 940, "height": 560, "title": "World electricity, 2023", "at": "@third-0.3", "build": 1.8, "data": [{ "label": "Renewables", "value": 30, "color": "#06d6a0" }, { "label": "Nuclear", "value": 9, "color": "#ffbe0b" }, { "label": "Fossil fuels", "value": 61, "color": "#8d99ae" }] }
+      ],
+      "sfx": [{ "at": "@third-0.3", "src": "swoosh", "volume": 0.4 }]
+    },
+    {
+      "id": "s07-world",
+      "narration": "And new solar and wind farms are switching on across the planet every single day.",
+      "transition": { "type": "fade", "duration": 0.6 },
+      "environment": { "type": "studio", "color": "#1d3557" },
+      "elements": [
+        { "kind": "diagram", "type": "map", "x": 960, "y": 500, "width": 1640, "height": 820, "build": 3, "data": { "pins": [{ "lon": 104, "lat": 35, "label": "China" }, { "lon": -100, "lat": 39, "label": "USA" }, { "lon": 10, "lat": 51, "label": "Germany" }, { "lon": 78, "lat": 21, "label": "India" }, { "lon": -51, "lat": -14, "label": "Brazil" }, { "lon": 134, "lat": -25, "label": "Australia" }] } }
+      ],
+      "sfx": [{ "at": 0.4, "src": "pop" }, { "at": 0.9, "src": "pop" }, { "at": 1.4, "src": "pop" }, { "at": 1.9, "src": "pop" }, { "at": 2.4, "src": "pop" }, { "at": 2.9, "src": "pop" }]
+    },
+    {
+      "id": "s08-outro",
+      "narration": "So the next time you flip that switch, remember the incredible journey behind it!",
+      "hold": 2.5,
+      "transition": { "type": "iris", "duration": 0.7, "sfx": "swoosh" },
+      "environment": { "type": "city", "time": "sunset" },
+      "camera": { "keys": [{ "t": 0, "zoom": 1.12, "y": 600 }, { "t": "end", "zoom": 1.0, "y": 540 }] },
+      "elements": [
+        { "kind": "character", "who": "maya", "x": 560, "actions": [{ "t": "@journey", "do": "cheer" }], "expressions": [{ "t": 0, "is": "happy" }, { "t": "@journey", "is": "joy" }], "facing": "right" },
+        { "kind": "character", "who": "alex", "x": 900, "speaks": true, "actions": [{ "t": "@journey", "do": "cheer" }], "expressions": [{ "t": 0, "is": "happy" }, { "t": "@journey", "is": "joy" }], "look": "camera" },
+        { "kind": "character", "who": "sam", "x": 1240, "actions": [{ "t": "@journey", "do": "jump" }], "expressions": [{ "t": 0, "is": "happy" }, { "t": "@journey", "is": "joy" }], "facing": "left" },
+        { "kind": "effect", "type": "confetti", "x": 960, "y": 520, "width": 900, "height": 700, "at": "@journey", "screen": true },
+        { "kind": "text", "text": "Thanks for watching!", "style": "title", "x": 960, "y": 230, "at": "@journey+0.3", "highlight": ["watching!"], "reveal": "letters" }
+      ],
+      "sfx": [{ "at": "@journey", "src": "chime", "volume": 0.6 }]
+    }
+  ]
+}

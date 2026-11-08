@@ -1,0 +1,129 @@
+# What If It Rains Blood for 7 Days Straight?
+
+<!--
+Voiceover script, video-001. DRAFT v1 for approval.
+Each "## " section is a chapter. Plain text = narration (record exactly as written).
+Lines starting with ">" are visual notes and are NOT narrated.
+Numbers are spelled out so the text-to-speech reads them naturally.
+Run `npm run script:text -- video-001` to get narration.txt for ElevenLabs.
+-->
+
+## Cold Open
+> Night, quiet city. Rain on a window turns red. Dark puddles. A character sniffs the air.
+Tomorrow morning, you wake up to the sound of rain. Normal, gentle rain. But when you pull back the curtains, the window is streaked with red. The puddles in the street are dark and glossy. And the air smells… like metal.
+
+It isn't paint. It isn't dust. It's blood. Real blood, falling from every rain cloud on Earth. And the forecast says it won't stop for seven days.
+
+What would happen to our cities, our rivers, our farms and our oceans? To find out, we'll look at real science, real disasters, and one very strange question.
+
+## Chapter 1: Blood Rain Is Real… Sort Of
+> Ancient scroll and Zeus; Richard the Lionheart's army in red rain; map of India zooming to Kerala; microscope view of spores; Sahara dust plume drifting to Britain.
+People have been reporting "blood rain" for nearly three thousand years. In Homer's Iliad, Zeus sends a rain of blood as a warning of slaughter. In the year eleven ninety-eight, the chronicler William of Newburgh wrote that the soldiers of King Richard the Lionheart were drenched by a rain of blood. Some of his advisers saw it as an evil omen. Richard ignored it.
+
+For centuries, nobody could explain it. Then, in the summer of two thousand and one, red rain fell on and off for about two months over the Indian state of Kerala. Some people claimed it was alien life from a meteor. But a study commissioned by the Indian government found a much more down-to-earth culprit: huge numbers of tiny spores from an alga called Trentepohlia. It belongs to the green algae, but it's packed with orange-red pigment. In twenty fifteen, a genetic study pinned down the exact species: Trentepohlia annulata.
+
+In Europe, "blood rain" usually has an even simpler cause. Strong winds lift red dust from the Sahara Desert high into the sky, and rain washes it back down. Britain's Met Office points out that this rain usually looks more yellow or orange than red.
+
+So every blood rain ever investigated has turned out to be water, tinted by dust or microbes. Not one drop of real blood.
+
+And there's a good reason for that. Rain begins as water vapour, which condenses into droplets inside clouds. Blood is a mixture of cells, proteins and salts, and none of those can evaporate and rise into a cloud. Real blood rain is physically impossible.
+
+Which makes it the perfect thought experiment.
+
+## Chapter 2: The Rules
+> Rulebook graphic. Globe with rain bands. Counter: 10,000 km³. Silhouettes of humanity vs. a giant cube of blood.
+From here on, everything is hypothetical, but we'll build it on real science. So let's set the rules.
+
+Rule one: for seven days, everywhere it would normally rain, it rains ordinary mammalian blood instead, in exactly the same amounts.
+
+Rule two: the blood is clean when it leaves the clouds. No diseases, no poisons. Just blood.
+
+So how much are we talking about? Scientists estimate that around half a million cubic kilometres of rain and snow fall on Earth every year. Seven days of that is roughly ten thousand cubic kilometres. An adult human holds about five litres of blood. Add up every person alive, and it comes to less than a twentieth of a single cubic kilometre.
+
+That means our seven-day storm would drop more than two hundred thousand times as much blood as there is in the entire human race.
+
+About three quarters of it would fall into the ocean. The rest, more than two thousand cubic kilometres, lands on us.
+
+## Day 1: The First Drops
+> Rain turns red over a city. People under umbrellas. Zoom into a droplet: plasma and red blood cells. Smell waves drifting through streets. A fox lifting its nose.
+Day one. The first thing people notice is the colour. Blood is about fifty-five percent plasma, a pale yellow liquid that's mostly water, and about forty-five percent red blood cells. Those cells are packed with haemoglobin, an iron-rich protein that gives blood its deep red colour.
+
+The second thing people notice is the smell. That "metallic" scent of blood doesn't actually come from metal. In two thousand and six, chemists showed that when blood or iron touches our skin, it reacts with the oils on it to form a compound called one-octen-three-one, and our noses are extremely sensitive to it.
+
+Blood also carries its own signature odour molecule. In a twenty fourteen experiment, large carnivores were just as interested in a wooden log soaked in that single chemical as in a log soaked in real blood. Now imagine that scent rising from every street, every field and every forest at once. For animals that hunt by smell, the whole world would suddenly smell like wounded prey, with no prey to be found. No one can test how animals would react on a global scale, but confusion is a safe bet.
+
+And then there's the third thing. Blood is sticky. Outside the body, blood normally begins to clot within minutes. Every drop that lands starts turning from liquid into gel.
+
+By the evening of day one, cars, roofs and pavements are coated in a dark, tacky film. And the storm has barely started.
+
+## Day 2: The Drains Clog
+> Street-level storm drain filling with dark clots. Cutaway of pipes under the city. Flooded intersection. Microscope view: bacteria dividing.
+Day two. Our cities were built for water. Gutters, storm drains and sewers are designed to carry a thin, runny liquid away quickly. Blood is several times thicker than water, and as it clots, it forms soft, rubbery lumps.
+
+Clots collect in drain grates and narrow pipes. Everything behind them backs up. In places that get heavy rain, streets would likely flood with a mix of liquid blood and floating clots.
+
+Meanwhile, something invisible is happening. The blood left the clouds clean, but the ground, the air and our skin are covered in bacteria. And to a microbe, blood is a feast. It's so nutritious that laboratories add it to a jelly called blood agar, just to grow bacteria.
+
+In warm, rich conditions, some bacteria can double their numbers every twenty minutes. At that pace, a single cell could, in theory, become billions in less than half a day. By the end of day two, the blood in every puddle is no longer clean.
+
+And that's when the real trouble begins.
+
+## Day 3: The Rot
+> Hot city, haze, people with masks. Swarming flies. Water treatment plant with clogged filters and warning lights. Empty supermarket water shelves.
+Day three, and the smell changes. As bacteria break down blood proteins, they release sulphur compounds and other foul gases, the same chemistry behind the stench of rotting meat.
+
+To flies, that stench is a dinner bell. Research on blowflies and their relatives shows that it's the bacteria growing in blood that produce the scents that draw females in to lay their eggs. With rotting blood everywhere, fly populations could explode within days, especially in warm countries.
+
+Then there's drinking water. Many cities draw their water from rivers and reservoirs that are fed by rain. Treatment plants are built to remove modest amounts of organic material, not a river made largely of blood. Filters would clog, and operators would likely have to shut their intakes and rely on stored water. Bottled water would probably vanish from shops within hours.
+
+Not every creature would suffer, though. Scavengers like rats, crows and gulls would suddenly find food everywhere, and their numbers could climb fast. For a few weeks, the winners of this disaster would be the animals we least want around us.
+
+But the most dangerous changes aren't happening on the streets. They're happening in the water.
+
+## Day 4: The Rivers Suffocate
+> A river turning red as it flows. Fish rising to gasp at the surface. An oxygen gauge dropping to zero. News footage style: Alabama river, dead fish.
+Day four. All that blood is flowing downhill, into streams, lakes and rivers. And this is where things turn deadly.
+
+When bacteria digest organic matter, they consume the oxygen dissolved in the water. Engineers measure this with something called biochemical oxygen demand. Ordinary household sewage has a demand of a few hundred milligrams per litre. Cattle blood has been measured at around one hundred and fifty thousand. That's hundreds of times more.
+
+We know what happens when even a small amount of this kind of waste reaches a river. In twenty nineteen, a pipe failure at a poultry plant in Alabama sent wastewater into the Mulberry Fork of the Black Warrior River. As bacteria fed on it, they used up the oxygen, and an estimated one hundred and seventy-five thousand fish died.
+
+Now picture that in every river on the planet, at the same time. Fish, insects, frogs: anything that breathes underwater would begin to suffocate. Rivers that were full of life on day one could be almost lifeless by day four. And when the fish die, they rot too, feeding even more bacteria and stealing even more oxygen. It's a vicious circle.
+
+## Day 5: The Farms
+> Countryside under red rain. Crop leaves browning at the tips. Soil cross-section with roots. A bag of "blood meal" fertiliser in a garden shed.
+Day five, out in the countryside. And here's a strange twist. Dried blood is actually sold as a fertiliser, called blood meal. It's about twelve to fourteen percent nitrogen, and gardeners are told to use it sparingly, because too much nitrogen burns plants. Leaf tips turn brown, and young seedlings can die.
+
+Our storm isn't a sprinkle of fertiliser. It's days of liquid blood soaking into the soil. The likely result is an overdose. And as that blood rots underground, bacteria use up the oxygen in the soil, oxygen that plant roots need to breathe.
+
+Farm animals would face their own problems. Pastures, ponds and water troughs would be coated in rotting blood, swarming with flies. Farmers would have to bring clean water and feed to their herds, on a scale no emergency plan has ever imagined.
+
+Even after the rain ends, much of that nitrogen will wash into rivers. And rivers lead to the sea.
+
+## Day 6: The Oceans
+> Wide ocean shot. A green algae bloom spreading along a coastline. Animated map of the Gulf of Mexico with the dead zone growing. Fish swimming away from dark water.
+Day six. Remember, about three quarters of the storm fell straight into the ocean. The open sea is so vast that it would dilute much of it. But coastlines, bays and river mouths are a different story.
+
+Scientists already know what happens when rivers carry too many nutrients to the sea. Every summer, fertiliser washing off farms along the Mississippi River feeds huge blooms of algae in the Gulf of Mexico. When the algae die and sink, bacteria break them down and use up the oxygen, creating a "dead zone". In twenty twenty-four, that dead zone covered about seventeen thousand square kilometres, roughly the size of the US state of New Jersey.
+
+Our blood storm would deliver a nutrient load to coastal waters on a scale never seen before. Dead zones could appear along coastlines all over the world, at the same time.
+
+## Day 7: The Last Drops
+> Clouds breaking up. Sunlight on a rust-coloured city. Cleanup crews with hoses and street sweepers. Time-lapse: seasons passing, green returning, a fish back in a clear river.
+Day seven. And finally, the rain stops.
+
+The sun comes out on a world painted the colour of rust. On roads and roofs, the remaining blood dries into a brown, flaky crust. Cleaning it up would take months of fire hoses, street sweepers and enormous amounts of clean water, the one thing that's suddenly in short supply.
+
+Nature would recover, but slowly. Normal rain would gradually flush the rivers clean. Fish would return from waters that escaped the worst. Plants would regrow. Still, after the Alabama spill alone, officials warned that the river could take years to fully recover. After a storm like this, some ecosystems might take far longer.
+
+The week itself would be remembered as one of the strangest and most frightening events in human history.
+
+## Conclusion
+> Back to reality: Kerala spores under a microscope, Sahara dust over Britain, the water cycle as a glowing loop around the globe. A child playing in clear rain.
+Of course, this will never happen. Clouds can only make rain from water vapour, and every real "blood rain" ever investigated has been water, coloured by desert dust or tiny algae.
+
+But the thought experiment reveals something real. Earth's water cycle moves an astonishing amount of material, quietly, every single day. And many of the disasters in our story already happen in the real world, just on a smaller scale. When waste and fertiliser wash into rivers and oceans, they steal the oxygen that life depends on.
+
+So the next time it rains, take a moment to appreciate it. Clear, clean water, falling from the sky, keeping the whole planet alive.
+
+And maybe… be glad it's just water.
