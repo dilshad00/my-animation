@@ -6,6 +6,7 @@ import { ANIMALS } from "./animals";
 import { BUILDINGS } from "./buildings";
 import { FURNITURE } from "./furniture";
 import { MISC } from "./misc";
+import { MYTHIC } from "./mythic";
 import { NATURE } from "./nature";
 import { EVERYDAY } from "./everyday";
 import { STORY } from "./story";
@@ -26,6 +27,7 @@ export const OBJECTS: Record<string, ObjectDef> = {
   ...STORY,
   ...EVERYDAY,
   ...WILDLIFE,
+  ...MYTHIC,
 };
 
 export const ObjectView: React.FC<{

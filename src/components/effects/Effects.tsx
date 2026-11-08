@@ -1,5 +1,6 @@
 import React from "react";
 import { ATMOSPHERE } from "./Atmosphere";
+import { DIVINE } from "./Divine";
 import { emit, r } from "./emit";
 import { mix, withAlpha } from "../../utils/color";
 import { useScene } from "../../scenes/context";
@@ -274,6 +275,7 @@ export const EFFECTS: Record<string, { component: React.FC<EffectProps>; w: numb
   lightning: { component: Lightning, w: 600, h: 100, description: "Electric arc between two points (width = length)" },
   ripple: { component: Ripple, w: 400, h: 140, description: "Expanding rings" },
   ...ATMOSPHERE,
+  ...DIVINE,
   energy: { component: Energy, w: 600, h: 120, description: "Flowing energy lines" },
 };
 
