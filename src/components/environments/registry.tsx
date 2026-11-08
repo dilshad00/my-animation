@@ -9,6 +9,7 @@ import { PlanetSurface, Space } from "./space";
 import { WeatherFront } from "./weather";
 import { Farm, River } from "./landscape";
 import { Cutaway, Micro, WindowEnv } from "./closeup";
+import { Acropolis, Aegean, Frieze, Hall, Kitchen, Olympia, Olympus, Ruins, Village, Wall } from "./mythic";
 
 export type EnvDef = {
   component: React.FC<EnvProps>;
@@ -47,6 +48,16 @@ export const ENVIRONMENTS: Record<string, EnvDef> = {
   cutaway: { component: Cutaway, ownWeather: true, groundY: 380, description: "Ground cross-section. props.mode \"street\": { liquid, level, flow, clog, puddle } · mode \"soil\": { water, wet, oxygen, bacteria, rot, worms }" },
   window: { component: WindowEnv, ownWeather: true, groundY: 1000, description: "Window close-up from inside with curtains and drops running down the glass. props (animatable): { open: 1, streaks: 1, drops, wall, curtain, view: city|suburb|sky }" },
   gradient: { component: Gradient, groundY: 900, description: "Plain animated gradient. color + props.color2." },
+  olympus: { component: Olympus, groundY: 930, description: "Mount Olympus, summit at about x=960, y=210." },
+  village: { component: Village, groundY: 880, description: "Greek mountain village with Olympus behind." },
+  ruins: { component: Ruins, groundY: 880, description: "Temple of Olympian Zeus with a city behind. props (animatable): { columns: 15, built: 1 }, { city: false }" },
+  acropolis: { component: Acropolis, groundY: 930, description: "The Parthenon on its hill. props: { scaffold: false }" },
+  olympia: { component: Olympia, groundY: 900, description: "Low sanctuary ruins with an empty statue base." },
+  aegean: { component: Aegean, groundY: 900, description: "Open sea with a bare island. props (animatable): { island: 0..1, boil: 0..1, flat: 0..1 }" },
+  frieze: { component: Frieze, groundY: 960, description: "Terracotta black-figure backdrop with Greek-key borders. color = clay." },
+  hall: { component: Hall, ownWeather: true, groundY: 880, description: "Official room. props: { kind: council|press|control } color = wall." },
+  kitchen: { component: Kitchen, ownWeather: true, groundY: 900, description: "Tiny flat lit by one warm bulb." },
+  wall: { component: Wall, ownWeather: true, groundY: 950, description: "Plain exterior wall and pavement. color = wall." },
 };
 
 export const EnvironmentView: React.FC<{
