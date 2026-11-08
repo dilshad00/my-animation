@@ -10,6 +10,7 @@ import { WeatherFront } from "./weather";
 import { Farm, River } from "./landscape";
 import { Cutaway, Micro, WindowEnv } from "./closeup";
 import { Acropolis, Aegean, Frieze, Hall, Kitchen, Olympia, Olympus, Ruins, Village, Wall } from "./mythic";
+import { STONE_AGE_ENVS } from "../../../projects/video-003/assets/environments";
 
 export type EnvDef = {
   component: React.FC<EnvProps>;
@@ -58,6 +59,7 @@ export const ENVIRONMENTS: Record<string, EnvDef> = {
   hall: { component: Hall, ownWeather: true, groundY: 880, description: "Official room. props: { kind: council|press|control } color = wall." },
   kitchen: { component: Kitchen, ownWeather: true, groundY: 900, description: "Tiny flat lit by one warm bulb." },
   wall: { component: Wall, ownWeather: true, groundY: 950, description: "Plain exterior wall and pavement. color = wall." },
+  ...STONE_AGE_ENVS,
 };
 
 export const EnvironmentView: React.FC<{
