@@ -1,5 +1,7 @@
 # YouTube upload kit: video-004
 
+Video: `renders/video-004.mp4` (8:10, 1080p). Thumbnail (chosen): A, "HALF ZOMBIE?" at `renders/video-004-thumbnails/thumb-A-half-zombie.jpg` (1080p PNG alongside).
+
 ## Working title
 What If a Zombie and a Human Had a Child?
 
