@@ -6,6 +6,8 @@ import s2 from "../projects/video-002/storyboard.json";
 import c2 from "../projects/video-002/captions.json";
 import s3 from "../projects/video-003/storyboard.json";
 import c3 from "../projects/video-003/captions.json";
+import s4 from "../projects/video-004/storyboard.json";
+import c4 from "../projects/video-004/captions.json";
 
 export type ProjectEntry = {
   /** contents of projects/<id>/storyboard.json */
@@ -21,6 +23,7 @@ export const PROJECTS: Record<string, ProjectEntry> = {
   "video-001": { storyboard: s1, captions: c1, narration: "audio/video-001/narration.mp3" },
   "video-002": { storyboard: s2, captions: c2, narration: "audio/video-002/narration.mp3" },
   "video-003": { storyboard: s3, captions: c3, narration: "audio/video-003/narration.mp3" },
+  "video-004": { storyboard: s4, captions: c4, narration: "audio/video-004/narration.mp3" },
 };
 
-export const PROJECT_IDS: string[] = ["demo","video-001","video-002","video-003"];
+export const PROJECT_IDS: string[] = ["demo","video-001","video-002","video-003","video-004"];

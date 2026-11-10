@@ -8,6 +8,10 @@ export type HeadProps = {
   skin: string;
   hairColor: string;
   eyeColor: string;
+  /** near-eye colour when the eyes differ */
+  eyeColor2?: string;
+  /** eye-socket shading colour */
+  sockets?: string;
   face: Face;
   /** 0..1 talking mouth openness */
   talk: number;
@@ -75,6 +79,8 @@ export const Head: React.FC<HeadProps> = ({
   skin,
   hairColor,
   eyeColor,
+  eyeColor2,
+  sockets,
   face,
   talk,
   blink,
@@ -171,11 +177,17 @@ export const Head: React.FC<HeadProps> = ({
         />
       ) : null}
       {/* cheeks */}
-      <ellipse cx={nearX + R * 0.08} cy={R * 0.3} rx={R * 0.15} ry={R * 0.09} fill="#ff6b6b" opacity={0.18 + face.blush * 0.22} />
-      <ellipse cx={farX - R * 0.12} cy={R * 0.3} rx={R * 0.11} ry={R * 0.08} fill="#ff6b6b" opacity={0.12 + face.blush * 0.18} />
+      <ellipse cx={nearX + R * 0.08} cy={R * 0.3} rx={R * 0.15} ry={R * 0.09} fill="#ff6b6b" opacity={(0.18 + face.blush * 0.22) * (sockets ? 0 : 1)} />
+      <ellipse cx={farX - R * 0.12} cy={R * 0.3} rx={R * 0.11} ry={R * 0.08} fill="#ff6b6b" opacity={(0.12 + face.blush * 0.18) * (sockets ? 0 : 1)} />
+      {sockets ? (
+        <g fill={sockets} opacity={0.55}>
+          <ellipse cx={farX} cy={eyeY + R * 0.02} rx={R * 0.2} ry={R * 0.25} />
+          <ellipse cx={nearX} cy={eyeY + R * 0.02} rx={R * 0.23} ry={R * 0.26} />
+        </g>
+      ) : null}
       {/* eyes */}
       <Eye cx={farX} cy={eyeY} R={R} open={open} happy={face.happyEyes} narrow={0.84} lookX={lookX} lookY={lookY + face.lookY} eyeColor={eyeColor} line={line} />
-      <Eye cx={nearX} cy={eyeY} R={R} open={face.wink > 0.5 ? 0 : open} happy={face.wink > 0.5 ? 1 : face.happyEyes} narrow={1} lookX={lookX} lookY={lookY + face.lookY} eyeColor={eyeColor} line={line} />
+      <Eye cx={nearX} cy={eyeY} R={R} open={face.wink > 0.5 ? 0 : open} happy={face.wink > 0.5 ? 1 : face.happyEyes} narrow={1} lookX={lookX} lookY={lookY + face.lookY} eyeColor={eyeColor2 ?? eyeColor} line={line} />
       {/* brows */}
       <path
         d={`M${farX - browLen},${browY - tilt * 0.2} L${farX + browLen},${browY - tilt}`}

@@ -190,6 +190,14 @@ export const CharacterLook = z.object({
   /** surgical face mask */
   mask: z.boolean().default(false),
   eyeColor: z.string().default("#2b1d14"),
+  /** Optional: colour of the near eye when the two eyes differ (heterochromia) */
+  eyeColor2: z.string().optional(),
+  /** Optional: dark eye-socket shading colour (tired, sick or undead looks) */
+  sockets: z.string().optional(),
+  /** Optional: colour of a single streak through the front hair */
+  hairStreak: z.string().optional(),
+  /** Optional: colour of a frost-like marking along the front forearm */
+  mark: z.string().optional(),
 });
 export type CharacterLook = z.infer<typeof CharacterLook>;
 
@@ -211,6 +219,14 @@ export const CharacterLookPatch = z.object({
   headwear: Headwear.optional(),
   mask: z.boolean().optional(),
   eyeColor: z.string().optional(),
+  /** Optional: colour of the near eye when the two eyes differ (heterochromia) */
+  eyeColor2: z.string().optional(),
+  /** Optional: dark eye-socket shading colour (tired, sick or undead looks) */
+  sockets: z.string().optional(),
+  /** Optional: colour of a single streak through the front hair */
+  hairStreak: z.string().optional(),
+  /** Optional: colour of a frost-like marking along the front forearm */
+  mark: z.string().optional(),
 });
 export type CharacterLookPatchT = z.infer<typeof CharacterLookPatch>;
 
