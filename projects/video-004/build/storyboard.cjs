@@ -25,12 +25,12 @@ const LOUD = {
 const db = (x) => 10 ** (x / 20);
 const rd = (x) => Math.round(Math.min(1, x) * 1000) / 1000;
 const src = (n) => `sfx/zombie/${n}.mp3`;
-const fx = (n, at = 0, o = {}) => ({ at, src: src(n), volume: rd(Math.min(db(VOICE - 11 - LOUD[n][0]), db(VOICE - 5 - LOUD[n][1]))), ...o });
-const bed = (n, at = 0, o = {}) => ({ at, src: src(n), loop: true, volume: rd(Math.min(db(VOICE - 17 - LOUD[n][0]), db(VOICE - 10 - LOUD[n][1]))), ...o });
+const fx = (n, at = 0, o = {}) => ({ at, src: src(n), volume: rd(Math.min(db(VOICE - 14 - LOUD[n][0]), db(VOICE - 8 - LOUD[n][1]))), ...o });
+const bed = (n, at = 0, o = {}) => ({ at, src: src(n), loop: true, volume: rd(Math.min(db(VOICE - 20 - LOUD[n][0]), db(VOICE - 13 - LOUD[n][1]))), ...o });
 // One-shots in a pause may go a little louder, but their loudest moment stays under the voice's.
-const hit = (n, at, peak = VOICE - 4) => ({ at, src: src(n), volume: rd(db(peak - LOUD[n][1])) });
+const hit = (n, at, peak = VOICE - 4) => ({ at, src: src(n), volume: rd(db(Math.min(peak, VOICE - 6) - 2 - LOUD[n][1])) });
 const MUSIC = { echoes: -18.1, "piano-horror": -17.2, "night-sky": -11.8, "dark-shadows": -10.3, "fright-night": -15.9, delirium: -8.7, "silent-descent": -14.6, "drawing-the-sky": -14.5 };
-const music = (n, from, o = {}) => ({ src: n === "drawing-the-sky" ? `music/tech/${n}.mp3` : `music/zombie/${n}.mp3`, ...(from ? { from } : {}), volume: rd(db(VOICE - 9 - MUSIC[n])), duckTo: rd(db(VOICE - 19 - MUSIC[n])), ...o });
+const music = (n, from, o = {}) => ({ src: n === "drawing-the-sky" ? `music/tech/${n}.mp3` : `music/zombie/${n}.mp3`, ...(from ? { from } : {}), volume: rd(db(VOICE - 11 - MUSIC[n])), duckTo: rd(db(VOICE - 21 - MUSIC[n])), ...o });
 
 // ── look ──
 const STORY = { text: "STORY", color: "#9fd8c9" };

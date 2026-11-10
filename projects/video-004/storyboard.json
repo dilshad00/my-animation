@@ -19,50 +19,50 @@
     "music": [
       {
         "src": "music/zombie/echoes.mp3",
-        "volume": 0.207,
-        "duckTo": 0.065
+        "volume": 0.164,
+        "duckTo": 0.052
       },
       {
         "src": "music/zombie/piano-horror.mp3",
         "from": "s029-pharmacy",
-        "volume": 0.186,
-        "duckTo": 0.059
+        "volume": 0.148,
+        "duckTo": 0.047
       },
       {
         "src": "music/zombie/night-sky.mp3",
         "from": "s051-back",
-        "volume": 0.1,
-        "duckTo": 0.032
+        "volume": 0.079,
+        "duckTo": 0.025
       },
       {
         "src": "music/zombie/dark-shadows.mp3",
         "from": "s071-sick",
-        "volume": 0.084,
-        "duckTo": 0.027
+        "volume": 0.067,
+        "duckTo": 0.021
       },
       {
         "src": "music/zombie/fright-night.mp3",
         "from": "s088-storm",
-        "volume": 0.16,
-        "duckTo": 0.051
+        "volume": 0.127,
+        "duckTo": 0.04
       },
       {
         "src": "music/zombie/delirium.mp3",
         "from": "s106-what",
-        "volume": 0.07,
-        "duckTo": 0.022
+        "volume": 0.056,
+        "duckTo": 0.018
       },
       {
         "src": "music/zombie/silent-descent.mp3",
         "from": "s139-blood",
-        "volume": 0.138,
-        "duckTo": 0.044
+        "volume": 0.11,
+        "duckTo": 0.035
       },
       {
         "src": "music/tech/drawing-the-sky.mp3",
         "from": "s167-there",
-        "volume": 0.136,
-        "duckTo": 0.043
+        "volume": 0.108,
+        "duckTo": 0.034
       }
     ]
   },
@@ -420,18 +420,18 @@
         {
           "at": 0.05,
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.15
+          "volume": 0.075
         },
         {
           "at": 1.1,
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.119
+          "volume": 0.075
         },
         {
           "at": "@other",
           "src": "sfx/zombie/slow-heartbeat.mp3",
           "loop": true,
-          "volume": 0.03
+          "volume": 0.021
         }
       ]
     },
@@ -488,7 +488,7 @@
           "at": 0,
           "src": "sfx/zombie/tomb-ambience.mp3",
           "loop": true,
-          "volume": 0.082
+          "volume": 0.058
         }
       ]
     },
@@ -549,13 +549,13 @@
           "at": 0,
           "src": "sfx/zombie/horde-moan.mp3",
           "loop": true,
-          "volume": 0.158
+          "volume": 0.112
         },
         {
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -642,7 +642,7 @@
         {
           "at": "@born",
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.094
+          "volume": 0.075
         }
       ]
     },
@@ -768,12 +768,12 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         },
         {
           "at": 0.4,
           "src": "sfx/zombie/terror-sweep.mp3",
-          "volume": 0.141
+          "volume": 0.112
         }
       ]
     },
@@ -856,12 +856,12 @@
         {
           "at": "end-0.2",
           "src": "sfx/zombie/horror-impact.mp3",
-          "volume": 0.26
+          "volume": 0.13
         },
         {
           "at": 2.9,
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.075
+          "volume": 0.06
         }
       ]
     },
@@ -952,7 +952,7 @@
         {
           "at": 0.6,
           "src": "sfx/zombie/whoosh-impact.mp3",
-          "volume": 0.106
+          "volume": 0.075
         }
       ]
     },
@@ -1012,7 +1012,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -1080,7 +1080,7 @@
           "at": 0,
           "src": "sfx/zombie/tomb-ambience.mp3",
           "loop": true,
-          "volume": 0.082
+          "volume": 0.058
         }
       ]
     },
@@ -1195,13 +1195,13 @@
           "at": 0,
           "src": "sfx/zombie/horde-moan.mp3",
           "loop": true,
-          "volume": 0.158
+          "volume": 0.112
         },
         {
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -1257,12 +1257,12 @@
         {
           "at": 0.5,
           "src": "sfx/zombie/zombie-breath.mp3",
-          "volume": 0.095
+          "volume": 0.068
         },
         {
           "at": "@hungry-0.2",
           "src": "sfx/zombie/zombie-growl.mp3",
-          "volume": 0.104
+          "volume": 0.073
         }
       ]
     },
@@ -1337,7 +1337,7 @@
         {
           "at": "@Zombies",
           "src": "sfx/zombie/horror-impact.mp3",
-          "volume": 0.26
+          "volume": 0.13
         }
       ]
     },
@@ -1407,7 +1407,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -1487,7 +1487,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -1569,13 +1569,13 @@
         {
           "at": 0.1,
           "src": "sfx/zombie/gate-open.mp3",
-          "volume": 0.282
+          "volume": 0.2
         },
         {
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -1709,7 +1709,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -1877,18 +1877,18 @@
         {
           "at": "@sees",
           "src": "sfx/zombie/zombie-growl.mp3",
-          "volume": 0.104
+          "volume": 0.073
         },
         {
           "at": "@run-0.1",
           "src": "sfx/zombie/whoosh-impact.mp3",
-          "volume": 0.106
+          "volume": 0.075
         },
         {
           "at": 0,
           "src": "sfx/zombie/rain-long.mp3",
           "loop": true,
-          "volume": 0.285
+          "volume": 0.202
         }
       ]
     },
@@ -1988,12 +1988,12 @@
           "at": 0,
           "src": "sfx/zombie/rain-long.mp3",
           "loop": true,
-          "volume": 0.285
+          "volume": 0.202
         },
         {
           "at": "@stop",
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.087
+          "volume": 0.062
         }
       ]
     },
@@ -2068,12 +2068,12 @@
           "at": 0,
           "src": "sfx/zombie/rain-long.mp3",
           "loop": true,
-          "volume": 0.285
+          "volume": 0.202
         },
         {
           "at": "@broke-0.3",
           "src": "sfx/zombie/terror-sweep.mp3",
-          "volume": 0.178
+          "volume": 0.141
         }
       ]
     },
@@ -2150,13 +2150,13 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         },
         {
           "at": 0,
           "src": "sfx/zombie/rain-long.mp3",
           "loop": true,
-          "volume": 0.285
+          "volume": 0.202
         }
       ]
     },
@@ -2218,12 +2218,12 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         },
         {
           "at": "@moving",
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.075
+          "volume": 0.06
         }
       ]
     },
@@ -2296,17 +2296,17 @@
           "at": 0,
           "src": "sfx/zombie/horde-moan.mp3",
           "loop": true,
-          "volume": 0.158
+          "volume": 0.112
         },
         {
           "at": "@groaned",
           "src": "sfx/zombie/zombie-growl.mp3",
-          "volume": 0.104
+          "volume": 0.073
         },
         {
           "at": "@lurched",
           "src": "sfx/zombie/zombie-gasp.mp3",
-          "volume": 0.069
+          "volume": 0.049
         }
       ]
     },
@@ -2378,7 +2378,7 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         }
       ]
     },
@@ -2474,7 +2474,7 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         }
       ]
     },
@@ -2539,7 +2539,7 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         },
         {
           "at": 0,
@@ -2612,7 +2612,7 @@
         {
           "at": "@saw",
           "src": "sfx/zombie/horror-impact.mp3",
-          "volume": 0.13
+          "volume": 0.104
         }
       ]
     },
@@ -2708,7 +2708,7 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         }
       ]
     },
@@ -2774,7 +2774,7 @@
         {
           "at": 0,
           "src": "sfx/zombie/whoosh-impact.mp3",
-          "volume": 0.106
+          "volume": 0.075
         }
       ]
     },
@@ -3005,7 +3005,7 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         }
       ]
     },
@@ -3095,7 +3095,7 @@
           "at": 0,
           "src": "sfx/zombie/rain-long.mp3",
           "loop": true,
-          "volume": 0.285
+          "volume": 0.202
         }
       ]
     },
@@ -3192,7 +3192,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -3258,7 +3258,7 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         }
       ]
     },
@@ -3361,7 +3361,7 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         }
       ]
     },
@@ -3441,12 +3441,12 @@
           "at": 0,
           "src": "sfx/zombie/horde-moan.mp3",
           "loop": true,
-          "volume": 0.158
+          "volume": 0.112
         },
         {
           "at": 0.2,
           "src": "sfx/zombie/terror-sweep.mp3",
-          "volume": 0.178
+          "volume": 0.141
         }
       ]
     },
@@ -3503,12 +3503,12 @@
         {
           "at": 0.1,
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.119
+          "volume": 0.075
         },
         {
           "at": 0.75,
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.094
+          "volume": 0.075
         }
       ]
     },
@@ -3607,7 +3607,7 @@
           "at": 0,
           "src": "sfx/zombie/horde-moan.mp3",
           "loop": true,
-          "volume": 0.158
+          "volume": 0.112
         }
       ]
     },
@@ -3712,14 +3712,14 @@
           "at": 0,
           "src": "sfx/zombie/horde-moan.mp3",
           "loop": true,
-          "volume": 0.158,
+          "volume": 0.112,
           "until": "@stopped"
         },
         {
           "at": "@stopped",
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -3803,7 +3803,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -4104,7 +4104,7 @@
           "at": 0,
           "src": "sfx/zombie/tomb-ambience.mp3",
           "loop": true,
-          "volume": 0.082
+          "volume": 0.058
         }
       ]
     },
@@ -4179,7 +4179,7 @@
         {
           "at": "@pregnant",
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.133
+          "volume": 0.075
         }
       ]
     },
@@ -4264,7 +4264,7 @@
           "at": 0,
           "src": "sfx/zombie/tomb-ambience.mp3",
           "loop": true,
-          "volume": 0.082
+          "volume": 0.058
         }
       ]
     },
@@ -4427,13 +4427,13 @@
           "at": 0,
           "src": "sfx/zombie/slow-heartbeat.mp3",
           "loop": true,
-          "volume": 0.03
+          "volume": 0.021
         },
         {
           "at": 0.5,
           "src": "sfx/zombie/heartbeat-transition.mp3",
           "loop": true,
-          "volume": 0.05
+          "volume": 0.035
         }
       ]
     },
@@ -4524,7 +4524,7 @@
           "at": 0,
           "src": "sfx/zombie/tomb-ambience.mp3",
           "loop": true,
-          "volume": 0.082
+          "volume": 0.058
         }
       ]
     },
@@ -4657,7 +4657,7 @@
           "at": 0,
           "src": "sfx/zombie/tomb-ambience.mp3",
           "loop": true,
-          "volume": 0.082
+          "volume": 0.058
         }
       ]
     },
@@ -4718,7 +4718,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         },
         {
           "at": 0.8,
@@ -4804,17 +4804,17 @@
           "at": 0,
           "src": "sfx/zombie/rain-long.mp3",
           "loop": true,
-          "volume": 0.285
+          "volume": 0.202
         },
         {
           "at": 0.3,
           "src": "sfx/zombie/thunder-close.mp3",
-          "volume": 0.211
+          "volume": 0.106
         },
         {
           "at": "@stormy",
           "src": "sfx/zombie/thunder-mid.mp3",
-          "volume": 0.155
+          "volume": 0.11
         }
       ]
     },
@@ -4899,7 +4899,7 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         }
       ]
     },
@@ -5071,7 +5071,7 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         }
       ]
     },
@@ -5165,7 +5165,7 @@
         {
           "at": "@grey",
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.075
+          "volume": 0.06
         }
       ]
     },
@@ -5419,12 +5419,12 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         },
         {
           "at": "@heartbeat",
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.087
+          "volume": 0.062
         }
       ]
     },
@@ -5485,12 +5485,12 @@
           "at": 0,
           "src": "sfx/zombie/rain-roof.mp3",
           "loop": true,
-          "volume": 0.052
+          "volume": 0.037
         },
         {
           "at": "@outside-0.8",
           "src": "sfx/zombie/terror-sweep.mp3",
-          "volume": 0.224
+          "volume": 0.141
         }
       ]
     },
@@ -5581,19 +5581,19 @@
           "at": 0,
           "src": "sfx/zombie/horde-moan.mp3",
           "loop": true,
-          "volume": 0.158,
+          "volume": 0.112,
           "until": "@stopped"
         },
         {
           "at": 0,
           "src": "sfx/zombie/rain-long.mp3",
           "loop": true,
-          "volume": 0.285
+          "volume": 0.202
         },
         {
           "at": "@stopped",
           "src": "sfx/zombie/thunder-mid.mp3",
-          "volume": 0.138
+          "volume": 0.11
         }
       ]
     },
@@ -5684,13 +5684,13 @@
         {
           "at": "@turned",
           "src": "sfx/zombie/horror-impact.mp3",
-          "volume": 0.26
+          "volume": 0.13
         },
         {
           "at": 0,
           "src": "sfx/zombie/rain-long.mp3",
           "loop": true,
-          "volume": 0.285
+          "volume": 0.202
         }
       ]
     },
@@ -5759,13 +5759,13 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         },
         {
           "at": 0,
           "src": "sfx/zombie/wind-howl.mp3",
           "loop": true,
-          "volume": 0.331
+          "volume": 0.234
         }
       ]
     },
@@ -5973,7 +5973,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -6133,7 +6133,7 @@
         {
           "at": "@dark",
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.06
+          "volume": 0.047
         }
       ]
     },
@@ -6207,13 +6207,13 @@
           "at": "@groans",
           "src": "sfx/zombie/horror-ambience.mp3",
           "loop": true,
-          "volume": 0.085
+          "volume": 0.06
         },
         {
           "at": 0,
           "src": "sfx/zombie/tomb-ambience.mp3",
           "loop": true,
-          "volume": 0.082
+          "volume": 0.058
         }
       ]
     },
@@ -6331,7 +6331,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -6538,17 +6538,17 @@
         {
           "at": "@human",
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.087
+          "volume": 0.062
         },
         {
           "at": "@zombie",
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.087
+          "volume": 0.062
         },
         {
           "at": "@something",
           "src": "sfx/zombie/heartbeat-single.mp3",
-          "volume": 0.087
+          "volume": 0.062
         }
       ]
     },
@@ -6620,7 +6620,7 @@
         {
           "at": "@Both",
           "src": "sfx/zombie/horror-drum.mp3",
-          "volume": 0.257
+          "volume": 0.162
         }
       ]
     },
@@ -6737,13 +6737,13 @@
         {
           "at": 1,
           "src": "sfx/zombie/gate-open.mp3",
-          "volume": 0.282
+          "volume": 0.2
         },
         {
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -6825,13 +6825,13 @@
           "at": 0,
           "src": "sfx/zombie/horde-moan.mp3",
           "loop": true,
-          "volume": 0.158
+          "volume": 0.112
         },
         {
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -6931,14 +6931,14 @@
           "at": 0,
           "src": "sfx/zombie/horde-moan.mp3",
           "loop": true,
-          "volume": 0.158,
+          "volume": 0.112,
           "until": "@stopped"
         },
         {
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -7007,7 +7007,7 @@
         {
           "at": "@afraid-0.4",
           "src": "sfx/zombie/zombie-gasp.mp3",
-          "volume": 0.069
+          "volume": 0.049
         }
       ]
     },
@@ -7105,7 +7105,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -7240,7 +7240,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -7361,13 +7361,13 @@
           "at": 0,
           "src": "sfx/zombie/mob.mp3",
           "loop": true,
-          "volume": 0.085
+          "volume": 0.06
         },
         {
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -7578,7 +7578,7 @@
           "at": 0,
           "src": "sfx/zombie/tomb-ambience.mp3",
           "loop": true,
-          "volume": 0.082
+          "volume": 0.058
         }
       ]
     },
@@ -7673,7 +7673,7 @@
         {
           "at": 0,
           "src": "sfx/zombie/whoosh-impact.mp3",
-          "volume": 0.106
+          "volume": 0.075
         }
       ]
     },
@@ -7873,7 +7873,7 @@
         {
           "at": "@infection",
           "src": "sfx/zombie/horror-drum.mp3",
-          "volume": 0.257
+          "volume": 0.162
         }
       ]
     },
@@ -8005,7 +8005,7 @@
         {
           "at": "@bitten",
           "src": "sfx/zombie/terror-sweep.mp3",
-          "volume": 0.141
+          "volume": 0.112
         }
       ]
     },
@@ -8304,7 +8304,7 @@
           "at": 0,
           "src": "sfx/zombie/tomb-ambience.mp3",
           "loop": true,
-          "volume": 0.082
+          "volume": 0.058
         }
       ]
     },
@@ -8360,7 +8360,7 @@
         {
           "at": "@neither",
           "src": "sfx/zombie/horror-drum.mp3",
-          "volume": 0.204
+          "volume": 0.162
         }
       ]
     },
@@ -8445,13 +8445,13 @@
         {
           "at": "@opened-0.8",
           "src": "sfx/zombie/gate-open.mp3",
-          "volume": 0.282
+          "volume": 0.2
         },
         {
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -8518,13 +8518,13 @@
           "at": 0,
           "src": "sfx/zombie/wind-howl.mp3",
           "loop": true,
-          "volume": 0.331
+          "volume": 0.234
         },
         {
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -8623,7 +8623,7 @@
           "at": 0,
           "src": "sfx/zombie/marsh-wind.mp3",
           "loop": true,
-          "volume": 0.097
+          "volume": 0.068
         }
       ]
     },
@@ -9426,17 +9426,17 @@
         {
           "at": "@knocked",
           "src": "sfx/zombie/door-knock.mp3",
-          "volume": 0.272
+          "volume": 0.216
         },
         {
           "at": "@knocked+0.9",
           "src": "sfx/zombie/door-knock.mp3",
-          "volume": 0.216
+          "volume": 0.172
         },
         {
           "at": "@open",
           "src": "sfx/zombie/door-creak.mp3",
-          "volume": 0.174
+          "volume": 0.123
         }
       ]
     },
