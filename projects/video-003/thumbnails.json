@@ -1,0 +1,59 @@
+{
+  "thumbnails": [
+    {
+      "id": "thumb-A-dark-earth",
+      "notes": "The night side of an Earth with almost no lights.",
+      "at": 2.5,
+      "scene": {
+        "id": "thumb-A-dark-earth",
+        "tag": "none",
+        "duration": 4,
+        "environment": { "type": "space", "time": "night" },
+        "camera": { "keys": [{ "t": 0, "zoom": 1, "x": 960, "y": 540 }] },
+        "elements": [
+          { "kind": "object", "type": "nightearth", "x": 1340, "y": 560, "scale": 1.5, "zIndex": 2, "props": { "lights": 0.08 } },
+          { "kind": "text", "text": "EARTH", "style": "title", "size": 190, "x": 520, "y": 300, "at": 0, "enter": "fade", "reveal": "none", "color": "#ffffff", "zIndex": 10 },
+          { "kind": "text", "text": "WITHOUT", "style": "title", "size": 170, "x": 520, "y": 490, "at": 0, "enter": "fade", "reveal": "none", "color": "#f2c14e", "zIndex": 10 },
+          { "kind": "text", "text": "TECH", "style": "title", "size": 260, "x": 520, "y": 720, "at": 0, "enter": "fade", "reveal": "none", "color": "#e63946", "zIndex": 10 }
+        ]
+      }
+    },
+    {
+      "id": "thumb-B-no-phone",
+      "notes": "Stone-age child close-up, stone tool against a crossed-out phone.",
+      "at": 2.5,
+      "scene": {
+        "id": "thumb-B-no-phone",
+        "tag": "none",
+        "duration": 4,
+        "environment": { "type": "camp", "time": "sunset" },
+        "camera": { "keys": [{ "t": 0, "zoom": 1, "x": 960, "y": 540 }] },
+        "elements": [
+          { "kind": "character", "who": "tavi", "x": 500, "y": 1610, "scale": 3.7, "expression": "surprised", "look": "right", "zIndex": 4 },
+          { "kind": "object", "type": "phone", "x": 1380, "y": 960, "scale": 2.6, "zIndex": 5 },
+          { "kind": "object", "type": "icon", "x": 1690, "y": 760, "scale": 2.1, "zIndex": 6, "color": "#e63946", "screen": true, "props": { "name": "cross" } },
+          { "kind": "text", "text": "NEVER INVENTED", "style": "title", "size": 124, "x": 1250, "y": 150, "at": 0, "enter": "fade", "reveal": "none", "color": "#ffffff", "background": "rgba(13,19,33,0.82)", "maxWidth": 1300, "zIndex": 10 }
+        ]
+      }
+    },
+    {
+      "id": "thumb-C-stuck",
+      "notes": "Modern viewer stand-in shocked at a night camp fire.",
+      "at": 2.5,
+      "scene": {
+        "id": "thumb-C-stuck",
+        "tag": "none",
+        "duration": 4,
+        "environment": { "type": "camp", "time": "night" },
+        "camera": { "keys": [{ "t": 0, "zoom": 1, "x": 960, "y": 540 }] },
+        "elements": [
+          { "kind": "object", "type": "hearth", "x": 1440, "y": 930, "scale": 1.8, "zIndex": 3 },
+          { "kind": "effect", "type": "fire", "x": 1440, "y": 900, "width": 300, "height": 440, "zIndex": 4 },
+          { "kind": "character", "who": "alex", "x": 560, "y": 1760, "scale": 3.8, "expression": "worried", "look": "right", "zIndex": 5 },
+          { "kind": "text", "text": "STUCK", "style": "title", "size": 230, "x": 1320, "y": 200, "at": 0, "enter": "fade", "reveal": "none", "color": "#f2c14e", "zIndex": 10 },
+          { "kind": "text", "text": "HERE FOREVER", "style": "title", "size": 120, "x": 1320, "y": 390, "at": 0, "enter": "fade", "reveal": "none", "color": "#ffffff", "zIndex": 10 }
+        ]
+      }
+    }
+  ]
+}
