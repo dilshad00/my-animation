@@ -189,6 +189,16 @@ export const Figure: React.FC<FigureProps> = ({
         ) : (
           <circle cx={wrist[0]} cy={wrist[1]} r={armW * 0.52} fill={darken(sleeve, 0.12)} />
         )}
+        {look.mark && side === "front" && !long ? (
+          <g stroke={light(look.mark)} strokeWidth={Math.max(2, armW * 0.09)} strokeLinecap="round" fill="none" opacity={0.85}>
+            {[0.2, 0.45, 0.7].map((k) => {
+              const p = add(elbow, dir(fa), b.foreArm * k);
+              const q = add(p, dir(fa + 35), armW * 0.32);
+              const r2 = add(p, dir(fa - 35), armW * 0.32);
+              return <path key={k} d={`M${q[0]},${q[1]} L${p[0]},${p[1]} L${r2[0]},${r2[1]}`} />;
+            })}
+          </g>
+        ) : null}
         <Hand
           at={add(wrist, dir(fa), armW * 0.35)}
           angle={fa}
@@ -389,6 +399,8 @@ export const Figure: React.FC<FigureProps> = ({
             skin={skin}
             hairColor={hairColor}
             eyeColor={look.eyeColor}
+            eyeColor2={look.eyeColor2}
+            sockets={look.sockets}
             face={face}
             talk={talk}
             blink={blink}
@@ -399,6 +411,9 @@ export const Figure: React.FC<FigureProps> = ({
             gradId={gradHead}
           />
           <Hair style={look.hair} color={hairColor} R={R} layer="front" sway={sway} />
+          {look.hairStreak && look.hair !== "bald" ? (
+            <path d={`M${R * 0.12},${-R * 1.0} Q${R * 0.36},${-R * 0.8} ${R * 0.3},${-R * 0.48}`} stroke={light(look.hairStreak)} strokeWidth={R * 0.16} strokeLinecap="round" fill="none" opacity={0.95} />
+          ) : null}
           {look.mask ? (
             <g>
               <path d={`M${-R * 0.82},${R * 0.05} L${-R * 0.42},${R * 0.3} M${-R * 0.82},${R * 0.2} L${-R * 0.42},${R * 0.62}`} stroke={light("#dfe9f1")} strokeWidth={R * 0.05} />
