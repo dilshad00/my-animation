@@ -198,6 +198,14 @@ export const CharacterLook = z.object({
   hairStreak: z.string().optional(),
   /** Optional: colour of a frost-like marking along the front forearm */
   mark: z.string().optional(),
+  /** ANIME STYLE only: hair length long | medium | short (default from the classic hair style) */
+  animeHair: z.enum(["long", "medium", "short"]).optional(),
+  /** ANIME STYLE only: sailor | gakuran | blazer | hoodie | casual (default from the classic outfit) */
+  animeOutfit: z.enum(["sailor", "gakuran", "blazer", "hoodie", "casual"]).optional(),
+  /** ANIME STYLE only: long feminine lashes (default: true for long/bob/ponytail/bun hair) */
+  lashes: z.boolean().optional(),
+  /** ANIME STYLE only: star hair clip */
+  hairClip: z.boolean().optional(),
 });
 export type CharacterLook = z.infer<typeof CharacterLook>;
 
@@ -227,6 +235,14 @@ export const CharacterLookPatch = z.object({
   hairStreak: z.string().optional(),
   /** Optional: colour of a frost-like marking along the front forearm */
   mark: z.string().optional(),
+  /** ANIME STYLE only: hair length long | medium | short (default from the classic hair style) */
+  animeHair: z.enum(["long", "medium", "short"]).optional(),
+  /** ANIME STYLE only: sailor | gakuran | blazer | hoodie | casual (default from the classic outfit) */
+  animeOutfit: z.enum(["sailor", "gakuran", "blazer", "hoodie", "casual"]).optional(),
+  /** ANIME STYLE only: long feminine lashes (default: true for long/bob/ponytail/bun hair) */
+  lashes: z.boolean().optional(),
+  /** ANIME STYLE only: star hair clip */
+  hairClip: z.boolean().optional(),
 });
 export type CharacterLookPatchT = z.infer<typeof CharacterLookPatch>;
 
@@ -286,7 +302,7 @@ export const TextElement = z.object({
   ...ElementBase,
   text: z.string(),
   style: z
-    .enum(["title", "headline", "subtitle", "label", "caption", "quote", "number"])
+    .enum(["title", "headline", "subtitle", "label", "caption", "quote", "number", "anime"])
     .optional(),
   color: z.string().optional(),
   background: z.string().optional(),
@@ -487,7 +503,7 @@ export const Scene = z.object({
   environment: EnvironmentSpec.optional(),
   camera: CameraSpec.optional(),
   /** Colour grade */
-  grade: z.enum(["none", "warm", "cool", "dramatic", "vintage", "dream", "sepia", "crimson", "murky", "rust", "clean"]).optional(),
+  grade: z.enum(["none", "warm", "cool", "dramatic", "vintage", "dream", "sepia", "crimson", "murky", "rust", "clean", "anime"]).optional(),
   /** Corner label: "real" | "hypothetical" | "none" | { text, color } (default: project.defaultTag) */
   tag: SceneTag.optional(),
   vignette: z.number().optional(),
@@ -521,6 +537,13 @@ export const Project = z.object({
     .regex(/^[a-zA-Z0-9-]+$/, "id may only contain letters, numbers and dashes"),
   title: z.string(),
   topic: z.string().optional(),
+  /**
+   * Art style for the whole video. "classic" = flat explainer figures (default).
+   * "anime" = premium 2D anime: cel-shaded bust characters, anime-* environments
+   * (classic city/street/classroom/studio… are swapped automatically), anime grade
+   * (bloom, vignette, grain) and anime effects. See docs/ANIME.md.
+   */
+  style: z.enum(["classic", "anime"]).default("classic"),
   fps: z.number().int().default(30),
   width: z.number().int().default(1920),
   height: z.number().int().default(1080),

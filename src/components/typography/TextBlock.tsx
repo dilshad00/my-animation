@@ -4,6 +4,7 @@ import { useScene } from "../../scenes/context";
 import { ease } from "../../utils/easing";
 import { normalizeWord } from "../../utils/narration";
 import { FONT_FAMILY } from "../../utils/fonts";
+import { DISPLAY_FONT } from "../anime/fonts";
 import { withAlpha } from "../../utils/color";
 import type { TextElementT } from "../../utils/schema";
 
@@ -15,6 +16,8 @@ const STYLE: Record<string, { size: number; weight: number; lineHeight: number }
   caption: { size: 32, weight: 500, lineHeight: 1.3 },
   quote: { size: 56, weight: 600, lineHeight: 1.3 },
   number: { size: 180, weight: 800, lineHeight: 1 },
+  /** premium anime title: heavy display face, white with a coloured glow */
+  anime: { size: 150, weight: 400, lineHeight: 1.05 },
 };
 
 /** Liquid drips hanging from a word; they grow after the word appears. */
@@ -160,15 +163,19 @@ export const TextBlock: React.FC<{ el: TextElementT; local: number }> = ({ el, l
         translate: align === "center" ? "-50% -50%" : align === "right" ? "-100% -50%" : "0 -50%",
         width: "max-content",
         maxWidth: el.maxWidth ?? (style === "title" ? 1600 : 1400),
-        fontFamily: FONT_FAMILY,
+        fontFamily: style === "anime" ? DISPLAY_FONT : FONT_FAMILY,
         fontSize: size,
         fontWeight: st.weight,
         lineHeight: st.lineHeight,
         color,
         textAlign: align,
         whiteSpace: "pre-wrap",
-        letterSpacing: style === "title" || style === "number" ? "-0.02em" : undefined,
-        textShadow: pill ? undefined : "0 6px 24px rgba(0,0,0,0.35), 0 2px 4px rgba(0,0,0,0.3)",
+        letterSpacing: style === "title" || style === "number" ? "-0.02em" : style === "anime" ? "0.06em" : undefined,
+        textShadow: pill
+          ? undefined
+          : style === "anime"
+            ? `0 0 26px ${withAlpha(accent, 0.85)}, 0 0 8px ${withAlpha(accent, 0.6)}, 0 7px 0 ${theme.dark}`
+            : "0 6px 24px rgba(0,0,0,0.35), 0 2px 4px rgba(0,0,0,0.3)",
         background: pill ? el.background ?? withAlpha(theme.dark, 0.85) : undefined,
         padding: pill ? "0.35em 0.8em" : undefined,
         borderRadius: pill ? 999 : undefined,

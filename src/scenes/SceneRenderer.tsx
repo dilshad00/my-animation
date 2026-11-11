@@ -11,6 +11,8 @@ import { PALETTES, withWeather } from "../utils/lighting";
 import type { SceneTiming } from "../utils/narration";
 import type { CharacterLook, EnvironmentSpecT, SceneT, SceneTagT } from "../utils/schema";
 import { SceneTag } from "../components/typography/SceneTag";
+import { ANIME_ENV_ALIASES } from "../components/anime/environments";
+import { AnimeGrade } from "../components/anime/AnimeFx";
 
 type SfxCueT = NonNullable<SceneT["sfx"]>[number];
 
@@ -31,6 +33,8 @@ const GRADES: Record<string, string | undefined> = {
   rust: "sepia(0.5) hue-rotate(-12deg) saturate(1.25) contrast(1.04) brightness(0.97)",
   /** fresh, clear and bright */
   clean: "saturate(1.15) contrast(1.03) brightness(1.05)",
+  /** premium anime: punchy colour; bloom, vignette and grain are drawn as overlays */
+  anime: "saturate(1.12) contrast(1.04)",
 };
 
 export type SceneRendererProps = {
@@ -43,6 +47,8 @@ export type SceneRendererProps = {
   voiceVolume?: number;
   /** project.defaultTag, used when the scene sets no tag */
   defaultTag?: SceneTagT;
+  /** project art style */
+  style?: "classic" | "anime";
 };
 
 const FADE = 0.35;
@@ -69,12 +75,14 @@ const SfxPlayer: React.FC<{ cue: SfxCueT; fromSec: number; untilSec: number; fps
  * weather, grading, subtitles, its slice of the voiceover and SFX cues.
  * Frame 0 = the first frame of the scene (including its transition-in).
  */
-export const SceneRenderer: React.FC<SceneRendererProps> = ({ scene, timing, theme, cast, subtitles, voiceover, voiceVolume = 1, defaultTag }) => {
+export const SceneRenderer: React.FC<SceneRendererProps> = ({ scene, timing, theme, cast, subtitles, voiceover, voiceVolume = 1, defaultTag, style = "classic" }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
   const duration = timing.durationInFrames / fps;
-  const env: EnvironmentSpecT = scene.environment ?? { type: "studio" };
+  const anime = style === "anime";
+  const rawEnv: EnvironmentSpecT = scene.environment ?? { type: "studio" };
+  const env: EnvironmentSpecT = anime && ANIME_ENV_ALIASES[rawEnv.type.toLowerCase()] ? { ...rawEnv, type: ANIME_ENV_ALIASES[rawEnv.type.toLowerCase()] } : rawEnv;
   const palette = useMemo(() => withWeather(PALETTES[env.time ?? "day"], env.weather, env.rainColor), [env.time, env.weather, env.rainColor]);
   const groundY = ENVIRONMENTS[env.type.toLowerCase()]?.groundY ?? 900;
   const ctx = useMemo(
@@ -89,19 +97,22 @@ export const SceneRenderer: React.FC<SceneRendererProps> = ({ scene, timing, the
         cast,
         elements: scene.elements,
         groundY,
+        style,
       }),
-    [scene.id, scene.elements, duration, fps, timing.words, palette, theme, cast, groundY],
+    [scene.id, scene.elements, duration, fps, timing.words, palette, theme, cast, groundY, style],
   );
 
-  const vignette = scene.vignette ?? 0.35;
+  const grade = scene.grade ?? (anime ? "anime" : "none");
+  const vignette = scene.vignette ?? (grade === "anime" ? 0 : 0.35);
   return (
     <SceneProvider value={ctx}>
-      <AbsoluteFill style={{ overflow: "hidden", backgroundColor: "#000", filter: GRADES[scene.grade ?? "none"] }}>
+      <AbsoluteFill style={{ overflow: "hidden", backgroundColor: "#000", filter: GRADES[grade] }}>
         <CameraProvider spec={scene.camera} t={t}>
           <EnvironmentView spec={env} palette={palette} t={t} sceneId={scene.id} />
           <ElementsLayer elements={scene.elements} t={t} />
           <EnvironmentFront spec={env} palette={palette} t={t} />
         </CameraProvider>
+        {grade === "anime" ? <AnimeGrade frame={frame} warmth={palette.time === "night" ? "#7a8cff" : palette.time === "sunset" ? "#ff9a6b" : "#ffe2b8"} /> : null}
         {vignette > 0 ? (
           <AbsoluteFill style={{ background: `radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,${vignette}) 100%)`, pointerEvents: "none" }} />
         ) : null}

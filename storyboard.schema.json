@@ -15,6 +15,14 @@
     "topic": {
       "type": "string"
     },
+    "style": {
+      "default": "classic",
+      "type": "string",
+      "enum": [
+        "classic",
+        "anime"
+      ]
+    },
     "fps": {
       "default": 30,
       "type": "integer",
@@ -79,6 +87,11 @@
         "voiceVolume": {
           "default": 1,
           "type": "number"
+        },
+        "narrationOverlap": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
         },
         "music": {
           "anyOf": [
@@ -297,6 +310,42 @@
           },
           "eyeColor": {
             "type": "string"
+          },
+          "eyeColor2": {
+            "type": "string"
+          },
+          "sockets": {
+            "type": "string"
+          },
+          "hairStreak": {
+            "type": "string"
+          },
+          "mark": {
+            "type": "string"
+          },
+          "animeHair": {
+            "type": "string",
+            "enum": [
+              "long",
+              "medium",
+              "short"
+            ]
+          },
+          "animeOutfit": {
+            "type": "string",
+            "enum": [
+              "sailor",
+              "gakuran",
+              "blazer",
+              "hoodie",
+              "casual"
+            ]
+          },
+          "lashes": {
+            "type": "boolean"
+          },
+          "hairClip": {
+            "type": "boolean"
           }
         }
       }
@@ -543,7 +592,8 @@
               "crimson",
               "murky",
               "rust",
-              "clean"
+              "clean",
+              "anime"
             ]
           },
           "tag": {
@@ -1547,7 +1597,8 @@
                 "label",
                 "caption",
                 "quote",
-                "number"
+                "number",
+                "anime"
               ]
             },
             "color": {

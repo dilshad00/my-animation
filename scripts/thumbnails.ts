@@ -43,7 +43,7 @@ const main = async () => {
   console.log("Bundling…");
   const serveUrl = await bundle({ entryPoint: path.join(ROOT, "src", "index.ts"), publicDir: path.join(ROOT, "public") });
   for (const spec of thumbs) {
-    const inputProps = { spec, theme: project.theme, cast: project.cast, fps: project.fps };
+    const inputProps = { spec, theme: project.theme, cast: project.cast, fps: project.fps, style: project.style };
     const composition = await selectComposition({ serveUrl, id: "Thumbnail", inputProps, timeoutInMilliseconds: 120000 });
     const frame = Math.round(spec.at * project.fps);
     const common = { composition, serveUrl, frame, inputProps, timeoutInMilliseconds: 120000 };

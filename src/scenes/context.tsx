@@ -35,6 +35,8 @@ export type SceneCtx = {
   elements: ElementT[];
   /** y where characters/objects stand by default */
   groundY: number;
+  /** project art style */
+  style: "classic" | "anime";
   resolve: (v: TimeValue | undefined, fallback?: number) => number;
 };
 
@@ -48,6 +50,7 @@ const defaultCtx: SceneCtx = {
   cast: {},
   elements: [],
   groundY: 900,
+  style: "classic",
   resolve: (v, f = 0) =>
     resolveTime(v, { words: [], duration: 10, sceneId: "preview" }, f),
 };
@@ -73,6 +76,7 @@ export const makeSceneCtx = (p: {
   cast?: Record<string, Partial<CharacterLook>>;
   elements?: ElementT[];
   groundY?: number;
+  style?: "classic" | "anime";
 }): SceneCtx => {
   const tctx = { words: p.words, duration: p.duration, sceneId: p.sceneId };
   return {
@@ -81,6 +85,7 @@ export const makeSceneCtx = (p: {
     cast: p.cast ?? {},
     elements: p.elements ?? [],
     groundY: p.groundY ?? 900,
+    style: p.style ?? "classic",
     resolve: (v, f = 0) => resolveTime(v, tctx, f),
   };
 };
