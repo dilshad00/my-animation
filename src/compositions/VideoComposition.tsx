@@ -71,6 +71,7 @@ export const VideoComposition: React.FC<VideoProps> = ({ project, timeline, narr
                   voiceover={narration ?? undefined}
                   voiceVolume={project.audio.voiceVolume}
                   defaultTag={project.defaultTag}
+                  style={project.style}
                 />
               </TransitionSeries.Sequence>
             </React.Fragment>

@@ -85,6 +85,28 @@ export const SunsetSky: React.FC<{ frame: number; sunX?: number; sunY?: number; 
   );
 };
 
+export const DaySky: React.FC<{ frame: number; drift?: number }> = ({ frame, drift = 0.12 }) => {
+  const d = frame * drift;
+  return (
+    <svg viewBox="0 0 1920 1080" width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+      <defs>
+        <linearGradient id="day-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#2f6fe0" />
+          <stop offset="0.55" stopColor="#5fa8ff" />
+          <stop offset="0.9" stopColor="#c9e6ff" />
+        </linearGradient>
+        <radialGradient id="day-sun"><stop offset="0" stopColor="#ffffff" /><stop offset="0.2" stopColor="#fffbe6" stopOpacity="0.8" /><stop offset="1" stopColor="#ffffff" stopOpacity="0" /></radialGradient>
+      </defs>
+      <rect width="1920" height="1080" fill="url(#day-sky)" />
+      <circle cx={1500} cy={170} r={360} fill="url(#day-sun)" />
+      <AnimeCloud id="d1" x={360 + d} y={560} scale={1.1} lit="#ffffff" body="#f4f8ff" shade="#9fb8e6" rim="#ffffff" />
+      <AnimeCloud id="d2" x={1460 + d * 0.7} y={470} scale={0.8} lit="#ffffff" body="#eef4ff" shade="#9ab2e0" rim="#ffffff" />
+      <AnimeCloud id="d3" x={900 + d * 1.3} y={300} scale={0.5} puffs={SMALL} lit="#ffffff" body="#f2f7ff" shade="#a9bfe8" rim="#ffffff" />
+      <AnimeCloud id="d4" x={120 + d * 1.1} y={200} scale={0.45} puffs={SMALL} lit="#ffffff" body="#f2f7ff" shade="#a9bfe8" rim="#ffffff" />
+    </svg>
+  );
+};
+
 export const NightSky: React.FC<{ frame: number; shootAt?: number; tint?: number }> = ({ frame, shootAt = 60, tint = 0 }) => {
   const n = ANIME.night;
   const stars = Array.from({ length: 220 }, (_, i) => ({

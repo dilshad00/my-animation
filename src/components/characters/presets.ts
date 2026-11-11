@@ -6,6 +6,41 @@ import { CharacterLook } from "../../utils/schema";
  * `"preset": "maya"` is not needed – just override the fields you want).
  */
 export const PRESETS: Record<string, Partial<CharacterLook>> = {
+  /** anime-style heroine (made for "style": "anime"; also renders in classic) */
+  hikari: {
+    name: "Hikari",
+    body: "slim",
+    skin: "#ffe6d8",
+    hair: "long",
+    hairColor: "#2b2f5c",
+    outfit: "dress",
+    top: "#1f2950",
+    accent: "#e8344e",
+    bottom: "#1f2950",
+    shoes: "#3a2a2a",
+    eyeColor: "#6b3fd1",
+    animeHair: "long",
+    animeOutfit: "sailor",
+    lashes: true,
+    hairClip: true,
+  },
+  /** anime-style hero (made for "style": "anime") */
+  ren: {
+    name: "Ren",
+    body: "athletic",
+    skin: "#ffe0cc",
+    hair: "spiky",
+    hairColor: "#3a2622",
+    outfit: "jacket",
+    top: "#1b1d2e",
+    accent: "#e8c35a",
+    bottom: "#1b1d2e",
+    shoes: "#222222",
+    eyeColor: "#d48a2a",
+    animeHair: "short",
+    animeOutfit: "gakuran",
+    lashes: false,
+  },
   alex: {
     name: "Alex",
     body: "average",

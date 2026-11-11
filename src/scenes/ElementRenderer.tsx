@@ -9,6 +9,8 @@ import { ObjectView, OBJECTS } from "../components/objects/registry";
 import { animState, IDLE_ANIM, normalizeAnim, type AnimState } from "../utils/anim";
 import { Layer } from "../components/camera/Camera";
 import { useScene } from "./context";
+import { AnimeCharacterEl } from "../components/anime/AnimeCharacterEl";
+import { ANIME_GROUND_Y } from "../components/anime/environments";
 import { samplePath } from "../utils/keyframes";
 import type { AnimPreset, ElementT } from "../utils/schema";
 
@@ -38,9 +40,10 @@ const SvgOrigin: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   </svg>
 );
 
-const Content: React.FC<{ el: ElementT; t: number; local: number; anim: AnimState }> = ({ el, t, local, anim }) => {
+const Content: React.FC<{ el: ElementT; t: number; local: number; anim: AnimState; style: "classic" | "anime" }> = ({ el, t, local, anim, style }) => {
   switch (el.kind) {
     case "character":
+      if (style === "anime") return <AnimeCharacterEl el={el} t={t} />;
       return (
         <SvgOrigin>
           <AnimatedCharacter el={el} t={t} />
@@ -128,7 +131,7 @@ export const ElementNode: React.FC<{ el: ElementT; t: number; nested?: boolean }
     (el.kind === "object" && (OBJECTS[el.type.toLowerCase()]?.anchor ?? "ground") === "ground");
   const base = {
     x: el.x ?? (el.kind === "arrow" ? 0 : 960),
-    y: el.y ?? (el.kind === "arrow" ? 0 : groundDefault && !nested ? scene.groundY : 540),
+    y: el.y ?? (el.kind === "arrow" ? 0 : el.kind === "character" && scene.style === "anime" ? ANIME_GROUND_Y : groundDefault && !nested ? scene.groundY : 540),
     scale: el.scale ?? 1,
     rotate: el.rotate ?? 0,
     opacity: el.opacity ?? 1,
@@ -154,7 +157,7 @@ export const ElementNode: React.FC<{ el: ElementT; t: number; nested?: boolean }
       {el.shadow ? (
         <div style={{ position: "absolute", left: -120, top: -16, width: 240, height: 32, borderRadius: "50%", background: "rgba(0,0,0,0.25)", filter: "blur(6px)" }} />
       ) : null}
-      <Content el={el} t={t} local={local} anim={anim} />
+      <Content el={el} t={t} local={local} anim={anim} style={scene.style} />
     </div>
   );
   if (nested) return node;

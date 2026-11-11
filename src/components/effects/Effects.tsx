@@ -1,6 +1,7 @@
 import React from "react";
 import { ATMOSPHERE } from "./Atmosphere";
 import { DIVINE } from "./Divine";
+import { ANIME_EFFECTS } from "../anime/effects";
 import { emit, r } from "./emit";
 import { mix, withAlpha } from "../../utils/color";
 import { useScene } from "../../scenes/context";
@@ -276,6 +277,7 @@ export const EFFECTS: Record<string, { component: React.FC<EffectProps>; w: numb
   ripple: { component: Ripple, w: 400, h: 140, description: "Expanding rings" },
   ...ATMOSPHERE,
   ...DIVINE,
+  ...ANIME_EFFECTS,
   energy: { component: Energy, w: 600, h: 120, description: "Flowing energy lines" },
 };
 

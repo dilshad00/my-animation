@@ -18,6 +18,8 @@ export type ThumbnailProps = {
   spec?: ThumbSpecT;
   theme?: Theme;
   cast?: Record<string, Partial<CharacterLook>>;
+  /** project art style */
+  style?: "classic" | "anime";
   fps?: number;
 };
 
@@ -78,7 +80,7 @@ const Text: React.FC<{ t: ThumbTextT }> = ({ t }) => {
   );
 };
 
-export const Thumbnail: React.FC<ThumbnailProps> = ({ spec, theme, cast, fps = 30 }) => {
+export const Thumbnail: React.FC<ThumbnailProps> = ({ spec, theme, cast, fps = 30, style = "classic" }) => {
   if (!spec || !theme) return <AbsoluteFill style={{ background: "#111" }} />;
   const { look } = spec;
   const dur = Math.round((spec.at + 1) * fps);
@@ -90,6 +92,7 @@ export const Thumbnail: React.FC<ThumbnailProps> = ({ spec, theme, cast, fps = 3
           timing={{ id: spec.id, index: 0, from: 0, durationInFrames: dur, transitionIn: 0, audio: null, narrationStart: 0, words: [] }}
           theme={theme}
           cast={cast ?? {}}
+          style={style}
           subtitles={null}
           defaultTag="none"
         />

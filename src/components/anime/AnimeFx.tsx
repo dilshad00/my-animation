@@ -97,9 +97,9 @@ export const Sparkles: React.FC<{ frame: number; count?: number; area?: [number,
   </svg>
 );
 
-export const LensFlare: React.FC<{ x: number; y: number; opacity?: number }> = ({ x, y, opacity = 1 }) => {
-  const dx = 960 - x;
-  const dy = 540 - y;
+export const LensFlare: React.FC<{ x: number; y: number; opacity?: number; tx?: number; ty?: number }> = ({ x, y, opacity = 1, tx = 960, ty = 540 }) => {
+  const dx = tx - x;
+  const dy = ty - y;
   const ghosts = [
     [0.4, 40, "#ffd29a", 0.25], [0.7, 18, "#ff9ad5", 0.35], [1.1, 70, "#9ad0ff", 0.15], [1.45, 30, "#c7a2ff", 0.3], [1.8, 110, "#ffb0c8", 0.1],
   ] as const;

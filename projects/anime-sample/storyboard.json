@@ -1,0 +1,84 @@
+{
+  "$schema": "../../storyboard.schema.json",
+  "id": "anime-sample",
+  "title": "Anime Style Sample",
+  "topic": "Reference storyboard for the premium 2D anime style (style: anime). Copy scenes from here.",
+  "style": "anime",
+  "theme": { "accent": "#ff5c9a", "accent2": "#8fa6ff", "text": "#ffffff", "dark": "#2a1060", "font": "Poppins" },
+  "audio": { "wordsPerMinute": 150 },
+  "subtitles": { "enabled": true, "position": "bottom", "maxWords": 7, "size": 44 },
+  "cast": {
+    "hikari": {},
+    "ren": {},
+    "mio": { "preset": "maya", "hairColor": "#e05a7a", "eyeColor": "#2a9d8f", "animeHair": "medium", "animeOutfit": "hoodie", "top": "#ffd166", "glasses": true }
+  },
+  "defaultTransition": { "type": "fade", "duration": 0.6 },
+  "scenes": [
+    {
+      "id": "s01-rooftop",
+      "notes": "Two characters talk on the rooftop at sunset",
+      "narration": "Every evening, Hikari and Ren meet on the school rooftop to talk about the sky.",
+      "environment": { "type": "anime-rooftop", "time": "sunset" },
+      "camera": { "keys": [{ "t": 0, "zoom": 1.08 }, { "t": "end", "zoom": 1, "ease": "inOut" }] },
+      "elements": [
+        { "kind": "character", "who": "hikari", "x": 620, "speaks": true, "look": "right", "expression": "happy" },
+        { "kind": "character", "who": "ren", "x": 1320, "scale": 0.95, "look": "left", "expression": "confident", "actions": [{ "t": "@sky", "do": "nod" }] },
+        { "kind": "effect", "type": "sakura", "intensity": 0.8 }
+      ]
+    },
+    {
+      "id": "s02-classroom",
+      "notes": "Classroom with chalkboard text, Ren thinking",
+      "narration": "In class, Ren keeps asking one question. Why is the sky blue?",
+      "environment": { "type": "anime-classroom", "time": "day", "props": { "board": "Why is the sky blue?" } },
+      "elements": [
+        { "kind": "character", "who": "ren", "x": 1180, "expression": "thinking", "actions": [{ "t": 0, "do": "think" }], "speaks": true }
+      ]
+    },
+    {
+      "id": "s03-closeup",
+      "notes": "Reaction close-up",
+      "narration": "Mio has the answer.",
+      "environment": { "type": "anime-closeup", "time": "day", "color": "#ff9ec4" },
+      "elements": [
+        { "kind": "character", "who": "mio", "x": 960, "y": 1500, "scale": 1.5, "expression": "surprised", "expressions": [{ "t": 1, "is": "joy" }], "actions": [{ "t": 0.2, "do": "react" }] },
+        { "kind": "effect", "type": "twinkle", "intensity": 1.2 }
+      ]
+    },
+    {
+      "id": "s04-action",
+      "notes": "Big dramatic moment",
+      "narration": "Sunlight scatters off the air itself!",
+      "environment": { "type": "anime-action", "color": "#5d7dff" },
+      "camera": { "shake": 6 },
+      "elements": [
+        { "kind": "character", "who": "ren", "x": 960, "y": 1260, "scale": 1.25, "expression": "angry", "speaks": true, "actions": [{ "t": 0, "do": "react" }] },
+        { "kind": "effect", "type": "impactflash" },
+        { "kind": "effect", "type": "focuslines", "intensity": 0.6, "zIndex": 5 }
+      ]
+    },
+    {
+      "id": "s05-night-title",
+      "notes": "Title card at night",
+      "duration": 4,
+      "environment": { "type": "anime-city", "time": "night" },
+      "elements": [
+        { "kind": "character", "who": "hikari", "x": 480, "look": "up", "expression": "happy" },
+        { "kind": "text", "text": "SKY BLUE", "style": "anime", "x": 1300, "y": 420, "reveal": "letters" },
+        { "kind": "text", "text": "a 2D anime explainer", "style": "subtitle", "x": 1300, "y": 560, "at": 0.8 },
+        { "kind": "effect", "type": "sakura", "intensity": 0.5 }
+      ]
+    },
+    {
+      "id": "s06-day-sky",
+      "notes": "Day sky with sun flare",
+      "duration": 4,
+      "environment": { "type": "anime-sky", "time": "day", "weather": "wind" },
+      "elements": [
+        { "kind": "character", "who": "hikari", "x": 960, "expression": "joy" },
+        { "kind": "effect", "type": "lensflare", "x": 1500, "y": 170 },
+        { "kind": "effect", "type": "godrays", "x": 1500, "y": 170 }
+      ]
+    }
+  ]
+}

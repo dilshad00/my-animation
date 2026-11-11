@@ -44,8 +44,14 @@ const SkylineLayer: React.FC<{ layer: Layer; offset: number; frame: number; blin
   </g>
 );
 
-export const AnimeSkyline: React.FC<{ frame: number; pan?: number; night?: boolean; horizon?: number }> = ({ frame, pan = 0, night = false, horizon = 860 }) => {
-  const layers: Layer[] = night
+export const AnimeSkyline: React.FC<{ frame: number; pan?: number; night?: boolean; day?: boolean; horizon?: number }> = ({ frame, pan = 0, night = false, day = false, horizon = 860 }) => {
+  const layers: Layer[] = day
+    ? [
+        { seed: "far", base: horizon, minH: 60, maxH: 260, color: "#a9c4ec", window: "#e9f3ff", windowChance: 0.1, w: [50, 110] },
+        { seed: "mid", base: horizon + 70, minH: 80, maxH: 330, color: "#7f9fd6", window: "#d6e8ff", windowChance: 0.18, w: [70, 150] },
+        { seed: "near", base: horizon + 160, minH: 120, maxH: 420, color: "#5873b4", window: "#c4dcff", windowChance: 0.25, w: [100, 200] },
+      ]
+    : night
     ? [
         { seed: "far", base: horizon, minH: 60, maxH: 260, color: "#2a2a6e", window: "#ffd98a", windowChance: 0.18, w: [50, 110] },
         { seed: "mid", base: horizon + 70, minH: 80, maxH: 330, color: "#1a1a4a", window: "#ffe7a3", windowChance: 0.3, w: [70, 150] },
@@ -59,15 +65,15 @@ export const AnimeSkyline: React.FC<{ frame: number; pan?: number; night?: boole
   return (
     <svg viewBox="0 0 1920 1080" width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
       <defs>
-        <linearGradient id={`haze-${night}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor={night ? "#6a5bb5" : "#ffb37a"} stopOpacity="0" />
-          <stop offset="1" stopColor={night ? "#6a5bb5" : "#ffb37a"} stopOpacity="0.55" />
+        <linearGradient id={`haze-${night}-${day}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={day ? "#e6f1ff" : night ? "#6a5bb5" : "#ffb37a"} stopOpacity="0" />
+          <stop offset="1" stopColor={day ? "#e6f1ff" : night ? "#6a5bb5" : "#ffb37a"} stopOpacity="0.55" />
         </linearGradient>
       </defs>
       {layers.map((l, i) => (
         <g key={l.seed}>
           <SkylineLayer layer={l} offset={pan * (0.3 + i * 0.35)} frame={frame} blink={i === 1} />
-          {i < 2 && <rect x={0} y={l.base - 300} width={1920} height={500} fill={`url(#haze-${night})`} />}
+          {i < 2 && <rect x={0} y={l.base - 300} width={1920} height={500} fill={`url(#haze-${night}-${day})`} />}
         </g>
       ))}
     </svg>
@@ -75,23 +81,23 @@ export const AnimeSkyline: React.FC<{ frame: number; pan?: number; night?: boole
 };
 
 /** School rooftop: fence across the frame + rail + floor. `light` tints the rim (sunset/night). */
-export const RooftopFence: React.FC<{ y?: number; night?: boolean; pan?: number }> = ({ y = 640, night = false, pan = 0 }) => {
-  const frameCol = night ? "#1d1f45" : "#3b2450";
-  const rim = night ? "#8fa6ff" : "#ffb47a";
-  const mesh = night ? "#5560a8" : "#c98aa8";
+export const RooftopFence: React.FC<{ y?: number; night?: boolean; day?: boolean; pan?: number }> = ({ y = 640, night = false, day = false, pan = 0 }) => {
+  const frameCol = day ? "#3d4a78" : night ? "#1d1f45" : "#3b2450";
+  const rim = day ? "#ffffff" : night ? "#8fa6ff" : "#ffb47a";
+  const mesh = day ? "#8ea6d6" : night ? "#5560a8" : "#c98aa8";
   const posts = Array.from({ length: 9 }, (_, i) => i * 300 - 200 + (pan % 300));
   return (
     <svg viewBox="0 0 1920 1080" width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
       <defs>
-        <pattern id={`mesh-${night}`} width="34" height="34" patternUnits="userSpaceOnUse" patternTransform={`translate(${pan} 0) rotate(45)`}>
+        <pattern id={`mesh-${night}-${day}`} width="34" height="34" patternUnits="userSpaceOnUse" patternTransform={`translate(${pan} 0) rotate(45)`}>
           <path d="M0 0 L34 0 M0 0 L0 34" stroke={mesh} strokeWidth="2.2" opacity="0.55" />
         </pattern>
-        <linearGradient id={`floor-${night}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor={night ? "#2b2d5c" : "#8b5a7a"} />
-          <stop offset="1" stopColor={night ? "#0d0e26" : "#3a2346"} />
+        <linearGradient id={`floor-${night}-${day}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={day ? "#a7b3cf" : night ? "#2b2d5c" : "#8b5a7a"} />
+          <stop offset="1" stopColor={day ? "#5f6a8c" : night ? "#0d0e26" : "#3a2346"} />
         </linearGradient>
       </defs>
-      <rect x={0} y={y - 360} width={1920} height={360 + 70} fill={`url(#mesh-${night})`} />
+      <rect x={0} y={y - 360} width={1920} height={360 + 70} fill={`url(#mesh-${night}-${day})`} />
       <rect x={0} y={y - 372} width={1920} height={14} fill={frameCol} />
       <rect x={0} y={y - 372} width={1920} height={4} fill={rim} opacity={0.8} />
       {posts.map((px, i) => (
@@ -100,7 +106,7 @@ export const RooftopFence: React.FC<{ y?: number; night?: boolean; pan?: number 
           <rect x={px + 12} y={y - 372} width={4} height={450} fill={rim} opacity={0.7} />
         </g>
       ))}
-      <rect x={0} y={y + 60} width={1920} height={1080 - y} fill={`url(#floor-${night})`} />
+      <rect x={0} y={y + 60} width={1920} height={1080 - y} fill={`url(#floor-${night}-${day})`} />
       <rect x={0} y={y + 60} width={1920} height={6} fill={rim} opacity={0.55} />
       {/* floor tile seams in perspective */}
       {Array.from({ length: 13 }, (_, i) => (
