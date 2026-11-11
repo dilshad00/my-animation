@@ -11,6 +11,8 @@ import {
 import { calculateVideoMetadata, VideoComposition } from "./compositions/VideoComposition";
 import { PROJECT_IDS } from "./projects.generated";
 import { Thumbnail } from "./compositions/Thumbnail";
+import { AnimeAssets, type AnimeSheet } from "./compositions/AnimeAssets";
+import { ANIME_DEMO_FRAMES, AnimeDemo } from "./compositions/AnimeDemo";
 
 /**
  * Every folder in projects/<id>/ (with a storyboard.json) becomes a composition "<id>".
@@ -37,6 +39,10 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
       {/* Rendered by `npm run thumbnails -- <id>` with a spec from projects/<id>/thumbnails.json */}
       <Composition id="Thumbnail" component={Thumbnail} durationInFrames={300} fps={30} width={1920} height={1080} defaultProps={{}} />
+      <Folder name="Style-Experiments">
+        <Composition id="Anime-Demo" component={AnimeDemo} durationInFrames={ANIME_DEMO_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="Anime-Assets" component={AnimeAssets} durationInFrames={1} fps={30} width={1920} height={1080} defaultProps={{ sheet: "character" as AnimeSheet }} />
+      </Folder>
       <Folder name="Library-Tests">
         <Composition id="Test-Cast" component={CastGallery} durationInFrames={240} fps={30} width={1920} height={1080} />
         <Composition id="Test-Actions" component={ActionGallery} durationInFrames={240} fps={30} width={1920} height={1080} />
