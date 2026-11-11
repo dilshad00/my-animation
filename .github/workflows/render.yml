@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       project:
-        description: "Project id (folder in projects/)"
+        description: "Project id (folder in projects/) or a standalone composition id (e.g. Anime-Demo)"
         required: true
         default: "video-001"
       chunks:
@@ -46,7 +46,8 @@ jobs:
       - uses: actions/setup-node@v6
         with: { node-version: 22, cache: npm }
       - run: npm ci
-      - run: npm run validate -- "$PROJECT"
+      - name: Validate (skipped for standalone compositions such as Anime-Demo)
+        run: if [ -d "projects/$PROJECT" ]; then npm run validate -- "$PROJECT"; else npm run sync; fi
       - id: plan
         run: echo "matrix=$(npx tsx scripts/cloud-plan.ts "$PROJECT" "${{ inputs.chunks }}" "${{ inputs.seconds }}")" >> "$GITHUB_OUTPUT"
 

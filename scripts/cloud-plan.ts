@@ -15,10 +15,19 @@ if (!id) {
   console.error("Usage: npx tsx scripts/cloud-plan.ts <project-id> [chunks]");
   process.exit(1);
 }
-const project = parseProject(readJson(storyboardFile(id)));
-const captions = fs.existsSync(captionsFile(id)) ? normalizeCaptionsJson(readJson(captionsFile(id))) : null;
-const full = projectTimeline(project, captions).totalFrames;
-const total = Number(secs) > 0 ? Math.min(full, Math.round(Number(secs) * project.fps)) : full;
+/** Standalone compositions (style experiments) that have no projects/<id>/ folder. */
+const STANDALONE: Record<string, { frames: number; fps: number }> = { "Anime-Demo": { frames: 900, fps: 30 } };
+let full: number;
+let fps: number;
+if (STANDALONE[id]) {
+  ({ frames: full, fps } = STANDALONE[id]);
+} else {
+  const project = parseProject(readJson(storyboardFile(id)));
+  const captions = fs.existsSync(captionsFile(id)) ? normalizeCaptionsJson(readJson(captionsFile(id))) : null;
+  full = projectTimeline(project, captions).totalFrames;
+  fps = project.fps;
+}
+const total = Number(secs) > 0 ? Math.min(full, Math.round(Number(secs) * fps)) : full;
 const count = Math.max(1, Math.min(Number(n), Math.ceil(total / 30)));
 const size = Math.ceil(total / count);
 const chunks = Array.from({ length: count }, (_, i) => {
