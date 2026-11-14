@@ -79,6 +79,13 @@ jobs:
           test -f blender.tar.xz
           tar -xJf blender.tar.xz -C blender-bin --strip-components=1
           rm blender.tar.xz
+      - name: Cache free assets
+        uses: actions/cache@v4
+        with:
+          path: blender/assets/ph
+          key: polyhaven-${{ hashFiles('blender/fetch_assets.py') }}-v1
+      - name: Fetch free CC0 assets (Poly Haven)
+        run: python3 blender/fetch_assets.py island_tree_01 island_tree_02 fern_02
       - name: System libraries for headless Blender
         run: sudo apt-get update -qq && sudo apt-get install -y -qq libxi6 libxxf86vm1 libxfixes3 libxrender1 libxkbcommon0 libsm6 libgl1 libegl1 > /dev/null
       - name: Render frames ${{ matrix.chunk.frames }}
