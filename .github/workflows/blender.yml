@@ -1,0 +1,115 @@
+# Free cloud render of a Blender scene script (blender/<scene>.py) on GitHub Actions.
+# Cycles CPU, headless. Frames render in parallel chunks, then join into an MP4
+# (with a light film grain + vignette). For a still check, pass frames like "1,96,192".
+#
+# Run it: GitHub → Actions → "Blender render" → Run workflow.
+# Download: the run's Artifacts → <scene>-video (or <scene>-stills).
+name: Blender render
+
+on:
+  workflow_dispatch:
+    inputs:
+      scene:
+        description: "Scene script in blender/ (without .py)"
+        required: true
+        default: "forest_test"
+      frames:
+        description: "Frame range a-b, or a comma list of stills (e.g. 1,96,192)"
+        required: true
+        default: "1-192"
+      chunks:
+        description: "Parallel chunks (1–20)"
+        required: true
+        default: "20"
+      percent:
+        description: "Resolution percentage (100 = 1920×1080)"
+        required: true
+        default: "100"
+      samples:
+        description: "Cycles samples (denoised)"
+        required: true
+        default: "48"
+
+permissions:
+  contents: read
+
+env:
+  BLENDER_VERSION: "4.2.3"
+  BLENDER_URL: https://download.blender.org/release/Blender4.2/blender-4.2.3-linux-x64.tar.xz
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v6
+      - id: plan
+        run: python3 blender/plan.py "${{ inputs.frames }}" "${{ inputs.chunks }}" >> "$GITHUB_OUTPUT"
+
+  render:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: ${{ fromJson(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Cache Blender
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: blender-bin
+          key: blender-${{ env.BLENDER_VERSION }}-linux-x64
+      - name: Download Blender
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p blender-bin
+          curl -sSL "$BLENDER_URL" | tar -xJ -C blender-bin --strip-components=1
+      - name: System libraries for headless Blender
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq libxi6 libxxf86vm1 libxfixes3 libxrender1 libxkbcommon0 libsm6 libgl1 libegl1 > /dev/null
+      - name: Render frames ${{ matrix.chunk.frames }}
+        run: |
+          ./blender-bin/blender -b -y --python "blender/${{ inputs.scene }}.py" -- \
+            --frames "${{ matrix.chunk.frames }}" --out out/frames \
+            --percent "${{ inputs.percent }}" --samples "${{ inputs.samples }}" 2>&1 | grep -vE "^(Fra:|Sample|Rendering|Path Tracing)" || true
+          ls out/frames | wc -l
+          test "$(ls out/frames | wc -l)" -gt 0
+      - uses: actions/upload-artifact@v6
+        with:
+          name: frames-${{ matrix.chunk.i }}
+          path: out/frames/
+          retention-days: 3
+
+  join:
+    needs: [plan, render]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v7
+        with: { path: frames, pattern: frames-*, merge-multiple: true }
+      - name: Stills or video
+        id: kind
+        run: if [[ "${{ inputs.frames }}" == *-* ]]; then echo "video=1" >> "$GITHUB_OUTPUT"; fi
+      - name: Encode MP4
+        if: steps.kind.outputs.video == '1'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          START=$(ls frames | head -1 | sed 's/\.png//')
+          ffmpeg -y -loglevel error -framerate 24 -start_number "$((10#$START))" -i frames/%04d.png \
+            -vf "noise=alls=6:allf=t,vignette=PI/5.5,format=yuv420p" -c:v libx264 -crf 16 -preset slow -movflags +faststart \
+            "${{ inputs.scene }}.mp4"
+          ffprobe -v error -show_entries format=duration:stream=width,height -of compact "${{ inputs.scene }}.mp4"
+      - uses: actions/upload-artifact@v6
+        if: steps.kind.outputs.video == '1'
+        with:
+          name: ${{ inputs.scene }}-video
+          path: ${{ inputs.scene }}.mp4
+          retention-days: 14
+      - uses: actions/upload-artifact@v6
+        if: steps.kind.outputs.video != '1'
+        with:
+          name: ${{ inputs.scene }}-stills
+          path: frames/
+          retention-days: 14
