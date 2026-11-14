@@ -83,9 +83,16 @@ jobs:
         uses: actions/cache@v4
         with:
           path: blender/assets/ph
-          key: polyhaven-${{ hashFiles('blender/fetch_assets.py') }}-v1
+          key: polyhaven-${{ hashFiles('blender/fetch_assets.py', 'blender/*.assets') }}-v2
       - name: Fetch free CC0 assets (Poly Haven)
-        run: python3 blender/fetch_assets.py island_tree_01 island_tree_02 fern_02
+        run: |
+          LIST="blender/${{ inputs.scene }}.assets"
+          python3 blender/fetch_assets.py $( [ -f "$LIST" ] && cat "$LIST" || echo island_tree_01 island_tree_02 fern_02 )
+      - name: Unpack licensed character files (encrypted; key is a repo secret)
+        if: hashFiles('blender/assets/mixamo.tar.gz.enc') != ''
+        env:
+          MIXAMO_KEY: ${{ secrets.MIXAMO_KEY }}
+        run: openssl enc -d -aes-256-cbc -pbkdf2 -pass env:MIXAMO_KEY -in blender/assets/mixamo.tar.gz.enc | tar -xz -C blender/assets
       - name: System libraries for headless Blender
         run: sudo apt-get update -qq && sudo apt-get install -y -qq libxi6 libxxf86vm1 libxfixes3 libxrender1 libxkbcommon0 libsm6 libgl1 libegl1 > /dev/null
       - name: Render frames ${{ matrix.chunk.frames }}
