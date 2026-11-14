@@ -103,6 +103,7 @@ jobs:
           ls out/frames | wc -l
           test "$(ls out/frames | wc -l)" -gt 0
       - uses: actions/upload-artifact@v6
+        if: always()
         with:
           name: frames-${{ matrix.chunk.i }}
           path: out/frames/
