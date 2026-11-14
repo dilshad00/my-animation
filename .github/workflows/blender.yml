@@ -67,7 +67,18 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
           mkdir -p blender-bin
-          curl -sSL "$BLENDER_URL" | tar -xJ -C blender-bin --strip-components=1
+          F="blender-$BLENDER_VERSION-linux-x64.tar.xz"
+          for U in "$BLENDER_URL" \
+                   "https://ftp.nluug.nl/pub/graphics/blender/release/Blender4.2/$F" \
+                   "https://mirrors.ocf.berkeley.edu/blender/release/Blender4.2/$F" \
+                   "https://mirror.clarkson.edu/blender/release/Blender4.2/$F"; do
+            echo "trying $U"
+            if curl -fsSL --retry 3 -A "Mozilla/5.0 (X11; Linux x86_64)" -o blender.tar.xz "$U" && xz -t blender.tar.xz; then break; fi
+            rm -f blender.tar.xz
+          done
+          test -f blender.tar.xz
+          tar -xJf blender.tar.xz -C blender-bin --strip-components=1
+          rm blender.tar.xz
       - name: System libraries for headless Blender
         run: sudo apt-get update -qq && sudo apt-get install -y -qq libxi6 libxxf86vm1 libxfixes3 libxrender1 libxkbcommon0 libsm6 libgl1 libegl1 > /dev/null
       - name: Render frames ${{ matrix.chunk.frames }}
