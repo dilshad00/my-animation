@@ -1709,16 +1709,7 @@
           "scale": 0.95,
           "props": {
             "variant": 0,
-            "eyes": [
-              [
-                0,
-                0
-              ],
-              [
-                1.54,
-                1
-              ]
-            ],
+            "eyes": "glow",
             "lunge": [
               [
                 0,
@@ -2523,7 +2514,7 @@
           "y": 1140,
           "scale": 0.7,
           "props": {
-            "variant": 4
+            "variant": 1
           }
         },
         {
@@ -3702,9 +3693,9 @@
         {
           "kind": "object",
           "type": "ztruck",
-          "x": 1450,
-          "y": 1060,
-          "scale": 0.6,
+          "x": 1600,
+          "y": 930,
+          "scale": 0.42,
           "props": {
             "moving": false
           }
@@ -4606,7 +4597,7 @@
         "color": "#9ff0c8"
       },
       "hold": 0.42,
-      "grade": "murky",
+      "grade": "cool",
       "vignette": 0.5,
       "transition": {
         "type": "fade",
@@ -6036,34 +6027,6 @@
         ]
       },
       "elements": [
-        {
-          "kind": "character",
-          "who": "hikari",
-          "x": 820,
-          "scale": 0.6,
-          "y": 1100,
-          "look": "right",
-          "actions": [
-            {
-              "t": 0,
-              "do": "walk"
-            }
-          ]
-        },
-        {
-          "kind": "character",
-          "who": "ren",
-          "x": 1060,
-          "scale": 0.58,
-          "y": 1100,
-          "look": "right",
-          "actions": [
-            {
-              "t": 0,
-              "do": "walk"
-            }
-          ]
-        },
         {
           "kind": "effect",
           "type": "lensflare",

@@ -8,6 +8,7 @@ import type { GeometryCollection, Topology } from "topojson-specification";
 import usTopo from "us-atlas/states-10m.json";
 import type { ObjectDef, ObjectProps } from "../../../src/components/objects/types";
 import { num, str } from "../../../src/components/objects/types";
+import { tweenNum } from "../../../src/utils/tween";
 import { mix } from "../../../src/components/anime/palette";
 import { useSvgId } from "../../../src/utils/svg";
 import { getLength, getPointAtLength } from "@remotion/paths";
@@ -715,7 +716,19 @@ const DayCard: React.FC<ObjectProps> = ({ local, props, color }) => {
   );
 };
 
-export const OUTBREAK_OBJECTS: Record<string, ObjectDef> = {
+/* The engine passes object props through untouched, so keyframed numeric props ([[t, v], …], scene seconds)
+   are sampled here before each component sees them. */
+const isTrack = (v: unknown) => Array.isArray(v) && v.length > 0 && v.every((k) => Array.isArray(k) && k.length === 2 && typeof k[0] === "number" && typeof k[1] === "number");
+const animated = (C: React.FC<ObjectProps>): React.FC<ObjectProps> => {
+  const W: React.FC<ObjectProps> = (o) => {
+    const props: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(o.props)) props[k] = isTrack(v) ? tweenNum(v, o.t, 0) : v;
+    return <C {...o} props={props} />;
+  };
+  return W;
+};
+
+const RAW_OBJECTS: Record<string, ObjectDef> = {
   zzombie: { component: ZombieBust, w: 800, h: 960, category: "outbreak (anime)", description: 'ANIME z5: cel-shaded zombie bust (origin bottom-centre, like anime cast; scale 1 ≈ 800×960). props: { "variant": 0 office|1 hoodie|2 nurse|3 paramedic|4 student, "lunge": 0..1, "reach": 0..1 (hands rise into frame), "eyes": "dead|glow", "light": "night|red|day", "look": -1..1 }' },
   zhorde: { component: Horde, w: 1400, h: 360, category: "outbreak (anime)", description: 'ANIME z5: row of shambling silhouettes. color = silhouette. props: { "n": 9, "width": 1400, "eyes": "#d8ff7a", "walk": 0..1 }' },
   zphone: { component: Phone, w: 420, h: 840, category: "outbreak (anime)", anchor: "center", description: 'ANIME z5: phone. props: { "screen": "video|views|alert|chat|static|nosignal", "views": n (animatable), "text": alert lines split by | }' },
@@ -735,3 +748,7 @@ export const OUTBREAK_OBJECTS: Record<string, ObjectDef> = {
   zdoor: { component: Door, w: 600, h: 900, category: "outbreak (anime)", description: 'ANIME z5: front door from inside, shaking as someone bangs on it. props (animatable): { "bang": 0..1 }' },
   zdaycard: { component: DayCard, w: 900, h: 260, category: "outbreak (anime)", anchor: "center", description: 'ANIME z5: big chapter marker. color = accent. props: { "text": "DAY ONE", "sub": "" }' },
 };
+
+export const OUTBREAK_OBJECTS: Record<string, ObjectDef> = Object.fromEntries(
+  Object.entries(RAW_OBJECTS).map(([k, d]) => [k, { ...d, component: animated(d.component) }]),
+);
