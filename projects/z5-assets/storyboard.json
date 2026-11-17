@@ -1,0 +1,532 @@
+{
+ "$schema": "../../storyboard.schema.json",
+ "id": "z5-assets",
+ "title": "Video-005 asset check",
+ "topic": "QC sheet for video-005 anime assets (not a video)",
+ "style": "anime",
+ "cast": {
+  "hikari": {},
+  "ren": {}
+ },
+ "defaultTransition": {
+  "type": "none"
+ },
+ "scenes": [
+  {
+   "id": "a01-hospital",
+   "duration": 4,
+   "environment": {
+    "type": "z-hospital",
+    "time": "night",
+    "props": {
+     "flicker": 0.8,
+     "alarm": 0.6
+    }
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zzombie",
+     "x": 1250,
+     "y": 1120,
+     "scale": 0.9,
+     "props": {
+      "variant": 2,
+      "lunge": 0.4,
+      "light": "red"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a02-street-calm",
+   "duration": 4,
+   "environment": {
+    "type": "z-street",
+    "time": "sunset",
+    "props": {
+     "cars": 0
+    }
+   },
+   "elements": [
+    {
+     "kind": "character",
+     "who": "hikari",
+     "x": 620,
+     "expression": "happy"
+    }
+   ]
+  },
+  {
+   "id": "a03-street-panic",
+   "duration": 4,
+   "environment": {
+    "type": "z-street",
+    "time": "night",
+    "props": {
+     "smoke": 1,
+     "fire": 0.7,
+     "horde": 0.7,
+     "police": 1
+    }
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zhorde",
+     "x": 960,
+     "y": 1000,
+     "scale": 0.9,
+     "props": {
+      "n": 7,
+      "eyes": "#d8ff7a"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a04-bridge",
+   "duration": 4,
+   "environment": {
+    "type": "z-bridge",
+    "time": "sunset",
+    "props": {
+     "jam": 1,
+     "smoke": 0.7
+    }
+   },
+   "elements": []
+  },
+  {
+   "id": "a05-market",
+   "duration": 4,
+   "environment": {
+    "type": "z-market",
+    "time": "day",
+    "props": {
+     "stock": 0.2
+    }
+   },
+   "elements": [
+    {
+     "kind": "character",
+     "who": "ren",
+     "x": 1300,
+     "expression": "worried"
+    }
+   ]
+  },
+  {
+   "id": "a06-bedroom",
+   "duration": 4,
+   "environment": {
+    "type": "z-bedroom",
+    "time": "night",
+    "props": {
+     "alert": 1,
+     "runners": 1
+    }
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zphone",
+     "x": 620,
+     "y": 560,
+     "scale": 0.8,
+     "props": {
+      "screen": "alert"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a07-control",
+   "duration": 4,
+   "environment": {
+    "type": "z-control",
+    "time": "night",
+    "props": {
+     "dark": 0.55
+    }
+   },
+   "elements": []
+  },
+  {
+   "id": "a08-skyline",
+   "duration": 4,
+   "environment": {
+    "type": "z-skyline",
+    "time": "night",
+    "props": {
+     "lights": 0.45,
+     "smoke": 0.8,
+     "helis": 1,
+     "fire": 0.5
+    }
+   },
+   "elements": []
+  },
+  {
+   "id": "a09-camp",
+   "duration": 4,
+   "environment": {
+    "type": "z-camp",
+    "time": "sunset",
+    "props": {
+     "water": 0.7
+    }
+   },
+   "elements": [
+    {
+     "kind": "character",
+     "who": "hikari",
+     "x": 560,
+     "expression": "worried"
+    },
+    {
+     "kind": "character",
+     "who": "ren",
+     "x": 1000,
+     "scale": 0.95,
+     "look": "left"
+    }
+   ]
+  },
+  {
+   "id": "a10-shelter",
+   "duration": 4,
+   "environment": {
+    "type": "z-shelter",
+    "time": "night",
+    "props": {
+     "crowd": 1
+    }
+   },
+   "elements": []
+  },
+  {
+   "id": "a11-highway",
+   "duration": 4,
+   "environment": {
+    "type": "z-highway",
+    "time": "dawn",
+    "props": {
+     "figures": 1
+    }
+   },
+   "elements": [
+    {
+     "kind": "character",
+     "who": "hikari",
+     "x": 760,
+     "scale": 0.7,
+     "y": 1100
+    },
+    {
+     "kind": "character",
+     "who": "ren",
+     "x": 1100,
+     "scale": 0.68,
+     "y": 1100
+    }
+   ]
+  },
+  {
+   "id": "a12-zombies",
+   "duration": 4,
+   "environment": {
+    "type": "anime-closeup",
+    "time": "night",
+    "color": "#1a2a3a"
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zzombie",
+     "x": 420,
+     "y": 1120,
+     "scale": 0.75,
+     "props": {
+      "variant": 0
+     }
+    },
+    {
+     "kind": "object",
+     "type": "zzombie",
+     "x": 960,
+     "y": 1180,
+     "scale": 0.9,
+     "props": {
+      "variant": 3,
+      "eyes": "glow",
+      "lunge": 0.6
+     }
+    },
+    {
+     "kind": "object",
+     "type": "zzombie",
+     "x": 1500,
+     "y": 1120,
+     "scale": 0.75,
+     "props": {
+      "variant": 4,
+      "light": "red"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a13-reach",
+   "duration": 4,
+   "environment": {
+    "type": "anime-closeup",
+    "time": "night",
+    "color": "#2a1020"
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zzombie",
+     "x": 960,
+     "y": 1300,
+     "scale": 1.2,
+     "props": {
+      "variant": 1,
+      "reach": 0.9,
+      "lunge": 1,
+      "eyes": "glow"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a14-phone-video",
+   "duration": 3,
+   "environment": {
+    "type": "anime-closeup",
+    "time": "night"
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zphone",
+     "x": 620,
+     "y": 540,
+     "scale": 0.9,
+     "props": {
+      "screen": "video"
+     }
+    },
+    {
+     "kind": "object",
+     "type": "zphone",
+     "x": 1300,
+     "y": 540,
+     "scale": 0.9,
+     "props": {
+      "screen": "chat"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a15-science",
+   "duration": 4,
+   "environment": {
+    "type": "anime-classroom",
+    "time": "day"
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zvirus",
+     "x": 560,
+     "y": 330,
+     "scale": 0.7
+    },
+    {
+     "kind": "object",
+     "type": "zant",
+     "x": 1400,
+     "y": 800,
+     "scale": 0.7,
+     "props": {
+      "grow": 1
+     }
+    },
+    {
+     "kind": "object",
+     "type": "znerve",
+     "x": 520,
+     "y": 800,
+     "scale": 0.5,
+     "props": {
+      "k": 0.6
+     }
+    }
+   ]
+  },
+  {
+   "id": "a16-diagrams",
+   "duration": 4,
+   "environment": {
+    "type": "anime-closeup",
+    "time": "night",
+    "color": "#141a34"
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zszr",
+     "x": 960,
+     "y": 300,
+     "scale": 0.8,
+     "props": {
+      "k": 0.6
+     }
+    },
+    {
+     "kind": "object",
+     "type": "zdouble",
+     "x": 860,
+     "y": 760,
+     "scale": 0.55,
+     "props": {
+      "levels": 5
+     }
+    },
+    {
+     "kind": "object",
+     "type": "zr0",
+     "x": 1500,
+     "y": 800,
+     "scale": 0.5,
+     "props": {
+      "n": 4
+     }
+    }
+   ]
+  },
+  {
+   "id": "a17-usmap",
+   "duration": 4,
+   "environment": {
+    "type": "anime-closeup",
+    "time": "night",
+    "color": "#0b0f22"
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zusmap",
+     "x": 960,
+     "y": 560,
+     "scale": 0.9,
+     "props": {
+      "spread": 0.6,
+      "safe": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "a18-kit",
+   "duration": 4,
+   "environment": {
+    "type": "anime-closeup",
+    "time": "day",
+    "color": "#3a4a6a"
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zkit",
+     "x": 960,
+     "y": 700,
+     "scale": 0.9
+    },
+    {
+     "kind": "object",
+     "type": "zdaycard",
+     "x": 960,
+     "y": 250,
+     "props": {
+      "text": "DAY NINETEEN"
+     }
+    }
+   ]
+  },
+  {
+   "id": "a19-misc",
+   "duration": 4,
+   "environment": {
+    "type": "z-skyline",
+    "time": "night",
+    "props": {
+     "lights": 0.1
+    }
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zpylon",
+     "x": 300,
+     "y": 1080,
+     "scale": 1
+    },
+    {
+     "kind": "object",
+     "type": "zheli",
+     "x": 1100,
+     "y": 260,
+     "scale": 0.8
+    },
+    {
+     "kind": "object",
+     "type": "ztruck",
+     "x": 1300,
+     "y": 1060,
+     "scale": 0.8
+    },
+    {
+     "kind": "object",
+     "type": "zradio",
+     "x": 700,
+     "y": 1060,
+     "scale": 0.7,
+     "props": {
+      "signal": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "a20-door",
+   "duration": 4,
+   "environment": {
+    "type": "z-bedroom",
+    "time": "night",
+    "props": {
+     "glow": 0.3
+    }
+   },
+   "elements": [
+    {
+     "kind": "object",
+     "type": "zdoor",
+     "x": 960,
+     "y": 1080,
+     "scale": 1
+    },
+    {
+     "kind": "object",
+     "type": "zalert",
+     "x": 960,
+     "y": 160,
+     "scale": 0.9
+    }
+   ]
+  }
+ ]
+}

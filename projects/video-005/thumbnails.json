@@ -1,0 +1,66 @@
+{
+  "thumbnails": [
+    {
+      "id": "thumb-A-day-one",
+      "notes": "Hikari, shocked, in front of a burning skyline with a glowing-eyed horde below.",
+      "at": 2.5,
+      "look": { "saturate": 1.25, "contrast": 1.15, "vignette": 0.55 },
+      "scene": {
+        "id": "thumb-A-day-one",
+        "tag": "none",
+        "duration": 4,
+        "environment": { "type": "z-skyline", "time": "night", "props": { "lights": 0.6, "smoke": 0.9, "fire": 0.8, "helis": 1 } },
+        "camera": { "keys": [{ "t": 0, "zoom": 1, "x": 960, "y": 540 }] },
+        "elements": [
+          { "kind": "object", "type": "zhorde", "x": 1250, "y": 1110, "scale": 1.3, "color": "#05050c", "props": { "n": 12, "width": 1900, "eyes": "#c8ff6a" } },
+          { "kind": "character", "who": "hikari", "x": 470, "y": 1700, "scale": 2.0, "expression": "surprised", "look": "camera", "zIndex": 4 }
+        ]
+      },
+      "texts": [
+        { "text": "DAY 1", "x": 1380, "y": 250, "size": 200, "color": "#ffffff" },
+        { "text": "OUTBREAK", "x": 1380, "y": 450, "size": 170, "color": "#ff4a5a" }
+      ]
+    },
+    {
+      "id": "thumb-B-stay-indoors",
+      "notes": "Emergency alert on a phone, a glowing-eyed zombie lunging behind it.",
+      "at": 2.5,
+      "look": { "saturate": 1.2, "contrast": 1.15, "vignette": 0.6 },
+      "scene": {
+        "id": "thumb-B-stay-indoors",
+        "tag": "none",
+        "duration": 4,
+        "environment": { "type": "anime-closeup", "time": "night", "color": "#3a0a14" },
+        "camera": { "keys": [{ "t": 0, "zoom": 1, "x": 960, "y": 540 }] },
+        "elements": [
+          { "kind": "object", "type": "zzombie", "x": 1380, "y": 1250, "scale": 1.15, "props": { "variant": 0, "eyes": "glow", "light": "red", "lunge": 0.8 } },
+          { "kind": "object", "type": "zphone", "x": 520, "y": 560, "scale": 1.05, "screen": true, "zIndex": 4, "props": { "screen": "alert", "text": "STAY INDOORS.|LOCK YOUR DOORS.|AVOID CONTACT.|DO NOT GO OUT." } }
+        ]
+      },
+      "texts": [
+        { "text": "STAY", "x": 1330, "y": 760, "size": 170, "color": "#ffffff" },
+        { "text": "INDOORS", "x": 1330, "y": 930, "size": 160, "color": "#ff4a5a" }
+      ]
+    },
+    {
+      "id": "thumb-C-who-survives",
+      "notes": "The US spread map almost all red, two safe states; Ren worried.",
+      "at": 2.5,
+      "look": { "saturate": 1.2, "contrast": 1.15, "vignette": 0.5 },
+      "scene": {
+        "id": "thumb-C-who-survives",
+        "tag": "none",
+        "duration": 4,
+        "environment": { "type": "anime-closeup", "time": "night", "color": "#0b0f22" },
+        "camera": { "keys": [{ "t": 0, "zoom": 1, "x": 960, "y": 540 }] },
+        "elements": [
+          { "kind": "object", "type": "zusmap", "x": 1220, "y": 600, "scale": 0.85, "screen": true, "props": { "spread": 0.8, "safe": true } },
+          { "kind": "character", "who": "ren", "x": 330, "y": 1700, "scale": 2.0, "expression": "worried", "look": "right", "zIndex": 4 }
+        ]
+      },
+      "texts": [
+        { "text": "WHO SURVIVES?", "x": 1200, "y": 150, "size": 140, "color": "#ffffff" }
+      ]
+    }
+  ]
+}

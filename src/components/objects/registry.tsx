@@ -9,6 +9,7 @@ import { MISC } from "./misc";
 import { MYTHIC } from "./mythic";
 import { STONE_AGE } from "../../../projects/video-003/assets/objects";
 import { ZOMBIE_STORY } from "../../../projects/video-004/assets/objects";
+import { OUTBREAK_OBJECTS } from "../../../projects/video-005/assets/objects";
 import { NATURE } from "./nature";
 import { EVERYDAY } from "./everyday";
 import { STORY } from "./story";
@@ -32,6 +33,7 @@ export const OBJECTS: Record<string, ObjectDef> = {
   ...MYTHIC,
   ...STONE_AGE,
   ...ZOMBIE_STORY,
+  ...OUTBREAK_OBJECTS,
 };
 
 export const ObjectView: React.FC<{
