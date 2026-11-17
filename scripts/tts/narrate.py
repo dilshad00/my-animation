@@ -43,8 +43,41 @@ def parse_voice(spec):
     return engine, opts
 
 
+ONES = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen".split()
+TENS = "_ _ twenty thirty forty fifty sixty seventy eighty ninety".split()
+
+
+def say_number(n):
+    if n < 20:
+        return ONES[n]
+    if n < 100:
+        return TENS[n // 10] + ("" if n % 10 == 0 else "-" + ONES[n % 10])
+    if 2000 <= n < 2100:  # years: "two thousand and nine"
+        return "two thousand" + ("" if n == 2000 else " and " + say_number(n - 2000))
+    if n < 1000:
+        return ONES[n // 100] + " hundred" + ("" if n % 100 == 0 else " and " + say_number(n % 100))
+    return str(n)
+
+
+def clean(par):
+    """Markdown/typography → what a narrator should actually say."""
+    par = re.sub(r"[*_]{1,3}([^*_]+)[*_]{1,3}", r"\1", par)  # **bold**, *italic*
+    par = par.replace("*", "")
+    letters = re.sub(r"[^A-Za-z]", "", par)
+    if letters and letters.isupper() and len(letters) > 3:  # ALL-CAPS alert/heading → sentence case
+        par = re.sub(r"(^|[.!?]\s+)([a-z])", lambda m: m.group(1) + m.group(2).upper(), par.lower())
+    par = re.sub(r"\b\d{1,4}\b", lambda m: say_number(int(m.group())), par)
+    return par
+
+
 def paragraphs(text):
-    return [re.sub(r"\s+", " ", p).strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
+    out = []
+    for p in re.split(r"\n\s*\n", text):
+        lines = [l for l in p.splitlines() if not l.lstrip().startswith("#")]  # titles are not narrated
+        p = clean(re.sub(r"\s+", " ", " ".join(lines)).strip())
+        if p:
+            out.append(p)
+    return out
 
 
 def sentence_groups(par, max_chars=MAX_CHARS):
