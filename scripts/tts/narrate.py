@@ -27,7 +27,7 @@ import soundfile as sf
 
 SR_OUT = 44100
 PAUSE_SENTENCE = 0.28  # between sentence groups inside a paragraph
-PAUSE_PARAGRAPH = 0.75  # between paragraphs
+PAUSE_PARAGRAPH = 0.85  # between paragraphs
 MAX_CHARS = 260  # chatterbox is most stable on short inputs
 
 
@@ -120,6 +120,13 @@ def trim(wav, sr, thresh=0.01, pad=0.04):
     return wav[max(0, idx[0] - p): min(len(wav), idx[-1] + p)]
 
 
+REF_TEXT = (
+    "Every great story begins with a single question. What would happen if the world changed overnight? "
+    "Scientists have studied this possibility for years, and the answers are surprising. "
+    "Some of them are hopeful. Others are terrifying."
+)
+
+
 class Chatterbox:
     def __init__(self, opts):
         import torch
@@ -130,6 +137,8 @@ class Chatterbox:
         self.model = ChatterboxTTS.from_pretrained(device="cpu")
         self.sr = self.model.sr
         self.ref = opts.get("ref")
+        if self.ref and self.ref.startswith("kokoro-"):
+            self.ref = "voice-ref.wav"  # made by --make-ref in the workflow (Apache-2.0 Kokoro voice)
         self.ex = float(opts.get("ex", 0.5))
         self.cfg = float(opts.get("cfg", 0.5))
         self.temp = float(opts.get("temp", 0.8))
@@ -182,6 +191,14 @@ def main():
     ap.add_argument("--min-score", type=float, default=0.9)
     a = ap.parse_args()
 
+    engine, opts = parse_voice(a.voice)
+    if engine == "make-ref":  # make-ref:<kokoro voice> → a ~15 s reference clip for chatterbox voice cloning
+        k = Kokoro({"voice": opts["voice"], "speed": "0.92"})
+        wav = np.concatenate([k.say(REF_TEXT, 0)])
+        sf.write(a.out, wav, k.sr, subtype="PCM_16")
+        print(f"reference: {len(wav) / k.sr:.1f}s")
+        return
+
     pars = paragraphs(open(a.text, encoding="utf8").read())
     # balanced split by characters, on paragraph boundaries
     total = sum(len(p) for p in pars)
@@ -193,7 +210,6 @@ def main():
             mine.append((i, p))
         acc += len(p)
 
-    engine, opts = parse_voice(a.voice)
     tts = {"chatterbox": Chatterbox, "kokoro": Kokoro}[engine](opts)
     chk = Checker()
     report, pieces = [], []
@@ -221,6 +237,12 @@ def main():
             pieces.append(np.zeros(int(pause * SR_OUT), np.float32))
     audio = np.concatenate(pieces) if pieces else np.zeros(SR_OUT, np.float32)
     sf.write(a.out, audio, SR_OUT, subtype="PCM_16")
+    tempo = float(opts.get("tempo", 1))
+    if tempo != 1:  # pitch-preserving slow-down / speed-up
+        import os, subprocess
+        tmp = a.out + ".tmp.wav"
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", a.out, "-af", f"atempo={tempo}", tmp], check=True)
+        os.replace(tmp, a.out)
     json.dump(report, open(a.out.rsplit(".", 1)[0] + ".json", "w", encoding="utf8"), indent=1)
     bad = [r for r in report if r["score"] < a.min_score]
     print(f"done: {len(report)} pieces, {len(audio) / SR_OUT:.1f}s, {len(bad)} below {a.min_score}")
