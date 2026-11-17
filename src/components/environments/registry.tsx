@@ -12,6 +12,7 @@ import { Cutaway, Micro, WindowEnv } from "./closeup";
 import { Acropolis, Aegean, Frieze, Hall, Kitchen, Olympia, Olympus, Ruins, Village, Wall } from "./mythic";
 import { STONE_AGE_ENVS } from "../../../projects/video-003/assets/environments";
 import { ZOMBIE_ENVS } from "../../../projects/video-004/assets/environments";
+import { OUTBREAK_ENVS } from "../../../projects/video-005/assets/environments";
 import { ANIME_ENVS } from "../anime/environments";
 
 export type EnvDef = {
@@ -64,6 +65,7 @@ export const ENVIRONMENTS: Record<string, EnvDef> = {
   ...STONE_AGE_ENVS,
   ...ZOMBIE_ENVS,
   ...ANIME_ENVS,
+  ...OUTBREAK_ENVS,
 };
 
 export const EnvironmentView: React.FC<{
