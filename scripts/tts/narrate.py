@@ -27,7 +27,7 @@ import soundfile as sf
 
 SR_OUT = 44100
 PAUSE_SENTENCE = 0.28  # between sentence groups inside a paragraph
-PAUSE_PARAGRAPH = 0.75  # between paragraphs
+PAUSE_PARAGRAPH = 0.85  # between paragraphs
 MAX_CHARS = 260  # chatterbox is most stable on short inputs
 
 
@@ -43,8 +43,41 @@ def parse_voice(spec):
     return engine, opts
 
 
+ONES = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen".split()
+TENS = "_ _ twenty thirty forty fifty sixty seventy eighty ninety".split()
+
+
+def say_number(n):
+    if n < 20:
+        return ONES[n]
+    if n < 100:
+        return TENS[n // 10] + ("" if n % 10 == 0 else "-" + ONES[n % 10])
+    if 2000 <= n < 2100:  # years: "two thousand and nine"
+        return "two thousand" + ("" if n == 2000 else " and " + say_number(n - 2000))
+    if n < 1000:
+        return ONES[n // 100] + " hundred" + ("" if n % 100 == 0 else " and " + say_number(n % 100))
+    return str(n)
+
+
+def clean(par):
+    """Markdown/typography → what a narrator should actually say."""
+    par = re.sub(r"[*_]{1,3}([^*_]+)[*_]{1,3}", r"\1", par)  # **bold**, *italic*
+    par = par.replace("*", "")
+    letters = re.sub(r"[^A-Za-z]", "", par)
+    if letters and letters.isupper() and len(letters) > 3:  # ALL-CAPS alert/heading → sentence case
+        par = re.sub(r"(^|[.!?]\s+)([a-z])", lambda m: m.group(1) + m.group(2).upper(), par.lower())
+    par = re.sub(r"\b\d{1,4}\b", lambda m: say_number(int(m.group())), par)
+    return par
+
+
 def paragraphs(text):
-    return [re.sub(r"\s+", " ", p).strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
+    out = []
+    for p in re.split(r"\n\s*\n", text):
+        lines = [l for l in p.splitlines() if not l.lstrip().startswith("#")]  # titles are not narrated
+        p = clean(re.sub(r"\s+", " ", " ".join(lines)).strip())
+        if p:
+            out.append(p)
+    return out
 
 
 def sentence_groups(par, max_chars=MAX_CHARS):
@@ -62,7 +95,14 @@ def sentence_groups(par, max_chars=MAX_CHARS):
 
 
 def norm_words(s):
-    return re.sub(r"[^a-z0-9' ]", " ", s.lower()).split()
+    # Whisper writes digits ("2015", "10") and US spelling; compare letters only
+    s = re.sub(r"\d{1,4}", lambda m: say_number(int(m.group())), s.lower())
+    s = s.replace("our", "or").replace("ise", "ize").replace("-", " ")
+    return re.sub(r"[^a-z ]", "", s).split()
+
+
+def similarity(a, b):
+    return difflib.SequenceMatcher(None, " ".join(norm_words(a)), " ".join(norm_words(b))).ratio()
 
 
 def resample(wav, sr):
@@ -80,6 +120,13 @@ def trim(wav, sr, thresh=0.01, pad=0.04):
     return wav[max(0, idx[0] - p): min(len(wav), idx[-1] + p)]
 
 
+REF_TEXT = (
+    "Every great story begins with a single question. What would happen if the world changed overnight? "
+    "Scientists have studied this possibility for years, and the answers are surprising. "
+    "Some of them are hopeful. Others are terrifying."
+)
+
+
 class Chatterbox:
     def __init__(self, opts):
         import torch
@@ -90,6 +137,8 @@ class Chatterbox:
         self.model = ChatterboxTTS.from_pretrained(device="cpu")
         self.sr = self.model.sr
         self.ref = opts.get("ref")
+        if self.ref and self.ref.startswith("kokoro-"):
+            self.ref = "voice-ref.wav"  # made by --make-ref in the workflow (Apache-2.0 Kokoro voice)
         self.ex = float(opts.get("ex", 0.5))
         self.cfg = float(opts.get("cfg", 0.5))
         self.temp = float(opts.get("temp", 0.8))
@@ -128,7 +177,7 @@ class Checker:
         a16 = np.interp(np.linspace(0, len(a) - 1, int(len(a) * 16000 / SR_OUT)), np.arange(len(a)), a).astype(np.float32)
         segs, _ = self.m.transcribe(a16, language="en", beam_size=1, vad_filter=False)
         heard = " ".join(s.text for s in segs)
-        return difflib.SequenceMatcher(None, norm_words(text), norm_words(heard)).ratio(), heard
+        return similarity(text, heard), heard
 
 
 def main():
@@ -142,6 +191,14 @@ def main():
     ap.add_argument("--min-score", type=float, default=0.9)
     a = ap.parse_args()
 
+    engine, opts = parse_voice(a.voice)
+    if engine == "make-ref":  # make-ref:<kokoro voice> → a ~15 s reference clip for chatterbox voice cloning
+        k = Kokoro({"voice": opts["voice"], "speed": "0.92"})
+        wav = np.concatenate([k.say(REF_TEXT, 0)])
+        sf.write(a.out, wav, k.sr, subtype="PCM_16")
+        print(f"reference: {len(wav) / k.sr:.1f}s")
+        return
+
     pars = paragraphs(open(a.text, encoding="utf8").read())
     # balanced split by characters, on paragraph boundaries
     total = sum(len(p) for p in pars)
@@ -153,7 +210,6 @@ def main():
             mine.append((i, p))
         acc += len(p)
 
-    engine, opts = parse_voice(a.voice)
     tts = {"chatterbox": Chatterbox, "kokoro": Kokoro}[engine](opts)
     chk = Checker()
     report, pieces = [], []
@@ -181,6 +237,12 @@ def main():
             pieces.append(np.zeros(int(pause * SR_OUT), np.float32))
     audio = np.concatenate(pieces) if pieces else np.zeros(SR_OUT, np.float32)
     sf.write(a.out, audio, SR_OUT, subtype="PCM_16")
+    tempo = float(opts.get("tempo", 1))
+    if tempo != 1:  # pitch-preserving slow-down / speed-up
+        import os, subprocess
+        tmp = a.out + ".tmp.wav"
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", a.out, "-af", f"atempo={tempo}", tmp], check=True)
+        os.replace(tmp, a.out)
     json.dump(report, open(a.out.rsplit(".", 1)[0] + ".json", "w", encoding="utf8"), indent=1)
     bad = [r for r in report if r["score"] < a.min_score]
     print(f"done: {len(report)} pieces, {len(audio) / SR_OUT:.1f}s, {len(bad)} below {a.min_score}")
