@@ -95,7 +95,14 @@ def sentence_groups(par, max_chars=MAX_CHARS):
 
 
 def norm_words(s):
-    return re.sub(r"[^a-z0-9' ]", " ", s.lower()).split()
+    # Whisper writes digits ("2015", "10") and US spelling; compare letters only
+    s = re.sub(r"\d{1,4}", lambda m: say_number(int(m.group())), s.lower())
+    s = s.replace("our", "or").replace("ise", "ize").replace("-", " ")
+    return re.sub(r"[^a-z ]", "", s).split()
+
+
+def similarity(a, b):
+    return difflib.SequenceMatcher(None, " ".join(norm_words(a)), " ".join(norm_words(b))).ratio()
 
 
 def resample(wav, sr):
@@ -161,7 +168,7 @@ class Checker:
         a16 = np.interp(np.linspace(0, len(a) - 1, int(len(a) * 16000 / SR_OUT)), np.arange(len(a)), a).astype(np.float32)
         segs, _ = self.m.transcribe(a16, language="en", beam_size=1, vad_filter=False)
         heard = " ".join(s.text for s in segs)
-        return difflib.SequenceMatcher(None, norm_words(text), norm_words(heard)).ratio(), heard
+        return similarity(text, heard), heard
 
 
 def main():
