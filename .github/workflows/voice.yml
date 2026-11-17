@@ -69,6 +69,14 @@ jobs:
             kokoro*)     pip install -q "kokoro>=0.9.4" ;;
           esac
           pip install -q faster-whisper soundfile numpy
+      - name: Reference voice (Kokoro voice → Chatterbox clone)
+        if: contains(matrix.job.voice, 'ref=kokoro-')
+        run: |
+          kv=$(echo "${{ matrix.job.voice }}" | sed -E 's/.*ref=kokoro-([a-z_]+).*/\1/')
+          python -m venv /tmp/kv
+          /tmp/kv/bin/pip install -q torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          /tmp/kv/bin/pip install -q "kokoro>=0.9.4" soundfile numpy
+          /tmp/kv/bin/python scripts/tts/narrate.py --text /dev/null --voice "make-ref:$kv" --out voice-ref.wav
       - name: Text
         run: |
           mkdir -p out
