@@ -1,149 +1,494 @@
-# What If a Zombie Outbreak Happened?
+# What If a Zombie Outbreak Started Tonight?
 
 <!--
-Voiceover script, video-005. DRAFT v1 for approval. Style: 2D anime ("style": "anime").
-NOT SPOKEN: the "# " title, every "## [NOT SPOKEN]" heading, every line starting with ">", and this comment.
-Plain text = narration (the TTS reads it exactly as written).
-Numbers are spelled out so the text-to-speech reads them naturally.
-Timings in headings are estimates at about 150 words per minute. Final timings come from the real audio.
-
-Story + science: a fictional outbreak seen through two students, Hikari and Ren, intercut with
-real research. On-screen tags: STORY for the fiction, REAL SCIENCE for sourced facts.
-Sources (for the description):
-- Munz, Hudea, Imad & Smith? (2009), "When Zombies Attack!: Mathematical Modelling of an Outbreak of Zombie Infection".
-- Alemi, Bierbaum, Myers & Sethna (2015), "You Can Run, You Can Hide: The Epidemiology and Statistical Mechanics of Zombies" (Cornell), arXiv:1503.01104.
-- CDC, "Preparedness 101: Zombie Apocalypse" (May 2011).
-- Rabies (WHO fact sheet); Ophiocordyceps unilateralis (zombie-ant fungus); measles R0 of about 12 to 18.
-
-Narrator: calm, cinematic documentary voice. Hikari and Ren never speak; the narrator tells their story.
-Names: Hikari = hee-KAH-ree, Ren = REN, Ophiocordyceps = OH-fee-oh-COR-dih-seps.
+Voiceover script, video-005. v2 = the user's own rewrite of narration.txt (2026-11-17), split into scenes.
+narration.txt is the source of truth for the voice: do NOT run `npm run script:text` (it would overwrite it).
+NOT SPOKEN: '#' title, '## [NOT SPOKEN]' headings, '>' visual notes, this comment. Day markers (HOUR ZERO, DAY ONE...) ARE spoken.
+Voice: Chatterbox cloning Kokoro am_michael, ex 0.5, cfg 0.3 (free, GitHub 'Voiceover' workflow).
 -->
 
-## [NOT SPOKEN] 1. The Hook (est. 0:00-0:40)
-> Night city skyline, quiet. A single ambulance siren far away. Hikari on a rooftop, earbuds in, looking at her phone: a trending clip of a man biting a paramedic. Tag: STORY. Title card: WHAT IF A ZOMBIE OUTBREAK HAPPENED?
+## [NOT SPOKEN] 1. The Hook
+> Night city, a phone screen with a shaky viral clip (hospital gown, paramedic). Views counter spinning. Second, third clip. Emergency warning banner. Title card. Tag: STORY.
 
-It starts with a video. Ten seconds long, shaky, filmed on a phone. A man in a hospital gown bites a paramedic. By morning it has fifty million views, and most people think it's fake.
+It begins with a video.
 
-It isn't.
+Ten seconds. Shaky footage. Recorded on someone's phone.
 
-Scientists have actually modelled this. Mathematicians, epidemiologists, even the United States government. And their answer to the question, how long would humanity last, is not what the movies tell you.
+A man in a hospital gown is attacking a paramedic. Not shouting. Not arguing. Biting. The paramedic screams as people rush to pull him away.
 
-So what would really happen if a zombie outbreak began tonight?
+The video spreads across the internet.
 
-## [NOT SPOKEN] 2. What Is a Zombie, Really? (est. 0:40-2:00)
-> Clean diagram look over anime-classroom chalkboard. Rabies virus particle, then an ant on a leaf with a fungal stalk. Tag: REAL SCIENCE. Then a "zombie checklist" on the board: spreads by bite, takes over behaviour, never stops.
+Within an hour, millions have watched it. Some call it a hoax. Others say it's a movie promotion. A few claim they've seen something similar.
 
-First, we need to decide what a zombie actually is. Because nature already has some pretty good drafts.
+Then another video appears.
 
-Rabies is a virus that travels from a bite wound, along the nerves, into the brain. Once it gets there, it changes behaviour. Infected animals become restless, aggressive, and they bite. And the virus waits in their saliva, ready for the next host. Once symptoms appear, rabies is almost always fatal.
+And another.
 
-Then there's a fungus called Ophiocordyceps. It infects carpenter ants, and it takes control of their bodies. It makes the ant leave its colony, climb a plant, and clamp its jaws onto a leaf. Then the fungus grows out of the ant's head and rains spores onto the ants below.
+By morning, the internet has stopped laughing.
 
-Spread by a bite, like rabies. Control the body, like the fungus. Put those two together, and you have the recipe scientists use for a movie zombie.
+Because the government has just issued an emergency warning.
 
-So for this video, our zombie follows three rules. It spreads through a bite. It turns its victim within hours. And it never stops hunting.
+Something is spreading. And nobody knows how to stop it.
 
-## [NOT SPOKEN] 3. Hour Zero (est. 2:00-3:10)
-> Hospital corridor at night, flickering light. Patient zero on a gurney. A nurse's bandaged hand. Ambulances leaving in every direction, drawn as glowing lines on a city map. Tag: STORY.
+But here's the interesting part.
 
-In our story, it begins in a hospital in a city of eight million people.
+What if a zombie outbreak wasn't just a horror movie scenario? What if we used real biology, mathematics, and population data to understand how quickly humanity could collapse?
 
-Patient zero arrives with a fever and a bite on his arm. Nobody knows where he got it. Two hours later, he bites a nurse. By midnight, he has bitten four people in the emergency room.
+Scientists have actually explored this question.
 
-And here is the first problem. Hospitals are exactly where sick people go. Every injured person is driven towards the same few buildings, packed together, in the same waiting rooms. The places built to stop disease become the places that spread it fastest.
+And their findings are terrifying.
 
-By dawn, there are a few hundred cases. The news calls it a violent new illness. The police are told to restrain anyone who bites.
+## [NOT SPOKEN] 2. What Is a Zombie, Really?
+> Anime classroom chalkboard. Rabies virus travelling along a nerve to the brain; an ant on a leaf with a fungal stalk. Then the three rules on the board. Tag: REAL SCIENCE.
 
-Across the city, a student named Hikari is getting ready for school. Her friend Ren texts her the video. She laughs, and sends back a skull emoji.
+To understand what would happen, we first need to understand what a zombie could realistically be.
 
-That's the last normal message she will send for a long time.
+Because nature has already experimented with some disturbing possibilities.
 
-## [NOT SPOKEN] 4. The Math of a Bite (est. 3:10-4:40)
-> Chalkboard: one zombie icon becomes two, four, eight, a doubling tree filling the board. Then the S, Z, R boxes with arrows (Susceptible, Zombie, Removed). Comparison bars: flu, COVID, measles, zombie. Tag: REAL SCIENCE.
+Take rabies.
 
-In two thousand and nine, a team of mathematicians in Canada published a paper with a wonderful title. When Zombies Attack.
+It's a virus that enters the body, usually through an infected animal's bite. It travels along the nervous system towards the brain, where it can cause confusion, agitation, abnormal behaviour, and sometimes aggression.
 
-They treated a zombie outbreak like any other disease. They split the world into three groups. People who can still be infected. Zombies. And the removed, those who are gone for good.
+The infected animal may become unusually restless and attempt to bite other animals.
 
-Then they ran the numbers. In their basic model, the result was brutal. The zombies won. Every time. Unless humans fought back hard and fast, the outbreak ended with almost no living people left.
+And the virus can spread through infected saliva.
 
-To see why, think about how diseases spread. Scientists measure it with a number called R naught. It's how many new people one infected person passes the disease to.
+Then there's Ophiocordyceps, a group of parasitic fungi that infect insects.
 
-The flu is around one or two. The original strain of COVID was about three. Measles, one of the most contagious diseases we know, is somewhere between twelve and eighteen.
+Certain species infect ants, manipulate their behaviour, and eventually kill them. The fungus then grows from the insect's body and releases spores that can infect others.
 
-But a zombie doesn't need you to cough. It doesn't get tired, it doesn't hide at home, and it doesn't stop when it gets sick. As long as there are people nearby, it keeps biting.
+It's not mind control in the way movies portray it. But it's a real example of a parasite dramatically changing the behaviour of its host.
 
-And every person it bites becomes another zombie, hunting within hours. One becomes two. Two become four. In just twenty doublings, one zombie becomes a million.
+Now imagine a fictional pathogen combining the most frightening characteristics of both.
 
-## [NOT SPOKEN] 5. Day One to Day Three (est. 4:40-6:00)
-> Classroom, then a panicked street. Phones buzzing with alerts. Cars jammed on a bridge. Supermarket shelves stripped bare. Hikari and Ren run through a train station. Tag: STORY.
+A disease transmitted through bites, capable of changing human behaviour, and turning infected people into relentless attackers.
 
-On day one, the city is still trying to act normal. Trains are running. Schools are open.
+That's the scenario we're going to explore.
 
-At two in the afternoon, Hikari's phone screams with an emergency alert. Stay indoors. Lock your doors. Avoid contact with anyone showing aggression.
+For this simulation, our zombies follow three rules.
 
-Everyone tries to leave at once. The bridges jam within an hour. And a traffic jam is the worst place to be, because you are trapped in a metal box, surrounded by thousands of people, with nowhere to run.
+They spread through bites.
 
-By day two, the supermarkets are empty. Most cities only keep about three days of food on their shelves. Trucks restock them every night. And on day two, the trucks stop coming.
+An infected person transforms within a few hours.
 
-Hikari and Ren make a choice that saves their lives. They don't run for the highway with everyone else. They go up. To the roof of their school. They pull the stairs door shut, and wedge it closed with a desk.
+And once transformed, they continuously hunt living humans.
 
-From up there, they can hear the city. Sirens, then shouting. And then, by the third night, something worse. Silence.
+This isn't a prediction of a real disease. It's a hypothetical scenario built around the assumptions of our story.
 
-## [NOT SPOKEN] 6. Why Cities Fall First (est. 6:00-7:20)
-> Night skyline, windows going dark block by block. Then a glowing map of the United States: red spreading from cities, hollow dark gaps in the mountains. Tag: REAL SCIENCE. Then the power grid: a control room with empty chairs.
+And it begins in a hospital.
 
-In two thousand and fifteen, researchers at Cornell University built the most detailed zombie simulation ever made. They took the census data for the entire United States, more than three hundred million people, and let a single outbreak loose.
+In a city of eight million people.
 
-What they found was simple. Crowds kill.
+## [NOT SPOKEN] 3. Hour Zero
+> Hospital ER at night, flickering light. Patient zero on a gurney, nurse attacked, lockdown, ambulances. Hikari at home receiving Ren's video, skull emoji. Tag: STORY.
 
-In a dense city block, a single zombie is surrounded by targets. One zombie in a crowd of five thousand people was about a hundred times more effective at biting than one in a small group of fifty. So the cities fell first, and fell fast.
+**HOUR ZERO.**
 
-In their simulation, most of the cities fell within weeks. But the zombies slowed down when the people ran out. Even four months later, remote parts of Montana and Nevada were still zombie free.
+A man arrives at the emergency department with a high fever and a deep bite wound on his arm.
 
-And then comes the second wave of the collapse. The things we never think about.
+He's confused. Sweating. Barely able to speak.
 
-The power grid needs people to run it. Without workers to balance supply and demand, it fails, first in pieces, then everywhere. Without power, the water pumps stop. Phones die. Hospitals go dark.
+Doctors assume it's an unusual infection.
 
-The zombies don't need to bite everyone. They only need to bite enough of the people who keep the world switched on.
+Two hours later, he attacks a nurse.
 
-## [NOT SPOKEN] 7. The Survivors (est. 7:20-8:40)
-> Rooftop at sunset: Hikari and Ren collecting rainwater in buckets, a hand-drawn map. A quiet empty highway. A radio crackles with a faint voice. Tag: STORY. Then the CDC's "zombie preparedness" blog header, real. Tag: REAL SCIENCE.
+Before anyone understands what's happening, four more people have been bitten.
 
-On the roof, Hikari and Ren learn the rules fast. Water first. They catch rain in every bucket they can find. A person can survive about three weeks without food, but only about three days without water.
+Security rushes in. Police are called. The emergency department is placed under lockdown.
 
-They stay quiet. Sound attracts the dead.
+But the hospital has a problem.
 
-And they watch. They notice that the zombies move less in the cold mornings. They notice that the crowds in the streets get thinner every week.
+It's full of people who are already sick, injured, frightened, and waiting for treatment.
 
-In two thousand and eleven, the United States Centers for Disease Control published a blog post called Preparedness one oh one: Zombie Apocalypse. It was a joke with a serious purpose. So many people read it that the website crashed.
+Ambulances keep arriving. Families gather outside. Medical staff move between rooms.
 
-Their advice works for zombies, and for real disasters too. Store water, about four litres per person per day. Keep food that doesn't need cooking. Have a first aid kit, a radio, and a plan for where your family will meet.
+A place designed to protect people has suddenly become a dangerous point of exposure.
 
-On day nineteen, Ren's old radio picks up a voice. A shelter, a hundred kilometres north, in the hills. Far from the crowds.
+By midnight, the first reports begin appearing online.
 
-## [NOT SPOKEN] 8. Could Humanity Win? (est. 8:40-10:00)
-> Wide misty highway at dawn. Hikari and Ren walk north, small figures. Zombies slumped and still in the fields, frost on them. Chalkboard insert: the "fight back" line where the curve flips. Tag: REAL SCIENCE then STORY.
+The news describes the incidents as isolated acts of extreme violence.
 
-So, could we win?
+Across the city, a student named Hikari is preparing for school.
 
-The models say yes, but only under certain conditions. In the Canadian study, the only strategy that reliably worked was to attack early and hard, before the outbreak grew. In the Cornell simulation, it was a balance: if humans destroyed zombies quickly enough compared to how often zombies bit them, the outbreak burned itself out.
+Her friend Ren sends her the hospital video.
 
-And there's something the movies always forget. A zombie is a dead body. And dead bodies decay.
+She watches it, laughs, and replies with a skull emoji.
 
-In warm weather, insects and bacteria break soft tissue down within weeks. Muscles and tendons weaken. In winter, the cold freezes them stiff. A real walking corpse would be falling apart from the day it rose.
+She has no idea that this might be the last ordinary night of her life.
 
-Which means the best strategy might not be fighting at all. It might be waiting. Staying hidden, staying quiet, and letting time do the work.
+## [NOT SPOKEN] 4. Day One
+> Chalkboard: S/Z/R boxes, doubling tree 1-2-4-8 to a million (REAL SCIENCE). Then Hikari's phone alert, gridlocked bridge, crowds, military trucks; Hikari and Ren barricade the school rooftop door. Tag: STORY.
 
-On the fortieth morning, Hikari and Ren walk north along an empty highway. The fields are full of the dead. But almost none of them are moving anymore.
+**DAY ONE.**
 
-## [NOT SPOKEN] 9. The Real Lesson (est. 10:00-10:45)
-> Hikari looks back at the city one last time, then forward at sunrise over the hills. Lens flare. Final card with the question. End screen.
+In 2009, researchers published a mathematical study called *When Zombies Attack!*
 
-A zombie outbreak is fiction. But everything that made it so deadly is real. Diseases that spread before we notice them. Cities where everyone depends on everyone else. And a world that can run out of food, water and power in just a few days.
+They used the same kind of mathematical modelling normally applied to infectious diseases.
 
-The people who survive disasters are rarely the strongest or the bravest. They are the ones who prepared before it started, who stayed calm, and who made the right choice in the first few hours.
+They divided the population into three groups: people who could still become infected, zombies, and those who had been permanently removed from the outbreak.
 
-So here's the question. If that alert went off on your phone tonight, where would you go?
+Then they simulated what would happen.
 
-Tell me in the comments. And stay safe out there.
+Under their basic assumptions, the result was disastrous.
+
+The zombie population overwhelmed the human population unless people responded quickly and aggressively.
+
+But why?
+
+Because of something epidemiologists call the basic reproduction number, or R-zero.
+
+It describes how many new infections one infected individual generates on average in a population where everyone is susceptible.
+
+For a disease to keep spreading, that number generally needs to remain above one.
+
+Now, a zombie outbreak wouldn't behave exactly like an ordinary infectious disease.
+
+Its spread would depend on how quickly zombies find people, how often they successfully bite, and how effectively humans defend themselves.
+
+But the principle is simple.
+
+Every successful attack creates another attacker.
+
+And if infected people transform within hours, the outbreak could accelerate frighteningly quickly.
+
+One becomes two.
+
+Two become four.
+
+Four become eight.
+
+After twenty doublings, one becomes more than a million.
+
+That's the terrifying power of exponential growth.
+
+And the city is about to experience it.
+
+At two in the afternoon, Hikari's phone suddenly screams.
+
+An emergency alert appears.
+
+STAY INDOORS.
+
+LOCK YOUR DOORS.
+
+AVOID CONTACT WITH ANYONE DISPLAYING EXTREME AGGRESSION.
+
+For a few seconds, nobody moves.
+
+Then everyone tries to leave at once.
+
+Cars flood the roads. Buses stop in the middle of intersections. Families abandon their vehicles and run towards railway stations.
+
+The bridges become completely jammed.
+
+And suddenly, thousands of people are trapped in traffic.
+
+Surrounded by strangers.
+
+With nowhere to run.
+
+By evening, the police have lost control of several districts.
+
+The first military vehicles enter the city.
+
+But the problem is no longer contained to one hospital.
+
+It's spreading through residential buildings, shopping centres, train stations, and crowded streets.
+
+And Hikari and Ren are about to make the most important decision of their lives.
+
+Instead of joining the crowds escaping through the highways, they head towards their school.
+
+They climb to the roof, pull the access door shut, and wedge it closed with a desk.
+
+For the moment, they're safe.
+
+But they have another problem.
+
+They have almost no food.
+
+## [NOT SPOKEN] 5. Day Two
+> Looted supermarket, empty shelves. Then the Cornell simulation: glowing US map, red spreading from dense cities, dark quiet mountains. Tag: REAL SCIENCE.
+
+**DAY TWO.**
+
+Supermarkets are being emptied.
+
+People aren't shopping anymore. They're taking whatever they can carry.
+
+Bottled water disappears first. Then canned food. Then medicine.
+
+Delivery trucks stop arriving. Fuel becomes difficult to find. Workers stop reporting to their jobs.
+
+The city is still standing, but the systems keeping it alive are beginning to fail.
+
+And this is where things get interesting.
+
+In 2015, researchers at Cornell University published a scientific paper titled *You Can Run, You Can Hide: The Epidemiology and Statistical Mechanics of Zombies.*
+
+They created a large-scale computer simulation using population data from the United States.
+
+They examined how a fictional zombie outbreak might spread across an entire country.
+
+And one of their most important findings was that population density mattered enormously.
+
+In crowded areas, zombies had more potential targets.
+
+Once major cities became overwhelmed, the outbreak could spread through connected population centres.
+
+But when the simulation reached sparsely populated regions, the spread slowed down.
+
+Places with fewer people became much harder for the zombies to reach.
+
+The researchers weren't predicting an actual apocalypse.
+
+They were exploring how population distribution affects the spread of an imaginary disease.
+
+But the implications for our story are fascinating.
+
+The most crowded places might be the first to fall.
+
+And escaping the city could become more important than trying to defend it.
+
+## [NOT SPOKEN] 6. Day Three
+> Skyline going dark block by block, empty control room, dead water pump, phone with no signal. Rooftop: rain buckets, rationing, watching the streets. Tag: STORY.
+
+**DAY THREE.**
+
+The power begins failing.
+
+At first, only a few neighbourhoods lose electricity.
+
+Then entire districts go dark.
+
+Power stations and electrical grids depend on people, communication, maintenance, and constant coordination.
+
+When enough workers disappear, the system becomes increasingly difficult to operate.
+
+Without electricity, water pumps can stop working.
+
+Mobile networks become unreliable.
+
+Hospitals lose access to essential equipment.
+
+Refrigerated food begins spoiling.
+
+And suddenly, the greatest threat isn't necessarily the zombies outside.
+
+It's the infrastructure disappearing around you.
+
+On the school roof, Hikari and Ren understand that they cannot wait forever.
+
+They collect rainwater in buckets and containers.
+
+They ration whatever food they have.
+
+They avoid unnecessary noise.
+
+And they begin watching the streets.
+
+They notice something strange.
+
+The zombies are everywhere, but they're no longer moving in such large groups.
+
+Some streets are almost empty.
+
+Others are filled with hundreds of wandering figures.
+
+The city is slowly changing.
+
+## [NOT SPOKEN] 7. Day Five
+> Helicopters with searchlights over rooftops, loudspeakers, overcrowded shelter gates. Tag: STORY.
+
+**DAY FIVE.**
+
+The first organised rescue attempts begin.
+
+Military helicopters fly over residential areas.
+
+Loudspeakers announce evacuation instructions.
+
+People are told to move towards designated shelters.
+
+But many shelters are already overcrowded.
+
+Some have lost communication. Others have been abandoned.
+
+And the government is facing an impossible choice.
+
+How do you rescue millions of people when every rescue operation risks exposing more people?
+
+This is the problem that makes a hypothetical zombie outbreak so dangerous.
+
+It's not simply about fighting the infected.
+
+It's about keeping an entire civilisation functioning while the population is disappearing.
+
+## [NOT SPOKEN] 8. Day Nineteen
+> Ren tunes an old radio, static, a voice. Then the models' answer: the fight-back balance on the chalkboard; decaying, freezing zombies. Tag: REAL SCIENCE.
+
+**DAY NINETEEN.**
+
+Ren manages to get an old battery-powered radio working.
+
+For hours, there's nothing but static.
+
+Then a voice breaks through.
+
+A temporary shelter.
+
+One hundred kilometres north.
+
+Somewhere in the hills.
+
+The message repeats every few minutes.
+
+People are being asked to avoid major roads and travel in small groups.
+
+For the first time in weeks, Hikari and Ren have a destination.
+
+But can humanity actually win?
+
+Surprisingly, the mathematical models suggest that it could.
+
+In the 2009 study, quick and sufficiently aggressive reductions in the zombie population could prevent the worst-case outcome.
+
+The Cornell simulation also showed that the outbreak's progress depended heavily on the balance between successful zombie attacks and humanity's ability to remove zombies from the system.
+
+In other words, the outcome wasn't predetermined.
+
+The earlier humans responded, the better their chances.
+
+But there's another factor that horror movies rarely consider.
+
+Biology.
+
+A zombie might be terrifying, but it would still be made of biological tissue.
+
+Muscles require energy. Tendons and joints need to function. Skin and organs deteriorate.
+
+Without circulation, normal repair processes, and a functioning metabolism, a human body would not remain physically capable forever.
+
+Bacteria, insects, temperature, and environmental conditions would all contribute to decomposition.
+
+A walking corpse that never gets tired, never needs water, and never deteriorates is a fantasy.
+
+And that could be humanity's biggest advantage.
+
+The longer the outbreak continues, the more the physical condition of the infected might become a limiting factor.
+
+## [NOT SPOKEN] 9. Day Forty
+> The pair leave the school, walk north on an empty highway at dawn; still figures in the fields; a distant radio tower blinking. Tag: STORY.
+
+**DAY FORTY.**
+
+The city is almost unrecognisable.
+
+Buildings stand empty.
+
+Cars have been abandoned in the middle of roads.
+
+Power lines hang above silent streets.
+
+Hikari and Ren finally leave the school.
+
+They carry whatever supplies they have managed to save.
+
+They walk north along an empty highway.
+
+Occasionally, they see movement in the distance.
+
+But the streets are quieter now.
+
+Many of the infected are no longer moving.
+
+Some have collapsed.
+
+Others are trapped inside buildings.
+
+For the first time, the world feels different.
+
+Not safe.
+
+Not normal.
+
+But survivable.
+
+They continue towards the hills.
+
+And somewhere beyond the ruined city, a radio tower is still transmitting.
+
+Humanity hasn't disappeared.
+
+It has simply been pushed back.
+
+And perhaps that's the most realistic outcome of all.
+
+## [NOT SPOKEN] 10. The Real Lesson
+> Montage: outbreak map, dark grid, empty shelves. CDC 2011 preparedness kit (water, food, first aid, radio). Then: 2 a.m., phone alert in a dark bedroom, figures running outside, banging on the door. Final question card. End screen.
+
+A zombie apocalypse is fiction.
+
+But the things that make it frightening are not.
+
+Diseases can spread before people realise what's happening.
+
+Crowded populations can accelerate outbreaks.
+
+Supply chains can break.
+
+Electricity, clean water, medicine, and food all depend on systems that most of us rarely think about.
+
+And when those systems fail together, even a modern city can become incredibly vulnerable.
+
+The people most likely to survive a disaster aren't necessarily the strongest or the bravest.
+
+They're the ones who stay calm, think ahead, avoid unnecessary risks, and make good decisions when everyone else is panicking.
+
+The CDC even published a zombie-themed emergency preparedness guide in 2011.
+
+It was designed to make people think about preparing for real disasters.
+
+Its advice was surprisingly practical: keep emergency water and food, maintain a first-aid kit, have a battery-powered radio, and make a plan with your family.
+
+Because you don't need zombies to lose electricity, run out of water, or become trapped during an emergency.
+
+And now, imagine this.
+
+It's two in the morning.
+
+You're asleep.
+
+Your phone suddenly lights up.
+
+An emergency alert appears.
+
+The message is short.
+
+A serious outbreak has been reported in your area.
+
+Stay indoors.
+
+Avoid contact with infected individuals.
+
+You look outside.
+
+Someone is running down the street.
+
+Behind them, five more people are chasing.
+
+And then you hear someone banging on your front door.
+
+**What would you do?**
+
+Would you stay inside?
+
+Would you escape the city?
+
+Or would you risk everything to find your family?
+
+Tell us in the comments.
+
+Because if the world changed tonight, your first decision might be the one that determines whether you see tomorrow.
+
+Stay safe.
