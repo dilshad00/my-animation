@@ -1,0 +1,6985 @@
+{
+  "$schema": "../../storyboard.schema.json",
+  "id": "video-005",
+  "title": "What If a Zombie Outbreak Started Tonight?",
+  "topic": "Anime-style what-if: a fictional zombie outbreak followed day by day through two students, with real science (rabies, Ophiocordyceps, Munz 2009, Cornell 2015, CDC 2011).",
+  "style": "anime",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "theme": {
+    "accent": "#9ff0c8",
+    "accent2": "#ff4a5a",
+    "text": "#ffffff",
+    "dark": "#070914",
+    "font": "Poppins"
+  },
+  "audio": {
+    "wordsPerMinute": 130,
+    "narrationOverlap": 1,
+    "music": [
+      {
+        "src": "music/zombie/echoes.mp3",
+        "volume": 0.484,
+        "duckTo": 0.153
+      },
+      {
+        "src": "music/zombie/piano-horror.mp3",
+        "from": "s026-what",
+        "volume": 0.437,
+        "duckTo": 0.138
+      },
+      {
+        "src": "music/zombie/dark-shadows.mp3",
+        "from": "s049-hour",
+        "volume": 0.197,
+        "duckTo": 0.062
+      },
+      {
+        "src": "music/zombie/fright-night.mp3",
+        "from": "s094-alert",
+        "volume": 0.376,
+        "duckTo": 0.119
+      },
+      {
+        "src": "music/zombie/silent-descent.mp3",
+        "from": "s118-market",
+        "volume": 0.324,
+        "duckTo": 0.102
+      },
+      {
+        "src": "music/zombie/delirium.mp3",
+        "from": "s143-power",
+        "volume": 0.164,
+        "duckTo": 0.052
+      },
+      {
+        "src": "music/zombie/night-sky.mp3",
+        "from": "s165-rescue",
+        "volume": 0.234,
+        "duckTo": 0.074
+      },
+      {
+        "src": "music/zombie/silent-descent.mp3",
+        "from": "s188-win",
+        "volume": 0.324,
+        "duckTo": 0.102
+      },
+      {
+        "src": "music/tech/drawing-the-sky.mp3",
+        "from": "s205-forty",
+        "volume": 0.32,
+        "duckTo": 0.101
+      },
+      {
+        "src": "music/zombie/echoes.mp3",
+        "from": "s227-fiction",
+        "volume": 0.484,
+        "duckTo": 0.153
+      },
+      {
+        "src": "music/zombie/fright-night.mp3",
+        "from": "s240-imagine",
+        "volume": 0.376,
+        "duckTo": 0.119
+      }
+    ]
+  },
+  "subtitles": {
+    "enabled": true,
+    "position": "bottom",
+    "maxWords": 7,
+    "size": 46
+  },
+  "defaultTag": {
+    "text": "STORY",
+    "color": "#9ff0c8"
+  },
+  "cast": {
+    "hikari": {},
+    "ren": {}
+  },
+  "defaultTransition": {
+    "type": "fade",
+    "duration": 0.5
+  },
+  "scenes": [
+    {
+      "id": "s001-video",
+      "narration": "It begins with a video. Ten seconds. Shaky footage. Recorded on someone's phone.",
+      "environment": {
+        "type": "z-bedroom",
+        "time": "night",
+        "props": {
+          "glow": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 700,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 700,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 620,
+          "y": 560,
+          "scale": 0.85,
+          "screen": true,
+          "props": {
+            "screen": "video"
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "cool",
+      "vignette": 0.55,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/horror-ambience.mp3",
+          "loop": true,
+          "volume": 0.178
+        }
+      ]
+    },
+    {
+      "id": "s005-biting",
+      "narration": "A man in a hospital gown is attacking a paramedic. Not shouting. Not arguing. Biting. The paramedic screams as people rush to pull him away.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#2a0a14"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.05,
+            "x": 960,
+            "y": 520
+          },
+          {
+            "t": "end",
+            "zoom": 1.25,
+            "x": 960,
+            "y": 520,
+            "ease": "smooth"
+          }
+        ],
+        "shake": 2
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 960,
+          "y": 540,
+          "scale": 1.05,
+          "screen": true,
+          "props": {
+            "screen": "video"
+          }
+        },
+        {
+          "kind": "effect",
+          "type": "focuslines",
+          "x": 960,
+          "y": 520,
+          "at": "@Biting",
+          "until": "@Biting+1.2",
+          "intensity": 0.8
+        },
+        {
+          "kind": "text",
+          "text": "BITING.",
+          "style": "anime",
+          "at": "@Biting-0.1",
+          "x": 960,
+          "y": 180,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 96,
+          "until": "@paramedic+0.2",
+          "exit": "fade"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.18,
+      "grade": "crimson",
+      "vignette": 0.65,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@Biting",
+          "src": "sfx/zombie/horror-impact.mp3",
+          "volume": 0.385
+        },
+        {
+          "at": "@Biting+0.3",
+          "src": "sfx/zombie/zombie-growl.mp3",
+          "volume": 0.216
+        }
+      ]
+    },
+    {
+      "id": "s010-spread",
+      "narration": "The video spreads across the internet. Within an hour, millions have watched it. Some call it a hoax. Others say it's a movie promotion. A few claim they've seen something similar.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#14183a"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 960,
+          "y": 540,
+          "scale": 0.95,
+          "screen": true,
+          "props": {
+            "screen": "views",
+            "views": [
+              [
+                0,
+                1200
+              ],
+              [
+                3.24,
+                90000
+              ],
+              [
+                11.766666666666667,
+                4800000
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "HOAX?",
+          "style": "label",
+          "at": "@hoax",
+          "x": 420,
+          "y": 330,
+          "enter": "fade",
+          "color": "#8fc8ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "MOVIE PROMO?",
+          "style": "label",
+          "at": "@movie",
+          "x": 1500,
+          "y": 330,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "\"I'VE SEEN IT TOO\"",
+          "style": "label",
+          "at": "@similar",
+          "x": 1480,
+          "y": 760,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s015-another",
+      "narration": "Then another video appears. And another. By morning, the internet has stopped laughing.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.1,
+            "x": 960,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1,
+            "x": 960,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 560,
+          "y": 560,
+          "scale": 0.6,
+          "screen": true,
+          "props": {
+            "screen": "video"
+          }
+        },
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 960,
+          "y": 520,
+          "scale": 0.62,
+          "screen": true,
+          "at": "@another",
+          "enter": "pop",
+          "props": {
+            "screen": "views",
+            "views": 3100000
+          }
+        },
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 1360,
+          "y": 560,
+          "scale": 0.6,
+          "screen": true,
+          "at": "@And",
+          "enter": "pop",
+          "props": {
+            "screen": "video"
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.18,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s018-warning",
+      "narration": "Because the government has just issued an emergency warning. Something is spreading. And nobody knows how to stop it.",
+      "environment": {
+        "type": "z-bedroom",
+        "time": "night",
+        "props": {
+          "glow": 1,
+          "alert": [
+            [
+              0,
+              0
+            ],
+            [
+              2.83,
+              1
+            ]
+          ]
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 760,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 760,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 620,
+          "y": 560,
+          "scale": 0.85,
+          "screen": true,
+          "at": "@emergency-0.2",
+          "enter": "pop",
+          "props": {
+            "screen": "alert",
+            "text": "EMERGENCY WARNING|A dangerous illness|is spreading.|Await further|instructions."
+          }
+        },
+        {
+          "kind": "object",
+          "type": "zalert",
+          "x": 1180,
+          "y": 180,
+          "scale": 0.62,
+          "screen": true,
+          "at": "@spreading",
+          "props": {
+            "text": "BREAKING",
+            "sub": "Something is spreading",
+            "width": 1300
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.3,
+      "grade": "crimson",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@emergency",
+          "src": "sfx/zombie/terror-sweep.mp3",
+          "volume": 0.417
+        },
+        {
+          "at": "@stop",
+          "src": "sfx/zombie/slow-heartbeat.mp3",
+          "volume": 0.126
+        }
+      ]
+    },
+    {
+      "id": "s021-what",
+      "narration": "But here's the interesting part. What if a zombie outbreak wasn't just a horror movie scenario? What if we used real biology, mathematics, and population data to understand how quickly humanity could collapse?",
+      "environment": {
+        "type": "anime-classroom",
+        "time": "day",
+        "props": {
+          "board": "Biology + Mathematics + Population data"
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 760,
+            "y": 520
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 760,
+            "y": 520,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 1420,
+          "expression": "thinking",
+          "look": "left",
+          "actions": [
+            {
+              "t": 0,
+              "do": "think"
+            }
+          ]
+        }
+      ],
+      "tag": "none",
+      "hold": 0.3,
+      "grade": "anime",
+      "transition": {
+        "type": "wipe",
+        "duration": 0.4,
+        "direction": "left"
+      }
+    },
+    {
+      "id": "s024-title",
+      "narration": "Scientists have actually explored this question. And their findings are terrifying.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 0.8,
+          "smoke": 0.7,
+          "fire": 0.4,
+          "helis": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.15,
+            "x": 960,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1,
+            "x": 960,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zhorde",
+          "x": 960,
+          "y": 1110,
+          "scale": 1.1,
+          "props": {
+            "n": 12,
+            "width": 2200,
+            "eyes": "#c8ff6a"
+          },
+          "color": "#06060f"
+        },
+        {
+          "kind": "text",
+          "text": "WHAT IF A ZOMBIE OUTBREAK STARTED TONIGHT?",
+          "style": "anime",
+          "at": "@terrifying-0.6",
+          "x": 960,
+          "y": 300,
+          "enter": "zoom",
+          "maxWidth": 1600,
+          "align": "center",
+          "color": "#eef4ff",
+          "size": 82
+        }
+      ],
+      "tag": "none",
+      "hold": 1.3599999999999999,
+      "grade": "dramatic",
+      "vignette": 0.6,
+      "transition": {
+        "type": "iris",
+        "duration": 0.6
+      },
+      "sfx": [
+        {
+          "at": "@terrifying",
+          "src": "sfx/zombie/horror-impact.mp3",
+          "volume": 0.385
+        },
+        {
+          "at": 0,
+          "src": "sfx/zombie/horde-moan.mp3",
+          "loop": true,
+          "volume": 0.331
+        }
+      ]
+    },
+    {
+      "id": "s026-what",
+      "narration": "To understand what would happen, we first need to understand what a zombie could realistically be. Because nature has already experimented with some disturbing possibilities.",
+      "environment": {
+        "type": "anime-classroom",
+        "time": "day",
+        "props": {
+          "board": "What could a zombie realistically be?"
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 760,
+            "y": 520
+          },
+          {
+            "t": "end",
+            "zoom": 1.08,
+            "x": 760,
+            "y": 520,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 1420,
+          "expression": "thinking",
+          "look": "left"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.3,
+      "grade": "anime",
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      }
+    },
+    {
+      "id": "s028-rabies",
+      "narration": "Take rabies. It's a virus that enters the body, usually through an infected animal's bite.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#2a1846"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zvirus",
+          "x": 960,
+          "y": 500,
+          "scale": 1.05,
+          "screen": true,
+          "at": 0.2,
+          "enter": "pop"
+        },
+        {
+          "kind": "text",
+          "text": "RABIES VIRUS",
+          "style": "label",
+          "at": "@rabies",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "ENTERS THROUGH A BITE",
+          "style": "label",
+          "at": "@bite-0.2",
+          "x": 960,
+          "y": 830,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.36,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "zoom",
+        "duration": 0.45
+      },
+      "sfx": [
+        {
+          "at": 0.2,
+          "src": "sfx/zombie/whoosh-impact.mp3",
+          "volume": 0.221
+        }
+      ]
+    },
+    {
+      "id": "s030-nerves",
+      "narration": "It travels along the nervous system towards the brain, where it can cause confusion, agitation, abnormal behaviour, and sometimes aggression.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#141a34"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.06,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "znerve",
+          "x": 960,
+          "y": 560,
+          "scale": 1,
+          "screen": true,
+          "props": {
+            "k": [
+              [
+                0,
+                0
+              ],
+              [
+                2.78,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "NERVES → BRAIN",
+          "style": "label",
+          "at": "@nervous",
+          "x": 960,
+          "y": 140,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "CONFUSION · AGITATION · AGGRESSION",
+          "style": "label",
+          "at": "@confusion",
+          "x": 960,
+          "y": 830,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.36,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s031-saliva",
+      "narration": "The infected animal may become unusually restless and attempt to bite other animals. And the virus can spread through infected saliva.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#2a1030"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.05,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zvirus",
+          "x": 560,
+          "y": 520,
+          "scale": 0.55,
+          "screen": true,
+          "rotate": -20
+        },
+        {
+          "kind": "object",
+          "type": "zvirus",
+          "x": 1400,
+          "y": 420,
+          "scale": 0.4,
+          "screen": true,
+          "rotate": 30,
+          "at": "@saliva",
+          "enter": "pop"
+        },
+        {
+          "kind": "object",
+          "type": "zvirus",
+          "x": 1250,
+          "y": 720,
+          "scale": 0.35,
+          "screen": true,
+          "rotate": 10,
+          "at": "@saliva+0.3",
+          "enter": "pop"
+        },
+        {
+          "kind": "text",
+          "text": "RESTLESS. BITING.",
+          "style": "anime",
+          "at": "@restless",
+          "x": 960,
+          "y": 170,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 60
+        },
+        {
+          "kind": "text",
+          "text": "SPREADS THROUGH SALIVA",
+          "style": "label",
+          "at": "@saliva",
+          "x": 960,
+          "y": 835,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.6,
+      "grade": "cool",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s033-fungus",
+      "narration": "Then there's Ophiocordyceps, a group of parasitic fungi that infect insects. Certain species infect ants, manipulate their behaviour, and eventually kill them. The fungus then grows from the insect's body and releases spores that can infect others.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#14301e"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 960,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zant",
+          "x": 960,
+          "y": 780,
+          "scale": 0.95,
+          "screen": true,
+          "props": {
+            "grow": [
+              [
+                0,
+                0
+              ],
+              [
+                10.02,
+                0.15
+              ],
+              [
+                12.22,
+                0.6
+              ],
+              [
+                14.64,
+                1
+              ]
+            ],
+            "spores": [
+              [
+                0,
+                0
+              ],
+              [
+                14.64,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "OPHIOCORDYCEPS",
+          "style": "label",
+          "at": 0.3,
+          "x": 960,
+          "y": 140,
+          "enter": "fade",
+          "color": "#c8ff6a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "THE ZOMBIE-ANT FUNGUS",
+          "style": "label",
+          "at": 0.9,
+          "x": 960,
+          "y": 200,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 28,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.24,
+      "grade": "clean",
+      "vignette": 0.5,
+      "transition": {
+        "type": "wipe",
+        "duration": 0.4,
+        "direction": "left"
+      }
+    },
+    {
+      "id": "s036-control",
+      "narration": "It's not mind control in the way movies portray it. But it's a real example of a parasite dramatically changing the behaviour of its host.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#14301e"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.12,
+            "x": 1000,
+            "y": 520
+          },
+          {
+            "t": "end",
+            "zoom": 1.22,
+            "x": 1000,
+            "y": 520,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zant",
+          "x": 960,
+          "y": 780,
+          "scale": 0.95,
+          "screen": true,
+          "props": {
+            "grow": 1,
+            "spores": 1
+          }
+        },
+        {
+          "kind": "text",
+          "text": "A PARASITE THAT CHANGES ITS HOST",
+          "style": "anime",
+          "at": "@parasite-0.2",
+          "x": 960,
+          "y": 170,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#c8ff6a",
+          "size": 56
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.48,
+      "grade": "clean",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s038-combine",
+      "narration": "Now imagine a fictional pathogen combining the most frightening characteristics of both. A disease transmitted through bites, capable of changing human behaviour, and turning infected people into relentless attackers. That's the scenario we're going to explore.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#1a0a14"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zvirus",
+          "x": 520,
+          "y": 420,
+          "scale": 0.55,
+          "screen": true,
+          "until": "@disease",
+          "exit": "fade"
+        },
+        {
+          "kind": "text",
+          "text": "+",
+          "style": "anime",
+          "at": 0.6,
+          "x": 960,
+          "y": 470,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#eef4ff",
+          "size": 110,
+          "until": "@disease",
+          "exit": "fade"
+        },
+        {
+          "kind": "object",
+          "type": "zant",
+          "x": 1400,
+          "y": 640,
+          "scale": 0.45,
+          "screen": true,
+          "props": {
+            "grow": 1
+          },
+          "until": "@disease",
+          "exit": "fade"
+        },
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 960,
+          "y": 1160,
+          "scale": 0.85,
+          "props": {
+            "variant": 1,
+            "eyes": "glow",
+            "light": "red",
+            "lunge": [
+              [
+                0,
+                0
+              ],
+              [
+                13.46,
+                0.8
+              ]
+            ]
+          },
+          "at": "@disease",
+          "enter": "fade"
+        },
+        {
+          "kind": "text",
+          "text": "A FICTIONAL PATHOGEN",
+          "style": "label",
+          "at": "@fictional",
+          "x": 960,
+          "y": 140,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.54,
+      "grade": "crimson",
+      "vignette": 0.6,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      },
+      "sfx": [
+        {
+          "at": "@disease",
+          "src": "sfx/zombie/terror-sweep.mp3",
+          "volume": 0.331
+        },
+        {
+          "at": "@relentless",
+          "src": "sfx/zombie/zombie-breath.mp3",
+          "volume": 0.2
+        }
+      ]
+    },
+    {
+      "id": "s041-rules",
+      "narration": "For this simulation, our zombies follow three rules. They spread through bites. An infected person transforms within a few hours. And once transformed, they continuously hunt living humans.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#10101e"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 900,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.08,
+            "x": 900,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 1480,
+          "y": 1140,
+          "scale": 0.75,
+          "props": {
+            "variant": 3,
+            "eyes": "glow"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "THREE RULES",
+          "style": "anime",
+          "at": "@three-0.2",
+          "x": 640,
+          "y": 160,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 64
+        },
+        {
+          "kind": "text",
+          "text": "1 · SPREADS THROUGH BITES",
+          "style": "label",
+          "at": "@bites",
+          "x": 640,
+          "y": 360,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 40,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "2 · TURNS WITHIN HOURS",
+          "style": "label",
+          "at": "@transforms",
+          "x": 640,
+          "y": 480,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 40,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "3 · NEVER STOPS HUNTING",
+          "style": "label",
+          "at": "@hunt",
+          "x": 640,
+          "y": 600,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 40,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.24,
+      "grade": "dramatic",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@bites",
+          "src": "sfx/zombie/horror-drum.mp3",
+          "volume": 0.479
+        },
+        {
+          "at": "@transforms",
+          "src": "sfx/zombie/horror-drum.mp3",
+          "volume": 0.479
+        },
+        {
+          "at": "@hunt",
+          "src": "sfx/zombie/horror-drum.mp3",
+          "volume": 0.479
+        }
+      ]
+    },
+    {
+      "id": "s045-fiction",
+      "narration": "This isn't a prediction of a real disease. It's a hypothetical scenario built around the assumptions of our story.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.06,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "A THOUGHT EXPERIMENT",
+          "style": "anime",
+          "at": "@hypothetical-0.3",
+          "x": 960,
+          "y": 300,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#9ff0c8",
+          "size": 70
+        },
+        {
+          "kind": "text",
+          "text": "NOT A REAL DISEASE",
+          "style": "label",
+          "at": "@prediction",
+          "x": 960,
+          "y": 420,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": "none",
+      "hold": 0.3,
+      "grade": "cool",
+      "vignette": 0.45,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s047-city",
+      "narration": "And it begins in a hospital. In a city of eight million people.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 520
+          },
+          {
+            "t": "end",
+            "zoom": 1.25,
+            "x": 1200,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "A CITY OF 8,000,000 PEOPLE",
+          "style": "label",
+          "at": "@million-0.4",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.36,
+      "grade": "cool",
+      "vignette": 0.45,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/tomb-ambience.mp3",
+          "loop": true,
+          "volume": 0.172
+        }
+      ]
+    },
+    {
+      "id": "s049-hour",
+      "narration": "Hour zero. A man arrives at the emergency department with a high fever and a deep bite wound on his arm.",
+      "environment": {
+        "type": "z-hospital",
+        "time": "night",
+        "props": {
+          "flicker": 0.5
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 520
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 960,
+            "y": 520,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zdaycard",
+          "x": 960,
+          "y": 470,
+          "scale": 1,
+          "at": 0.15,
+          "until": 2.9,
+          "exit": "fade",
+          "screen": true,
+          "color": "#ff4a5a",
+          "props": {
+            "text": "HOUR ZERO",
+            "sub": "EMERGENCY DEPARTMENT"
+          }
+        },
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 1320,
+          "y": 1140,
+          "scale": 0.72,
+          "props": {
+            "variant": 0,
+            "light": "day",
+            "lunge": 0
+          },
+          "at": "@arrives",
+          "enter": "fade"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.18,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/tomb-ambience.mp3",
+          "loop": true,
+          "volume": 0.172
+        }
+      ]
+    },
+    {
+      "id": "s051-confused",
+      "narration": "He's confused. Sweating. Barely able to speak. Doctors assume it's an unusual infection.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#1d2a2a"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 470
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 470,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 960,
+          "y": 1300,
+          "scale": 1,
+          "props": {
+            "variant": 0,
+            "light": "day",
+            "lunge": 0,
+            "look": [
+              [
+                0,
+                -0.6
+              ],
+              [
+                7.749999999999982,
+                0.6
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "CONFUSED",
+          "style": "label",
+          "at": "@confused",
+          "x": 420,
+          "y": 300,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "SWEATING",
+          "style": "label",
+          "at": "@Sweating",
+          "x": 1500,
+          "y": 300,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "\"AN UNUSUAL INFECTION\"",
+          "style": "label",
+          "at": "@unusual",
+          "x": 960,
+          "y": 830,
+          "enter": "fade",
+          "color": "#8fc8ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.48,
+      "grade": "cool",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": 0.6,
+          "src": "sfx/zombie/zombie-breath.mp3",
+          "volume": 0.2
+        }
+      ]
+    },
+    {
+      "id": "s055-attack",
+      "narration": "Two hours later, he attacks a nurse. Before anyone understands what's happening, four more people have been bitten.",
+      "environment": {
+        "type": "z-hospital",
+        "time": "night",
+        "props": {
+          "flicker": 1,
+          "alarm": [
+            [
+              0,
+              0
+            ],
+            [
+              1.54,
+              1
+            ]
+          ]
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.05,
+            "x": 1200,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.3,
+            "x": 1200,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ],
+        "shake": 4
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 1220,
+          "y": 1180,
+          "scale": 0.95,
+          "props": {
+            "variant": 0,
+            "eyes": [
+              [
+                0,
+                0
+              ],
+              [
+                1.54,
+                1
+              ]
+            ],
+            "lunge": [
+              [
+                0,
+                0
+              ],
+              [
+                1.54,
+                1
+              ]
+            ],
+            "light": "red"
+          }
+        },
+        {
+          "kind": "effect",
+          "type": "impactflash",
+          "at": "@attacks",
+          "color": "#ff2a3a"
+        },
+        {
+          "kind": "text",
+          "text": "4 MORE BITTEN",
+          "style": "label",
+          "at": "@bitten-0.2",
+          "x": 520,
+          "y": 200,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.36,
+      "grade": "crimson",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@attacks",
+          "src": "sfx/zombie/zombie-growl.mp3",
+          "volume": 0.216
+        },
+        {
+          "at": "@attacks",
+          "src": "sfx/zombie/horror-impact.mp3",
+          "volume": 0.385
+        }
+      ]
+    },
+    {
+      "id": "s057-lockdown",
+      "narration": "Security rushes in. Police are called. The emergency department is placed under lockdown.",
+      "environment": {
+        "type": "z-hospital",
+        "time": "night",
+        "props": {
+          "flicker": 0.8,
+          "alarm": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.12,
+            "x": 820,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 1100,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ],
+        "shake": 2
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "LOCKDOWN",
+          "style": "anime",
+          "at": "@lockdown-0.2",
+          "x": 960,
+          "y": 200,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 96
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.36,
+      "grade": "crimson",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/mob.mp3",
+          "loop": true,
+          "volume": 0.178
+        },
+        {
+          "at": "@lockdown",
+          "src": "sfx/zombie/horror-drum.mp3",
+          "volume": 0.479
+        }
+      ]
+    },
+    {
+      "id": "s060-problem",
+      "narration": "But the hospital has a problem. It's full of people who are already sick, injured, frightened, and waiting for treatment.",
+      "environment": {
+        "type": "z-hospital",
+        "time": "night",
+        "props": {
+          "flicker": 0.4,
+          "alarm": 0.4
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 500
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 500,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zhorde",
+          "x": 960,
+          "y": 1080,
+          "scale": 0.9,
+          "color": "#1a2a30",
+          "props": {
+            "n": 9,
+            "width": 1700,
+            "walk": 0.15
+          }
+        },
+        {
+          "kind": "text",
+          "text": "SICK · INJURED · FRIGHTENED",
+          "style": "label",
+          "at": "@sick",
+          "x": 960,
+          "y": 160,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "murky",
+      "vignette": 0.55,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s062-ambulances",
+      "narration": "Ambulances keep arriving. Families gather outside. Medical staff move between rooms. A place designed to protect people has suddenly become a dangerous point of exposure.",
+      "environment": {
+        "type": "z-street",
+        "time": "night",
+        "props": {
+          "cars": 1,
+          "police": 1,
+          "lights": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.12,
+            "x": 760,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 1160,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "AMBULANCES KEEP ARRIVING",
+          "style": "label",
+          "at": "@Ambulances",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "A POINT OF EXPOSURE",
+          "style": "anime",
+          "at": "@exposure-0.3",
+          "x": 960,
+          "y": 260,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 60
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.24,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "wipe",
+        "duration": 0.4,
+        "direction": "left"
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/mob.mp3",
+          "loop": true,
+          "volume": 0.03
+        }
+      ]
+    },
+    {
+      "id": "s066-online",
+      "narration": "By midnight, the first reports begin appearing online. The news describes the incidents as isolated acts of extreme violence.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#14183a"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 960,
+          "y": 540,
+          "scale": 0.9,
+          "screen": true,
+          "props": {
+            "screen": "views",
+            "views": [
+              [
+                0,
+                20000
+              ],
+              [
+                9.876666666666669,
+                900000
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\"ISOLATED ACTS OF VIOLENCE\"",
+          "style": "label",
+          "at": "@isolated",
+          "x": 960,
+          "y": 120,
+          "enter": "fade",
+          "color": "#8fc8ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.36,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s068-hikari",
+      "narration": "Across the city, a student named Hikari is preparing for school. Her friend Ren sends her the hospital video.",
+      "environment": {
+        "type": "z-bedroom",
+        "time": "night",
+        "props": {
+          "glow": 0.8
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 1100,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 1100,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 1280,
+          "look": "left",
+          "expression": "neutral"
+        },
+        {
+          "kind": "text",
+          "text": "HIKARI",
+          "style": "label",
+          "at": "@Hikari",
+          "x": 1560,
+          "y": 300,
+          "enter": "fade",
+          "color": "#9ff0c8",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 560,
+          "y": 560,
+          "scale": 0.7,
+          "screen": true,
+          "at": "@sends",
+          "enter": "pop",
+          "props": {
+            "screen": "chat"
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.24,
+      "grade": "cool",
+      "vignette": 0.45,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      }
+    },
+    {
+      "id": "s070-emoji",
+      "narration": "She watches it, laughs, and replies with a skull emoji. She has no idea that this might be the last ordinary night of her life.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#3a2050"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 1100,
+            "y": 520
+          },
+          {
+            "t": "end",
+            "zoom": 1.18,
+            "x": 1100,
+            "y": 520,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 560,
+          "y": 540,
+          "scale": 0.8,
+          "screen": true,
+          "props": {
+            "screen": "chat"
+          }
+        },
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 1300,
+          "y": 1500,
+          "scale": 1.5,
+          "expression": "joy",
+          "look": "left",
+          "expressions": [
+            {
+              "t": "@idea",
+              "is": "neutral"
+            }
+          ]
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 1.08,
+      "grade": "anime",
+      "vignette": 0.5,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@last",
+          "src": "sfx/zombie/heartbeat-single.mp3",
+          "volume": 0.221
+        }
+      ]
+    },
+    {
+      "id": "s072-day1",
+      "narration": "Day one. In two thousand and nine, researchers published a mathematical study called When Zombies Attack!",
+      "environment": {
+        "type": "anime-classroom",
+        "time": "day",
+        "props": {
+          "board": "When Zombies Attack! (2009)"
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 760,
+            "y": 520
+          },
+          {
+            "t": "end",
+            "zoom": 1.08,
+            "x": 760,
+            "y": 520,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zdaycard",
+          "x": 960,
+          "y": 470,
+          "scale": 1,
+          "at": 0.15,
+          "until": 2.9,
+          "exit": "fade",
+          "screen": true,
+          "color": "#ff4a5a",
+          "props": {
+            "text": "DAY ONE",
+            "sub": ""
+          }
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.24,
+      "grade": "anime",
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      },
+      "sfx": [
+        {
+          "at": 0.2,
+          "src": "sfx/zombie/horror-drum.mp3",
+          "volume": 0.479
+        }
+      ]
+    },
+    {
+      "id": "s074-model",
+      "narration": "They used the same kind of mathematical modelling normally applied to infectious diseases. They divided the population into three groups: people who could still become infected, zombies, and those who had been permanently removed from the outbreak. Then they simulated what would happen.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#141a34"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.05,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zszr",
+          "x": 960,
+          "y": 520,
+          "scale": 0.95,
+          "screen": true,
+          "props": {
+            "k": 0
+          }
+        },
+        {
+          "kind": "text",
+          "text": "THE SAME MATH AS REAL EPIDEMICS",
+          "style": "label",
+          "at": "@infectious",
+          "x": 960,
+          "y": 140,
+          "enter": "fade",
+          "color": "#8fc8ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.3,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "wipe",
+        "duration": 0.4,
+        "direction": "left"
+      }
+    },
+    {
+      "id": "s077-disaster",
+      "narration": "Under their basic assumptions, the result was disastrous. The zombie population overwhelmed the human population unless people responded quickly and aggressively.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#1e1024"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.08,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zszr",
+          "x": 960,
+          "y": 520,
+          "scale": 0.95,
+          "screen": true,
+          "props": {
+            "k": [
+              [
+                0,
+                0
+              ],
+              [
+                5.46,
+                0.9
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "ZOMBIES WIN",
+          "style": "anime",
+          "at": "@overwhelmed",
+          "x": 960,
+          "y": 150,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 72
+        },
+        {
+          "kind": "text",
+          "text": "UNLESS PEOPLE FIGHT BACK FAST",
+          "style": "label",
+          "at": "@quickly-0.3",
+          "x": 960,
+          "y": 835,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.54,
+      "grade": "clean",
+      "vignette": 0.5,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@overwhelmed",
+          "src": "sfx/zombie/horror-impact.mp3",
+          "volume": 0.385
+        }
+      ]
+    },
+    {
+      "id": "s079-r0",
+      "narration": "But why? Because of something epidemiologists call the basic reproduction number, or R-zero. It describes how many new infections one infected individual generates on average in a population where everyone is susceptible. For a disease to keep spreading, that number generally needs to remain above one.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#141a34"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.06,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zr0",
+          "x": 1000,
+          "y": 500,
+          "scale": 1,
+          "screen": true,
+          "props": {
+            "n": 3
+          }
+        },
+        {
+          "kind": "text",
+          "text": "R₀ · BASIC REPRODUCTION NUMBER",
+          "style": "label",
+          "at": "@basic",
+          "x": 960,
+          "y": 130,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "ABOVE 1 → IT KEEPS SPREADING",
+          "style": "label",
+          "at": "@above",
+          "x": 960,
+          "y": 840,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.6,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s083-depends",
+      "narration": "Now, a zombie outbreak wouldn't behave exactly like an ordinary infectious disease. Its spread would depend on how quickly zombies find people, how often they successfully bite, and how effectively humans defend themselves.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#141a34"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.06,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 1500,
+          "y": 1140,
+          "scale": 0.7,
+          "props": {
+            "variant": 4
+          }
+        },
+        {
+          "kind": "text",
+          "text": "HOW FAST THEY FIND PEOPLE",
+          "style": "label",
+          "at": "@find",
+          "x": 680,
+          "y": 330,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 38,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "HOW OFTEN THEY BITE",
+          "style": "label",
+          "at": "@often",
+          "x": 680,
+          "y": 450,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 38,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "HOW WELL HUMANS DEFEND",
+          "style": "label",
+          "at": "@defend",
+          "x": 680,
+          "y": 570,
+          "enter": "fade",
+          "color": "#9ff0c8",
+          "size": 38,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.6,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s085-attacker",
+      "narration": "But the principle is simple. Every successful attack creates another attacker. And if infected people transform within hours, the outbreak could accelerate frighteningly quickly.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#1e1024"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.2,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ],
+        "shake": 1
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 620,
+          "y": 1150,
+          "scale": 0.75,
+          "props": {
+            "variant": 2,
+            "eyes": "glow"
+          }
+        },
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 1300,
+          "y": 1150,
+          "scale": 0.75,
+          "props": {
+            "variant": 0,
+            "eyes": "glow"
+          },
+          "at": "@attacker-0.2",
+          "enter": "fade"
+        },
+        {
+          "kind": "text",
+          "text": "EVERY ATTACK CREATES AN ATTACKER",
+          "style": "anime",
+          "at": "@successful-0.2",
+          "x": 960,
+          "y": 170,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 56
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.54,
+      "grade": "crimson",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@attacker",
+          "src": "sfx/zombie/zombie-growl.mp3",
+          "volume": 0.216
+        }
+      ]
+    },
+    {
+      "id": "s088-double",
+      "narration": "One becomes two. Two become four. Four become eight. After twenty doublings, one becomes more than a million. That's the terrifying power of exponential growth.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#0e1424"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.08,
+            "x": 960,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zdouble",
+          "x": 860,
+          "y": 520,
+          "scale": 0.85,
+          "screen": true,
+          "props": {
+            "levels": [
+              [
+                0,
+                0
+              ],
+              [
+                0.18,
+                1
+              ],
+              [
+                2.36,
+                2
+              ],
+              [
+                4.18,
+                3
+              ],
+              [
+                5.58,
+                5
+              ],
+              [
+                8.56,
+                6
+              ]
+            ],
+            "counter": [
+              [
+                0,
+                1
+              ],
+              [
+                0.18,
+                2
+              ],
+              [
+                2.36,
+                4
+              ],
+              [
+                4.18,
+                8
+              ],
+              [
+                5.58,
+                32
+              ],
+              [
+                8.56,
+                1048576
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "EXPONENTIAL GROWTH",
+          "style": "anime",
+          "at": "@exponential-0.2",
+          "x": 960,
+          "y": 120,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#c8ff6a",
+          "size": 60
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.36,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "zoom",
+        "duration": 0.45
+      },
+      "sfx": [
+        {
+          "at": "@million",
+          "src": "sfx/zombie/whoosh-impact.mp3",
+          "volume": 0.221
+        }
+      ]
+    },
+    {
+      "id": "s093-city",
+      "narration": "And the city is about to experience it.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "day",
+        "props": {
+          "lights": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.3,
+      "grade": "cool",
+      "vignette": 0.45,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/slow-heartbeat.mp3",
+          "loop": true,
+          "volume": 0.063
+        }
+      ]
+    },
+    {
+      "id": "s094-alert",
+      "narration": "At two in the afternoon, Hikari's phone suddenly screams. An emergency alert appears.",
+      "environment": {
+        "type": "z-street",
+        "time": "day",
+        "props": {
+          "cars": 0,
+          "lights": 0
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 760,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 760,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 640,
+          "y": 1500,
+          "scale": 1.5,
+          "expression": "surprised",
+          "look": "down",
+          "actions": [
+            {
+              "t": "@screams",
+              "do": "react"
+            }
+          ]
+        },
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 1380,
+          "y": 560,
+          "scale": 0.7,
+          "screen": true,
+          "at": "@alert-0.3",
+          "enter": "pop",
+          "props": {
+            "screen": "alert"
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.54,
+      "grade": "anime",
+      "vignette": 0.5,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@screams",
+          "src": "sfx/zombie/terror-sweep.mp3",
+          "volume": 0.417
+        }
+      ]
+    },
+    {
+      "id": "s096-indoors",
+      "narration": "Stay indoors. Lock your doors. Avoid contact with anyone displaying extreme aggression.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#3a0a14"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ],
+        "shake": 1
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 960,
+          "y": 540,
+          "scale": 1,
+          "screen": true,
+          "props": {
+            "screen": "alert"
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.54,
+      "grade": "crimson",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/slow-heartbeat.mp3",
+          "loop": true,
+          "volume": 0.063
+        }
+      ]
+    },
+    {
+      "id": "s099-nobody",
+      "narration": "For a few seconds, nobody moves. Then everyone tries to leave at once.",
+      "environment": {
+        "type": "z-street",
+        "time": "day",
+        "props": {
+          "cars": 1,
+          "lights": 0
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 620,
+          "expression": "surprised",
+          "look": "right"
+        },
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 1320,
+          "scale": 0.97,
+          "expression": "worried",
+          "look": "left",
+          "actions": [
+            {
+              "t": "@leave",
+              "do": "react"
+            }
+          ]
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.72,
+      "grade": "anime",
+      "vignette": 0.45,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s101-flood",
+      "narration": "Cars flood the roads. Buses stop in the middle of intersections. Families abandon their vehicles and run towards railway stations.",
+      "environment": {
+        "type": "z-street",
+        "time": "sunset",
+        "props": {
+          "cars": 1,
+          "smoke": 0.3,
+          "police": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.15,
+            "x": 600,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 1320,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ],
+        "shake": 2
+      },
+      "elements": [
+        {
+          "kind": "effect",
+          "type": "speedlines",
+          "x": 960,
+          "y": 560,
+          "width": 1920,
+          "height": 900,
+          "opacity": 0.35
+        },
+        {
+          "kind": "object",
+          "type": "zhorde",
+          "x": 960,
+          "y": 1120,
+          "scale": 1,
+          "color": "#1a1424",
+          "props": {
+            "n": 10,
+            "width": 2400,
+            "walk": 1
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.24,
+      "grade": "rust",
+      "vignette": 0.5,
+      "transition": {
+        "type": "whip",
+        "duration": 0.3,
+        "direction": "left"
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/mob.mp3",
+          "loop": true,
+          "volume": 0.178
+        }
+      ]
+    },
+    {
+      "id": "s104-bridge",
+      "narration": "The bridges become completely jammed. And suddenly, thousands of people are trapped in traffic. Surrounded by strangers. With nowhere to run.",
+      "environment": {
+        "type": "z-bridge",
+        "time": "sunset",
+        "props": {
+          "jam": 1,
+          "smoke": 0.6
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.2,
+            "x": 960,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "TRAPPED",
+          "style": "anime",
+          "at": "@trapped-0.2",
+          "x": 960,
+          "y": 180,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 80
+        },
+        {
+          "kind": "text",
+          "text": "NOWHERE TO RUN",
+          "style": "label",
+          "at": "@nowhere",
+          "x": 960,
+          "y": 300,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "rust",
+      "vignette": 0.55,
+      "transition": {
+        "type": "wipe",
+        "duration": 0.4,
+        "direction": "left"
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/mob.mp3",
+          "loop": true,
+          "volume": 0.178
+        }
+      ]
+    },
+    {
+      "id": "s108-evening",
+      "narration": "By evening, the police have lost control of several districts. The first military vehicles enter the city.",
+      "environment": {
+        "type": "z-street",
+        "time": "night",
+        "props": {
+          "cars": 1,
+          "smoke": 0.6,
+          "fire": 0.4,
+          "police": 1,
+          "lights": 0.8
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.1,
+            "x": 1100,
+            "y": 580
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 820,
+            "y": 580,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "ztruck",
+          "x": 1250,
+          "y": 1040,
+          "scale": 0.75,
+          "at": "@military",
+          "enter": "fade",
+          "path": [
+            {
+              "t": "@military",
+              "x": 1650
+            },
+            {
+              "t": "end",
+              "x": 1250
+            }
+          ]
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.18,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/horror-ambience.mp3",
+          "loop": true,
+          "volume": 0.178
+        }
+      ]
+    },
+    {
+      "id": "s110-spreading",
+      "narration": "But the problem is no longer contained to one hospital. It's spreading through residential buildings, shopping centres, train stations, and crowded streets.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 0.85,
+          "smoke": 0.8,
+          "fire": 0.5
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zhorde",
+          "x": 960,
+          "y": 1120,
+          "scale": 1.1,
+          "color": "#05050c",
+          "props": {
+            "n": 14,
+            "width": 2400,
+            "eyes": "#c8ff6a"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "HOMES · SHOPS · STATIONS · STREETS",
+          "style": "label",
+          "at": "@residential",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.6,
+      "grade": "dramatic",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/horde-moan.mp3",
+          "loop": true,
+          "volume": 0.331
+        }
+      ]
+    },
+    {
+      "id": "s112-decision",
+      "narration": "And Hikari and Ren are about to make the most important decision of their lives. Instead of joining the crowds escaping through the highways, they head towards their school.",
+      "environment": {
+        "type": "anime-city",
+        "time": "sunset"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 620,
+          "expression": "confident",
+          "look": "right"
+        },
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 1320,
+          "scale": 0.97,
+          "expression": "worried",
+          "look": "left",
+          "expressions": [
+            {
+              "t": "@school",
+              "is": "confident"
+            }
+          ]
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "anime",
+      "vignette": 0.4,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      }
+    },
+    {
+      "id": "s114-roof",
+      "narration": "They climb to the roof, pull the access door shut, and wedge it closed with a desk. For the moment, they're safe.",
+      "environment": {
+        "type": "z-camp",
+        "time": "sunset",
+        "props": {
+          "water": 0,
+          "smoke": 0.5
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.15,
+            "x": 1200,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1,
+            "x": 960,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 520,
+          "expression": "worried",
+          "look": "right"
+        },
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 940,
+          "scale": 0.97,
+          "expression": "neutral",
+          "look": "right"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.36,
+      "grade": "anime",
+      "vignette": 0.45,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      },
+      "sfx": [
+        {
+          "at": "@shut",
+          "src": "sfx/zombie/door-creak.mp3",
+          "volume": 0.363
+        },
+        {
+          "at": "@wedge",
+          "src": "sfx/zombie/door-knock.mp3",
+          "volume": 0.507
+        }
+      ]
+    },
+    {
+      "id": "s116-food",
+      "narration": "But they have another problem. They have almost no food.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "sunset",
+        "color": "#3a2a40"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 960,
+          "y": 1500,
+          "scale": 1.5,
+          "expression": "worried",
+          "look": "down"
+        },
+        {
+          "kind": "text",
+          "text": "ALMOST NO FOOD",
+          "style": "anime",
+          "at": "@food-0.3",
+          "x": 960,
+          "y": 170,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ffd36a",
+          "size": 60
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.36,
+      "grade": "anime",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s118-market",
+      "narration": "Day two. Supermarkets are being emptied. People aren't shopping anymore. They're taking whatever they can carry.",
+      "environment": {
+        "type": "z-market",
+        "time": "day",
+        "props": {
+          "stock": [
+            [
+              0,
+              0.75
+            ],
+            [
+              8.640000000000025,
+              0.35
+            ]
+          ],
+          "flicker": 0.3
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zdaycard",
+          "x": 960,
+          "y": 470,
+          "scale": 1,
+          "at": 0.15,
+          "until": 2.9,
+          "exit": "fade",
+          "screen": true,
+          "color": "#ffd36a",
+          "props": {
+            "text": "DAY TWO",
+            "sub": ""
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.48,
+      "grade": "murky",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/mob.mp3",
+          "loop": true,
+          "volume": 0.03
+        }
+      ]
+    },
+    {
+      "id": "s122-water",
+      "narration": "Bottled water disappears first. Then canned food. Then medicine.",
+      "environment": {
+        "type": "z-market",
+        "time": "day",
+        "props": {
+          "stock": [
+            [
+              0,
+              0.35
+            ],
+            [
+              5.810000000000036,
+              0.05
+            ]
+          ],
+          "flicker": 0.6
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.15,
+            "x": 860,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 1060,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "WATER",
+          "style": "label",
+          "at": "@water",
+          "x": 560,
+          "y": 200,
+          "enter": "fade",
+          "color": "#8fc8ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "CANNED FOOD",
+          "style": "label",
+          "at": "@canned",
+          "x": 960,
+          "y": 200,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "MEDICINE",
+          "style": "label",
+          "at": "@medicine",
+          "x": 1360,
+          "y": 200,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.6,
+      "grade": "murky",
+      "vignette": 0.5,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s125-trucks",
+      "narration": "Delivery trucks stop arriving. Fuel becomes difficult to find. Workers stop reporting to their jobs. The city is still standing, but the systems keeping it alive are beginning to fail.",
+      "environment": {
+        "type": "z-street",
+        "time": "day",
+        "props": {
+          "cars": 1,
+          "lights": 0,
+          "smoke": 0.2
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.1,
+            "x": 1100,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 800,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "ztruck",
+          "x": 1450,
+          "y": 1060,
+          "scale": 0.6,
+          "props": {
+            "moving": false
+          }
+        },
+        {
+          "kind": "text",
+          "text": "NO DELIVERIES · NO FUEL · NO WORKERS",
+          "style": "label",
+          "at": "@Delivery",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "THE SYSTEMS BEGIN TO FAIL",
+          "style": "anime",
+          "at": "@systems-0.3",
+          "x": 960,
+          "y": 280,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 56
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "murky",
+      "vignette": 0.5,
+      "transition": {
+        "type": "wipe",
+        "duration": 0.4,
+        "direction": "left"
+      }
+    },
+    {
+      "id": "s129-cornell",
+      "narration": "And this is where things get interesting. In two thousand and fifteen, researchers at Cornell University published a scientific paper titled You Can Run, You Can Hide: The Epidemiology and Statistical Mechanics of Zombies.",
+      "environment": {
+        "type": "anime-classroom",
+        "time": "day",
+        "props": {
+          "board": "You Can Run, You Can Hide (Cornell, 2015)"
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 760,
+            "y": 520
+          },
+          {
+            "t": "end",
+            "zoom": 1.08,
+            "x": 760,
+            "y": 520,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 1420,
+          "expression": "thinking",
+          "look": "left"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.24,
+      "grade": "anime",
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      }
+    },
+    {
+      "id": "s131-sim",
+      "narration": "They created a large-scale computer simulation using population data from the United States. They examined how a fictional zombie outbreak might spread across an entire country.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#0b0f22"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.05,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zusmap",
+          "x": 960,
+          "y": 560,
+          "scale": 0.85,
+          "screen": true,
+          "props": {
+            "spread": 0,
+            "cities": true
+          }
+        },
+        {
+          "kind": "text",
+          "text": "US POPULATION DATA · COMPUTER SIMULATION",
+          "style": "label",
+          "at": "@simulation",
+          "x": 960,
+          "y": 110,
+          "enter": "fade",
+          "color": "#8fc8ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.3,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "zoom",
+        "duration": 0.45
+      }
+    },
+    {
+      "id": "s133-density",
+      "narration": "And one of their most important findings was that population density mattered enormously. In crowded areas, zombies had more potential targets. Once major cities became overwhelmed, the outbreak could spread through connected population centres.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#0b0f22"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.06,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zusmap",
+          "x": 960,
+          "y": 560,
+          "scale": 0.85,
+          "screen": true,
+          "props": {
+            "spread": [
+              [
+                0,
+                0.08
+              ],
+              [
+                16.549999999999997,
+                0.55
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "DENSITY MATTERS",
+          "style": "anime",
+          "at": "@density-0.2",
+          "x": 960,
+          "y": 110,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 60
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.42,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s136-sparse",
+      "narration": "But when the simulation reached sparsely populated regions, the spread slowed down. Places with fewer people became much harder for the zombies to reach.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#0b0f22"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.06,
+            "x": 760,
+            "y": 480
+          },
+          {
+            "t": "end",
+            "zoom": 1.14,
+            "x": 760,
+            "y": 480,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zusmap",
+          "x": 960,
+          "y": 560,
+          "scale": 0.85,
+          "screen": true,
+          "props": {
+            "spread": [
+              [
+                0,
+                0.55
+              ],
+              [
+                10.870000000000045,
+                0.8
+              ]
+            ],
+            "safe": true
+          }
+        },
+        {
+          "kind": "text",
+          "text": "FEWER PEOPLE → SLOWER SPREAD",
+          "style": "label",
+          "at": "@slowed",
+          "x": 960,
+          "y": 110,
+          "enter": "fade",
+          "color": "#9ff0c8",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.42,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s138-not",
+      "narration": "The researchers weren't predicting an actual apocalypse. They were exploring how population distribution affects the spread of an imaginary disease.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#0b0f22"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.14,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zusmap",
+          "x": 960,
+          "y": 560,
+          "scale": 0.85,
+          "screen": true,
+          "props": {
+            "spread": 0.8,
+            "safe": true
+          }
+        },
+        {
+          "kind": "text",
+          "text": "A THOUGHT EXPERIMENT, NOT A PREDICTION",
+          "style": "label",
+          "at": "@predicting",
+          "x": 960,
+          "y": 110,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.3,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s140-escape",
+      "narration": "But the implications for our story are fascinating. The most crowded places might be the first to fall. And escaping the city could become more important than trying to defend it.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 1,
+          "smoke": 0.4,
+          "helis": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "CROWDS FALL FIRST",
+          "style": "anime",
+          "at": "@crowded-0.2",
+          "x": 960,
+          "y": 170,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 60
+        },
+        {
+          "kind": "text",
+          "text": "ESCAPE > DEFEND",
+          "style": "label",
+          "at": "@escaping",
+          "x": 960,
+          "y": 300,
+          "enter": "fade",
+          "color": "#9ff0c8",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s143-power",
+      "narration": "Day three. The power begins failing. At first, only a few neighbourhoods lose electricity. Then entire districts go dark.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": [
+            [
+              0,
+              1
+            ],
+            [
+              4.88,
+              0.8
+            ],
+            [
+              8.36,
+              0.12
+            ]
+          ],
+          "smoke": 0.3
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zdaycard",
+          "x": 960,
+          "y": 470,
+          "scale": 1,
+          "at": 0.15,
+          "until": 2.9,
+          "exit": "fade",
+          "screen": true,
+          "color": "#8fc8ff",
+          "props": {
+            "text": "DAY THREE",
+            "sub": ""
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      },
+      "sfx": [
+        {
+          "at": "@dark",
+          "src": "sfx/zombie/horror-drum.mp3",
+          "volume": 0.479
+        }
+      ]
+    },
+    {
+      "id": "s147-grid",
+      "narration": "Power stations and electrical grids depend on people, communication, maintenance, and constant coordination. When enough workers disappear, the system becomes increasingly difficult to operate.",
+      "environment": {
+        "type": "z-control",
+        "time": "night",
+        "props": {
+          "dark": [
+            [
+              0,
+              0
+            ],
+            [
+              8.68,
+              0.55
+            ]
+          ]
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 480
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 480,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "PEOPLE · MAINTENANCE · COORDINATION",
+          "style": "label",
+          "at": "@communication",
+          "x": 960,
+          "y": 830,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.24,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "wipe",
+        "duration": 0.4,
+        "direction": "left"
+      }
+    },
+    {
+      "id": "s149-pumps",
+      "narration": "Without electricity, water pumps can stop working. Mobile networks become unreliable. Hospitals lose access to essential equipment. Refrigerated food begins spoiling.",
+      "environment": {
+        "type": "z-control",
+        "time": "night",
+        "props": {
+          "dark": [
+            [
+              0,
+              0.55
+            ],
+            [
+              13.449999999999914,
+              1
+            ]
+          ]
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.1,
+            "x": 960,
+            "y": 480
+          },
+          {
+            "t": "end",
+            "zoom": 1.2,
+            "x": 960,
+            "y": 480,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "WATER PUMPS",
+          "style": "label",
+          "at": "@pumps",
+          "x": 420,
+          "y": 830,
+          "enter": "fade",
+          "color": "#8fc8ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "PHONE NETWORKS",
+          "style": "label",
+          "at": "@networks",
+          "x": 960,
+          "y": 830,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "HOSPITALS",
+          "style": "label",
+          "at": "@Hospitals",
+          "x": 1500,
+          "y": 830,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "FOOD SPOILS",
+          "style": "label",
+          "at": "@spoiling",
+          "x": 960,
+          "y": 140,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.48,
+      "grade": "cool",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@pumps",
+          "src": "sfx/zombie/terror-sweep.mp3",
+          "volume": 0.331
+        }
+      ]
+    },
+    {
+      "id": "s153-threat",
+      "narration": "And suddenly, the greatest threat isn't necessarily the zombies outside. It's the infrastructure disappearing around you.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 0.08,
+          "smoke": 0.5
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 600,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 600,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zpylon",
+          "x": 420,
+          "y": 1100,
+          "scale": 1.1,
+          "props": {
+            "dead": [
+              [
+                0,
+                0.5
+              ],
+              [
+                9.346666666666525,
+                1
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "THE REAL THREAT?",
+          "style": "anime",
+          "at": "@greatest-0.2",
+          "x": 1240,
+          "y": 200,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#eef4ff",
+          "size": 60
+        },
+        {
+          "kind": "text",
+          "text": "THE INFRASTRUCTURE",
+          "style": "label",
+          "at": "@infrastructure",
+          "x": 1240,
+          "y": 330,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.36,
+      "grade": "dramatic",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s155-rain",
+      "narration": "On the school roof, Hikari and Ren understand that they cannot wait forever. They collect rainwater in buckets and containers. They ration whatever food they have. They avoid unnecessary noise.",
+      "environment": {
+        "type": "z-camp",
+        "time": "sunset",
+        "weather": "rain",
+        "props": {
+          "water": [
+            [
+              0,
+              0.1
+            ],
+            [
+              13.726666666666635,
+              0.85
+            ]
+          ],
+          "smoke": 0.4,
+          "lights": 0
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 900,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 900,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 520,
+          "expression": "worried",
+          "look": "right"
+        },
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 940,
+          "scale": 0.97,
+          "expression": "thinking",
+          "look": "left"
+        },
+        {
+          "kind": "text",
+          "text": "COLLECT · RATION · STAY QUIET",
+          "style": "label",
+          "at": "@ration",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.24,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/rain-long.mp3",
+          "loop": true,
+          "volume": 0.596
+        }
+      ]
+    },
+    {
+      "id": "s159-watch",
+      "narration": "And they begin watching the streets. They notice something strange. The zombies are everywhere, but they're no longer moving in such large groups.",
+      "environment": {
+        "type": "z-street",
+        "time": "day",
+        "props": {
+          "cars": 1,
+          "lights": 0,
+          "horde": [
+            [
+              0,
+              1
+            ],
+            [
+              3.5,
+              1
+            ],
+            [
+              10.10999999999994,
+              0.35
+            ]
+          ]
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.3,
+            "x": 960,
+            "y": 500
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 500,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 1500,
+          "y": 1560,
+          "scale": 1.5,
+          "expression": "thinking",
+          "look": "left"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "murky",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s162-changing",
+      "narration": "Some streets are almost empty. Others are filled with hundreds of wandering figures. The city is slowly changing.",
+      "environment": {
+        "type": "z-street",
+        "time": "sunset",
+        "props": {
+          "cars": 1,
+          "horde": [
+            [
+              0,
+              0.1
+            ],
+            [
+              2.68,
+              0.1
+            ],
+            [
+              3.6,
+              1
+            ]
+          ],
+          "smoke": 0.3
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.12,
+            "x": 860,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 1060,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "EMPTY STREETS",
+          "style": "label",
+          "at": "@empty",
+          "x": 520,
+          "y": 150,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "HUNDREDS OF FIGURES",
+          "style": "label",
+          "at": "@hundreds",
+          "x": 1400,
+          "y": 150,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.54,
+      "grade": "rust",
+      "vignette": 0.5,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@hundreds",
+          "src": "sfx/zombie/horde-moan.mp3",
+          "loop": true,
+          "volume": 0.331
+        }
+      ]
+    },
+    {
+      "id": "s165-rescue",
+      "narration": "Day five. The first organised rescue attempts begin. Military helicopters fly over residential areas.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 0.1,
+          "helis": 1,
+          "smoke": 0.3
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zdaycard",
+          "x": 960,
+          "y": 470,
+          "scale": 1,
+          "at": 0.15,
+          "until": 2.9,
+          "exit": "fade",
+          "screen": true,
+          "color": "#9ff0c8",
+          "props": {
+            "text": "DAY FIVE",
+            "sub": ""
+          }
+        },
+        {
+          "kind": "object",
+          "type": "zheli",
+          "x": 1300,
+          "y": 300,
+          "scale": 0.75,
+          "at": "@helicopters",
+          "enter": "fade",
+          "path": [
+            {
+              "t": "@helicopters",
+              "x": 1750
+            },
+            {
+              "t": "end",
+              "x": 1100
+            }
+          ]
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.36,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      }
+    },
+    {
+      "id": "s168-shelters",
+      "narration": "Loudspeakers announce evacuation instructions. People are told to move towards designated shelters.",
+      "environment": {
+        "type": "z-shelter",
+        "time": "night",
+        "props": {
+          "crowd": 0.4,
+          "heli": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "EVACUATE TO DESIGNATED SHELTERS",
+          "style": "label",
+          "at": "@Loudspeakers",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.36,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "wipe",
+        "duration": 0.4,
+        "direction": "left"
+      }
+    },
+    {
+      "id": "s170-crowded",
+      "narration": "But many shelters are already overcrowded. Some have lost communication. Others have been abandoned.",
+      "environment": {
+        "type": "z-shelter",
+        "time": "night",
+        "props": {
+          "crowd": [
+            [
+              0,
+              0.4
+            ],
+            [
+              6.6600000000000135,
+              1
+            ]
+          ],
+          "heli": 1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "OVERCROWDED",
+          "style": "anime",
+          "at": "@overcrowded-0.2",
+          "x": 960,
+          "y": 200,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ff4a5a",
+          "size": 76
+        },
+        {
+          "kind": "text",
+          "text": "NO CONTACT",
+          "style": "label",
+          "at": "@communication",
+          "x": 560,
+          "y": 330,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "ABANDONED",
+          "style": "label",
+          "at": "@abandoned",
+          "x": 1360,
+          "y": 330,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.3,
+      "grade": "cool",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/mob.mp3",
+          "loop": true,
+          "volume": 0.04
+        }
+      ]
+    },
+    {
+      "id": "s173-choice",
+      "narration": "And the government is facing an impossible choice. How do you rescue millions of people when every rescue operation risks exposing more people?",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#141a34"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.08,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zheli",
+          "x": 960,
+          "y": 330,
+          "scale": 0.9,
+          "screen": true,
+          "props": {
+            "beam": 1,
+            "angle": 0
+          }
+        },
+        {
+          "kind": "text",
+          "text": "AN IMPOSSIBLE CHOICE",
+          "style": "anime",
+          "at": "@impossible-0.2",
+          "x": 960,
+          "y": 160,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#eef4ff",
+          "size": 64
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.12,
+      "grade": "cool",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s175-civ",
+      "narration": "This is the problem that makes a hypothetical zombie outbreak so dangerous. It's not simply about fighting the infected. It's about keeping an entire civilisation functioning while the population is disappearing.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 0.1,
+          "smoke": 0.6,
+          "fire": 0.3
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "NOT JUST FIGHTING THE INFECTED",
+          "style": "label",
+          "at": "@fighting",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "KEEPING CIVILIZATION RUNNING",
+          "style": "anime",
+          "at": "@functioning-0.6",
+          "x": 960,
+          "y": 270,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#9ff0c8",
+          "size": 56
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.54,
+      "grade": "cool",
+      "vignette": 0.55,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s178-radio",
+      "narration": "Day nineteen. Ren manages to get an old battery-powered radio working. For hours, there's nothing but static.",
+      "environment": {
+        "type": "z-camp",
+        "time": "night",
+        "props": {
+          "water": 0.8,
+          "smoke": 0.2,
+          "lights": 0
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 1000,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 1000,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zdaycard",
+          "x": 960,
+          "y": 470,
+          "scale": 1,
+          "at": 0.15,
+          "until": 2.9,
+          "exit": "fade",
+          "screen": true,
+          "color": "#ffd36a",
+          "props": {
+            "text": "DAY NINETEEN",
+            "sub": ""
+          }
+        },
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 700,
+          "look": "right",
+          "expression": "thinking"
+        },
+        {
+          "kind": "object",
+          "type": "zradio",
+          "x": 1300,
+          "y": 1060,
+          "scale": 0.7,
+          "props": {
+            "signal": 0
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.54,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      }
+    },
+    {
+      "id": "s181-voice",
+      "narration": "Then a voice breaks through. A temporary shelter. One hundred kilometres north. Somewhere in the hills.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#14281e"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zradio",
+          "x": 960,
+          "y": 900,
+          "scale": 1.3,
+          "props": {
+            "signal": [
+              [
+                0,
+                0
+              ],
+              [
+                0.32,
+                1
+              ]
+            ],
+            "dial": 0.62
+          }
+        },
+        {
+          "kind": "text",
+          "text": "TEMPORARY SHELTER",
+          "style": "label",
+          "at": "@shelter",
+          "x": 960,
+          "y": 130,
+          "enter": "fade",
+          "color": "#9ff0c8",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "100 KM NORTH",
+          "style": "label",
+          "at": "@north",
+          "x": 560,
+          "y": 240,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "IN THE HILLS",
+          "style": "label",
+          "at": "@hills",
+          "x": 1360,
+          "y": 240,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "clean",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@voice",
+          "src": "sfx/zombie/heartbeat-single.mp3",
+          "volume": 0.176
+        }
+      ]
+    },
+    {
+      "id": "s185-hope",
+      "narration": "The message repeats every few minutes. People are being asked to avoid major roads and travel in small groups. For the first time in weeks, Hikari and Ren have a destination.",
+      "environment": {
+        "type": "z-camp",
+        "time": "sunset",
+        "props": {
+          "water": 0.9,
+          "smoke": 0.1
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 620,
+          "look": "right",
+          "expression": "surprised",
+          "expressions": [
+            {
+              "t": "@destination",
+              "is": "joy"
+            }
+          ]
+        },
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 1320,
+          "scale": 0.97,
+          "look": "left",
+          "expression": "happy"
+        },
+        {
+          "kind": "effect",
+          "type": "godrays",
+          "x": 1450,
+          "y": 700,
+          "at": "@destination",
+          "intensity": 0.6
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.54,
+      "grade": "warm",
+      "vignette": 0.4,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s188-win",
+      "narration": "But can humanity actually win? Surprisingly, the mathematical models suggest that it could.",
+      "environment": {
+        "type": "anime-classroom",
+        "time": "day",
+        "props": {
+          "board": "Can humanity win?"
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 760,
+            "y": 520
+          },
+          {
+            "t": "end",
+            "zoom": 1.08,
+            "x": 760,
+            "y": 520,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 1420,
+          "expression": "thinking",
+          "look": "left"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.24,
+      "grade": "anime",
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      }
+    },
+    {
+      "id": "s190-fight",
+      "narration": "In the two thousand and nine study, quick and sufficiently aggressive reductions in the zombie population could prevent the worst-case outcome. The Cornell simulation also showed that the outbreak's progress depended heavily on the balance between successful zombie attacks and humanity's ability to remove zombies from the system. In other words, the outcome wasn't predetermined. The earlier humans responded, the better their chances.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#0e1424"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.06,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zszr",
+          "x": 960,
+          "y": 520,
+          "scale": 0.95,
+          "screen": true,
+          "props": {
+            "k": [
+              [
+                0,
+                0.7
+              ],
+              [
+                26.199999999999974,
+                0.15
+              ]
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "ACT EARLY",
+          "style": "label",
+          "at": "@earlier",
+          "x": 560,
+          "y": 840,
+          "enter": "fade",
+          "color": "#9ff0c8",
+          "size": 44,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "REMOVE ZOMBIES FAST",
+          "style": "label",
+          "at": "@balance",
+          "x": 1360,
+          "y": 840,
+          "enter": "fade",
+          "color": "#9ff0c8",
+          "size": 44,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "NOT PREDETERMINED",
+          "style": "anime",
+          "at": "@predetermined-0.3",
+          "x": 960,
+          "y": 130,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#ffd36a",
+          "size": 56
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.42,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "wipe",
+        "duration": 0.4,
+        "direction": "left"
+      }
+    },
+    {
+      "id": "s194-biology",
+      "narration": "But there's another factor that horror movies rarely consider. Biology. A zombie might be terrifying, but it would still be made of biological tissue.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#1a1a24"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.05,
+            "x": 960,
+            "y": 480
+          },
+          {
+            "t": "end",
+            "zoom": 1.2,
+            "x": 960,
+            "y": 480,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 960,
+          "y": 1200,
+          "scale": 0.95,
+          "props": {
+            "variant": 2,
+            "light": "day"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "BIOLOGY.",
+          "style": "anime",
+          "at": "@Biology-0.1",
+          "x": 960,
+          "y": 170,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#c8ff6a",
+          "size": 90
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.36,
+      "grade": "cool",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@Biology",
+          "src": "sfx/zombie/horror-drum.mp3",
+          "volume": 0.479
+        }
+      ]
+    },
+    {
+      "id": "s197-decay",
+      "narration": "Muscles require energy. Tendons and joints need to function. Skin and organs deteriorate. Without circulation, normal repair processes, and a functioning metabolism, a human body would not remain physically capable forever.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#1a1a24"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 1100,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 1100,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 1400,
+          "y": 1160,
+          "scale": 0.85,
+          "props": {
+            "variant": 3,
+            "light": "day",
+            "lunge": 0
+          }
+        },
+        {
+          "kind": "text",
+          "text": "MUSCLES NEED ENERGY",
+          "style": "label",
+          "at": "@Muscles",
+          "x": 600,
+          "y": 330,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 38,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "JOINTS NEED TO WORK",
+          "style": "label",
+          "at": "@Tendons",
+          "x": 600,
+          "y": 450,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 38,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "TISSUE DETERIORATES",
+          "style": "label",
+          "at": "@deteriorate",
+          "x": 600,
+          "y": 570,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 38,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "NO CIRCULATION · NO REPAIR",
+          "style": "label",
+          "at": "@circulation",
+          "x": 600,
+          "y": 690,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 38,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.36,
+      "grade": "cool",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s201-time",
+      "narration": "Bacteria, insects, temperature, and environmental conditions would all contribute to decomposition. A walking corpse that never gets tired, never needs water, and never deteriorates is a fantasy. And that could be humanity's biggest advantage. The longer the outbreak continues, the more the physical condition of the infected might become a limiting factor.",
+      "environment": {
+        "type": "z-highway",
+        "time": "day",
+        "props": {
+          "figures": 1,
+          "mist": 0.3
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.1,
+            "x": 820,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 1100,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "BACTERIA · INSECTS · HEAT · COLD",
+          "style": "label",
+          "at": "@Bacteria",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "TIME IS ON OUR SIDE",
+          "style": "anime",
+          "at": "@advantage-0.3",
+          "x": 960,
+          "y": 280,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#9ff0c8",
+          "size": 64
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.42,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s205-forty",
+      "narration": "Day forty. The city is almost unrecognisable. Buildings stand empty. Cars have been abandoned in the middle of roads. Power lines hang above silent streets.",
+      "environment": {
+        "type": "z-street",
+        "time": "day",
+        "props": {
+          "cars": 1,
+          "lights": 0,
+          "smoke": 0.15,
+          "horde": 0
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.1,
+            "x": 1100,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 820,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zdaycard",
+          "x": 960,
+          "y": 470,
+          "scale": 1,
+          "at": 0.15,
+          "until": 2.9,
+          "exit": "fade",
+          "screen": true,
+          "color": "#9ff0c8",
+          "props": {
+            "text": "DAY FORTY",
+            "sub": ""
+          }
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.48,
+      "grade": "murky",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/wind-howl.mp3",
+          "loop": true,
+          "volume": 0.692
+        },
+        {
+          "at": 0,
+          "src": "sfx/zombie/scary-wind.mp3",
+          "loop": true,
+          "volume": 0.186
+        }
+      ]
+    },
+    {
+      "id": "s210-leave",
+      "narration": "Hikari and Ren finally leave the school. They carry whatever supplies they have managed to save. They walk north along an empty highway.",
+      "environment": {
+        "type": "z-highway",
+        "time": "dawn",
+        "props": {
+          "figures": 0.4,
+          "mist": 0.6
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 620
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 620,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 780,
+          "scale": 0.8,
+          "y": 1120,
+          "look": "right",
+          "expression": "neutral",
+          "actions": [
+            {
+              "t": 0,
+              "do": "walk"
+            }
+          ]
+        },
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 1120,
+          "scale": 0.78,
+          "y": 1120,
+          "look": "left",
+          "expression": "confident",
+          "actions": [
+            {
+              "t": 0,
+              "do": "walk"
+            }
+          ]
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.48,
+      "grade": "warm",
+      "vignette": 0.45,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/scary-wind.mp3",
+          "loop": true,
+          "volume": 0.186
+        }
+      ]
+    },
+    {
+      "id": "s213-quiet",
+      "narration": "Occasionally, they see movement in the distance. But the streets are quieter now. Many of the infected are no longer moving. Some have collapsed. Others are trapped inside buildings.",
+      "environment": {
+        "type": "z-highway",
+        "time": "dawn",
+        "props": {
+          "figures": 1,
+          "mist": [
+            [
+              0,
+              0.8
+            ],
+            [
+              13.276666666666703,
+              0.4
+            ]
+          ]
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.14,
+            "x": 700,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.14,
+            "x": 1200,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "NO LONGER MOVING",
+          "style": "label",
+          "at": "@moving",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.48,
+      "grade": "warm",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/scary-wind.mp3",
+          "loop": true,
+          "volume": 0.186
+        }
+      ]
+    },
+    {
+      "id": "s218-survivable",
+      "narration": "For the first time, the world feels different. Not safe. Not normal. But survivable.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "sunset",
+        "color": "#ffb070"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 500
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 500,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 960,
+          "y": 1500,
+          "scale": 1.5,
+          "expression": "neutral",
+          "look": "camera",
+          "expressions": [
+            {
+              "t": "@survivable",
+              "is": "happy"
+            }
+          ]
+        },
+        {
+          "kind": "text",
+          "text": "NOT SAFE",
+          "style": "label",
+          "at": "@safe",
+          "x": 420,
+          "y": 300,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "NOT NORMAL",
+          "style": "label",
+          "at": "@normal",
+          "x": 1500,
+          "y": 300,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "BUT SURVIVABLE",
+          "style": "anime",
+          "at": "@survivable-0.2",
+          "x": 960,
+          "y": 160,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#9ff0c8",
+          "size": 66
+        },
+        {
+          "kind": "effect",
+          "type": "twinkle",
+          "at": "@survivable",
+          "intensity": 0.8
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.54,
+      "grade": "warm",
+      "vignette": 0.45,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      }
+    },
+    {
+      "id": "s222-hills",
+      "narration": "They continue towards the hills. And somewhere beyond the ruined city, a radio tower is still transmitting. Humanity hasn't disappeared. It has simply been pushed back. And perhaps that's the most realistic outcome of all.",
+      "environment": {
+        "type": "z-highway",
+        "time": "dawn",
+        "props": {
+          "figures": 0.3,
+          "mist": 0.5
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.35,
+            "x": 1500,
+            "y": 420,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 820,
+          "scale": 0.6,
+          "y": 1100,
+          "look": "right",
+          "actions": [
+            {
+              "t": 0,
+              "do": "walk"
+            }
+          ]
+        },
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 1060,
+          "scale": 0.58,
+          "y": 1100,
+          "look": "right",
+          "actions": [
+            {
+              "t": 0,
+              "do": "walk"
+            }
+          ]
+        },
+        {
+          "kind": "effect",
+          "type": "lensflare",
+          "x": 1500,
+          "y": 880,
+          "intensity": 0.7
+        },
+        {
+          "kind": "text",
+          "text": "PUSHED BACK — NOT GONE",
+          "style": "anime",
+          "at": "@pushed-0.3",
+          "x": 960,
+          "y": 200,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#9ff0c8",
+          "size": 60
+        }
+      ],
+      "tag": {
+        "text": "STORY",
+        "color": "#9ff0c8"
+      },
+      "hold": 0.42,
+      "grade": "warm",
+      "vignette": 0.4,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s227-fiction",
+      "narration": "A zombie apocalypse is fiction. But the things that make it frightening are not.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 0.4,
+          "smoke": 0.3
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.08,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "A ZOMBIE APOCALYPSE IS FICTION",
+          "style": "anime",
+          "at": "@fiction-0.4",
+          "x": 960,
+          "y": 220,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#eef4ff",
+          "size": 60
+        },
+        {
+          "kind": "text",
+          "text": "THE DANGERS ARE NOT",
+          "style": "label",
+          "at": "@frightening",
+          "x": 960,
+          "y": 340,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": "none",
+      "hold": 0.3,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      }
+    },
+    {
+      "id": "s229-real",
+      "narration": "Diseases can spread before people realise what's happening. Crowded populations can accelerate outbreaks. Supply chains can break.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#0b0f22"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.06,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zusmap",
+          "x": 960,
+          "y": 560,
+          "scale": 0.8,
+          "screen": true,
+          "props": {
+            "spread": 0.6,
+            "cities": true
+          }
+        },
+        {
+          "kind": "text",
+          "text": "SILENT SPREAD",
+          "style": "label",
+          "at": "@Diseases",
+          "x": 420,
+          "y": 160,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "CROWDS ACCELERATE",
+          "style": "label",
+          "at": "@Crowded",
+          "x": 960,
+          "y": 160,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "SUPPLY CHAINS BREAK",
+          "style": "label",
+          "at": "@Supply",
+          "x": 1500,
+          "y": 160,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": "none",
+      "hold": 0.54,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s232-systems",
+      "narration": "Electricity, clean water, medicine, and food all depend on systems that most of us rarely think about. And when those systems fail together, even a modern city can become incredibly vulnerable.",
+      "environment": {
+        "type": "z-control",
+        "time": "night",
+        "props": {
+          "dark": [
+            [
+              0,
+              0.2
+            ],
+            [
+              13.28666666666658,
+              1
+            ]
+          ]
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 480
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 960,
+            "y": 480,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "POWER · WATER · MEDICINE · FOOD",
+          "style": "label",
+          "at": "@Electricity",
+          "x": 960,
+          "y": 830,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": "none",
+      "hold": 0.42,
+      "grade": "cool",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s234-calm",
+      "narration": "The people most likely to survive a disaster aren't necessarily the strongest or the bravest. They're the ones who stay calm, think ahead, avoid unnecessary risks, and make good decisions when everyone else is panicking.",
+      "environment": {
+        "type": "z-camp",
+        "time": "sunset",
+        "props": {
+          "water": 0.8
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "character",
+          "who": "hikari",
+          "x": 620,
+          "look": "camera",
+          "expression": "confident"
+        },
+        {
+          "kind": "character",
+          "who": "ren",
+          "x": 1320,
+          "scale": 0.97,
+          "look": "camera",
+          "expression": "confident"
+        },
+        {
+          "kind": "text",
+          "text": "STAY CALM · THINK AHEAD · DECIDE WELL",
+          "style": "label",
+          "at": "@calm",
+          "x": 960,
+          "y": 150,
+          "enter": "fade",
+          "color": "#9ff0c8",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": "none",
+      "hold": 0.18,
+      "grade": "warm",
+      "vignette": 0.4,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s236-cdc",
+      "narration": "The CDC even published a zombie-themed emergency preparedness guide in two thousand and eleven. It was designed to make people think about preparing for real disasters.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#14183a"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.06,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zzombie",
+          "x": 1500,
+          "y": 1140,
+          "scale": 0.7,
+          "props": {
+            "variant": 1
+          }
+        },
+        {
+          "kind": "text",
+          "text": "PREPAREDNESS 101: ZOMBIE APOCALYPSE",
+          "style": "anime",
+          "at": "@guide-0.6",
+          "x": 760,
+          "y": 330,
+          "enter": "rise",
+          "maxWidth": 1100,
+          "align": "center",
+          "color": "#eef4ff",
+          "size": 52
+        },
+        {
+          "kind": "text",
+          "text": "U.S. CDC · 2011",
+          "style": "label",
+          "at": "@CDC",
+          "x": 760,
+          "y": 470,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.66,
+      "grade": "clean",
+      "vignette": 0.45,
+      "transition": {
+        "type": "wipe",
+        "duration": 0.4,
+        "direction": "left"
+      }
+    },
+    {
+      "id": "s238-kit",
+      "narration": "Its advice was surprisingly practical: keep emergency water and food, maintain a first-aid kit, have a battery-powered radio, and make a plan with your family. Because you don't need zombies to lose electricity, run out of water, or become trapped during an emergency.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "day",
+        "color": "#26304e"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.05,
+            "x": 960,
+            "y": 560,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zkit",
+          "x": 960,
+          "y": 760,
+          "scale": 0.95,
+          "screen": true
+        },
+        {
+          "kind": "text",
+          "text": "BE READY FOR ANY DISASTER",
+          "style": "anime",
+          "at": "@emergency-0.3",
+          "x": 960,
+          "y": 170,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#9ff0c8",
+          "size": 56
+        }
+      ],
+      "tag": {
+        "text": "REAL SCIENCE",
+        "color": "#ffffff"
+      },
+      "hold": 0.6,
+      "grade": "clean",
+      "vignette": 0.4,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": 0.3,
+          "src": "sfx/zombie/whoosh-impact.mp3",
+          "volume": 0.221
+        }
+      ]
+    },
+    {
+      "id": "s240-imagine",
+      "narration": "And now, imagine this. It's two in the morning. You're asleep. Your phone suddenly lights up.",
+      "environment": {
+        "type": "z-bedroom",
+        "time": "night",
+        "props": {
+          "glow": [
+            [
+              0,
+              0
+            ],
+            [
+              6.76,
+              1
+            ]
+          ]
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 760,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 760,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 620,
+          "y": 600,
+          "scale": 0.75,
+          "screen": true,
+          "at": "@lights-0.1",
+          "enter": "fade",
+          "props": {
+            "screen": "alert",
+            "text": "EMERGENCY|A serious outbreak|has been reported|in your area."
+          }
+        },
+        {
+          "kind": "text",
+          "text": "2:00 AM",
+          "style": "label",
+          "at": "@morning",
+          "x": 1500,
+          "y": 150,
+          "enter": "fade",
+          "color": "#eef4ff",
+          "size": 34,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": "none",
+      "hold": 0.18,
+      "grade": "cool",
+      "vignette": 0.6,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/tomb-ambience.mp3",
+          "loop": true,
+          "volume": 0.172
+        }
+      ]
+    },
+    {
+      "id": "s244-alert",
+      "narration": "An emergency alert appears. The message is short. A serious outbreak has been reported in your area. Stay indoors. Avoid contact with infected individuals.",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#3a0a14"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.15,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ],
+        "shake": 1
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zphone",
+          "x": 960,
+          "y": 540,
+          "scale": 1,
+          "screen": true,
+          "props": {
+            "screen": "alert",
+            "text": "A SERIOUS OUTBREAK|HAS BEEN REPORTED|IN YOUR AREA.|STAY INDOORS.|AVOID CONTACT."
+          }
+        }
+      ],
+      "tag": "none",
+      "hold": 0.48,
+      "grade": "crimson",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": 0,
+          "src": "sfx/zombie/slow-heartbeat.mp3",
+          "loop": true,
+          "volume": 0.063
+        },
+        {
+          "at": "@serious",
+          "src": "sfx/zombie/terror-sweep.mp3",
+          "volume": 0.331
+        }
+      ]
+    },
+    {
+      "id": "s249-outside",
+      "narration": "You look outside. Someone is running down the street. Behind them, five more people are chasing.",
+      "environment": {
+        "type": "z-bedroom",
+        "time": "night",
+        "props": {
+          "glow": 0.4,
+          "runners": [
+            [
+              0,
+              0
+            ],
+            [
+              2.42,
+              0.2
+            ],
+            [
+              6.18,
+              1
+            ]
+          ]
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 560
+          },
+          {
+            "t": "end",
+            "zoom": 1.6,
+            "x": 1380,
+            "y": 440,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [],
+      "tag": "none",
+      "hold": 0,
+      "grade": "cool",
+      "vignette": 0.6,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@chasing",
+          "src": "sfx/zombie/zombie-growl.mp3",
+          "volume": 0.216
+        }
+      ]
+    },
+    {
+      "id": "s252-door",
+      "narration": "And then you hear someone banging on your front door.",
+      "environment": {
+        "type": "z-bedroom",
+        "time": "night",
+        "props": {
+          "glow": 0.3
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 600
+          },
+          {
+            "t": "end",
+            "zoom": 1.12,
+            "x": 960,
+            "y": 600,
+            "ease": "smooth"
+          }
+        ],
+        "shake": 3
+      },
+      "elements": [
+        {
+          "kind": "object",
+          "type": "zdoor",
+          "x": 960,
+          "y": 1100,
+          "scale": 1.15,
+          "props": {
+            "bang": [
+              [
+                0,
+                0
+              ],
+              [
+                1.72,
+                1
+              ]
+            ]
+          }
+        }
+      ],
+      "tag": "none",
+      "hold": 0.8200000000000001,
+      "grade": "crimson",
+      "vignette": 0.65,
+      "transition": {
+        "type": "none"
+      },
+      "sfx": [
+        {
+          "at": "@banging",
+          "src": "sfx/zombie/door-knock.mp3",
+          "volume": 0.638
+        },
+        {
+          "at": "@banging+0.8",
+          "src": "sfx/zombie/door-knock.mp3",
+          "volume": 0.638
+        },
+        {
+          "at": "@banging+1.5",
+          "src": "sfx/zombie/door-knock.mp3",
+          "volume": 0.638
+        }
+      ]
+    },
+    {
+      "id": "s253-what",
+      "narration": "What would you do? Would you stay inside? Would you escape the city? Or would you risk everything to find your family?",
+      "environment": {
+        "type": "anime-closeup",
+        "time": "night",
+        "color": "#0e0a1a"
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "WHAT WOULD YOU DO?",
+          "style": "anime",
+          "at": "@What-0.1",
+          "x": 960,
+          "y": 230,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#eef4ff",
+          "size": 84
+        },
+        {
+          "kind": "text",
+          "text": "STAY INSIDE?",
+          "style": "label",
+          "at": "@inside",
+          "x": 420,
+          "y": 560,
+          "enter": "fade",
+          "color": "#8fc8ff",
+          "size": 44,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "ESCAPE THE CITY?",
+          "style": "label",
+          "at": "@escape",
+          "x": 960,
+          "y": 560,
+          "enter": "fade",
+          "color": "#ffd36a",
+          "size": 44,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "FIND YOUR FAMILY?",
+          "style": "label",
+          "at": "@family",
+          "x": 1500,
+          "y": 560,
+          "enter": "fade",
+          "color": "#ff4a5a",
+          "size": 44,
+          "background": "rgba(8,8,20,0.66)"
+        }
+      ],
+      "tag": "none",
+      "hold": 0.36,
+      "grade": "dramatic",
+      "vignette": 0.55,
+      "transition": {
+        "type": "none"
+      }
+    },
+    {
+      "id": "s257-comments",
+      "narration": "Tell us in the comments. Because if the world changed tonight, your first decision might be the one that determines whether you see tomorrow. Stay safe.",
+      "environment": {
+        "type": "z-skyline",
+        "time": "night",
+        "props": {
+          "lights": 0.3,
+          "smoke": 0.3
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1,
+            "x": 960,
+            "y": 540
+          },
+          {
+            "t": "end",
+            "zoom": 1.1,
+            "x": 960,
+            "y": 540,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "TELL US IN THE COMMENTS",
+          "style": "label",
+          "at": "@comments",
+          "x": 960,
+          "y": 260,
+          "enter": "fade",
+          "color": "#9ff0c8",
+          "size": 46,
+          "background": "rgba(8,8,20,0.66)"
+        },
+        {
+          "kind": "text",
+          "text": "STAY SAFE.",
+          "style": "anime",
+          "at": "@Stay-0.1",
+          "x": 960,
+          "y": 420,
+          "enter": "rise",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#eef4ff",
+          "size": 90
+        }
+      ],
+      "tag": "none",
+      "hold": 0,
+      "grade": "cool",
+      "vignette": 0.5,
+      "transition": {
+        "type": "fade",
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "s260-end",
+      "duration": 4,
+      "environment": {
+        "type": "z-highway",
+        "time": "dawn",
+        "props": {
+          "figures": 0,
+          "mist": 0.6
+        }
+      },
+      "camera": {
+        "keys": [
+          {
+            "t": 0,
+            "zoom": 1.1,
+            "x": 1400,
+            "y": 480
+          },
+          {
+            "t": "end",
+            "zoom": 1,
+            "x": 1400,
+            "y": 480,
+            "ease": "smooth"
+          }
+        ]
+      },
+      "elements": [
+        {
+          "kind": "text",
+          "text": "WHAT IF A ZOMBIE OUTBREAK STARTED TONIGHT?",
+          "style": "anime",
+          "at": 0.4,
+          "x": 960,
+          "y": 300,
+          "enter": "fade",
+          "maxWidth": 1500,
+          "align": "center",
+          "color": "#eef4ff",
+          "size": 64
+        }
+      ],
+      "tag": "none",
+      "grade": "warm",
+      "vignette": 0.45,
+      "transition": {
+        "type": "fade",
+        "duration": 1
+      }
+    }
+  ]
+}

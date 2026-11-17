@@ -82,7 +82,7 @@ In a city of eight million people.
 ## [NOT SPOKEN] 3. Hour Zero
 > Hospital ER at night, flickering light. Patient zero on a gurney, nurse attacked, lockdown, ambulances. Hikari at home receiving Ren's video, skull emoji. Tag: STORY.
 
-**HOUR ZERO.**
+Hour zero.
 
 A man arrives at the emergency department with a high fever and a deep bite wound on his arm.
 
@@ -119,9 +119,9 @@ She has no idea that this might be the last ordinary night of her life.
 ## [NOT SPOKEN] 4. Day One
 > Chalkboard: S/Z/R boxes, doubling tree 1-2-4-8 to a million (REAL SCIENCE). Then Hikari's phone alert, gridlocked bridge, crowds, military trucks; Hikari and Ren barricade the school rooftop door. Tag: STORY.
 
-**DAY ONE.**
+Day one.
 
-In 2009, researchers published a mathematical study called *When Zombies Attack!*
+In two thousand and nine, researchers published a mathematical study called When Zombies Attack!
 
 They used the same kind of mathematical modelling normally applied to infectious diseases.
 
@@ -167,11 +167,11 @@ At two in the afternoon, Hikari's phone suddenly screams.
 
 An emergency alert appears.
 
-STAY INDOORS.
+Stay indoors.
 
-LOCK YOUR DOORS.
+Lock your doors.
 
-AVOID CONTACT WITH ANYONE DISPLAYING EXTREME AGGRESSION.
+Avoid contact with anyone displaying extreme aggression.
 
 For a few seconds, nobody moves.
 
@@ -210,7 +210,7 @@ They have almost no food.
 ## [NOT SPOKEN] 5. Day Two
 > Looted supermarket, empty shelves. Then the Cornell simulation: glowing US map, red spreading from dense cities, dark quiet mountains. Tag: REAL SCIENCE.
 
-**DAY TWO.**
+Day two.
 
 Supermarkets are being emptied.
 
@@ -224,7 +224,7 @@ The city is still standing, but the systems keeping it alive are beginning to fa
 
 And this is where things get interesting.
 
-In 2015, researchers at Cornell University published a scientific paper titled *You Can Run, You Can Hide: The Epidemiology and Statistical Mechanics of Zombies.*
+In two thousand and fifteen, researchers at Cornell University published a scientific paper titled You Can Run, You Can Hide: The Epidemiology and Statistical Mechanics of Zombies.
 
 They created a large-scale computer simulation using population data from the United States.
 
@@ -253,7 +253,7 @@ And escaping the city could become more important than trying to defend it.
 ## [NOT SPOKEN] 6. Day Three
 > Skyline going dark block by block, empty control room, dead water pump, phone with no signal. Rooftop: rain buckets, rationing, watching the streets. Tag: STORY.
 
-**DAY THREE.**
+Day three.
 
 The power begins failing.
 
@@ -300,7 +300,7 @@ The city is slowly changing.
 ## [NOT SPOKEN] 7. Day Five
 > Helicopters with searchlights over rooftops, loudspeakers, overcrowded shelter gates. Tag: STORY.
 
-**DAY FIVE.**
+Day five.
 
 The first organised rescue attempts begin.
 
@@ -327,7 +327,7 @@ It's about keeping an entire civilisation functioning while the population is di
 ## [NOT SPOKEN] 8. Day Nineteen
 > Ren tunes an old radio, static, a voice. Then the models' answer: the fight-back balance on the chalkboard; decaying, freezing zombies. Tag: REAL SCIENCE.
 
-**DAY NINETEEN.**
+Day nineteen.
 
 Ren manages to get an old battery-powered radio working.
 
@@ -351,7 +351,7 @@ But can humanity actually win?
 
 Surprisingly, the mathematical models suggest that it could.
 
-In the 2009 study, quick and sufficiently aggressive reductions in the zombie population could prevent the worst-case outcome.
+In the two thousand and nine study, quick and sufficiently aggressive reductions in the zombie population could prevent the worst-case outcome.
 
 The Cornell simulation also showed that the outbreak's progress depended heavily on the balance between successful zombie attacks and humanity's ability to remove zombies from the system.
 
@@ -380,7 +380,7 @@ The longer the outbreak continues, the more the physical condition of the infect
 ## [NOT SPOKEN] 9. Day Forty
 > The pair leave the school, walk north on an empty highway at dawn; still figures in the fields; a distant radio tower blinking. Tag: STORY.
 
-**DAY FORTY.**
+Day forty.
 
 The city is almost unrecognisable.
 
@@ -445,7 +445,7 @@ The people most likely to survive a disaster aren't necessarily the strongest or
 
 They're the ones who stay calm, think ahead, avoid unnecessary risks, and make good decisions when everyone else is panicking.
 
-The CDC even published a zombie-themed emergency preparedness guide in 2011.
+The CDC even published a zombie-themed emergency preparedness guide in two thousand and eleven.
 
 It was designed to make people think about preparing for real disasters.
 
@@ -479,7 +479,7 @@ Behind them, five more people are chasing.
 
 And then you hear someone banging on your front door.
 
-**What would you do?**
+What would you do?
 
 Would you stay inside?
 
