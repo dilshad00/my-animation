@@ -1,0 +1,123 @@
+# Free AI voiceover on GitHub Actions (CPU), replacing the paid ElevenLabs step.
+# Engines: Chatterbox (MIT, Resemble AI) and Kokoro-82M (Apache-2.0). See scripts/tts/narrate.py.
+#
+#   mode=audition  same sample read by every voice in `voices` → <project>-audition artifact
+#   mode=full      whole projects/<id>/narration.txt with `voice`, split over `chunks` runners
+#                  → <project>-narration artifact (narration.mp3, -16 LUFS, plus a QC report)
+name: Voiceover
+
+on:
+  workflow_dispatch:
+    inputs:
+      project: { description: "Project id", required: true, default: "video-005" }
+      mode: { description: "audition | full", required: true, default: "audition" }
+      voice: { description: "full mode: voice spec", required: true, default: "chatterbox:ex=0.55:cfg=0.45" }
+      voices:
+        description: "audition mode: JSON list of voice specs"
+        required: true
+        default: '["chatterbox:ex=0.5:cfg=0.5","chatterbox:ex=0.7:cfg=0.35","kokoro:am_michael","kokoro:bm_george","kokoro:af_heart"]'
+      chunks: { description: "full mode: parallel runners", required: true, default: "10" }
+
+permissions:
+  contents: read
+
+env:
+  PROJECT: ${{ inputs.project }}
+  HF_HUB_DISABLE_PROGRESS_BARS: "1"
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - id: m
+        env:
+          MODE: ${{ inputs.mode }}
+          VOICE: ${{ inputs.voice }}
+          VOICES: ${{ inputs.voices }}
+          CHUNKS: ${{ inputs.chunks }}
+        run: |
+          python3 - >> "$GITHUB_OUTPUT" <<'EOF'
+          import json, os
+          if os.environ["MODE"] == "audition":
+              m = [{"i": i, "voice": v, "chunk": 0, "chunks": 1} for i, v in enumerate(json.loads(os.environ["VOICES"]))]
+          else:
+              n = int(os.environ["CHUNKS"])
+              m = [{"i": i, "voice": os.environ["VOICE"], "chunk": i, "chunks": n} for i in range(n)]
+          print("matrix=" + json.dumps(m))
+          EOF
+
+  speak:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        job: ${{ fromJson(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.11", cache: pip }
+      - name: Install
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq espeak-ng ffmpeg > /dev/null
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          case "${{ matrix.job.voice }}" in
+            chatterbox*) pip install -q chatterbox-tts ;;
+            kokoro*)     pip install -q "kokoro>=0.9.4" ;;
+          esac
+          pip install -q faster-whisper soundfile numpy
+      - name: Text
+        run: |
+          mkdir -p out
+          if [ "${{ inputs.mode }}" = "audition" ]; then
+            if [ -f "projects/$PROJECT/voice-sample.txt" ]; then cp "projects/$PROJECT/voice-sample.txt" text.txt
+            else head -c 1200 "projects/$PROJECT/narration.txt" > text.txt; fi
+          else
+            cp "projects/$PROJECT/narration.txt" text.txt
+          fi
+      - name: Speak
+        run: |
+          python scripts/tts/narrate.py --text text.txt --voice "${{ matrix.job.voice }}" \
+            --chunk ${{ matrix.job.chunk }} --chunks ${{ matrix.job.chunks }} --out out/part${{ matrix.job.i }}.wav
+      - name: Name audition file
+        if: inputs.mode == 'audition'
+        run: |
+          name=$(echo "${{ matrix.job.i }}_${{ matrix.job.voice }}" | tr ':=.' '_-p')
+          ffmpeg -y -loglevel error -i out/part${{ matrix.job.i }}.wav -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 44100 -b:a 192k "out/$name.mp3"
+          rm out/part${{ matrix.job.i }}.wav
+      - uses: actions/upload-artifact@v6
+        with:
+          name: part-${{ matrix.job.i }}
+          path: out/
+          retention-days: 3
+
+  join:
+    needs: [plan, speak]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v7
+        with: { path: parts, pattern: part-*, merge-multiple: true }
+      - name: Join (full) or collect (audition)
+        run: |
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          mkdir -p final
+          if [ "${{ inputs.mode }}" = "audition" ]; then
+            cp parts/*.mp3 parts/*.json final/
+          else
+            n=$(ls parts/part*.wav | wc -l)
+            : > list.txt
+            for i in $(seq 0 $((n-1))); do echo "file 'parts/part$i.wav'" >> list.txt; done
+            ffmpeg -y -loglevel error -f concat -safe 0 -i list.txt -c:a pcm_s16le joined.wav
+            # two-pass loudness normalisation to YouTube-friendly -16 LUFS, gentle de-esser
+            ffmpeg -y -loglevel error -i joined.wav -af "deesser=i=0.4,loudnorm=I=-16:TP=-1.5:LRA=11" -ar 44100 -b:a 192k final/narration.mp3
+            python3 -c "import json,glob;r=[x for f in sorted(glob.glob('parts/*.json')) for x in json.load(open(f))];json.dump(r,open('final/qc.json','w'),indent=1);b=[x for x in r if x['score']<0.9];print(len(r),'pieces,',len(b),'to check');[print(' ',x['score'],x['text']) for x in b]"
+            ffprobe -v error -show_entries format=duration -of compact final/narration.mp3
+          fi
+      - uses: actions/upload-artifact@v6
+        with:
+          name: ${{ inputs.project }}-${{ inputs.mode == 'audition' && 'audition' || 'narration' }}
+          path: final/
+          retention-days: 14

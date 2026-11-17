@@ -1,0 +1,192 @@
+"""
+Free, local, open-source narration for projects/<id>/narration.txt.
+Runs on GitHub Actions (CPU). The user's PC is too old for these models.
+
+Engines
+  chatterbox  Resemble AI Chatterbox (MIT). Expressive, beat ElevenLabs in blind tests.
+              voice spec: chatterbox[:ref=<wav>][:ex=<0.25-2>][:cfg=<0-1>][:temp=<t>]
+  kokoro      Kokoro-82M (Apache-2.0). Very clean, fast, less emotional.
+              voice spec: kokoro:<voice>[:speed=<s>]   e.g. kokoro:am_michael, kokoro:bm_george
+
+Usage
+  python scripts/tts/narrate.py --text narration.txt --voice "chatterbox:ex=0.6:cfg=0.4" \
+      --chunk 0 --chunks 8 --out out/part0.wav
+  python scripts/tts/narrate.py --text sample.txt --voice kokoro:bm_george --out out/sample.wav
+
+Every generated sentence group is checked with Whisper; if the words don't match the script
+(skipped words, mumbles, hallucinated endings) it is regenerated with a new seed (best of 4).
+"""
+import argparse
+import difflib
+import json
+import re
+import sys
+
+import numpy as np
+import soundfile as sf
+
+SR_OUT = 44100
+PAUSE_SENTENCE = 0.28  # between sentence groups inside a paragraph
+PAUSE_PARAGRAPH = 0.75  # between paragraphs
+MAX_CHARS = 260  # chatterbox is most stable on short inputs
+
+
+def parse_voice(spec):
+    parts = spec.split(":")
+    engine, opts = parts[0], {}
+    for p in parts[1:]:
+        if "=" in p:
+            k, v = p.split("=", 1)
+            opts[k] = v
+        else:
+            opts["voice"] = p
+    return engine, opts
+
+
+def paragraphs(text):
+    return [re.sub(r"\s+", " ", p).strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
+
+
+def sentence_groups(par, max_chars=MAX_CHARS):
+    sents = re.split(r"(?<=[.!?])\s+(?=[A-Z\"'])", par)
+    groups, cur = [], ""
+    for s in sents:
+        if cur and len(cur) + 1 + len(s) > max_chars:
+            groups.append(cur)
+            cur = s
+        else:
+            cur = f"{cur} {s}".strip()
+    if cur:
+        groups.append(cur)
+    return groups
+
+
+def norm_words(s):
+    return re.sub(r"[^a-z0-9' ]", " ", s.lower()).split()
+
+
+def resample(wav, sr):
+    if sr == SR_OUT:
+        return wav
+    n = int(round(len(wav) * SR_OUT / sr))
+    return np.interp(np.linspace(0, len(wav) - 1, n), np.arange(len(wav)), wav).astype(np.float32)
+
+
+def trim(wav, sr, thresh=0.01, pad=0.04):
+    idx = np.where(np.abs(wav) > thresh)[0]
+    if len(idx) == 0:
+        return wav
+    p = int(pad * sr)
+    return wav[max(0, idx[0] - p): min(len(wav), idx[-1] + p)]
+
+
+class Chatterbox:
+    def __init__(self, opts):
+        import torch
+        from chatterbox.tts import ChatterboxTTS
+
+        torch.set_num_threads(max(1, torch.get_num_threads()))
+        self.torch = torch
+        self.model = ChatterboxTTS.from_pretrained(device="cpu")
+        self.sr = self.model.sr
+        self.ref = opts.get("ref")
+        self.ex = float(opts.get("ex", 0.5))
+        self.cfg = float(opts.get("cfg", 0.5))
+        self.temp = float(opts.get("temp", 0.8))
+        if self.ref:
+            self.model.prepare_conditionals(self.ref, exaggeration=self.ex)
+
+    def say(self, text, seed):
+        self.torch.manual_seed(seed)
+        kw = dict(exaggeration=self.ex, cfg_weight=self.cfg, temperature=self.temp)
+        wav = self.model.generate(text, **kw)
+        return wav.squeeze(0).cpu().numpy().astype(np.float32)
+
+
+class Kokoro:
+    def __init__(self, opts):
+        from kokoro import KPipeline
+
+        self.voice = opts.get("voice", "am_michael")
+        self.speed = float(opts.get("speed", 1.0))
+        self.pipe = KPipeline(lang_code=self.voice[0])  # a = American, b = British
+        self.sr = 24000
+
+    def say(self, text, seed):
+        out = [np.asarray(a, dtype=np.float32) for _, _, a in self.pipe(text, voice=self.voice, speed=self.speed)]
+        return np.concatenate(out) if out else np.zeros(1, np.float32)
+
+
+class Checker:
+    def __init__(self):
+        from faster_whisper import WhisperModel
+
+        self.m = WhisperModel("base.en", device="cpu", compute_type="int8")
+
+    def score(self, wav, sr, text):
+        a = resample(wav, sr)
+        a16 = np.interp(np.linspace(0, len(a) - 1, int(len(a) * 16000 / SR_OUT)), np.arange(len(a)), a).astype(np.float32)
+        segs, _ = self.m.transcribe(a16, language="en", beam_size=1, vad_filter=False)
+        heard = " ".join(s.text for s in segs)
+        return difflib.SequenceMatcher(None, norm_words(text), norm_words(heard)).ratio(), heard
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--text", required=True)
+    ap.add_argument("--voice", required=True)
+    ap.add_argument("--out", required=True)
+    ap.add_argument("--chunk", type=int, default=0)
+    ap.add_argument("--chunks", type=int, default=1)
+    ap.add_argument("--tries", type=int, default=4)
+    ap.add_argument("--min-score", type=float, default=0.9)
+    a = ap.parse_args()
+
+    pars = paragraphs(open(a.text, encoding="utf8").read())
+    # balanced split by characters, on paragraph boundaries
+    total = sum(len(p) for p in pars)
+    lo, hi = total * a.chunk / a.chunks, total * (a.chunk + 1) / a.chunks
+    mine, acc = [], 0
+    for i, p in enumerate(pars):
+        mid = acc + len(p) / 2
+        if lo <= mid < hi or (a.chunk == a.chunks - 1 and mid >= hi):
+            mine.append((i, p))
+        acc += len(p)
+
+    engine, opts = parse_voice(a.voice)
+    tts = {"chatterbox": Chatterbox, "kokoro": Kokoro}[engine](opts)
+    chk = Checker()
+    report, pieces = [], []
+    for n, (pi, p) in enumerate(mine):
+        groups = sentence_groups(p) if engine == "chatterbox" else [p]
+        for gi, g in enumerate(groups):
+            best = None
+            for t in range(a.tries):
+                wav = trim(tts.say(g, seed=1000 * pi + 10 * gi + t), tts.sr)
+                sc, heard = chk.score(wav, tts.sr, g)
+                # very long audio for the text = rambling; penalise
+                dur = len(wav) / tts.sr
+                if dur > 0.12 * len(g) + 2:
+                    sc -= 0.3
+                if best is None or sc > best[0]:
+                    best = (sc, wav, heard, t)
+                if sc >= a.min_score:
+                    break
+            sc, wav, heard, t = best
+            print(f"[{a.chunk}] p{pi} g{gi} score={sc:.2f} tries={t + 1} {g[:60]!r}", flush=True)
+            report.append({"paragraph": pi, "group": gi, "score": round(sc, 3), "text": g, "heard": heard})
+            pieces.append(resample(wav, tts.sr))
+            last_group = gi == len(groups) - 1
+            pause = PAUSE_PARAGRAPH if last_group else PAUSE_SENTENCE
+            pieces.append(np.zeros(int(pause * SR_OUT), np.float32))
+    audio = np.concatenate(pieces) if pieces else np.zeros(SR_OUT, np.float32)
+    sf.write(a.out, audio, SR_OUT, subtype="PCM_16")
+    json.dump(report, open(a.out.rsplit(".", 1)[0] + ".json", "w", encoding="utf8"), indent=1)
+    bad = [r for r in report if r["score"] < a.min_score]
+    print(f"done: {len(report)} pieces, {len(audio) / SR_OUT:.1f}s, {len(bad)} below {a.min_score}")
+    for r in bad:
+        print(f"  CHECK p{r['paragraph']}: {r['text']!r}\n        heard: {r['heard']!r}")
+
+
+if __name__ == "__main__":
+    sys.exit(main())
