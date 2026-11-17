@@ -93,7 +93,7 @@ jobs:
       - name: Name audition file
         if: inputs.mode == 'audition'
         run: |
-          name=$(echo "${{ matrix.job.i }}_${{ matrix.job.voice }}" | tr ':=.' '_-p')
+          name=$(echo "${{ matrix.job.i }}_${{ matrix.job.voice }}" | sed 's/[:=.]/_/g')
           ffmpeg -y -loglevel error -i out/part${{ matrix.job.i }}.wav -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 44100 -b:a 192k "out/$name.mp3"
           rm out/part${{ matrix.job.i }}.wav
       - uses: actions/upload-artifact@v6
