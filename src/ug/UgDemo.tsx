@@ -447,7 +447,7 @@ const SFX: Sfx[] = [
   [T.end, "sfx/tech/big-impact.mp3", 0.55],
 ];
 
-const Mix: React.FC = () => {
+const Mix: React.FC<{ narration?: boolean }> = ({ narration = true }) => {
   const musicA = (f: number) => {
     const t = f / 30;
     const base = 0.3 - 0.2 * voice(t);
@@ -465,7 +465,7 @@ const Mix: React.FC = () => {
   };
   return (
     <>
-      <Audio src={A("audio/narration_demo.mp3")} volume={1} />
+      {narration ? <Audio src={A("audio/narration_demo.mp3")} volume={1} /> : null}
       <Sequence  durationInFrames={T.cut + 2} layout="none">
         <Audio src={A("audio/music_a.mp3")} volume={musicA} />
       </Sequence>
@@ -480,6 +480,29 @@ const Mix: React.FC = () => {
     </>
   );
 };
+
+// ---------------------------------------------------------------- reuse in the full film
+/** Cold open visuals (0:00 → T.end) + its music/SFX, without narration or captions. */
+export const COLD_OPEN_END = T.end;
+export const UgColdOpen: React.FC = () => (
+  <AbsoluteFill style={{ backgroundColor: C.bg }}>
+    <Sequence durationInFrames={T.s3 + 8} name="s01-s02 RAM">
+      <RamScene />
+    </Sequence>
+    <Sequence from={T.s3 - 4} durationInFrames={T.s4 - T.s3 + 12} name="s03 RTX 5090">
+      <GpuScene />
+    </Sequence>
+    <Sequence from={T.s4} durationInFrames={T.s5 - T.s4} name="s04 EU cliff">
+      <ChartScene />
+    </Sequence>
+    <Sequence from={T.s5} durationInFrames={T.end - T.s5 + 6} name="s05 montage">
+      <Montage />
+    </Sequence>
+    <LightLeak at={T.s4} len={18} />
+    <Glitch at={T.s5} />
+  </AbsoluteFill>
+);
+export const UgColdOpenAudio: React.FC = () => <Mix narration={false} />;
 
 // ---------------------------------------------------------------- root
 export const UgDemo: React.FC = () => {
