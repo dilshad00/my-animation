@@ -16,6 +16,7 @@ import { ANIME_DEMO_FRAMES, AnimeDemo } from "./compositions/AnimeDemo";
 import { UG_DEMO_FRAMES, UgDemo } from "./ug/UgDemo";
 import { UG001_FRAMES, UgFull, UgSheet } from "./ug/UgFull";
 import { ThumbA, ThumbB, ThumbC } from "./ug/Thumb";
+import { UG002_GFX_FRAMES, Ug002GfxReel } from "./ug2/GfxReel";
 
 /**
  * Every folder in projects/<id>/ (with a storyboard.json) becomes a composition "<id>".
@@ -53,6 +54,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="UG-001-Thumb-A" component={ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-001-Thumb-B" component={ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-001-Thumb-C" component={ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-002-GFX" component={Ug002GfxReel} durationInFrames={UG002_GFX_FRAMES} fps={30} width={1920} height={1080} />
       </Folder>
       <Folder name="Library-Tests">
         <Composition id="Test-Cast" component={CastGallery} durationInFrames={240} fps={30} width={1920} height={1080} />
