@@ -97,9 +97,9 @@ export const Controller: React.FC<{ s: PadState; scale?: number; accent?: string
         const x = i ? 640 : 150;
         return (
           <g key={t} transform={`translate(0 ${v * 10})`}>
-            <rect x={x} y={14} width={110} height={70} rx={22} fill={v > 0.05 ? accent : "#181c21"} opacity={0.35 + 0.65 * Math.max(0.3, v)} stroke="#3b424c" strokeWidth={3} />
+            <rect x={x} y={-44} width={110} height={70} rx={22} fill={v > 0.05 ? accent : "#181c21"} opacity={0.35 + 0.65 * Math.max(0.3, v)} stroke="#3b424c" strokeWidth={3} />
             {labels ? (
-              <text x={x + 55} y={52} textAnchor="middle" fontFamily={MONO} fontWeight={800} fontSize={24} fill={v > 0.05 ? "#0a0c0f" : C.mute}>
+              <text x={x + 55} y={-6} textAnchor="middle" fontFamily={MONO} fontWeight={800} fontSize={24} fill={v > 0.05 ? "#0a0c0f" : C.mute}>
                 {t}
               </text>
             ) : null}

@@ -27,7 +27,7 @@ export const ControllerTest: React.FC = () => {
       <AbsoluteFill style={{ justifyContent: "flex-end", alignItems: "center", paddingBottom: 30 }}>
         <div style={{ position: "relative" }}>
           <Controller s={s} scale={0.62} />
-          <div style={{ position: "absolute", left: "50%", top: -60, transform: "translateX(-50%)" }}>
+          <div style={{ position: "absolute", left: "50%", top: -150, transform: "translateX(-50%)" }}>
             <ActionPop f={f} events={EVENTS} />
           </div>
         </div>
