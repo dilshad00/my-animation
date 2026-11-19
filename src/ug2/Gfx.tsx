@@ -101,7 +101,7 @@ const Plat: React.FC<{ f: number; at: number; icon: React.ReactNode; name: strin
         {icon}
         <div style={{ position: "absolute", right: -40, bottom: -10, transform: `scale(${sp(f, at + 10, 9, 260)})` }}>{ok ? <IcoTick size={86} /> : <IcoCross size={86} />}</div>
       </div>
-      <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 64, color: ok ? C.ink : C.mute, marginTop: 24 }}>{name}</div>
+      <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 54, color: ok ? C.ink : C.mute, marginTop: 24, whiteSpace: "nowrap" }}>{name}</div>
       <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 28, color: ok ? C.green : C.red, marginTop: 6, letterSpacing: 2 }}>{note}</div>
     </div>
   );
@@ -229,7 +229,7 @@ export const MethodCard: React.FC<{ f: number; n: number; len?: number }> = ({ f
 /* ---------- 5. Xbox Cloud: console-only at launch ---------- */
 export const CloudConsoleOnly: React.FC<{ f: number; bg?: boolean }> = ({ f, bg = true }) => {
   const items = [
-    { icon: IcoConsole, name: "XBOX CONSOLES", ok: true, at: 10 },
+    { icon: IcoConsole, name: "XBOX", ok: true, at: 10 },
     { icon: IcoPhone, name: "PHONES", ok: false, at: 34 },
     { icon: IcoBrowser, name: "BROWSER", ok: false, at: 44 },
     { icon: IcoPc, name: "PC", ok: false, at: 54 },
@@ -399,7 +399,7 @@ export const RemotePlayDiagram: React.FC<{ f: number; bg?: boolean }> = ({ f, bg
             <IcoWifi size={180} color={C.teal} />
           </div>
           <div style={{ position: "absolute", left: 590, top: 300, width: 420, textAlign: "center", fontFamily: MONO, fontWeight: 700, fontSize: 30, color: C.mute, opacity: pr(f, 50, 64) }}>
-            video stream ↔ your button presses
+            video stream + your button presses
           </div>
           {/* phone */}
           <div style={{ position: "absolute", left: 1100, top: 60, width: 460, textAlign: "center", opacity: pr(f, 60, 74) }}>
