@@ -117,7 +117,7 @@ export const MsrpBars: React.FC<{ f: number; items: BarItem[]; max: number; w?: 
         const a = prog(f, it.at, it.at + 14);
         const b = prog(f, it.at + 8, it.at + 30);
         const msW = (it.msrp / max) * (w - 420);
-        const stW = Math.min(1.12, it.street / max) * (w - 420);
+        const stW = Math.min(0.86, it.street / max) * (w - 420);
         const pct = Math.round(((it.street - it.msrp) / it.msrp) * 100);
         const isOver = it.name === overflow && it.street > max;
         return (
@@ -306,7 +306,7 @@ export const Split: React.FC<{ f: number; left: SplitSide; right: SplitSide; at:
     <div style={{ display: "flex", gap: 120, alignItems: "center", position: "relative" }}>
       {card(left, 0)}
       {card(right, 8)}
-      <div style={{ position: "absolute", left: "50%", top: "50%", transform: `translate(-50%,-50%) rotate(-8deg) scale(${2 - s})`, opacity: s, padding: "12px 30px", border: `6px solid ${C.red}`, borderRadius: 14, color: C.red, fontFamily: DISPLAY, fontWeight: 700, fontSize: 84, background: "rgba(5,7,10,0.85)" }}>
+      <div style={{ position: "absolute", left: "50%", top: "100%", transform: `translate(-50%,40%) rotate(-6deg) scale(${2 - s})`, opacity: s, padding: "12px 30px", border: `6px solid ${C.red}`, borderRadius: 14, color: C.red, fontFamily: DISPLAY, fontWeight: 700, fontSize: 84, background: "rgba(5,7,10,0.85)" }}>
         {stamp}
       </div>
     </div>

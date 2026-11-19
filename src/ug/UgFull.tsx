@@ -85,11 +85,11 @@ const s07: React.FC<P> = ({ f, c }) => {
     <AbsoluteFill style={{ transform: shake(f, 4, 10, 10) }}>
       <Stage f={f} accent="rgba(255,61,82,0.16)" x={50} y={45} />
       <AbsoluteFill style={{ perspective: 1800, alignItems: "center", justifyContent: "center" }}>
-        <div style={{ transform: `translate(${-520 - (1 - s) * 600}px, -40px)`, opacity: s }}>
-          <RamStick3D rotY={-30 + f * 0.3} rotX={12} scale={0.42} glow={1} hue={350} />
+        <div style={{ transform: `translate(${-560 - (1 - s) * 600}px, -330px)`, opacity: s * 0.9 }}>
+          <RamStick3D rotY={-30 + f * 0.3} rotX={12} scale={0.36} glow={1} hue={350} />
         </div>
       </AbsoluteFill>
-      <Img src={A("img/gpu5090_cutout.webp")} style={{ position: "absolute", width: 760, left: 1180 + (1 - gpuIn) * 700, top: 250, opacity: gpuIn, filter: "drop-shadow(0 30px 50px rgba(0,0,0,0.8)) brightness(0.85)" }} />
+      <Img src={A("img/gpu5090_cutout.webp")} style={{ position: "absolute", width: 560, left: 1300 + (1 - gpuIn) * 700, top: 660, opacity: gpuIn * 0.9, filter: "drop-shadow(0 30px 50px rgba(0,0,0,0.8)) brightness(0.85)" }} />
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
         <div style={{ textAlign: "center", transform: `scale(${1.15 - 0.15 * s})`, opacity: Math.min(1, s * 1.4) }}>
           <div style={{ fontFamily: INTER, fontWeight: 800, fontSize: 28, letterSpacing: 12, color: C.amber }}>UNKNOWN GAMER PRESENTS</div>
@@ -399,7 +399,7 @@ const s16: React.FC<P> = ({ f, d, c }) => {
   return (
     <AbsoluteFill>
       <Stage f={f} accent="rgba(40,215,255,0.12)" x={70} y={50} />
-      <Pos x={1100} y={160} style={{ opacity: 0.55 }}>
+      <Pos x={1240} y={180} style={{ opacity: 0.5 }}>
         <Wafer f={f} at={0} takeAt={k} frac={0.3} />
       </Pos>
       <Pos x={140} y={200}>
@@ -415,7 +415,7 @@ const s16: React.FC<P> = ({ f, d, c }) => {
           </div>
         </div>
         <div style={{ marginTop: 40 }}>
-          <Num f={f} at={k + 10} color={C.teal} size={110}>
+          <Num f={f} at={k + 10} color={C.teal} size={84}>
             3–4× the wafer area
           </Num>
         </div>
@@ -530,7 +530,7 @@ const s18b: React.FC<P> = ({ f, d, c }) => {
       <Pos x={310} y={800}>
         <Badge>ILLUSTRATION · NOT REAL DATA</Badge>
       </Pos>
-      <Pos x={1150} y={720}>
+      <Pos x={700} y={790}>
         <Stamp f={f} at={warn} color={C.teal} rot={-4} size={54}>
           SPOT FALLS FIRST = EARLY WARNING
         </Stamp>
@@ -570,7 +570,7 @@ const s20: React.FC<P> = ({ f, d, c }) => (
         GDDR7 · OUTPUT LIMITED
       </Chip>
     </Pos>
-    <Pos x={0} y={30} w={1920}>
+    <Pos x={0} y={820} w={1920}>
       <Head f={f} at={c("same")} size={56} align="center" color={C.red}>
         SAME FACTORIES. SAME SQUEEZE.
       </Head>
@@ -606,7 +606,6 @@ const Board: React.FC<P> = ({ f, d }) => {
           at={10}
           max={2000}
           w={1680}
-          overflow="RTX 5090"
           items={[
             { name: "RTX 5070", msrp: 549, street: 899, at: g("s22_mid", "lowest"), note: "~$899" },
             { name: "RTX 5070 Ti", msrp: 749, street: 1340, at: g("s22_mid", "5070", 1) },
@@ -616,7 +615,7 @@ const Board: React.FC<P> = ({ f, d }) => {
           ]}
         />
       </Pos>
-      <Pos r={120} y={500}>
+      <Pos x={980} y={110}>
         <Stamp f={f} at={triple} rot={-8} size={110}>
           ×3.1
         </Stamp>
@@ -833,7 +832,7 @@ const s32: React.FC<P> = ({ f, d, c }) => {
           <div style={{ position: "absolute", left: 0, width: `${pr(f, q - 20, q + 10) * 100}%`, top: 60, height: 6, background: C.teal, boxShadow: `0 0 20px ${C.teal}` }} />
           {steps.map((s, i) => (
             <div key={s} style={{ position: "absolute", left: `${i * 50}%`, top: 0, transform: i === 2 ? "translateX(-100%)" : i === 1 ? "translateX(-50%)" : undefined, textAlign: i === 2 ? "right" : i === 1 ? "center" : "left" }}>
-              <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 34, color: i === 2 ? C.green : C.mute }}>{s}</div>
+              <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 34, color: i === 2 ? C.green : C.mute, whiteSpace: "nowrap" }}>{s}</div>
               <div style={{ width: 22, height: 22, borderRadius: 11, background: i === 2 ? C.green : C.mute, margin: i === 2 ? "14px 0 0 auto" : i === 1 ? "14px auto 0" : "14px 0 0" }} />
             </div>
           ))}
@@ -971,10 +970,10 @@ const Pods: React.FC<P> = ({ f, d }) => {
   return (
     <AbsoluteFill>
       <Stage f={f} accent="rgba(40,215,255,0.10)" x={50} y={30} />
-      <Pos x={0} y={70} w={1920} style={{ textAlign: "center" }}>
+      <Pos x={0} y={120} w={1920} style={{ textAlign: "center" }}>
         <Kicker f={f}>RTX 5060 · cheapest new listing · converted to USD</Kicker>
       </Pos>
-      <Pos x={420} y={170}>
+      <Pos x={420} y={190}>
         <Podium
           f={f}
           at={0}
