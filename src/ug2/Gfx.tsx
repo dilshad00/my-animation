@@ -34,14 +34,14 @@ const Bg: React.FC<{ f: number; on?: boolean; accent?: string; x?: number; y?: n
 
 /* ---------- 1. Hook: search bar typing the queries everyone is searching ---------- */
 const QUERIES = ["gta 6 mobile download", "gta 6 apk android", "how to play gta 6 on phone", "gta 6 cloud gaming mobile"];
-export const SearchHook: React.FC<{ f: number; bg?: boolean; per?: number }> = ({ f, bg = true, per = 40 }) => {
-  const i = Math.min(QUERIES.length - 1, Math.floor(f / per));
+export const SearchHook: React.FC<{ f: number; bg?: boolean; per?: number; queries?: string[]; stamp?: string; stampColor?: string }> = ({ f, bg = true, per = 40, queries = QUERIES, stamp = "MILLIONS ARE SEARCHING", stampColor = C.red }) => {
+  const i = Math.min(queries.length - 1, Math.floor(f / per));
   const lf = f - i * per;
-  const q = QUERIES[i];
+  const q = queries[i];
   const typed = q.slice(0, Math.floor(interpolate(lf, [0, per * 0.55], [0, q.length], clamp)));
   const caret = Math.floor(f / 8) % 2 === 0;
   const drop = pr(f, per * 0.6, per * 0.8);
-  const end = QUERIES.length * per;
+  const end = queries.length * per;
   const stampAt = end - 6;
   return (
     <AbsoluteFill>
@@ -83,8 +83,8 @@ export const SearchHook: React.FC<{ f: number; bg?: boolean; per?: number }> = (
         </div>
       </AbsoluteFill>
       <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", transform: shake(f, stampAt, 10, 14) }}>
-        <Stamp f={f} at={stampAt} size={130} rot={-7}>
-          MILLIONS ARE SEARCHING
+        <Stamp f={f} at={stampAt} size={130} rot={-7} color={stampColor}>
+          {stamp}
         </Stamp>
       </AbsoluteFill>
     </AbsoluteFill>
@@ -273,7 +273,7 @@ const FLAGS = [
   { t: '"Allow installs from unknown sources"', d: "That's how malware gets onto your phone." },
   { t: '"Verify you are human"', d: "A form that collects your details and phone number." },
 ];
-export const RedFlags: React.FC<{ f: number; bg?: boolean; gap?: number }> = ({ f, bg = true, gap = 50 }) => (
+export const RedFlags: React.FC<{ f: number; bg?: boolean; gap?: number; ats?: number[] }> = ({ f, bg = true, gap = 50, ats }) => (
   <AbsoluteFill>
     <Bg f={f} on={bg} accent="rgba(255,61,82,0.18)" x={15} y={20} />
     <AbsoluteFill style={{ padding: "100px 150px" }}>
@@ -285,7 +285,7 @@ export const RedFlags: React.FC<{ f: number; bg?: boolean; gap?: number }> = ({ 
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 30, marginTop: 50 }}>
         {FLAGS.map((x, i) => {
-          const at = 16 + i * gap;
+          const at = ats ? ats[i] : 16 + i * gap;
           const s = sp(f, at, 14);
           return (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 40, padding: "28px 40px", borderRadius: 22, background: "rgba(255,61,82,0.08)", border: `2px solid ${C.red}66`, opacity: Math.min(1, s * 1.4), transform: `translateX(${(1 - s) * 120}px)` }}>
@@ -303,11 +303,11 @@ export const RedFlags: React.FC<{ f: number; bg?: boolean; gap?: number }> = ({ 
 );
 
 /* ---------- 7. What the fake apps do ---------- */
-export const ScamTypes: React.FC<{ f: number; bg?: boolean }> = ({ f, bg = true }) => {
+export const ScamTypes: React.FC<{ f: number; bg?: boolean; ats?: number[]; stampAt?: number }> = ({ f, bg = true, ats = [8, 40, 72], stampAt = 110 }) => {
   const cards = [
-    { h: "AD-SPAM APPS", d: "Screenshots of GTA 6 wrapped in ads. No game.", c: C.amber, at: 8 },
-    { h: "SMS-STEALING MALWARE", d: "Reads your messages, including bank & UPI OTPs.", c: C.red, at: 40 },
-    { h: '"HUMAN VERIFICATION"', d: "Harvests your personal details. Still no game.", c: C.red, at: 72 },
+    { h: "AD-SPAM APPS", d: "Screenshots of GTA 6 wrapped in ads. No game.", c: C.amber, at: ats[0] },
+    { h: "SMS-STEALING MALWARE", d: "Reads your messages, including bank & UPI OTPs.", c: C.red, at: ats[1] },
+    { h: '"HUMAN VERIFICATION"', d: "Harvests your personal details. Still no game.", c: C.red, at: ats[2] },
   ];
   return (
     <AbsoluteFill>
@@ -325,7 +325,7 @@ export const ScamTypes: React.FC<{ f: number; bg?: boolean }> = ({ f, bg = true 
           ))}
         </div>
         <div style={{ marginTop: 80 }}>
-          <Stamp f={f} at={110} size={76} rot={-3} color={C.red}>
+          <Stamp f={f} at={stampAt} size={76} rot={-3} color={C.red}>
             ONLY BUY FROM PS STORE / XBOX STORE
           </Stamp>
         </div>
@@ -335,7 +335,7 @@ export const ScamTypes: React.FC<{ f: number; bg?: boolean }> = ({ f, bg = true 
 };
 
 /* ---------- 8. Already installed one? ---------- */
-export const IfInstalled: React.FC<{ f: number; bg?: boolean }> = ({ f, bg = true }) => {
+export const IfInstalled: React.FC<{ f: number; bg?: boolean; gap?: number }> = ({ f, bg = true, gap = 22 }) => {
   const steps = ["Uninstall the app now", "Change your passwords — from another device", "Check your bank & UPI apps for strange activity", "Use an authenticator app instead of SMS codes"];
   return (
     <AbsoluteFill>
@@ -349,11 +349,11 @@ export const IfInstalled: React.FC<{ f: number; bg?: boolean }> = ({ f, bg = tru
         </Head>
         <div style={{ display: "flex", flexDirection: "column", gap: 26, marginTop: 50 }}>
           {steps.map((s, i) => {
-            const a = pr(f, 20 + i * 22, 34 + i * 22);
+            const a = pr(f, 20 + i * gap, 34 + i * gap);
             return (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 30, opacity: a, transform: `translateX(${(1 - a) * 40}px)` }}>
                 <div style={{ width: 70, height: 70, borderRadius: 14, border: `4px solid ${C.green}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <div style={{ transform: `scale(${sp(f, 30 + i * 22, 9, 260)})` }}>
+                  <div style={{ transform: `scale(${sp(f, 30 + i * gap, 9, 260)})` }}>
                     <IcoTick size={56} />
                   </div>
                 </div>

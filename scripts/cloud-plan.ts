@@ -16,7 +16,8 @@ if (!id) {
   process.exit(1);
 }
 /** Standalone compositions (style experiments) that have no projects/<id>/ folder. */
-const STANDALONE: Record<string, { frames: number; fps: number }> = { "Anime-Demo": { frames: 900, fps: 30 }, "UG-Demo": { frames: 945, fps: 30 }, "UG-001": { frames: 18930, fps: 30 } };
+const STANDALONE: Record<string, { frames: number; fps: number }> = { "Anime-Demo": { frames: 900, fps: 30 }, "UG-Demo": { frames: 945, fps: 30 }, "UG-001": { frames: 18930, fps: 30 },
+  "UG-002": { frames: 9773, fps: 30 }, };
 let full: number;
 let fps: number;
 if (STANDALONE[id]) {
