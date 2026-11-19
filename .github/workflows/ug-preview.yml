@@ -54,6 +54,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          F=$(ls out/*.png out/*.mp4 2>/dev/null)
+          F=$(ls out/*.png out/*.mp4 2>/dev/null || true)
           gh release view ug-previews >/dev/null 2>&1 || gh release create ug-previews --prerelease --title "UG previews" --notes "Preview renders (overwritten on each run)." --target "$GITHUB_SHA"
           gh release upload ug-previews $F --clobber
