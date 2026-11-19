@@ -1,0 +1,46 @@
+# UNKNOWN GAMER previews: single-job render of a standalone composition, published as a
+# (private) GitHub Release asset instead of an Actions artifact, so it does not use the
+# account's artifact-storage quota. Runs only on pushes to ug-* branches whose head commit
+# message contains "[render]" (optionally "[render:<CompositionId>]", default UG-Demo).
+name: UG preview
+
+on:
+  push:
+    branches: ["ug-*"]
+
+permissions:
+  contents: write
+
+env:
+  npm_config_onnxruntime_node_install_cuda: skip
+
+jobs:
+  render:
+    if: contains(github.event.head_commit.message, '[render')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx remotion browser ensure
+      - run: npm run sync
+      - name: Pick composition
+        id: comp
+        env:
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          ID=$(printf '%s' "$MSG" | grep -o '\[render:[A-Za-z0-9_-]*\]' | head -1 | sed 's/\[render://;s/\]//')
+          echo "id=${ID:-UG-Demo}" >> "$GITHUB_OUTPUT"
+      - name: Render
+        run: npx remotion render "${{ steps.comp.outputs.id }}" "out/${{ steps.comp.outputs.id }}.mp4" --codec=h264 --crf=18 --concurrency=100% --log=info
+      - name: Probe
+        run: npx remotion ffprobe -v error -show_entries format=duration:stream=codec_type,width,height,r_frame_rate,nb_frames -of compact "out/${{ steps.comp.outputs.id }}.mp4"
+      - name: Publish to release "ug-previews"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          F="out/${{ steps.comp.outputs.id }}.mp4"
+          gh release view ug-previews >/dev/null 2>&1 || gh release create ug-previews --prerelease --title "UG previews" --notes "Preview renders (overwritten on each run)." --target "$GITHUB_SHA"
+          gh release upload ug-previews "$F" --clobber

@@ -82,7 +82,8 @@ export const shake = (f: number, at: number, dur = 12, amp = 16) => {
 /** Small source credit, top-left. */
 export const SourceTag: React.FC<{ text: string; at: number; until: number }> = ({ text, at, until }) => {
   const f = useCurrentFrame();
-  const o = interpolate(f, [at, at + 8, until - 6, until], [0, 1, 1, 0], clamp);
+  const fade = Math.max(1, Math.min(8, Math.floor((until - at) / 3)));
+  const o = interpolate(f, [at, at + fade, until - fade, until], [0, 1, 1, 0], clamp);
   const x = interpolate(f, [at, at + 10], [-20, 0], { ...clamp, easing: ease });
   return (
     <div
