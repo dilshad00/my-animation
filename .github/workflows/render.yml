@@ -34,6 +34,9 @@ permissions:
 
 env:
   PROJECT: ${{ inputs.project }}
+  # onnxruntime-node (via @huggingface/transformers, used only by local transcription)
+  # tries to fetch a CUDA build that now 404s; renders never need it.
+  npm_config_onnxruntime_node_install_cuda: skip
   SCALE_ARGS: ${{ inputs.draft && '--scale=0.5 --crf=28' || '--crf=18' }}
 
 jobs:
