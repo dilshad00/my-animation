@@ -145,6 +145,7 @@ const INTRO_TRACK: InputTrack = {
 const STILL = inputAt({ sticks: [], buttons: [] }, 0);
 
 /* ------------------------------------------------------------ scenes */
+const Lift: React.FC<{ children: React.ReactNode; y?: number }> = ({ children, y = 46 }) => <AbsoluteFill style={{ transform: `translateY(-${y}px)` }}>{children}</AbsoluteFill>;
 type SceneP = { f: number; d: number };
 
 const Intro: React.FC<SceneP> = ({ f }) => {
@@ -211,8 +212,10 @@ const BoardAll: React.FC<SceneP> = ({ f }) => {
   const b = c("bank") - c("tested");
   return (
     <AbsoluteFill>
-      <VerdictBoard f={f} states={["?", "?", "?", "?"]} />
-      <AbsoluteFill style={{ justifyContent: "center", alignItems: "flex-end", paddingBottom: 150, flexDirection: "row", gap: 24 }}>
+      <Lift>
+        <VerdictBoard f={f} states={["?", "?", "?", "?"]} />
+      </Lift>
+      <AbsoluteFill style={{ justifyContent: "flex-start", alignItems: "flex-end", padding: "130px 60px 0 0", flexDirection: "column", gap: 18 }}>
         {f >= o ? (
           <Chip f={f} at={o} bg={C.green} fg="#04140b" size={40}>
             ONLY 1 WORKS
@@ -253,7 +256,7 @@ const XcWalk: React.FC<SceneP> = ({ f: F0, d: D0 }) => {
       <Phase a={0} b={t("ultimate")}>
         {(f) => (
           <>
-            <XcPhone f={f} from={26.5} />
+            <XcPhone f={f} from={27.5} />
             <Side>
               <Kicker f={f}>My phone · Xbox app</Kicker>
               <Head f={f} at={4} size={84}>
@@ -445,7 +448,24 @@ const M3: React.FC<SceneP> = ({ f: F0, d: D0 }) => {
         )}
       </Phase>
       <Phase a={t("whatare")} b={t("flags")}>
-        {(f) => <ScamTypes f={f} ats={[t("one") - t("whatare"), t("two") - t("whatare"), t("three") - t("whatare")]} stampAt={t("three") - t("whatare") + 150} />}
+        {(f) => {
+          const one = t("one") - t("whatare");
+          return (
+            <>
+              <ScamTypes f={f} ats={[one, t("two") - t("whatare"), t("three") - t("whatare")]} stampAt={t("three") - t("whatare") + 150} />
+              {f < one + 8 ? (
+                <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", padding: 160, opacity: 1 - pr(f, one - 4, one + 8) }}>
+                  <Kicker f={f} at={4} color={C.red}>
+                    Security researchers found
+                  </Kicker>
+                  <Head f={f} at={10} size={110} align="center">
+                    3 TYPES OF FAKE &quot;GTA 6 MOBILE&quot; DOWNLOADS
+                  </Head>
+                </AbsoluteFill>
+              ) : null}
+            </>
+          );
+        }}
       </Phase>
       <Phase a={t("flags")} b={t("installed")}>
         {(f) => (
@@ -498,7 +518,7 @@ const M4: React.FC<SceneP> = ({ f: F0, d: D0 }) => {
       <Phase a={t("catch")} b={D0}>
         {(f, d) => (
           <AbsoluteFill>
-            <Game src="g1_pickup" from={0} d={d} dim={0.35} />
+            <Game src="g3_traffic" from={20} d={d} dim={0.35} />
             <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", gap: 30 }}>
               <Kicker f={f} color={C.amber} size={34}>
                 The catch
@@ -618,7 +638,6 @@ const Board = (n: number, footnote = false): React.FC<SceneP> => {
   );
   return B;
 };
-const Lift: React.FC<{ children: React.ReactNode; y?: number }> = ({ children, y = 46 }) => <AbsoluteFill style={{ transform: `translateY(-${y}px)` }}>{children}</AbsoluteFill>;
 const BrollFacts: React.FC<SceneP> = (p) => <Broll {...p} src="g3_traffic" from={10} title="4 methods" sub="Tested one by one" />;
 const BLOCKS: Block[] = [
   mk("intro", 0, c("no"), Intro),
