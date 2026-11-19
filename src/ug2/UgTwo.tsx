@@ -170,7 +170,7 @@ const Intro: React.FC<SceneP> = ({ f }) => {
       <AbsoluteFill style={{ alignItems: "center", paddingTop: 40 }}>
         <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 70, color: C.ink, textShadow: "0 6px 30px rgba(0,0,0,0.8)", opacity: pr(f, c("look") + 30, c("look") + 44) }}>GTA 6… ON A PHONE?</div>
       </AbsoluteFill>
-      <AbsoluteFill style={{ justifyContent: "flex-end", alignItems: "center", paddingBottom: 150, flexDirection: "row", gap: 20 }}>
+      <AbsoluteFill style={{ justifyContent: "center", alignItems: "flex-end", paddingBottom: 150, flexDirection: "row", gap: 20 }}>
         {words.map(([k, t]) =>
           f >= c(k) ? (
             <Chip key={k} f={f} at={c(k)} bg={C.green} fg="#04140b" size={40}>
@@ -212,7 +212,7 @@ const BoardAll: React.FC<SceneP> = ({ f }) => {
   return (
     <AbsoluteFill>
       <VerdictBoard f={f} states={["?", "?", "?", "?"]} />
-      <AbsoluteFill style={{ justifyContent: "flex-end", alignItems: "center", paddingBottom: 150, flexDirection: "row", gap: 24 }}>
+      <AbsoluteFill style={{ justifyContent: "center", alignItems: "flex-end", paddingBottom: 150, flexDirection: "row", gap: 24 }}>
         {f >= o ? (
           <Chip f={f} at={o} bg={C.green} fg="#04140b" size={40}>
             ONLY 1 WORKS
@@ -402,7 +402,7 @@ const M2: React.FC<SceneP> = ({ f: F0, d: D0 }) => {
         {(f, d) => (
           <>
             <Broll f={f} d={d} src="g5_bridge_beach" from={0} />
-            {f >= sub ? <SubscribeNudge f={f - sub} text="I'll test GTA 6 on GeForce Now the day the PC version launches" len={d - sub} /> : null}
+            {f >= sub ? <SubscribeNudge f={f - sub} text="Day-one GeForce Now test when the PC version drops" len={d - sub} /> : null}
           </>
         )}
       </Phase>
@@ -448,7 +448,11 @@ const M3: React.FC<SceneP> = ({ f: F0, d: D0 }) => {
         {(f) => <ScamTypes f={f} ats={[t("one") - t("whatare"), t("two") - t("whatare"), t("three") - t("whatare")]} stampAt={t("three") - t("whatare") + 150} />}
       </Phase>
       <Phase a={t("flags")} b={t("installed")}>
-        {(f) => <RedFlags f={f} ats={[t("flagapk") - t("flags"), t("flagunknown") - t("flags"), t("flagverify") - t("flags")]} />}
+        {(f) => (
+          <Lift y={60}>
+            <RedFlags f={f} ats={[t("flagapk") - t("flags"), t("flagunknown") - t("flags"), t("flagverify") - t("flags")]} />
+          </Lift>
+        )}
       </Phase>
       <Phase a={t("installed")} b={D0}>
         {(f, d) => <IfInstalled f={f} gap={Math.floor((d - 60) / 4)} />}
@@ -544,7 +548,11 @@ const Cost: React.FC<SceneP> = ({ d: D0 }) => {
 const VerdictScene: React.FC<SceneP> = ({ f }) => {
   const t = (k: string) => c(k) - c("verdict");
   const focus = f >= t("v4") ? 3 : f >= t("v3") ? 2 : f >= t("v2") ? 1 : f >= t("v1") ? 0 : -1;
-  return <VerdictBoard f={f} states={["no", "later", "scam", "yes"]} reveal={focus} revealAt={-999} footnote />;
+  return (
+    <Lift>
+      <VerdictBoard f={f} states={["no", "later", "scam", "yes"]} reveal={focus} revealAt={-999} footnote />
+    </Lift>
+  );
 };
 
 const Possible: React.FC<SceneP> = ({ f, d }) => (
@@ -567,7 +575,7 @@ const Outro: React.FC<SceneP> = ({ f, d }) => {
   return (
     <AbsoluteFill>
       <Game src="g6_docks" from={0} d={d} zoom={[1.02, 1.1]} />
-      <SubscribeNudge f={f} text="If this saved you from a fake APK, like & subscribe" len={cm} />
+      <SubscribeNudge f={f} text="Saved you from a fake APK? Like & subscribe" len={cm} />
       {f >= cm ? (
         <AbsoluteFill style={{ justifyContent: "center", alignItems: "center" }}>
           <Chip f={f} at={cm} bg={C.ink} fg="#111" size={50}>
@@ -603,9 +611,14 @@ type Block = { id: string; from: number; to: number; C: React.FC<SceneP> };
 const CH = (n: number): Verdict[] => (["no", "later", "scam", "yes"] as Verdict[]).map((v, i) => (i < n ? v : "?"));
 const mk = (id: string, a: number, b: number, Comp: React.FC<SceneP>): Block => ({ id, from: a, to: b, C: Comp });
 const Board = (n: number, footnote = false): React.FC<SceneP> => {
-  const B: React.FC<SceneP> = ({ f }) => <VerdictBoard f={f} states={CH(n)} reveal={n - 1} footnote={footnote} />;
+  const B: React.FC<SceneP> = ({ f }) => (
+    <Lift>
+      <VerdictBoard f={f} states={CH(n)} reveal={n - 1} footnote={footnote} />
+    </Lift>
+  );
   return B;
 };
+const Lift: React.FC<{ children: React.ReactNode; y?: number }> = ({ children, y = 46 }) => <AbsoluteFill style={{ transform: `translateY(-${y}px)` }}>{children}</AbsoluteFill>;
 const BrollFacts: React.FC<SceneP> = (p) => <Broll {...p} src="g3_traffic" from={10} title="4 methods" sub="Tested one by one" />;
 const BLOCKS: Block[] = [
   mk("intro", 0, c("no"), Intro),

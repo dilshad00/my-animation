@@ -482,7 +482,7 @@ export const SubscribeNudge: React.FC<{ f: number; text: string; len?: number }>
   const s = sp(f, 0, 12) * (1 - pr(f, len - 10, len));
   const click = f > 40 && f < len - 10;
   return (
-    <AbsoluteFill style={{ justifyContent: "flex-end", alignItems: "flex-end", padding: "0 90px 90px 0" }}>
+    <AbsoluteFill style={{ justifyContent: "flex-start", alignItems: "flex-end", padding: "70px 80px 0 0" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 26, padding: "18px 26px", borderRadius: 18, background: "rgba(5,7,10,0.9)", border: `1px solid ${C.line}`, opacity: Math.min(1, s * 1.3), transform: `translateY(${(1 - s) * 60}px)` }}>
         <div style={{ padding: "14px 28px", borderRadius: 40, background: click ? "#2a2f36" : C.red, fontFamily: INTER, fontWeight: 800, fontSize: 34, color: "#fff", transform: `scale(${f > 38 && f < 46 ? 0.92 : 1})` }}>{click ? "SUBSCRIBED ✓" : "SUBSCRIBE"}</div>
         <div style={{ fontFamily: INTER, fontWeight: 600, fontSize: 32, color: C.ink, maxWidth: 620 }}>{text}</div>
