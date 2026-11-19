@@ -97,9 +97,9 @@ export const SourceTag: React.FC<{ text: string; at: number; until: number }> = 
         alignItems: "center",
         gap: 12,
         fontFamily: MONO,
-        fontSize: 20,
+        fontSize: 22,
         letterSpacing: 1.5,
-        color: "rgba(243,246,248,0.78)",
+        color: "rgba(243,246,248,0.9)",
         textTransform: "uppercase",
       }}
     >

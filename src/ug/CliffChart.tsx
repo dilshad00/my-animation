@@ -13,8 +13,8 @@ const PTS: Pt[] = [
   { day: 57, v: 5609.9, label: "14 NOV", price: "€5,609" },
 ];
 
-const W = 1360;
-const H = 560;
+const W = 1000;
+const H = 500;
 const X = (d: number) => (d / 57) * W;
 const Y = (v: number) => H - ((v - 5000) / 4000) * H;
 

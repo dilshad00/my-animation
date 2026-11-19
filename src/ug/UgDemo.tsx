@@ -160,14 +160,14 @@ const GpuScene: React.FC = () => {
   const flip = interpolate(f, [T.crack + 3, T.crack + 9], [0, 1], clamp);
   const chip = spring({ frame: f - (T.crack + 12), fps, config: { damping: 11 } });
   const wIn = whip(f, null, T.s3 - 4, 10);
-  const GW = 1420;
+  const GW = 1250;
   const GH = (GW * 1511) / 2200;
   return (
     <AbsoluteFill style={{ backgroundColor: C.bg, transform: `${wIn.transform} ${shake(f, T.crack, 10, 10)}`, filter: wIn.filter }}>
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at 62% 42%, rgba(40,215,255,0.16) 0%, rgba(0,0,0,0) 55%), radial-gradient(ellipse at 50% 100%, rgba(255,182,72,0.10) 0%, rgba(0,0,0,0) 50%)" }} />
       {/* floor line */}
-      <div style={{ position: "absolute", left: 0, right: 0, top: 790, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)" }} />
-      <div style={{ position: "absolute", left: 960 - GW / 2 + x + 140, top: 790 - GH + 30, width: GW, height: GH, perspective: 2200 }}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 850, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)" }} />
+      <div style={{ position: "absolute", left: 960 - GW / 2 + x + 140, top: 850 - GH + 50, width: GW, height: GH, perspective: 2200 }}>
         <div style={{ width: GW, height: GH, transform: `rotateY(${rotY}deg) rotateX(4deg)`, transformStyle: "preserve-3d" }}>
           <Img src={A("img/gpu5090_cutout.webp")} style={{ width: GW, height: GH, filter: "drop-shadow(0 40px 60px rgba(0,0,0,0.8)) brightness(0.92) contrast(1.08)" }} />
           {/* light sweep masked to the card */}
@@ -265,20 +265,20 @@ const ChartScene: React.FC = () => {
       <div style={{ position: "absolute", left: 110, top: 100, fontFamily: INTER, fontWeight: 700, fontSize: 26, letterSpacing: 6, color: C.teal, opacity: interpolate(f, [T.cut, T.cut + 12], [0, 1], clamp) }}>
         EUROPE · NOVEMBER 2026
       </div>
-      <div style={{ position: "absolute", left: 230, top: 250, transform: `scale(${zoom})`, transformOrigin: "85% 80%" }}>
+      <div style={{ position: "absolute", left: 60, top: 250, transform: `scale(${zoom})`, transformOrigin: "80% 80%" }}>
         <CliffChart f={f} riseP={riseP} dropP={dropP} appear={T.cut} />
       </div>
       {/* callout */}
-      <div style={{ position: "absolute", right: 110, top: 150, textAlign: "right" }}>
-        <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 150, color: C.green, lineHeight: 1, transform: `scale(${minus})`, transformOrigin: "right center", textShadow: "0 0 50px rgba(53,242,154,0.5)" }}>
+      <div style={{ position: "absolute", right: 100, top: 260, textAlign: "right" }}>
+        <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 112, color: C.green, lineHeight: 1, transform: `scale(${minus})`, transformOrigin: "right center", textShadow: "0 0 50px rgba(53,242,154,0.5)" }}>
           −€2,840
         </div>
         <div style={{ fontFamily: INTER, fontWeight: 700, fontSize: 34, color: C.ink, marginTop: 12, opacity: pct, letterSpacing: 2 }}>
-          −33.6% <span style={{ color: C.mute }}>in</span>
+          −33.6% <span style={{ color: C.mute }}>in just</span>
         </div>
       </div>
       {/* calendar flip */}
-      <div style={{ position: "absolute", right: 110, top: 360, opacity: calIn, display: "flex", alignItems: "center", gap: 22, perspective: 800 }}>
+      <div style={{ position: "absolute", right: 100, top: 470, opacity: calIn, display: "flex", alignItems: "center", gap: 22, perspective: 800 }}>
         <div style={{ position: "relative", width: 230, height: 120 }}>
           {[
             { t: "6 NOV", show: 1 - calP, rot: calP * -90 },
