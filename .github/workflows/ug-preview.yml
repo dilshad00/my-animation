@@ -33,8 +33,10 @@ jobs:
         run: |
           ID=$(printf '%s' "$MSG" | grep -o '\[render:[A-Za-z0-9_-]*\]' | head -1 | sed 's/\[render://;s/\]//')
           echo "id=${ID:-UG-Demo}" >> "$GITHUB_OUTPUT"
+          FR=$(printf '%s' "$MSG" | grep -o '\[frames:[0-9]*-[0-9]*\]' | head -1 | sed 's/\[frames://;s/\]//')
+          echo "frames=${FR:+--frames=$FR}" >> "$GITHUB_OUTPUT"
       - name: Render
-        run: npx remotion render "${{ steps.comp.outputs.id }}" "out/${{ steps.comp.outputs.id }}.mp4" --codec=h264 --crf=18 --concurrency=100% --log=info
+        run: npx remotion render "${{ steps.comp.outputs.id }}" "out/${{ steps.comp.outputs.id }}.mp4" --codec=h264 --crf=18 --concurrency=100% ${{ steps.comp.outputs.frames }} --log=info
       - name: Probe
         run: npx remotion ffprobe -v error -show_entries format=duration:stream=codec_type,width,height,r_frame_rate,nb_frames -of compact "out/${{ steps.comp.outputs.id }}.mp4"
       - name: Publish to release "ug-previews"

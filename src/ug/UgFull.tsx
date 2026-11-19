@@ -1779,6 +1779,7 @@ const SAMPLES: [number, string][] = [
     [b.to - 14, b.id] as [number, string],
   ]),
 ];
+/** Render only frames 0..SAMPLES.length-1 (the composition is full length so Freeze isn't clamped). */
 export const UG001_SHEET_FRAMES = SAMPLES.length;
 export const UgSheet: React.FC = () => {
   const f = useCurrentFrame();
