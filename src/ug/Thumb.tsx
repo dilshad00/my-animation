@@ -74,7 +74,7 @@ export const ThumbA: React.FC = () => (
   <AbsoluteFill style={{ overflow: "hidden" }}>
     <Bg left="rgba(255,50,40,0.55)" right="rgba(40,242,150,0.32)" />
     <div style={{ position: "absolute", left: 960, top: -100, width: 14, height: 1400, background: "#fff", transform: "rotate(12deg)", boxShadow: "0 0 40px #fff" }} />
-    <Fire x={-40} y={300} w={1000} h={520} id="a" />
+    <Fire x={-40} y={360} w={1000} h={780} id="a" />
     <div style={{ position: "absolute", left: 470, top: 650, transform: "translate(-50%,-50%) rotate(-14deg)", perspective: 1600 }}>
       <RamStick3D rotY={-22} rotX={14} scale={0.78} glow={1} hue={350} />
     </div>
@@ -98,7 +98,7 @@ export const ThumbA: React.FC = () => (
 export const ThumbB: React.FC = () => (
   <AbsoluteFill style={{ overflow: "hidden" }}>
     <Bg left="rgba(255,40,40,0.5)" right="rgba(255,90,20,0.35)" />
-    <Fire x={180} y={440} w={1560} h={560} id="b" />
+    <Fire x={140} y={520} w={1640} h={640} id="b" />
     <div style={{ position: "absolute", left: 960, top: 800, transform: "translate(-50%,-50%) rotate(-6deg)", perspective: 1600 }}>
       <RamStick3D rotY={-18} rotX={16} scale={1.25} glow={1} hue={350} />
     </div>
@@ -123,24 +123,23 @@ export const ThumbB: React.FC = () => (
 
 /** C — "WHERE IS IT CHEAPEST?": RTX 5060 price tags on the map. */
 const Tag: React.FC<{ x: number; y: number; place: string; price: string; color: string; rot: number }> = ({ x, y, place, price, color, rot }) => (
-  <div style={{ position: "absolute", left: x, top: y, transform: `translate(-50%,-100%) rotate(${rot}deg)`, textAlign: "center" }}>
+  <div style={{ position: "absolute", left: x, top: y, transform: `translate(-50%,-50%) rotate(${rot}deg)`, textAlign: "center" }}>
     <div style={{ background: color, borderRadius: 18, padding: "8px 28px 12px", boxShadow: "0 18px 40px rgba(0,0,0,0.8)", border: "5px solid #000" }}>
       <div style={{ fontFamily: INTER, fontWeight: 800, fontSize: 46, color: "#000", letterSpacing: 2 }}>{place}</div>
       <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 150, lineHeight: 0.95, color: "#000" }}>{price}</div>
     </div>
-    <div style={{ width: 0, height: 0, margin: "0 auto", borderLeft: "26px solid transparent", borderRight: "26px solid transparent", borderTop: `40px solid ${color}` }} />
   </div>
 );
 
 export const ThumbC: React.FC = () => (
   <AbsoluteFill style={{ overflow: "hidden", background: "#07080b" }}>
-    <div style={{ position: "absolute", inset: 0, transform: "scale(1.3) translateY(50px)" }}>
+    <div style={{ position: "absolute", inset: 0, transform: "scale(1.3) translateY(150px)" }}>
       <WorldMap f={999} at={0} pins={[]} highlight={[...EU, "India", "United States of America"]} />
     </div>
     <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 60%, transparent 30%, rgba(0,0,0,0.7) 100%)" }} />
-    <Tag x={380} y={660} place="USA" price="$450" color={C.green} rot={-5} />
-    <Tag x={1010} y={560} place="EUROPE" price="$533" color={C.red} rot={4} />
-    <Tag x={1520} y={800} place="INDIA" price="$522" color={C.amber} rot={-3} />
+    <Tag x={370} y={470} place="USA" price="$450" color={C.green} rot={-5} />
+    <Tag x={1040} y={420} place="EUROPE" price="$533" color={C.red} rot={4} />
+    <Tag x={1450} y={600} place="INDIA" price="$522" color={C.amber} rot={-3} />
     <Big size={150} style={{ position: "absolute", left: 0, width: 1920, top: 40, textAlign: "center" }}>
       WHERE IS IT <span style={{ color: "#ffd23a" }}>CHEAPEST?</span>
     </Big>
