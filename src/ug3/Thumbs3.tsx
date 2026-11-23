@@ -1,70 +1,102 @@
-/** UG-003 thumbnails (render as stills with [gl:swangle], scale 0.6667 → 1280×720). */
+/** UG-003 thumbnails — photoreal hero style (render as stills, scale 0.6667 → 1280×720). */
 import React from "react";
-import { AbsoluteFill } from "remotion";
-import { C, DISPLAY, MONO } from "../ug/theme";
+import { AbsoluteFill, Img, staticFile } from "remotion";
+import { C, DISPLAY, INTER } from "../ug/theme";
 import { Padlock } from "./Gfx3";
-import { Cam, Card, ContactShadow, Ga100, Scene3D } from "./Three3D";
 
-const Bg: React.FC<{ a: string; b: string }> = ({ a, b }) => (
-  <AbsoluteFill style={{ background: `radial-gradient(ellipse at 70% 50%, ${a} 0%, #05070a 60%), radial-gradient(ellipse at 10% 90%, ${b} 0%, transparent 50%)`, backgroundColor: "#05070a" }} />
-);
+const img = (n: string) => staticFile(`ug-003/img/${n}`);
 const Stroke = (c: string, w = 10) => ({ WebkitTextStroke: `${w}px #000`, paintOrder: "stroke fill" as const, color: c });
+const Full: React.FC<{ src: string; style?: React.CSSProperties }> = ({ src, style }) => (
+  <Img src={img(src)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", ...style }} />
+);
+const Brand = () => (
+  <div style={{ position: "absolute", right: 50, top: 34, fontFamily: INTER, fontWeight: 600, fontSize: 30, letterSpacing: 10, color: "#fff", opacity: 0.9, borderBottom: `3px solid ${C.red}`, paddingBottom: 6 }}>UNKNOWN GAMER</div>
+);
+const Shade = ({ k = 0.85 }: { k?: number }) => (
+  <AbsoluteFill style={{ background: `linear-gradient(90deg, rgba(0,0,0,${k}) 0%, rgba(0,0,0,${k * 0.55}) 38%, transparent 62%)` }} />
+);
+/** red brush swipe behind text */
+const Brush: React.FC<{ color: string; children: React.ReactNode; rot?: number }> = ({ color, children, rot = -2 }) => (
+  <div style={{ position: "relative", display: "inline-block", padding: "0 34px", transform: `rotate(${rot}deg)` }}>
+    <div style={{ position: "absolute", inset: "8% -2%", background: color, filter: "url(#rough)", borderRadius: 10, boxShadow: `0 0 60px ${color}` }} />
+    <div style={{ position: "relative" }}>{children}</div>
+  </div>
+);
+const RoughDefs = () => (
+  <svg width="0" height="0" style={{ position: "absolute" }}>
+    <filter id="rough">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035 0.6" numOctaves="3" seed="4" />
+      <feDisplacementMap in="SourceGraphic" scale="38" />
+    </filter>
+  </svg>
+);
 
-/** A: giant 8GB → 80GB with the glowing exploded card. */
+/** A: green unlocked hero, 8GB crossed → 80GB. */
 export const Ug3ThumbA: React.FC = () => (
-  <AbsoluteFill>
-    <Bg a="rgba(53,242,154,0.35)" b="rgba(255,61,82,0.25)" />
-    <AbsoluteFill style={{ left: 520 }}>
-      <Scene3D rimA="#35f29a" rimB="#28d7ff" key1={2.8}>
-        <Cam pos={[20, 24, 24]} target={[1, 2.5, 0]} fov={34} />
-        <Card explode={0.55} memGB={80} smOn={128} glow={1.6} accentK={2} />
-        <ContactShadow />
-      </Scene3D>
-    </AbsoluteFill>
-    <div style={{ position: "absolute", left: 60, top: 60 }}>
-      <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 250, lineHeight: 0.9, ...Stroke("#ff3d52", 12), position: "relative", display: "inline-block" }}>
+  <AbsoluteFill style={{ backgroundColor: "#000" }}>
+    <RoughDefs />
+    <Full src="hero_green.jpg" style={{ transform: "scale(1.12)", transformOrigin: "75% 60%" }} />
+    <Shade k={0.8} />
+    <Brand />
+    <div style={{ position: "absolute", left: 70, top: 90 }}>
+      <div style={{ position: "relative", display: "inline-block", fontFamily: DISPLAY, fontWeight: 700, fontSize: 230, lineHeight: 0.9, ...Stroke("#fff", 12) }}>
         8GB
-        <div style={{ position: "absolute", left: -10, right: -10, top: "48%", height: 22, background: "#fff", transform: "rotate(-8deg)", boxShadow: "0 0 30px #000" }} />
+        <div style={{ position: "absolute", left: -16, right: -16, top: "46%", height: 26, background: C.red, transform: "rotate(-9deg)", boxShadow: "0 0 30px #000" }} />
       </div>
-      <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 380, lineHeight: 0.9, ...Stroke(C.green, 14), textShadow: `0 0 80px ${C.green}` }}>80GB</div>
+      <div style={{ marginTop: 10 }}>
+        <Brush color="rgba(20,170,100,0.95)">
+          <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 330, lineHeight: 1, ...Stroke("#fff", 14) }}>80GB</div>
+        </Brush>
+      </div>
     </div>
-    <div style={{ position: "absolute", left: 70, bottom: 70, padding: "10px 30px", background: C.amber, borderRadius: 14, fontFamily: DISPLAY, fontWeight: 700, fontSize: 84, color: "#000", transform: "rotate(-3deg)" }}>$8 HACK?!</div>
+    <div style={{ position: "absolute", left: 80, bottom: 70, padding: "12px 34px", borderRadius: 18, background: "rgba(0,0,0,0.75)", border: `4px solid ${C.amber}`, boxShadow: `0 0 30px ${C.amber}`, fontFamily: DISPLAY, fontWeight: 700, fontSize: 70, color: "#fff" }}>
+      SAME <span style={{ color: C.amber }}>$8</span> HACK
+    </div>
   </AbsoluteFill>
 );
 
-/** B: the chip with every memory stack lit + price jump. */
+/** B: same card split red | green. */
 export const Ug3ThumbB: React.FC = () => (
-  <AbsoluteFill>
-    <Bg a="rgba(40,215,255,0.35)" b="rgba(53,242,154,0.25)" />
-    <Scene3D rimA="#28d7ff" rimB="#35f29a" key1={2.4}>
-      <Cam pos={[3.2, 6.4, 5.4]} target={[0.6, -0.4, 0.4]} fov={34} />
-      <Ga100 smOn={128} memGB={80} glow={1.6} />
-    </Scene3D>
-    <div style={{ position: "absolute", left: 50, top: 40 }}>
-      <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 150, ...Stroke("#ffb648", 10) }}>$2,500</div>
-      <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 120, ...Stroke("#fff", 10), lineHeight: 1 }}>→ $20,000 GPU</div>
+  <AbsoluteFill style={{ backgroundColor: "#000" }}>
+    <RoughDefs />
+    <Full src="hero_red.jpg" />
+    <Full src="hero_green.jpg" style={{ clipPath: "polygon(64% 0, 100% 0, 100% 100%, 50% 100%)" }} />
+    <div style={{ position: "absolute", left: "57%", top: -40, bottom: -40, width: 10, background: "#fff", transform: "rotate(8deg)", boxShadow: "0 0 40px #fff, 0 0 90px #fff" }} />
+    <Shade k={0.6} />
+    <Brand />
+    <div style={{ position: "absolute", left: 60, top: 80, fontFamily: DISPLAY, fontWeight: 700, fontSize: 250, lineHeight: 0.9, ...Stroke("#ff3d52", 12) }}>8GB</div>
+    <div style={{ position: "absolute", left: 470, top: 130, fontFamily: DISPLAY, fontWeight: 700, fontSize: 150, ...Stroke(C.amber, 10) }}>→</div>
+    <div style={{ position: "absolute", right: 70, bottom: 60 }}>
+      <Brush color="rgba(20,170,100,0.95)" rot={-3}>
+        <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 280, lineHeight: 1, ...Stroke("#fff", 14) }}>80GB</div>
+      </Brush>
     </div>
-    <div style={{ position: "absolute", right: 50, bottom: 50, fontFamily: DISPLAY, fontWeight: 700, fontSize: 170, ...Stroke(C.green, 12), textShadow: `0 0 60px ${C.green}` }}>80GB</div>
+    <div style={{ position: "absolute", left: 70, bottom: 80, padding: "10px 30px", borderRadius: 18, background: "rgba(0,0,0,0.75)", border: `4px solid ${C.amber}`, fontFamily: DISPLAY, fontWeight: 700, fontSize: 64, color: "#fff" }}>
+      SAME <span style={{ color: C.amber }}>CARD</span>
+    </div>
   </AbsoluteFill>
 );
 
-/** C: "NVIDIA LOCKED THIS" with broken padlock over the card. */
+/** C: glowing chip + "NVIDIA LOCKED THIS" + open padlock. */
 export const Ug3ThumbC: React.FC = () => (
-  <AbsoluteFill>
-    <Bg a="rgba(255,61,82,0.3)" b="rgba(53,242,154,0.2)" />
-    <Scene3D rimA="#ff3d52" rimB="#35f29a" key1={2.6}>
-      <Cam pos={[26, 18, 26]} target={[-3, 1, 0]} fov={32} />
-      <Card explode={0.4} memGB={80} smOn={128} glow={1.4} accent="#35f29a" accentK={1.8} />
-      <ContactShadow />
-    </Scene3D>
-    <div style={{ position: "absolute", left: 60, top: 50, fontFamily: DISPLAY, fontWeight: 700, fontSize: 170, lineHeight: 0.95, ...Stroke("#fff", 12) }}>
+  <AbsoluteFill style={{ backgroundColor: "#000" }}>
+    <RoughDefs />
+    <Full src="chip.jpg" style={{ transform: "scale(1.1)", transformOrigin: "60% 60%" }} />
+    <Shade k={0.85} />
+    <Brand />
+    <div style={{ position: "absolute", left: 60, top: 70, fontFamily: DISPLAY, fontWeight: 700, fontSize: 170, lineHeight: 0.95, ...Stroke("#fff", 12) }}>
       NVIDIA
       <br />
-      <span style={{ color: C.red }}>LOCKED</span> THIS
+      <Brush color="rgba(220,30,50,0.95)">
+        <span>LOCKED</span>
+      </Brush>{" "}
+      THIS
     </div>
-    <div style={{ position: "absolute", right: 120, top: 80 }}>
-      <Padlock size={300} color={C.green} open={1} />
+    <div style={{ position: "absolute", right: 120, top: 150, filter: `drop-shadow(0 0 40px ${C.green})` }}>
+      <Padlock size={320} color={C.green} open={1} />
     </div>
-    <div style={{ position: "absolute", left: 60, bottom: 60, padding: "8px 26px", background: C.green, borderRadius: 14, fontFamily: DISPLAY, fontWeight: 700, fontSize: 90, color: "#000" }}>8GB → 80GB</div>
+    <div style={{ position: "absolute", left: 70, bottom: 70, padding: "10px 30px", borderRadius: 18, background: "rgba(0,0,0,0.75)", border: `4px solid ${C.green}`, boxShadow: `0 0 30px ${C.green}`, fontFamily: DISPLAY, fontWeight: 700, fontSize: 80, color: "#fff" }}>
+      8GB → <span style={{ color: C.green }}>80GB</span>
+    </div>
   </AbsoluteFill>
 );
