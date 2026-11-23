@@ -199,7 +199,7 @@ export const PriceClash: React.FC<{ f: number; at: number; at2: number }> = ({ f
     <div style={{ position: "absolute", left: x, top: 300, width: 680, transform: `translateY(${(1 - s) * 80}px) rotate(${(x < 900 ? -3 : 3) * s}deg)`, opacity: Math.min(1, s * 1.4) }}>
       <div style={{ padding: "36px 44px", borderRadius: 28, background: "rgba(8,11,15,0.9)", border: `3px solid ${col}`, boxShadow: `0 0 70px ${col}44` }}>
         <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 28, color: col, letterSpacing: 4 }}>{label}</div>
-        <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 150, color: C.ink, lineHeight: 1.05, textShadow: `0 0 50px ${col}55` }}>{price}</div>
+        <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 124, color: C.ink, lineHeight: 1.05, textShadow: `0 0 50px ${col}55`, whiteSpace: "nowrap" }}>{price}</div>
         <div style={{ fontFamily: INTER, fontWeight: 600, fontSize: 32, color: C.mute }}>{sub}</div>
       </div>
     </div>
@@ -657,9 +657,9 @@ export const ChapterTag: React.FC<{ n: number; title: string }> = ({ n, title })
   const out = pr(f, len, len + 12);
   const line = pr(f, 4, 26);
   return (
-    <div style={{ position: "absolute", left: 80, top: 70, opacity: a * (1 - out), transform: `translateX(${(1 - a) * -50 - out * 50}px)` }}>
+    <div style={{ position: "absolute", right: 80, top: 60, textAlign: "right", opacity: a * (1 - out), transform: `translateX(${(1 - a) * 50 + out * 50}px)` }}>
       <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 26, color: C.amber, letterSpacing: 6 }}>CHAPTER {n}</div>
-      <div style={{ height: 3, width: 420 * line, background: C.amber, margin: "10px 0", boxShadow: `0 0 16px ${C.amber}` }} />
+      <div style={{ height: 3, width: 420 * line, background: C.amber, margin: "10px 0 10px auto", boxShadow: `0 0 16px ${C.amber}` }} />
       <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 64, color: C.ink, letterSpacing: 2, textShadow: "0 6px 30px rgba(0,0,0,0.8)" }}>{title}</div>
     </div>
   );

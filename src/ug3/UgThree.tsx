@@ -109,7 +109,7 @@ const Hook80: React.FC<SceneP> = ({ f, d }) => {
     <AbsoluteFill style={{ transform: shake(f, 0, 16, 22) }}>
       <BG f={f} accent="rgba(53,242,154,0.18)" x={60} y={50} />
       <Scene3D rimA="#35f29a" rimB="#28d7ff" key1={2.6}>
-        <Cam pos={[Math.sin(a) * mix(30, 24, ez(f, 0, d)), 12, Math.cos(a) * mix(30, 24, ez(f, 0, d))]} target={[0, 1.4, 0]} fov={30} />
+        <Cam pos={[Math.sin(a) * mix(38, 31, ez(f, 0, d)), 13, Math.cos(a) * mix(38, 31, ez(f, 0, d))]} target={[0, 1.4, 0]} fov={30} />
         <Card accent="#35f29a" accentK={1.4} memGB={80} smOn={128} glow={1.3} explode={0} />
         <ContactShadow />
       </Scene3D>
@@ -132,7 +132,7 @@ const Nobody: React.FC<SceneP> = ({ f, d, o }) => {
     <AbsoluteFill>
       <BG f={f} />
       <Scene3D>
-        <Cam pos={mixV([18, 20, 20], [10, 22, 14], ez(f, 0, d))} target={[-2, 2, 0]} fov={30} />
+        <Cam pos={mixV([30, 30, 30], [20, 30, 22], ez(f, 0, d))} target={[0, 3, 0]} fov={30} />
         <Card explode={ez(f, 0, 26)} memGB={80} smOn={128} />
       </Scene3D>
       <Pos x={110} y={200}>
@@ -164,7 +164,7 @@ const Tools: React.FC<SceneP> = ({ f, d, o }) => {
     <AbsoluteFill>
       <BG f={f} accent="rgba(255,182,72,0.12)" x={70} y={40} />
       <Scene3D rimA="#ffb648" rimB="#28d7ff">
-        <Cam pos={mixV([22, 17, 22], [15, 13, 17], ez(f, 0, d))} target={[6, 0.5, 2]} fov={30} />
+        <Cam pos={mixV([30, 22, 30], [24, 19, 26], ez(f, 0, d))} target={[5, 0, 4]} fov={30} />
         <Card hideCover vrmGlow={zap} smOn={unlocked ? 128 : 70} memGB={unlocked ? 80 : 8} pulse={zap * 0.4} />
         <Glitcher p={[11, 0.2, 10]} led={zap} />
         <Wire pts={RIG_W1} draw={ez(f, tw, tw + 24)} />
@@ -250,7 +250,7 @@ const Hidden: React.FC<SceneP> = ({ f, d, o }) => {
           </Big>
         </Pos>
       ) : null}
-      {f >= ts && f < toff ? <Callout f={f} at={ts + 4} x={project([2.05, 0.4, 0], cam)[0]} y={project([2.05, 0.4, 0], cam)[1]} dx={140} dy={-150} color={C.teal} title="80 GB of HBM2e" sub="physically on the card" /> : null}
+      {f >= ts && f < toff ? <Callout f={f} at={ts + 4} x={project([2.05, 0.4, 0], cam)[0]} y={project([2.05, 0.4, 0], cam)[1]} dx={-120} dy={190} color={C.teal} title="80 GB of HBM2e" sub="physically on the card" /> : null}
       {f >= toff ? (
         <Pos x={110} y={300}>
           <Stamp f={f} at={toff + 8} color={C.red} rot={-5} size={90}>
@@ -269,7 +269,7 @@ const Title: React.FC<SceneP> = ({ f, d, o }) => {
     <AbsoluteFill>
       <BG f={f} accent="rgba(53,242,154,0.12)" x={50} y={50} />
       <Scene3D rimA="#35f29a" rimB="#ff3d52">
-        <Cam pos={mixV([0, 30, 30], [0, 26, 24], ez(f, 0, d))} target={[0, 0, 2]} fov={30} />
+        <Cam pos={mixV([0, 40, 38], [0, 36, 33], ez(f, 0, d))} target={[0, 2, -3]} fov={30} />
         <Card explode={0.75} memGB={mix(8, 80, ez(f, 20, 70))} smOn={mix(70, 128, ez(f, 20, 70))} glow={1 + glow * 0.4} r={[0, f * 0.003, 0]} />
       </Scene3D>
       <AbsoluteFill style={{ background: "linear-gradient(0deg, rgba(5,7,10,0.9) 0%, rgba(5,7,10,0) 55%)" }} />
@@ -302,7 +302,7 @@ const Meet: React.FC<SceneP> = ({ f, d, o }) => {
   const toBracket = ez(f, tn - 6, tn + 20) * (1 - ez(f, tj + 10, tj + 30));
   const a = 0.9 + f * 0.003;
   const orbit: V3 = [Math.sin(a) * 32, 12, Math.cos(a) * 32];
-  const bracket: V3 = [-26, 7, 6];
+  const bracket: V3 = [-36, 10, 13];
   const cam = { pos: mixV(orbit, bracket, toBracket), target: mixV([0, 1.4, 0], [-13.4, 1.6, 0], toBracket) as V3, fov: 30 };
   const bp = project([-13.5, 2.6, 0], cam);
   const sp2 = project([2, 3.9, 0], cam);
@@ -342,7 +342,7 @@ const Meet: React.FC<SceneP> = ({ f, d, o }) => {
 const Monster: React.FC<SceneP> = ({ f, d, o }) => {
   const tg = L(o, "ga100");
   const ta = L(o, "a100");
-  const dive = ez(f, tg - 10, tg + 40);
+  const dive = ez(f, tg - 8, tg + 40);
   const cam = { pos: mixV([16, 22, 20], [1.2, 7.5, 6.2], dive) as V3, target: mixV([0, 2, 0], [-2.2, 0.3, 0], dive) as V3, fov: 30 };
   const die = project([-2.2, 0.4, 0], cam);
   return (
@@ -350,7 +350,7 @@ const Monster: React.FC<SceneP> = ({ f, d, o }) => {
       <BG f={f} accent="rgba(53,242,154,0.12)" />
       <Scene3D rimA="#35f29a">
         <Cam pos={cam.pos} target={cam.target} fov={cam.fov} />
-        <Card explode={ez(f, 4, 40)} hideCover={f > tg + 30} glow={1 + 0.3 * Math.sin(f * 0.2)} />
+        <Card explode={ez(f, 4, 40)} hideCover={f > tg - 14} glow={1 + 0.3 * Math.sin(f * 0.2)} />
       </Scene3D>
       <Pos x={110} y={130}>
         <Big f={f} at={6} size={84}>
@@ -478,7 +478,7 @@ const Eth: React.FC<SceneP> = ({ f, o }) => {
         <CryptoTimeline f={f} at={0} at2022={4} atPaper={tp} />
       </Pos>
       {f >= tp + 10 ? (
-        <Pos x={0} w={1920} y={200} style={{ textAlign: "center" }}>
+        <Pos x={0} w={1920} y={800} style={{ textAlign: "center" }}>
           <Stamp f={f} at={tp + 10} color={C.red} rot={-4} size={96}>
             EXPENSIVE PAPERWEIGHTS
           </Stamp>
@@ -708,8 +708,8 @@ const Rule: React.FC<SceneP> = ({ f, o }) => {
           The rule every chip engineer follows
         </Tag>
         <div style={{ height: 30 }} />
-        {f >= tr ? (
-          <Big f={f} at={tr} size={100} align="center">
+        {f >= Math.min(tr, 24) ? (
+          <Big f={f} at={Math.min(tr, 24)} size={100} align="center">
             {"BURN A FUSE = MORE LOCKED"}
           </Big>
         ) : null}
@@ -742,6 +742,14 @@ const Kate: React.FC<SceneP> = ({ f, o }) => {
           <div style={{ fontFamily: MONO, fontSize: 26, color: C.mute }}>blog.kate.land · write-up published Nov 10, 2026</div>
         </Panel>
       </Pos>
+      {f < tov + 6 ? (
+        <Pos x={110} y={470}>
+          <div style={{ opacity: ez(f, 16, 30) * (1 - ez(f, tov - 4, tov + 6)) }}>
+            <div style={{ fontFamily: MONO, fontSize: 24, color: C.mute, letterSpacing: 3, marginBottom: 12 }}>HER WRITE-UP</div>
+            <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 70, color: C.ink, lineHeight: 1.1, width: 1500 }}>“Using voltage glitching to unleash the A100 in my mining card”</div>
+          </div>
+        </Pos>
+      ) : null}
       {f >= tov ? (
         <Pos x={300} y={460}>
           <Records f={f} at={tov} newAt={tn} bootAt={tb} />
@@ -1033,7 +1041,7 @@ const Unlock: React.FC<SceneP> = ({ f, d, o }) => {
         </AbsoluteFill>
       ) : null}
       {f < tw + 6 ? (
-        <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: 1 - ez(f, tw - 6, tw + 6) }}>
+        <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", opacity: 1 - ez(f, tw - 6, tw + 6), background: "rgba(5,7,10,0.85)" }}>
           <Padlock size={300} color={brk > 0.5 ? C.green : C.red} broken={brk} shake={f} />
           <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 96, color: C.green, opacity: ez(f, 14, 24), marginTop: 20 }}>THE LOCK FAILED</div>
         </AbsoluteFill>
@@ -1055,8 +1063,8 @@ const Unlock: React.FC<SceneP> = ({ f, d, o }) => {
         </Pos>
       ) : null}
       {f >= ts ? (
-        <Pos x={110} y={560}>
-          <div style={{ display: "flex", gap: 40 }}>
+        <Pos x={110} y={600}>
+          <div style={{ display: "flex", gap: 110 }}>
             <div>
               <Roll f={f} from={70} to={128} at={ts} len={22} size={110} color={C.green} />
               <div style={{ fontFamily: MONO, fontSize: 26, color: C.mute }}>SMs (max)</div>
@@ -1144,7 +1152,7 @@ const Ten: React.FC<SceneP> = ({ f, d, o }) => {
         </Big>
       </Pos>
       {GRID.map((p, i) => {
-        const [x, y] = project([p[0], 2, p[2] + 2.6], cam);
+        const [x, y] = project([p[0] + 1.6, 2, p[2] + 2.4], cam);
         return <ResultChip key={i} f={f} at={i === 7 ? t1 + 6 : tn + i * 2 + 8} gb={i === 7 ? 64 : 80} x={x} y={y} />;
       })}
       {f >= t1 + 20 ? (
@@ -1180,7 +1188,7 @@ const Specs: React.FC<SceneP> = ({ f, o }) => {
 const NvLink: React.FC<SceneP> = ({ f, d }) => {
   const on = ez(f, 20, 40);
   const a = 0.6 + f * 0.004;
-  const cam = { pos: [Math.sin(a) * 34, 14, Math.cos(a) * 34] as V3, target: [0, 2, 1.5] as V3, fov: 30 };
+  const cam = { pos: [Math.sin(a) * 46, 18, Math.cos(a) * 46] as V3, target: [0, -1, 1.5] as V3, fov: 30 };
   return (
     <AbsoluteFill>
       <BG f={f} accent="rgba(53,242,154,0.14)" />
@@ -1328,14 +1336,14 @@ const Second: React.FC<SceneP> = ({ f, o }) => {
 const Third: React.FC<SceneP> = ({ f, o }) => {
   const tn = L(o, "nodisp2");
   const td = L(o, "device");
-  const cam = { pos: [-24, 6, 9] as V3, target: [-13.4, 1.6, 0] as V3, fov: 30 };
+  const cam = { pos: [-34, 10, 15] as V3, target: [-11, 1.6, 0] as V3, fov: 30 };
   const bp = project([-13.5, 2.6, 0], cam);
   return (
     <AbsoluteFill>
       <BG f={f} accent="rgba(255,61,82,0.10)" />
       <AbsoluteFill style={{ opacity: 1 - ez(f, td - 6, td + 6) }}>
         <Scene3D rimA="#ff3d52">
-          <Cam pos={mixV(cam.pos, [-22, 7, 12], ez(f, 0, 150))} target={cam.target} fov={cam.fov} />
+          <Cam pos={mixV(cam.pos, [-32, 9, 18], ez(f, 0, 150))} target={cam.target} fov={cam.fov} />
           <Card accentK={0.5} />
         </Scene3D>
         <Pos x={110} y={110}>
@@ -1465,7 +1473,7 @@ const Bigger: React.FC<SceneP> = ({ f, d, o }) => {
     <AbsoluteFill>
       <BG f={f} accent={`rgba(53,242,154,${0.06 + 0.12 * on})`} />
       <Scene3D rimA={on > 0.5 ? "#35f29a" : "#5a6677"} rimB="#ffb648">
-        <Cam pos={[Math.sin(a) * mix(34, 26, ez(f, 0, d)), 16, Math.cos(a) * mix(34, 26, ez(f, 0, d))]} target={[0, 1.4, 0]} fov={30} />
+        <Cam pos={[Math.sin(a) * mix(42, 34, ez(f, 0, d)), 22, Math.cos(a) * mix(42, 34, ez(f, 0, d))]} target={[0, 2.5, 0]} fov={30} />
         <Card explode={on * 0.7} accentK={on * 1.5} memGB={mix(8, 80, on)} smOn={mix(70, 128, on)} glow={0.6 + on} />
         <ContactShadow />
       </Scene3D>
@@ -1487,7 +1495,7 @@ const Bigger: React.FC<SceneP> = ({ f, d, o }) => {
 
 const World: React.FC<SceneP> = ({ f, d, o }) => {
   const tt = L(o, "trick");
-  const rows: V3[] = Array.from({ length: 7 }, (_, i) => [(i - 3) * 10, 0, 0] as V3);
+  const rows = Array.from({ length: 7 }, (_, i) => i);
   return (
     <AbsoluteFill>
       {f < tt ? <Clip f={f} src="mobo_zoom" d={tt} dim={0.55} /> : <BG f={f} accent="rgba(53,242,154,0.14)" />}
@@ -1506,10 +1514,10 @@ const World: React.FC<SceneP> = ({ f, d, o }) => {
       ) : (
         <>
           <Scene3D rimA="#35f29a">
-            <Cam pos={mixV([-30, 18, 30], [20, 18, 30], ez(f, tt, d))} target={[0, 0, 0]} fov={36} />
+            <Cam pos={mixV([-26, 30, 34], [26, 30, 34], ez(f, tt, d))} target={[0, 0, 0]} fov={34} />
             {rows.map((p, i) => {
               const on = ez(f, tt + 10 + i * 8, tt + 24 + i * 8);
-              return <Card key={i} p={p} r={[Math.PI / 2, 0, 0]} s={0.6} accentK={on * 1.5} memGB={mix(8, 80, on)} smOn={mix(70, 128, on)} glow={0.5 + on} />;
+              return <Card key={i} p={[0, 0, (i - 3) * 5.2]} s={0.45} accentK={on * 1.5} memGB={mix(8, 80, on)} smOn={mix(70, 128, on)} glow={0.5 + on} />;
             })}
           </Scene3D>
           <Pos x={0} w={1920} y={110} style={{ textAlign: "center" }}>
