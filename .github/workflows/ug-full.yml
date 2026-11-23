@@ -24,6 +24,7 @@ jobs:
       tag: ${{ steps.p.outputs.tag }}
       gl: ${{ steps.p.outputs.gl }}
       matrix: ${{ steps.p.outputs.matrix }}
+      n: ${{ steps.p.outputs.n }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -41,7 +42,12 @@ jobs:
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           GL=$(printf '%s' "$MSG" | grep -o '\[gl:[a-z-]*\]' | head -1 | sed 's/\[gl://;s/\]//')
           echo "gl=${GL:+--gl=$GL}" >> "$GITHUB_OUTPUT"
-          echo "matrix=$(npx tsx scripts/cloud-plan.ts "$ID" "${N:-12}" 0)" >> "$GITHUB_OUTPUT"
+          FULL=$(npx tsx scripts/cloud-plan.ts "$ID" "${N:-12}" 0)
+          echo "n=$(printf '%s' "$FULL" | python3 -c "import json,sys;print(len(json.load(sys.stdin)['chunks']))")" >> "$GITHUB_OUTPUT"
+          # optional "[only:2,18]" → re-render just those chunks (others stay in the release)
+          ONLY=$(printf '%s' "$MSG" | grep -o '\[only:[0-9,]*\]' | head -1 | sed 's/\[only://;s/\]//')
+          if [ -n "$ONLY" ]; then FULL=$(printf '%s' "$FULL" | ONLY="$ONLY" python3 -c "import json,os,sys;j=json.load(sys.stdin);k={int(x) for x in os.environ['ONLY'].split(',')};j['chunks']=[c for c in j['chunks'] if c['i'] in k];print(json.dumps(j))"); fi
+          echo "matrix=$FULL" >> "$GITHUB_OUTPUT"
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$ID render (QC pending)" --notes "Chunk parts and the joined render. Not final until QC'd." --target "$GITHUB_SHA"
 
   chunk:
@@ -60,9 +66,9 @@ jobs:
       - run: npx remotion browser ensure
       - run: npm run sync
       - name: Render audio (WAV)
-        run: npx remotion render "${{ needs.plan.outputs.id }}" out/audio${{ matrix.chunk.i }}.wav --codec=wav --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} --log=info
+        run: npx remotion render "${{ needs.plan.outputs.id }}" out/audio${{ matrix.chunk.i }}.wav --codec=wav --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} --timeout=240000 --log=info
       - name: Render video (muted H.264)
-        run: npx remotion render "${{ needs.plan.outputs.id }}" out/part${{ matrix.chunk.i }}.mp4 --codec=h264 --crf=18 --muted --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} --log=info
+        run: npx remotion render "${{ needs.plan.outputs.id }}" out/part${{ matrix.chunk.i }}.mp4 --codec=h264 --crf=18 --muted --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} --timeout=240000 --log=info
       - name: Upload parts to release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -82,7 +88,7 @@ jobs:
         run: |
           set -e
           ID="${{ needs.plan.outputs.id }}"
-          N=$(echo '${{ needs.plan.outputs.matrix }}' | python3 -c "import json,sys;print(len(json.load(sys.stdin)['chunks']))")
+          N=${{ needs.plan.outputs.n }}
           cd parts
           : > list.txt; : > alist.txt
           for i in $(seq 0 $((N-1))); do echo "file 'part$i.mp4'" >> list.txt; echo "file 'audio$i.wav'" >> alist.txt; done
