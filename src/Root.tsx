@@ -23,6 +23,7 @@ import { Ug2ThumbA, Ug2ThumbB, Ug2ThumbC, Ug2ThumbD } from "./ug2/Thumbs";
 import { Test3D, UG003_TEST_FRAMES } from "./ug3/Test3D";
 import { UG003_FRAMES, UgThree, UgThreeSheet } from "./ug3/UgThree";
 import { Ug3ThumbA, Ug3ThumbB, Ug3ThumbC } from "./ug3/Thumbs3";
+import { Ug3V2A, Ug3V2B, Ug3V2C } from "./ug3/Thumbs3v2";
 import { Ug4ThumbA, Ug4ThumbB, Ug4ThumbC } from "./ug4/Thumbs4";
 import { UG004_FRAMES, UgFour, UgFourSheet } from "./ug4/UgFour";
 
@@ -76,6 +77,9 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="UG-003-Thumb-A" component={Ug3ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-003-Thumb-B" component={Ug3ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-003-Thumb-C" component={Ug3ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-V2-A" component={Ug3V2A} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-V2-B" component={Ug3V2B} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-V2-C" component={Ug3V2C} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-004" component={UgFour} durationInFrames={UG004_FRAMES} fps={30} width={1920} height={1080} />
         <Composition id="UG-004-Sheet" component={UgFourSheet} durationInFrames={UG004_FRAMES} fps={30} width={1920} height={1080} />
         <Composition id="UG-004-Thumb-A" component={Ug4ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
