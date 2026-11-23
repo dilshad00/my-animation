@@ -265,7 +265,7 @@ const SPromise: React.FC<SceneP> = ({ f, d, o }) => {
           </div>
         </Pos>
       ) : null}
-      <Pos x={110} y={1010}>
+      <Pos x={110} y={1044}>
         <div style={{ fontFamily: MONO, fontSize: 20, color: C.mute }}>*company claims, "up to", vs its own previous cards</div>
       </Pos>
     </AbsoluteFill>
@@ -409,7 +409,7 @@ const Flop: React.FC<SceneP> = ({ f, o }) => {
   const frozen = f >= tc && f < tb;
   return (
     <AbsoluteFill style={{ transform: shake(f, tc, 10, 14) }}>
-      <Game src={frozen ? "g4_highway" : "g2_fight"} dim={0.35} blur={f >= tb ? 2 : 0} sat={f >= tc ? 0.3 : 1} />
+      <Game src={f < tc ? "g3_traffic" : frozen ? "g4_highway" : "g2_fight"} dim={0.35} blur={f >= tb ? 2 : 0} sat={f >= tc ? 0.3 : 1} />
       <Pos x={110} y={100}>
         <Big f={f} at={2} size={70}>
           {"THEN REVIEWERS\nPLAYED GAMES ON IT"}
@@ -422,7 +422,7 @@ const Flop: React.FC<SceneP> = ({ f, o }) => {
           <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 90, color: fps < 25 ? C.red : C.green, textShadow: "0 4px 20px #000" }}>{fps} FPS</div>
         </Pos>
       ) : null}
-      <Pos x={110} y={1000}>
+      <Pos x={110} y={1044}>
         <div style={{ fontFamily: MONO, fontSize: 20, color: C.mute }}>Gameplay for illustration only · not an S80 capture</div>
       </Pos>
     </AbsoluteFill>
@@ -499,7 +499,7 @@ const Entity: React.FC<SceneP> = ({ f, o }) => {
         </Pos>
       ) : null}
       {f >= tj ? (
-        <Pos x={0} w={1920} y={880} style={{ textAlign: "center" }}>
+        <Pos x={0} w={1920} y={800} style={{ textAlign: "center" }}>
           <Tag f={f} at={tj} color={C.red} size={40}>
             WITHIN WEEKS: JOB CUTS
           </Tag>
@@ -648,7 +648,7 @@ const Claims: React.FC<SceneP> = ({ f, d, o }) => {
           {card(t4, "4×", "Memory capacity", C.green)}
         </div>
       </Pos>
-      <Pos x={110} y={1000}>
+      <Pos x={110} y={1044}>
         <div style={{ fontFamily: MONO, fontSize: 22, color: C.mute }}>*Moore Threads claims vs its own previous generation · not independently tested</div>
       </Pos>
     </AbsoluteFill>
@@ -679,30 +679,30 @@ const MathScene: React.FC<SceneP> = ({ f, d, o }) => {
               NOW DO THE MATH
             </Big>
           </Pos>
-          <Pos x={190} y={240}>
-            {f >= ts ? <Stack f={f} at={ts} gb={16} color={C.mute} label="MTT S80" h={24} /> : null}
+          <Pos x={190} b={300}>
+            {f >= ts ? <Stack f={f} at={ts} gb={16} color={C.mute} label="MTT S80" h={14} /> : null}
           </Pos>
           {f >= tt ? (
-            <Pos x={480} y={420}>
+            <Pos x={480} y={560}>
               <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 120, color: C.ink, opacity: ez(f, tt, tt + 8) }}>× 4 =</div>
             </Pos>
           ) : null}
-          <Pos x={820} y={130}>
-            {f >= tt + 20 ? <Stack f={f} at={tt + 20} gb={64} color={GOLD} label="LUSHAN (4× CLAIM)" h={24} /> : null}
+          <Pos x={820} b={300}>
+            {f >= tt + 20 ? <Stack f={f} at={tt + 20} gb={64} color={GOLD} label="LUSHAN (4× CLAIM)" h={14} /> : null}
           </Pos>
-          <Pos x={1400} y={130}>
-            {f >= tr ? <Stack f={f} at={tr} gb={32} color={NVG} label="RTX 5090" h={24} /> : null}
+          <Pos x={1400} b={300}>
+            {f >= tr ? <Stack f={f} at={tr} gb={32} color={NVG} label="RTX 5090" h={14} /> : null}
           </Pos>
           {f >= tdb ? (
-            <Pos x={0} w={1920} y={880} style={{ textAlign: "center" }}>
-              <Stamp f={f} at={tdb} color={GOLD} rot={-3} size={100}>
+            <Pos x={0} w={1920} y={800} style={{ textAlign: "center" }}>
+              <Stamp f={f} at={tdb} color={GOLD} rot={-3} size={80}>
                 EXACTLY DOUBLE
               </Stamp>
             </Pos>
           ) : null}
         </>
       ) : (
-        <Pos x={0} w={1920} y={740} style={{ textAlign: "center" }}>
+        <Pos x={0} w={1920} y={560} style={{ textAlign: "center" }}>
           <div style={{ display: "flex", justifyContent: "center", gap: 120, alignItems: "baseline" }}>
             <Slam f={f} at={tw} size={150} color={NVG} align="center" sub="RTX 5090">
               32 GB
@@ -740,7 +740,7 @@ const Timeline: React.FC<SceneP> = ({ f, o }) => {
       </div>
       {pts.map(([at, when, what, col], i) =>
         f >= at ? (
-          <div key={i} style={{ position: "absolute", left: 160 + i * 520, top: 520, width: 440, opacity: ez(f, at, at + 10), transform: `translateY(${(1 - ez(f, at, at + 10)) * 30}px)` }}>
+          <div key={i} style={{ position: "absolute", left: 160 + i * 420, top: 520, width: 380, opacity: ez(f, at, at + 10), transform: `translateY(${(1 - ez(f, at, at + 10)) * 30}px)` }}>
             <div style={{ width: 46, height: 46, borderRadius: 23, background: col, boxShadow: `0 0 30px ${col}`, marginLeft: -10, marginTop: 0 }} />
             <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 32, color: col, marginTop: 30, letterSpacing: 2 }}>{when}</div>
             <div style={{ fontFamily: INTER, fontWeight: 700, fontSize: 36, color: C.ink, marginTop: 8, lineHeight: 1.2 }}>{what}</div>
@@ -800,7 +800,7 @@ const Box: React.FC<{ f: number; at: number; cap: number; need: number; label: s
   const k = ez(f, at, at + 30);
   const fill = Math.min(need, cap) * k;
   const over = need > cap;
-  const H = 520;
+  const H = 420;
   const px = H / 64;
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16, opacity: ez(f, at - 6, at + 4) }}>
@@ -829,7 +829,7 @@ const Fit: React.FC<SceneP> = ({ f, o }) => {
           <Roll f={f} from={0} to={40} at={10} len={20} size={90} color={C.teal} prefix="≈ " suffix="GB" />
         </div>
       </Pos>
-      <Pos x={430} y={300}>
+      <Pos x={430} y={250}>
         <div style={{ display: "flex", gap: 260, alignItems: "flex-end" }}>
           {f >= tr - 4 ? <Box f={f} at={tr} cap={32} need={40} label="RTX 5090" color={NVG} /> : null}
           {f >= t64 - 4 ? <Box f={f} at={t64} cap={64} need={40} label="LUSHAN (64 GB)" color={GOLD} /> : null}
@@ -895,7 +895,7 @@ const Mods: React.FC<SceneP> = ({ f, d, o }) => {
         </Pos>
       ) : null}
       {f >= tr ? (
-        <Pos x={1050} y={850}>
+        <Pos x={1150} y={130}>
           <Stamp f={f} at={tr} color={GOLD} rot={-4} size={74}>
             REBUILT BY HAND
           </Stamp>
@@ -926,14 +926,14 @@ const Gap: React.FC<SceneP> = ({ f, o }) => {
         {bars.map(([n, gb, col], i) => (
           <div key={n} style={{ display: "flex", alignItems: "center", gap: 24, marginBottom: 24 }}>
             <div style={{ width: 220, fontFamily: INTER, fontWeight: 800, fontSize: 34, color: C.ink }}>{n}</div>
-            <div style={{ width: gb * 30 * ez(f, 6 + i * 6, 22 + i * 6), height: 54, borderRadius: 8, background: col, boxShadow: `0 0 20px ${col}66` }} />
+            <div style={{ width: gb * 22 * ez(f, 6 + i * 6, 22 + i * 6), height: 54, borderRadius: 8, background: col, boxShadow: `0 0 20px ${col}66` }} />
             <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 50, color: col }}>{gb} GB</div>
           </div>
         ))}
         {f >= tg ? (
           <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
             <div style={{ width: 220, fontFamily: INTER, fontWeight: 800, fontSize: 34, color: GOLD }}>LUSHAN?</div>
-            <div style={{ width: 64 * 30 * ez(f, tg, tg + 30), height: 54, borderRadius: 8, background: `repeating-linear-gradient(90deg, ${GOLD}, ${GOLD} 20px, ${GOLD}99 20px, ${GOLD}99 24px)`, boxShadow: `0 0 30px ${GOLD}` }} />
+            <div style={{ width: 64 * 22 * ez(f, tg, tg + 30), height: 54, borderRadius: 8, background: `repeating-linear-gradient(90deg, ${GOLD}, ${GOLD} 20px, ${GOLD}99 20px, ${GOLD}99 24px)`, boxShadow: `0 0 30px ${GOLD}` }} />
           </div>
         ) : null}
       </Pos>
@@ -944,7 +944,7 @@ const Gap: React.FC<SceneP> = ({ f, o }) => {
           </Tag>
         </Pos>
       ) : null}
-      <Pos x={140} y={1000}>
+      <Pos x={140} y={1044}>
         <div style={{ fontFamily: MONO, fontSize: 20, color: C.mute }}>RTX 50 desktop base configs · Lushan capacity unconfirmed</div>
       </Pos>
     </AbsoluteFill>
@@ -1033,7 +1033,7 @@ const Bandwidth: React.FC<SceneP> = ({ f, o }) => {
         </Pos>
       ) : null}
       {f >= tp ? (
-        <Pos x={0} w={1920} y={900} style={{ textAlign: "center" }}>
+        <Pos x={0} w={1920} y={810} style={{ textAlign: "center" }}>
           <Tag f={f} at={tp} color={C.red} size={34}>
             BIG + SLOW CAN LOSE TO SMALLER + FAST
           </Tag>
