@@ -1311,7 +1311,7 @@ const voice = (frame: number) => {
 const MUSIC: [string, number, number, number][] = [
   ["c5_twist", 0, c("mt"), 0.3],
   ["c2_ram", c("mt"), c("dec2025"), 0.3],
-  ["c1_hook", c("dec2025"), c("why"), 0.3],
+  ["c1_title", c("dec2025"), c("why"), 0.3],
   ["c3_ai", c("why"), c("beat"), 0.3],
   ["c7_bf", c("beat"), c("matters"), 0.3],
   ["c9_outro", c("matters"), TOTAL_FRAMES, 0.3],
