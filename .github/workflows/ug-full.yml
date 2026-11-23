@@ -22,6 +22,7 @@ jobs:
     outputs:
       id: ${{ steps.p.outputs.id }}
       tag: ${{ steps.p.outputs.tag }}
+      gl: ${{ steps.p.outputs.gl }}
       matrix: ${{ steps.p.outputs.matrix }}
     steps:
       - uses: actions/checkout@v6
@@ -38,6 +39,8 @@ jobs:
           TAG=$(echo "$ID-render" | tr 'A-Z' 'a-z')
           echo "id=$ID" >> "$GITHUB_OUTPUT"
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          GL=$(printf '%s' "$MSG" | grep -o '\[gl:[a-z-]*\]' | head -1 | sed 's/\[gl://;s/\]//')
+          echo "gl=${GL:+--gl=$GL}" >> "$GITHUB_OUTPUT"
           echo "matrix=$(npx tsx scripts/cloud-plan.ts "$ID" "${N:-12}" 0)" >> "$GITHUB_OUTPUT"
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$ID render (QC pending)" --notes "Chunk parts and the joined render. Not final until QC'd." --target "$GITHUB_SHA"
 
@@ -57,9 +60,9 @@ jobs:
       - run: npx remotion browser ensure
       - run: npm run sync
       - name: Render audio (WAV)
-        run: npx remotion render "${{ needs.plan.outputs.id }}" out/audio${{ matrix.chunk.i }}.wav --codec=wav --frames=${{ matrix.chunk.range }} --log=info
+        run: npx remotion render "${{ needs.plan.outputs.id }}" out/audio${{ matrix.chunk.i }}.wav --codec=wav --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} --log=info
       - name: Render video (muted H.264)
-        run: npx remotion render "${{ needs.plan.outputs.id }}" out/part${{ matrix.chunk.i }}.mp4 --codec=h264 --crf=18 --muted --frames=${{ matrix.chunk.range }} --log=info
+        run: npx remotion render "${{ needs.plan.outputs.id }}" out/part${{ matrix.chunk.i }}.mp4 --codec=h264 --crf=18 --muted --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} --log=info
       - name: Upload parts to release
         env:
           GH_TOKEN: ${{ github.token }}
