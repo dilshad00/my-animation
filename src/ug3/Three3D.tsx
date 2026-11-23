@@ -68,20 +68,46 @@ export const Scene3D: React.FC<{ children: React.ReactNode; rimA?: string; rimB?
       <Env intensity={env} />
       <ambientLight intensity={0.15} />
       <directionalLight position={[12, 30, 18]} intensity={key1} color="#fff6ea" />
-      <pointLight position={[-30, 8, -20]} intensity={900} distance={120} color={rimA} />
-      <pointLight position={[30, 6, -24]} intensity={700} distance={120} color={rimB} />
+      <pointLight position={[-30, 8, -20]} intensity={1400} distance={140} color={rimA} />
+      <pointLight position={[30, 6, -24]} intensity={1100} distance={140} color={rimB} />
+      <spotLight position={[0, 40, 6]} angle={0.5} penumbra={0.8} intensity={900} distance={160} color="#ffffff" />
       {children}
     </ThreeCanvas>
   );
 };
 
 /* ------------------------------------------------------------------ materials */
+/** Procedural brushed-metal streak texture (used as roughness + bump map). */
+const brushed = (() => {
+  let t: THREE.CanvasTexture | null = null;
+  return () => {
+    if (t) return t;
+    const cv = document.createElement("canvas");
+    cv.width = 1024;
+    cv.height = 256;
+    const g = cv.getContext("2d")!;
+    g.fillStyle = "#808080";
+    g.fillRect(0, 0, 1024, 256);
+    let seed = 7;
+    const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+    for (let i = 0; i < 2600; i++) {
+      const v = Math.floor(90 + rnd() * 90);
+      g.fillStyle = `rgba(${v},${v},${v},${0.25 + rnd() * 0.35})`;
+      g.fillRect(rnd() * 1024 - 200, rnd() * 256, 200 + rnd() * 700, 0.6 + rnd() * 1.2);
+    }
+    t = new THREE.CanvasTexture(cv);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.repeat.set(1.5, 3);
+    return t;
+  };
+})();
+
 const useMats = () =>
   useMemo(
     () => ({
-      shroud: new THREE.MeshStandardMaterial({ color: "#6f7680", metalness: 1, roughness: 0.26 }),
-      shroudDark: new THREE.MeshStandardMaterial({ color: "#16191e", metalness: 0.7, roughness: 0.5 }),
-      rib: new THREE.MeshStandardMaterial({ color: "#2b3038", metalness: 0.9, roughness: 0.35 }),
+      shroud: new THREE.MeshPhysicalMaterial({ color: "#3b4048", metalness: 1, roughness: 0.34, roughnessMap: brushed(), bumpMap: brushed(), bumpScale: 0.6, clearcoat: 0.6, clearcoatRoughness: 0.12 }),
+      shroudDark: new THREE.MeshPhysicalMaterial({ color: "#0d0f12", metalness: 0.85, roughness: 0.38, roughnessMap: brushed(), clearcoat: 0.5, clearcoatRoughness: 0.2 }),
+      rib: new THREE.MeshStandardMaterial({ color: "#a9b0ba", metalness: 1, roughness: 0.18 }),
       smd: new THREE.MeshStandardMaterial({ color: "#2a2a2a", metalness: 0.4, roughness: 0.4 }),
       smdTan: new THREE.MeshStandardMaterial({ color: "#8a6a45", metalness: 0.3, roughness: 0.5 }),
       fin: new THREE.MeshStandardMaterial({ color: "#c9ced6", metalness: 0.95, roughness: 0.22 }),
