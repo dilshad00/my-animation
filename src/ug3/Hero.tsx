@@ -2,13 +2,13 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, staticFile } from "remotion";
 
-const img = (n: string) => staticFile(`ug-003/img/${n}`);
+const img = (n: string) => staticFile(n.includes("/") ? n : `ug-003/img/${n}`);
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 /** Smoky textured background plate (replaces the flat grid stage). */
-export const Plate: React.FC<{ f: number; accent?: string; x?: number; y?: number; dim?: number }> = ({ f, accent = "rgba(40,215,255,0.14)", x = 60, y = 45, dim = 0.5 }) => (
+export const Plate: React.FC<{ f: number; accent?: string; x?: number; y?: number; dim?: number; src?: string }> = ({ f, accent = "rgba(40,215,255,0.14)", x = 60, y = 45, dim = 0.5, src = "plate.jpg" }) => (
   <AbsoluteFill style={{ backgroundColor: "#05070a", overflow: "hidden" }}>
-    <Img src={img("plate.jpg")} style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover", opacity: dim, transform: `scale(${1.12 + Math.sin(f * 0.004) * 0.03}) translate(${Math.sin(f * 0.003) * 14}px, ${Math.cos(f * 0.0025) * 8}px)` }} />
+    <Img src={img(src)} style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover", opacity: dim, transform: `scale(${1.12 + Math.sin(f * 0.004) * 0.03}) translate(${Math.sin(f * 0.003) * 14}px, ${Math.cos(f * 0.0025) * 8}px)` }} />
     <AbsoluteFill style={{ background: `radial-gradient(ellipse at ${x}% ${y}%, ${accent}, transparent 62%)`, mixBlendMode: "screen" }} />
     <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 100%)" }} />
   </AbsoluteFill>
