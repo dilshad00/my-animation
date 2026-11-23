@@ -6,7 +6,7 @@
 import { Audio } from "@remotion/media";
 import React from "react";
 import { AbsoluteFill, Freeze, interpolate, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
-import { Clip, pr, Shade, sp, Stage, Stamp } from "../ug/blocks";
+import { Clip, pr, Shade, sp, Stamp } from "../ug/blocks";
 import { clamp, Glitch, Grain, shake, SourceTag, Vignette } from "../ug/fx";
 import { C, DISPLAY, INTER, MONO } from "../ug/theme";
 import {
@@ -40,6 +40,7 @@ import {
 } from "./Gfx3";
 import { Bridge, Cam, Card, ContactShadow, FuseField, Ga100, Glitcher, mix, mixV, project, Scene3D, Wire, type V3 } from "./Three3D";
 import { CAPTIONS, CUE, TOTAL_FRAMES, VO_FRAMES, VOX } from "./ug003.data";
+import { Embers, HeroShot, Plate } from "./Hero";
 
 export const UG003_FRAMES = TOTAL_FRAMES;
 const XF = 6;
@@ -64,27 +65,23 @@ const Game: React.FC<{ src: string; dim?: number; blur?: number }> = ({ src, dim
   </AbsoluteFill>
 );
 
-const BG: React.FC<{ f: number; accent?: string; x?: number; y?: number }> = ({ f, accent = "rgba(40,215,255,0.14)", x = 60, y = 45 }) => <Stage f={f} accent={accent} x={x} y={y} />;
+const BG: React.FC<{ f: number; accent?: string; x?: number; y?: number }> = ({ f, accent = "rgba(40,215,255,0.14)", x = 60, y = 45 }) => <Plate f={f} accent={accent} x={x} y={y} />;
+const LeftShade: React.FC<{ k?: number }> = ({ k = 0.75 }) => <AbsoluteFill style={{ background: `linear-gradient(90deg, rgba(0,0,0,${k}) 0%, rgba(0,0,0,${k * 0.5}) 35%, transparent 60%)` }} />;
 
 /* ===================================================================== HOOK */
-const HERO_CAM = (f: number): { pos: V3; target: V3; fov: number } => {
-  const a = 0.75 + f * 0.0045;
-  return { pos: [Math.sin(a) * 33, 13 + Math.sin(f * 0.01) * 1.5, Math.cos(a) * 33], target: [0, 1.4, 0], fov: 30 };
-};
-
 const Hook8: React.FC<SceneP> = ({ f, o }) => {
   const same = L(o, "h_same");
   const cut = f >= same;
-  const cam = cut ? { pos: [-20, 9, 24] as V3, target: [0, 1.6, 0] as V3, fov: 28 } : HERO_CAM(f);
-  const push = cut ? ez(f, same, same + 60) : 0;
+  const push = 0;
   return (
     <AbsoluteFill>
-      <BG f={f} accent="rgba(255,61,82,0.10)" x={70} y={50} />
-      <Scene3D rimA={cut ? "#ff3d52" : "#28d7ff"} rimB="#ffb648">
-        <Cam pos={mixV(cam.pos, [cam.pos[0] * 0.8, cam.pos[1] * 0.85, cam.pos[2] * 0.8], push)} target={cam.target} fov={cam.fov} />
-        <Card accent="#ff3d52" accentK={0.4} memGB={8} smOn={70} />
-        <ContactShadow />
-      </Scene3D>
+      {cut ? (
+        <HeroShot f={f - same} d={70} a="hero_red.jpg" zoom={[1.55, 1.7 + push * 0]} origin="72% 52%" sweepAt={4} bloom={0.4} />
+      ) : (
+        <HeroShot f={f} d={same} a="hero_red.jpg" zoom={[1.0, 1.1]} pan={[30, 0, 0, 0]} origin="62% 55%" sweepAt={30} bloom={0.38} />
+      )}
+      <Embers f={f} color="#ff6a3d" />
+      <LeftShade k={0.55} />
       <Pos x={110} y={150}>
         <Tag f={f} at={8} color={C.red}>
           VRAM
@@ -104,15 +101,11 @@ const Hook8: React.FC<SceneP> = ({ f, o }) => {
 
 const Hook80: React.FC<SceneP> = ({ f, d }) => {
   const flash = interpolate(f, [0, 2, 10], [0.9, 0.6, 0], clamp);
-  const a = 2.4 + f * 0.006;
   return (
     <AbsoluteFill style={{ transform: shake(f, 0, 16, 22) }}>
-      <BG f={f} accent="rgba(53,242,154,0.18)" x={60} y={50} />
-      <Scene3D rimA="#35f29a" rimB="#28d7ff" key1={2.6}>
-        <Cam pos={[Math.sin(a) * mix(38, 31, ez(f, 0, d)), 13, Math.cos(a) * mix(38, 31, ez(f, 0, d))]} target={[0, 1.4, 0]} fov={30} />
-        <Card accent="#35f29a" accentK={1.4} memGB={80} smOn={128} glow={1.3} explode={0} />
-        <ContactShadow />
-      </Scene3D>
+      <HeroShot f={f} d={d} a="hero_red.jpg" b="hero_green.jpg" k={ez(f, 0, 6)} zoom={[1.18, 1.3]} origin="64% 55%" sweepAt={2} bloom={0.6} />
+      <Embers f={f} color="#35f29a" speed={2.2} n={60} />
+      <LeftShade k={0.5} />
       <Pos x={110} y={150}>
         <Tag f={f} at={0} color={C.green}>
           VRAM
@@ -130,11 +123,9 @@ const Nobody: React.FC<SceneP> = ({ f, d, o }) => {
   const sw = L(o, "h_swap");
   return (
     <AbsoluteFill>
-      <BG f={f} />
-      <Scene3D>
-        <Cam pos={mixV([30, 30, 30], [20, 30, 22], ez(f, 0, d))} target={[0, 3, 0]} fov={30} />
-        <Card explode={ez(f, 0, 26)} memGB={80} smOn={128} />
-      </Scene3D>
+      <HeroShot f={f} d={d} a="chip.jpg" zoom={[1.0, 1.22]} pan={[0, 0, 120, 40]} origin="50% 55%" sweepAt={12} bloom={0.45} />
+      <Embers f={f} color="#35f29a" n={30} opacity={0.7} />
+      <LeftShade k={0.8} />
       <Pos x={110} y={200}>
         <Big f={f} at={4} size={84}>
           {"+0 MEMORY CHIPS"}
@@ -267,11 +258,8 @@ const Title: React.FC<SceneP> = ({ f, d, o }) => {
   const glow = 0.5 + 0.5 * Math.sin(f * 0.15);
   return (
     <AbsoluteFill>
-      <BG f={f} accent="rgba(53,242,154,0.12)" x={50} y={50} />
-      <Scene3D rimA="#35f29a" rimB="#ff3d52">
-        <Cam pos={mixV([0, 40, 38], [0, 36, 33], ez(f, 0, d))} target={[0, 2, -3]} fov={30} />
-        <Card explode={0.75} memGB={mix(8, 80, ez(f, 20, 70))} smOn={mix(70, 128, ez(f, 20, 70))} glow={1 + glow * 0.4} r={[0, f * 0.003, 0]} />
-      </Scene3D>
+      <HeroShot f={f} d={d} a="hero_red.jpg" b="hero_green.jpg" k={ez(f, 20, 60)} zoom={[1.08, 1.0]} pan={[-60, -40, -120, -80]} origin="60% 50%" sweepAt={50} bloom={0.4 + glow * 0.15} />
+      <Embers f={f} color="#35f29a" n={50} />
       <AbsoluteFill style={{ background: "linear-gradient(0deg, rgba(5,7,10,0.9) 0%, rgba(5,7,10,0) 55%)" }} />
       <Pos x={0} w={1920} y={630} style={{ textAlign: "center" }}>
         <Big f={f} at={2} size={118} align="center" glow color={C.ink}>
