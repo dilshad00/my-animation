@@ -87,7 +87,7 @@ const Strike: React.FC<{ f: number; at: number; children: React.ReactNode; color
   const a = ez(f, at, at + 8);
   const line = ez(f, at + 8, at + 18);
   return (
-    <div style={{ position: "relative", display: "inline-block", opacity: a, fontFamily: DISPLAY, fontWeight: 700, fontSize: size, color, transform: `translateX(${(1 - a) * -40}px)` }}>
+    <div style={{ position: "relative", display: "inline-block", alignSelf: "flex-start", opacity: a, fontFamily: DISPLAY, fontWeight: 700, fontSize: size, color, transform: `translateX(${(1 - a) * -40}px)` }}>
       {children}
       <div style={{ position: "absolute", left: -10, top: "52%", height: 10, width: `calc(${line * 100}% + 20px)`, background: C.red, boxShadow: `0 0 20px ${C.red}` }} />
     </div>
@@ -106,7 +106,7 @@ const Stack: React.FC<{ f: number; at: number; gb: number; color: string; label:
         })}
       </div>
       <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 70, color, textShadow: `0 0 30px ${color}88` }}>
-        <Roll f={f} from={0} to={gb} at={at} len={Math.max(10, n * 2)} size={70} color={color} suffix=" GB" />
+        <Roll f={f} from={0} to={gb} at={at} len={Math.max(10, n * 2)} size={70} color={color} suffix="GB" />
       </div>
       <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 24, color: C.mute, letterSpacing: 3 }}>{label}</div>
       {over ? null : null}
@@ -167,7 +167,7 @@ const SDouble: React.FC<SceneP> = ({ f, d, o }) => {
         <BG f={f} accent="rgba(118,185,0,0.15)" x={35} y={45} />
       )}
       <Pos x={110} y={130}>
-        <Roll f={f} from={32} to={64} at={Math.max(0, t64 - 10)} len={12} size={hero ? 250 : 200} color={hero ? GOLD : NVG} suffix=" GB" />
+        <Roll f={f} from={32} to={64} at={Math.max(0, t64 - 10)} len={12} size={hero ? 250 : 200} color={hero ? GOLD : NVG} suffix="GB" />
         <div style={{ height: 24 }} />
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           <Strike f={f} at={tn} size={70}>
@@ -826,7 +826,7 @@ const Fit: React.FC<SceneP> = ({ f, o }) => {
       <Pos x={110} y={90}>
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
           <div style={{ padding: "16px 26px", borderRadius: 14, background: `${C.teal}22`, border: `3px solid ${C.teal}`, fontFamily: DISPLAY, fontWeight: 700, fontSize: 60, color: C.ink, opacity: ez(f, 2, 12) }}>70B AI MODEL</div>
-          <Roll f={f} from={0} to={40} at={10} len={20} size={90} color={C.teal} prefix="≈ " suffix=" GB" />
+          <Roll f={f} from={0} to={40} at={10} len={20} size={90} color={C.teal} prefix="≈ " suffix="GB" />
         </div>
       </Pos>
       <Pos x={430} y={300}>
@@ -874,7 +874,7 @@ const Mods: React.FC<SceneP> = ({ f, d, o }) => {
             <div style={{ display: "flex", alignItems: "center", gap: 24, marginTop: 10 }}>
               <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 90, color: C.mute }}>24 GB</span>
               <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 70, color: GOLD }}>→</span>
-              <Roll f={f} from={24} to={48} at={tw + 70} len={20} size={110} color={GOLD} suffix=" GB" />
+              <Roll f={f} from={24} to={48} at={tw + 70} len={20} size={110} color={GOLD} suffix="GB" />
             </div>
             <div style={{ fontFamily: INTER, fontWeight: 700, fontSize: 28, color: C.ink, marginTop: 6 }}>Desolder the memory, solder on bigger chips</div>
           </div>
