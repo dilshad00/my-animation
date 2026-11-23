@@ -874,7 +874,7 @@ const Mods: React.FC<SceneP> = ({ f, d, o }) => {
             <div style={{ display: "flex", alignItems: "center", gap: 24, marginTop: 10 }}>
               <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 90, color: C.mute }}>24 GB</span>
               <span style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 70, color: GOLD }}>→</span>
-              <Roll f={f} from={24} to={48} at={tw + 70} len={20} size={110} color={GOLD} suffix="GB" />
+              {f >= tw + 150 ? <Roll f={f} from={24} to={48} at={tw + 150} len={20} size={110} color={GOLD} suffix="GB" /> : <span style={{ fontFamily: MONO, fontWeight: 800, fontSize: 110, color: GOLD }}>??</span>}
             </div>
             <div style={{ fontFamily: INTER, fontWeight: 700, fontSize: 28, color: C.ink, marginTop: 6 }}>Desolder the memory, solder on bigger chips</div>
           </div>
