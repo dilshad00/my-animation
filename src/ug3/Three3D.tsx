@@ -10,6 +10,7 @@ import React, { useLayoutEffect, useMemo } from "react";
 import { useVideoConfig } from "remotion";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
 /* ------------------------------------------------------------------ helpers */
 export type V3 = [number, number, number];
@@ -78,8 +79,11 @@ export const Scene3D: React.FC<{ children: React.ReactNode; rimA?: string; rimB?
 const useMats = () =>
   useMemo(
     () => ({
-      shroud: new THREE.MeshStandardMaterial({ color: "#9aa1aa", metalness: 0.92, roughness: 0.32 }),
-      shroudDark: new THREE.MeshStandardMaterial({ color: "#2a2e34", metalness: 0.85, roughness: 0.4 }),
+      shroud: new THREE.MeshStandardMaterial({ color: "#6f7680", metalness: 1, roughness: 0.26 }),
+      shroudDark: new THREE.MeshStandardMaterial({ color: "#16191e", metalness: 0.7, roughness: 0.5 }),
+      rib: new THREE.MeshStandardMaterial({ color: "#2b3038", metalness: 0.9, roughness: 0.35 }),
+      smd: new THREE.MeshStandardMaterial({ color: "#2a2a2a", metalness: 0.4, roughness: 0.4 }),
+      smdTan: new THREE.MeshStandardMaterial({ color: "#8a6a45", metalness: 0.3, roughness: 0.5 }),
       fin: new THREE.MeshStandardMaterial({ color: "#c9ced6", metalness: 0.95, roughness: 0.22 }),
       copper: new THREE.MeshStandardMaterial({ color: "#c8794a", metalness: 1, roughness: 0.28 }),
       pcb: new THREE.MeshStandardMaterial({ color: "#0b1f17", metalness: 0.2, roughness: 0.55 }),
@@ -101,6 +105,67 @@ const useMats = () =>
 const Box: React.FC<{ p: V3; s: V3; m: THREE.Material; r?: V3 }> = ({ p, s, m, r }) => (
   <mesh position={p} rotation={r} material={m}>
     <boxGeometry args={s} />
+  </mesh>
+);
+
+const RBox: React.FC<{ p: V3; s: V3; m: THREE.Material; rad?: number }> = ({ p, s, m, rad = 0.12 }) => {
+  const g = useMemo(() => new RoundedBoxGeometry(s[0], s[1], s[2], 3, Math.min(rad, s[0] / 2, s[1] / 2, s[2] / 2)), [s[0], s[1], s[2], rad]);
+  return <mesh position={p} geometry={g} material={m} />;
+};
+
+/** Scattered SMD parts (caps/resistors) on the PCB — stable random layout. */
+const Smd: React.FC<{ n?: number; m: THREE.Material; m2: THREE.Material; avoid: (x: number, z: number) => boolean }> = ({ n = 260, m, m2, avoid }) => {
+  const meshes = useMemo(() => {
+    const g = new THREE.BoxGeometry(0.22, 0.1, 0.12);
+    const a = new THREE.InstancedMesh(g, m, n);
+    const b = new THREE.InstancedMesh(g, m2, n);
+    const o = new THREE.Object3D();
+    let ia = 0;
+    let ib = 0;
+    for (let i = 0; i < n * 3 && ia + ib < n; i++) {
+      const x = (hash(i * 3.1) - 0.5) * (CARD_L - 1.5);
+      const z = (hash(i * 7.7) - 0.5) * (CARD_H - 1.2);
+      if (avoid(x, z)) continue;
+      o.position.set(x, 0.13, z);
+      o.rotation.set(0, hash(i * 1.3) > 0.5 ? Math.PI / 2 : 0, 0);
+      o.updateMatrix();
+      if (hash(i * 5.3) > 0.5) a.setMatrixAt(ia++, o.matrix);
+      else b.setMatrixAt(ib++, o.matrix);
+    }
+    a.count = ia;
+    b.count = ib;
+    a.instanceMatrix.needsUpdate = true;
+    b.instanceMatrix.needsUpdate = true;
+    return [a, b];
+  }, [n, m, m2, avoid]);
+  return (
+    <>
+      <primitive object={meshes[0]} />
+      <primitive object={meshes[1]} />
+    </>
+  );
+};
+
+/** Soft contact shadow under an object (radial-gradient texture). */
+let shadowTex: THREE.Texture | null = null;
+const getShadowTex = () => {
+  if (shadowTex) return shadowTex;
+  const cv = document.createElement("canvas");
+  cv.width = 256;
+  cv.height = 256;
+  const ctx = cv.getContext("2d") as CanvasRenderingContext2D;
+  const g = ctx.createRadialGradient(128, 128, 10, 128, 128, 128);
+  g.addColorStop(0, "rgba(0,0,0,0.85)");
+  g.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, 256, 256);
+  shadowTex = new THREE.CanvasTexture(cv);
+  return shadowTex;
+};
+export const ContactShadow: React.FC<{ p?: V3; w?: number; d?: number; opacity?: number }> = ({ p = [0, -0.6, 0], w = 36, d = 20, opacity = 0.9 }) => (
+  <mesh position={p} rotation={[-Math.PI / 2, 0, 0]}>
+    <planeGeometry args={[w, d]} />
+    <meshBasicMaterial map={getShadowTex()} transparent opacity={opacity} depthWrite={false} />
   </mesh>
 );
 
@@ -149,7 +214,7 @@ export const Ga100: React.FC<{ smOn: number; memGB: number; glow?: number; pulse
   const DIE_D = 2.5;
   const smMesh = useMemo(() => {
     const g = new THREE.BoxGeometry(0.29, 0.03, 0.235);
-    const m = new THREE.MeshStandardMaterial({ color: "#ffffff", metalness: 0.4, roughness: 0.35, emissive: "#ffffff", emissiveIntensity: 0.0 });
+    const m = new THREE.MeshBasicMaterial({ color: "#ffffff", toneMapped: false });
     const im = new THREE.InstancedMesh(g, m, SM_TOTAL);
     const o = new THREE.Object3D();
     // 8 GPCs in 2 rows × 4 cols; each GPC = 4 × 4 SMs
@@ -170,15 +235,14 @@ export const Ga100: React.FC<{ smOn: number; memGB: number; glow?: number; pulse
   }, []);
   // colour per SM every frame
   const on = new THREE.Color("#35f29a");
-  const off = new THREE.Color(lockedColor).multiplyScalar(0.35);
+  const off = new THREE.Color(lockedColor).multiplyScalar(0.2);
   const n = Math.round(smOn);
   for (let r = 0; r < SM_TOTAL; r++) {
     const i = SM_ORDER[r];
-    const c = r < n ? on.clone().multiplyScalar(0.55 + 0.45 * glow + pulse * 1.5) : off;
+    const c = r < n ? on.clone().multiplyScalar(0.75 + 0.3 * glow + pulse * 1.2) : off;
     smMesh.setColorAt(i, c);
   }
   if (smMesh.instanceColor) smMesh.instanceColor.needsUpdate = true;
-  (smMesh.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.0;
 
   // HBM: 6 sites; site 5 (index) is the dummy
   const sites: V3[] = [
@@ -205,12 +269,12 @@ export const Ga100: React.FC<{ smOn: number; memGB: number; glow?: number; pulse
             {Array.from({ length: HBM_LAYERS }, (_, l) => {
               const li = order * HBM_LAYERS + l; // fill stack by stack
               const lit = !isDummy && li < litLayers ? Math.min(1, litLayers - li) : 0;
-              const col = new THREE.Color(isDummy ? "#30343a" : "#3a414b");
-              const em = new THREE.Color("#28d7ff").multiplyScalar(lit * (0.9 + pulse));
+              const col = new THREE.Color(isDummy ? "#24272c" : "#1b1f26");
+              const em = new THREE.Color("#28d7ff").multiplyScalar(lit * (1 + pulse));
               return (
                 <mesh key={l} position={[0, l * 0.055, 0]}>
-                  <boxGeometry args={[0.95, 0.045, 0.8]} />
-                  <meshStandardMaterial color={col} metalness={0.7} roughness={0.35} emissive={em} emissiveIntensity={1.6 * glow} />
+                  <boxGeometry args={[0.95, 0.04, 0.8]} />
+                  <meshStandardMaterial color={col} metalness={0.6} roughness={0.4} emissive={em} emissiveIntensity={4 * glow} toneMapped={false} />
                 </mesh>
               );
             })}
@@ -223,6 +287,8 @@ export const Ga100: React.FC<{ smOn: number; memGB: number; glow?: number; pulse
 };
 
 /* ------------------------------------------------------------------ the mining card */
+const SMD_AVOID = (x: number, z: number) =>
+  (Math.abs(x + 2.2) < 3.6 && Math.abs(z) < 2.6) || (x > 3.4 && x < 10.4 && z < -2.9) || (x > 3.4 && x < 9.8 && z > 1.9) || x > CARD_L / 2 - 2.2;
 export const CARD_L = 26.7;
 export const CARD_H = 11.1;
 /**
@@ -259,6 +325,7 @@ export const Card: React.FC<{
       <Box p={[0, -0.25, 0]} s={[L - 0.4, 0.3, H - 0.3]} m={M.back} />
       {/* PCIe gold fingers on the bottom edge (z+) */}
       <Box p={[-1.5, 0, H / 2 + 0.4]} s={[8.6, 0.17, 0.8]} m={M.gold} />
+      <Smd m={M.smd} m2={M.smdTan} avoid={SMD_AVOID} />
       {/* GA100 package */}
       <Ga100 p={[-2.2, 0.2, 0]} smOn={smOn} memGB={memGB} glow={glow} pulse={pulse} />
       {/* VRM: chokes, caps, controller */}
@@ -289,11 +356,18 @@ export const Card: React.FC<{
           </group>
           {/* shroud: open-ended U channel */}
           <group position={[0, lift, 0]}>
-            <Box p={[0, 3.85, 0]} s={[L, 0.14, H + 0.2]} m={M.shroud} />
-            <Box p={[0, 2.05, H / 2 + 0.07]} s={[L, 3.7, 0.14]} m={M.shroud} />
-            <Box p={[0, 2.05, -H / 2 - 0.07]} s={[L, 3.7, 0.14]} m={M.shroud} />
-            {/* dark inset panel + accent strip on the top */}
-            <Box p={[1.5, 3.93, 0]} s={[L - 7, 0.04, H - 3.2]} m={M.shroudDark} />
+            <RBox p={[0, 3.85, 0]} s={[L, 0.22, H + 0.3]} m={M.shroud} rad={0.1} />
+            <RBox p={[0, 2.05, H / 2 + 0.07]} s={[L, 3.8, 0.22]} m={M.shroud} rad={0.1} />
+            <RBox p={[0, 2.05, -H / 2 - 0.07]} s={[L, 3.8, 0.22]} m={M.shroud} rad={0.1} />
+            {/* dark inset panel with ribs + accent strips on the top */}
+            <RBox p={[1.5, 3.97, 0]} s={[L - 7, 0.06, H - 3.2]} m={M.shroudDark} rad={0.03} />
+            {Array.from({ length: 14 }, (_, i) => (
+              <Box key={i} p={[1.5 - (L - 8) / 2 + (i * (L - 8)) / 13, 4.02, 0]} s={[0.12, 0.05, H - 4]} m={M.rib} />
+            ))}
+            {/* side-panel grooves */}
+            {[-0.9, 0, 0.9].map((y, i) => (
+              <Box key={`g${i}`} p={[1, 2.05 + y, H / 2 + 0.19]} s={[L - 6, 0.08, 0.03]} m={M.shroudDark} />
+            ))}
             <Box p={[1.5, 3.96, H / 2 - 1.1]} s={[L - 7, 0.03, 0.12]} m={accentMat} />
             <Box p={[1.5, 3.96, -H / 2 + 1.1]} s={[L - 7, 0.03, 0.12]} m={accentMat} />
           </group>
@@ -387,8 +461,9 @@ export const Bridge: React.FC<{ a: V3; b: V3; on: number; t: number }> = ({ a, b
   const len = Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]);
   const mid: V3 = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2];
   const M = useMats();
+  const yaw = -Math.atan2(b[2] - a[2], b[0] - a[0]);
   return (
-    <group position={mid}>
+    <group position={mid} rotation={[0, yaw, 0]}>
       <Box p={[0, 0, 0]} s={[len, 0.5, 2.2]} m={M.shroudDark} />
       {Array.from({ length: 6 }, (_, i) => {
         const x = (((t * 0.05 + i / 6) % 1) - 0.5) * len;
