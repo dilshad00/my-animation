@@ -21,6 +21,7 @@ import { ControllerTest } from "./ug2/ControllerTest";
 import { UG002_FRAMES, UgTwo, UgTwoSheet } from "./ug2/UgTwo";
 import { Ug2ThumbA, Ug2ThumbB, Ug2ThumbC, Ug2ThumbD } from "./ug2/Thumbs";
 import { Test3D, UG003_TEST_FRAMES } from "./ug3/Test3D";
+import { UG003_FRAMES, UgThree, UgThreeSheet } from "./ug3/UgThree";
 
 /**
  * Every folder in projects/<id>/ (with a storyboard.json) becomes a composition "<id>".
@@ -67,6 +68,8 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="UG-002-Thumb-C" component={Ug2ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-002-Thumb-D" component={Ug2ThumbD} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-003-3D" component={Test3D} durationInFrames={UG003_TEST_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003" component={UgThree} durationInFrames={UG003_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-Sheet" component={UgThreeSheet} durationInFrames={UG003_FRAMES} fps={30} width={1920} height={1080} />
       </Folder>
       <Folder name="Library-Tests">
         <Composition id="Test-Cast" component={CastGallery} durationInFrames={240} fps={30} width={1920} height={1080} />
