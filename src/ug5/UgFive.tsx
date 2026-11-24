@@ -211,7 +211,7 @@ const ScoreHUD: React.FC = () => {
     </div>
   );
   return (
-    <div style={{ position: "absolute", left: 54, top: 40, opacity: a, display: "flex", alignItems: "center", gap: 20, padding: "8px 22px", borderRadius: 14, background: "rgba(5,7,10,0.75)", border: "1.5px solid rgba(255,255,255,0.14)", boxShadow: "0 10px 30px rgba(0,0,0,0.5)" }}>
+    <div style={{ position: "absolute", right: 54, top: 36, opacity: a, display: "flex", alignItems: "center", gap: 20, padding: "8px 22px", borderRadius: 14, background: "rgba(5,7,10,0.75)", border: "1.5px solid rgba(255,255,255,0.14)", boxShadow: "0 10px 30px rgba(0,0,0,0.5)" }}>
       {cell("PHONE", ph, PH, lastWho === "phone")}
       <span style={{ fontFamily: DISPLAY, fontSize: 34, color: C.mute }}>–</span>
       {cell("RTX", rtx, NV, lastWho === "rtx")}
@@ -399,7 +399,7 @@ const HookGap: React.FC<SceneP> = ({ f, d, o }) => {
   return (
     <AbsoluteFill>
       <div style={{ position: "absolute", left: 0, top: 0, width: 960, height: 1080, overflow: "hidden", transform: `translateX(${(1 - split) * -400}px)` }}>
-        <div style={{ position: "absolute", left: -480, top: 0, width: 1920, height: 1080 }}>
+        <div style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080 }}>
           <Foot src="mob" at={MSEG[5] + 4} f={f} d={d} zoom={[1.1, 1.18]} dim={0.3} />
         </div>
       </div>
@@ -447,7 +447,7 @@ const HookRan: React.FC<SceneP> = ({ f, d, o }) => {
     <AbsoluteFill style={{ transform: shake(f, tw, 16, 20) }}>
       {f < tsu ? (
         <>
-          <Foot src="mob" at={MSEG[2] + 3} f={f} d={d} dim={0.55} blur={2} />
+          <Foot src="mob" at={MSEG[3] + 6} f={f} d={d} dim={0.55} blur={2} />
           <AbsoluteFill style={{ opacity: cut }}>
             <Foot src="cd" at={CD.grass} f={f} d={d} dim={0.55} blur={2} />
           </AbsoluteFill>
@@ -523,7 +523,7 @@ const Title: React.FC<SceneP> = ({ f, o }) => {
         <RtxCard p={[mix(70, 12, a), 0.5, -1]} r={[0.35, -0.45 + after * 0.004, 0.12]} s={0.85} spin={f * 0.4} />
       </Scene3D>
       <Embers f={f} color={GOLD} n={60} speed={1.8} opacity={ez(f, hit, hit + 10)} />
-      <Center y={720}>
+      <Center y={640}>
         {f >= hit ? (
           <div style={{ transform: `scale(${1.5 - 0.5 * sp(f, hit, 11, 220)})` }}>
             <div style={{ fontFamily: DISPLAY, fontWeight: 700, fontSize: 150, letterSpacing: 6, lineHeight: 1, textShadow: "0 10px 50px rgba(0,0,0,0.9)" }}>
@@ -572,8 +572,8 @@ const FighterPhone: React.FC<SceneP> = ({ f, d, o }) => {
       <BG f={f} accent="rgba(40,215,255,0.2)" x={70} y={50} />
       <Scene3D rimA={PH} rimB="#7a5cff">
         <Cam {...cam} />
-        <Phone p={[7, 1, 0]} r={[0.5, -0.4 + f * 0.004, -0.2]} s={1.15} />
-        <ContactShadow p={[7, -3, 0]} w={30} d={14} opacity={0.6} />
+        <Phone p={[11, 1, 0]} r={[0.5, -0.4 + f * 0.004, -0.2]} s={0.95} />
+        <ContactShadow p={[11, -3, 0]} w={26} d={12} opacity={0.6} />
       </Scene3D>
       <Corner f={f} label="IN THE LEFT CORNER" col={PH} />
       <Pos x={90} y={200}>
@@ -654,6 +654,7 @@ const FighterRtx: React.FC<SceneP> = ({ f, d, o }) => {
         <Floor y={-1.2} />
         <ContactShadow p={[-8, -1.15, 0]} w={44} d={24} />
       </Scene3D>
+      <Shade k={0.85} side="right" />
       <Corner f={f} label="IN THE RIGHT CORNER" col={NV} right />
       <Pos r={90} y={200} style={{ textAlign: "right" }}>
         <Slam f={f} at={20} size={170} color={NV}>
@@ -1094,7 +1095,7 @@ const Memory: React.FC<SceneP> = ({ f, o }) => {
               </div>
             );
           })}
-          {f >= tfi ? <div style={{ alignSelf: "center", fontFamily: MONO, fontWeight: 700, fontSize: 30, color: C.mute, opacity: ez(f, tfi, tfi + 10) }}>← all fighting over the same memory</div> : null}
+          {f >= tfi && f < t20 ? <div style={{ alignSelf: "center", fontFamily: MONO, fontWeight: 700, fontSize: 30, color: C.mute, opacity: ez(f, tfi, tfi + 10) }}>← all fighting over the same memory</div> : null}
         </Pos>
       ) : null}
       {f >= t20 ? (
@@ -1152,19 +1153,19 @@ const Highway: React.FC<SceneP> = ({ f, o }) => {
           <div style={{ position: "absolute", left: 30, top: -64, fontFamily: DISPLAY, fontWeight: 700, fontSize: 48, color: PH }}>PHONE · ONE SHARED ROAD</div>
         </div>
       ) : null}
-      {f >= treason ? (
-        <Pos x={110} y={850}>
+      {f >= treason && f < tthe ? (
+        <Pos x={110} y={820}>
           <Line f={f} at={treason} size={46}>
             {"why phones struggle with high resolution & heavy textures"}
           </Line>
         </Pos>
       ) : null}
       {f >= tthe ? (
-        <Pos r={110} y={860}>
+        <Center y={810}>
           <Stamp f={f} at={tthe} color={GOLD} rot={-4} size={90}>
             IT'S THE ROAD
           </Stamp>
-        </Pos>
+        </Center>
       ) : null}
     </AbsoluteFill>
   );
@@ -1177,7 +1178,7 @@ const Cooling: React.FC<SceneP> = ({ f, o }) => {
   const tg = L(o, "glass");
   const th = L(o, "hand");
   const k = ez(f, tp - 8, tp + 20);
-  const cam = { pos: mixV([-6, 22, 30], [14, 9, 14], k), target: mixV([-4, 2, 0], [14, 0, 0], k), fov: 30 };
+  const cam = { pos: mixV([-6, 22, 30], [26, 9, 14], k), target: mixV([-4, 2, 0], [26, 0, 0], k), fov: 30 };
   const spin = f < tf ? f * 0.05 : f * 0.05 + Math.pow(Math.max(0, f - tf), 1.4) * 0.02;
   return (
     <AbsoluteFill>
@@ -1185,7 +1186,7 @@ const Cooling: React.FC<SceneP> = ({ f, o }) => {
       <Scene3D rimA={NV} rimB={PH}>
         <Cam {...cam} />
         <RtxCard p={[-6, 0, 0]} spin={spin} explode={ez(f, 10, 40) * 0.9} r={[0, 0.2, 0]} />
-        <Phone p={[14, 0, 0]} r={[0, -0.3 + f * 0.002, 0]} s={0.9} />
+        <Phone p={[26, 0, 0]} r={[0, -0.3 + f * 0.002, 0]} s={0.9} />
         <Floor y={-1.2} />
       </Scene3D>
       {k < 0.5 ? (
@@ -1379,7 +1380,7 @@ const Efficiency: React.FC<SceneP> = ({ f, o }) => {
         </div>
       </div>
       {f >= tt ? (
-        <Center y={540}>
+        <Center y={600}>
           <Stamp f={f} at={tt} color={PH} rot={-4} size={120}>
             PHONE: 2× MORE EFFICIENT
           </Stamp>
@@ -1407,15 +1408,14 @@ const Starved: React.FC<SceneP> = ({ f, d, o }) => {
         <Line f={f} at={2} size={50} font={MONO} color={GOLD}>
           THE WHOLE STORY IN ONE LINE
         </Line>
-        <div style={{ position: "relative", display: "inline-block", marginTop: 20 }}>
+        <div style={{ marginTop: 20 }}>
           <Slam f={f} at={tn} size={130} color={C.ink}>
-            PHONES ARE WEAK
+            <>
+              PHONES ARE{" "}
+              {f >= tn + 18 ? <span style={{ color: C.red, display: "inline-block", transform: `scale(${1.6 - 0.6 * sp(f, tn + 18, 10, 240)})` }}>NOT </span> : null}
+              WEAK
+            </>
           </Slam>
-          {f >= tn + 18 ? (
-            <div style={{ position: "absolute", top: "35%", fontFamily: DISPLAY, fontWeight: 700, fontSize: 70, color: C.red, transform: `rotate(-8deg) scale(${sp(f, tn + 18, 10, 240)})`, left: 330 }}>
-              NOT
-            </div>
-          ) : null}
         </div>
       </Pos>
       {f >= ts ? (
@@ -1666,8 +1666,8 @@ const Emu: React.FC<SceneP> = ({ f, d, o }) => {
         </Pos>
       ) : null}
       {f >= tb ? (
-        <Pos r={110} y={780}>
-          <Stamp f={f} at={tb} color={GOLD} rot={-5} size={74}>
+        <Pos r={90} y={880}>
+          <Stamp f={f} at={tb} color={GOLD} rot={-5} size={60}>
             STILL IN BETA · NOT RELEASED
           </Stamp>
         </Pos>
@@ -1848,7 +1848,7 @@ const Honest: React.FC<SceneP> = ({ f, d, o }) => {
   ];
   return (
     <AbsoluteFill>
-      <Foot src="mob" at={MSEG[2] + 4} f={f} d={d} dim={0.45} sat={0.8} />
+      <Foot src="mob" at={MSEG[5] + 10} f={f} d={d} dim={0.45} sat={0.8} />
       <Shade k={0.85} />
       <Pos x={110} y={180}>
         <Line f={f} at={2} size={60} font={DISPLAY} color={GOLD}>
@@ -1975,14 +1975,14 @@ const Future: React.FC<SceneP> = ({ f, o }) => {
           </div>
         ) : null}
       </Pos>
-      <div style={{ position: "absolute", left: 320, top: 340, width: 1300, height: H }}>
+      <div style={{ position: "absolute", left: 200, top: 340, width: 1300, height: H }}>
         {/* RTX 3050 line */}
         {f >= tc - 30 ? (
           <div style={{ position: "absolute", left: 0, right: 0, top: H - (6300 / max) * H, borderTop: `4px dashed ${NV}`, opacity: ez(f, tc - 30, tc - 15) }}>
             <span style={{ position: "absolute", right: 0, top: -50, fontFamily: DISPLAY, fontWeight: 700, fontSize: 44, color: NV }}>RTX 3050 ≈ 6,300</span>
           </div>
         ) : null}
-        <div style={{ position: "absolute", left: 60, bottom: 0, display: "flex", gap: 120, alignItems: "flex-end" }}>
+        <div style={{ position: "absolute", left: 40, bottom: 0, display: "flex", gap: 90, alignItems: "flex-end" }}>
           {ys.map((b, i) => {
             if (f < b.at) return <div key={i} style={{ width: 200 }} />;
             const p = ez(f, b.at, b.at + 24);
@@ -1997,8 +1997,8 @@ const Future: React.FC<SceneP> = ({ f, o }) => {
         </div>
       </div>
       {f >= tc ? (
-        <Pos r={110} y={880}>
-          <Stamp f={f} at={tc} color={GOLD} rot={-4} size={70}>
+        <Pos r={60} y={740}>
+          <Stamp f={f} at={tc} color={GOLD} rot={-4} size={58}>
             YOUR NEXT PHONE vs RTX 3050?
           </Stamp>
         </Pos>
@@ -2067,7 +2067,7 @@ const Cta: React.FC<SceneP> = ({ f, o }) => {
         </div>
       </Center>
       {f >= te ? (
-        <Pos x={0} w={1920} y={720} style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 40 }}>
+        <Pos x={0} w={1920} y={640} style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 40 }}>
           <div style={{ padding: "20px 40px", borderRadius: 18, background: C.red, fontFamily: INTER, fontWeight: 900, fontSize: 56, color: "#fff", transform: `scale(${sp(f, te + 30, 10, 220)})`, boxShadow: `0 0 50px ${C.red}88` }}>SUBSCRIBE 🔔</div>
           <div>
             <Line f={f} at={te} size={52} font={DISPLAY}>
@@ -2078,7 +2078,7 @@ const Cta: React.FC<SceneP> = ({ f, o }) => {
         </Pos>
       ) : null}
       {f >= tw ? (
-        <Center y={940}>
+        <Center y={840}>
           <Line f={f} at={tw} size={40} font={MONO} color={C.ink}>
             💬 which PC game should I test on it next?
           </Line>
