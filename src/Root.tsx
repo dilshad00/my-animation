@@ -26,7 +26,7 @@ import { Ug3ThumbA, Ug3ThumbB, Ug3ThumbC } from "./ug3/Thumbs3";
 import { Ug3V2A, Ug3V2B, Ug3V2C } from "./ug3/Thumbs3v2";
 import { Ug4ThumbA, Ug4ThumbB, Ug4ThumbC } from "./ug4/Thumbs4";
 import { UG004_FRAMES, UgFour, UgFourSheet } from "./ug4/UgFour";
-import { UG005_FRAMES, UG005_SHEET_FRAMES, UgFive, UgFiveSheet } from "./ug5/UgFive";
+import { UG005_FRAMES, UgFive, UgFiveSheet } from "./ug5/UgFive";
 
 /**
  * Every folder in projects/<id>/ (with a storyboard.json) becomes a composition "<id>".
@@ -87,7 +87,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="UG-004-Thumb-B" component={Ug4ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-004-Thumb-C" component={Ug4ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-005" component={UgFive} durationInFrames={UG005_FRAMES} fps={30} width={1920} height={1080} />
-        <Composition id="UG-005-Sheet" component={UgFiveSheet} durationInFrames={UG005_SHEET_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-005-Sheet" component={UgFiveSheet} durationInFrames={UG005_FRAMES} fps={30} width={1920} height={1080} />
       </Folder>
       <Folder name="Library-Tests">
         <Composition id="Test-Cast" component={CastGallery} durationInFrames={240} fps={30} width={1920} height={1080} />
