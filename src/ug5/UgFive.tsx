@@ -1412,7 +1412,7 @@ const Starved: React.FC<SceneP> = ({ f, d, o }) => {
           <Slam f={f} at={tn} size={130} color={C.ink}>
             <>
               PHONES ARE{" "}
-              {f >= tn + 18 ? <span style={{ color: C.red, display: "inline-block", transform: `scale(${1.6 - 0.6 * sp(f, tn + 18, 10, 240)})` }}>NOT </span> : null}
+              {f >= tn + 18 ? <span style={{ color: C.red, display: "inline-block", marginRight: "0.25em", transform: `scale(${1.6 - 0.6 * sp(f, tn + 18, 10, 240)})` }}>NOT</span> : null}
               WEAK
             </>
           </Slam>
@@ -1666,7 +1666,7 @@ const Emu: React.FC<SceneP> = ({ f, d, o }) => {
         </Pos>
       ) : null}
       {f >= tb ? (
-        <Pos r={90} y={880}>
+        <Pos r={90} y={770}>
           <Stamp f={f} at={tb} color={GOLD} rot={-5} size={60}>
             STILL IN BETA · NOT RELEASED
           </Stamp>
@@ -1997,7 +1997,7 @@ const Future: React.FC<SceneP> = ({ f, o }) => {
         </div>
       </div>
       {f >= tc ? (
-        <Pos r={60} y={740}>
+        <Pos r={40} y={630}>
           <Stamp f={f} at={tc} color={GOLD} rot={-4} size={58}>
             YOUR NEXT PHONE vs RTX 3050?
           </Stamp>
@@ -2018,7 +2018,7 @@ const Wins: React.FC<SceneP> = ({ f, d, o }) => {
           <Foot src="cd" at={CD.balloon} f={f} d={d} dim={0.4} />
         </div>
       </div>
-      <div style={{ position: "absolute", left: 960, top: 0, width: 960, height: 1080, overflow: "hidden", opacity: ez(f, tf - 10, tf + 6) }}>
+      <div style={{ position: "absolute", left: 960, top: 0, width: 960, height: 1080, overflow: "hidden", opacity: 0.3 + 0.7 * ez(f, tf - 10, tf + 6) }}>
         <div style={{ position: "absolute", left: -480, width: 1920, height: 1080 }}>
           <Foot src="hand" at={MSEG[1] + 6} f={f} d={d} dim={0.35} />
         </div>
