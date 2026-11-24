@@ -57,6 +57,8 @@ const Shade: React.FC<{ k?: number; side?: "left" | "bottom" | "all" | "right" }
 /* ===================================================================== footage */
 /** mob.mp4 = 9 concatenated segments of the RDR2 recording (start seconds inside mob.mp4). */
 const MSEG = [0, 18, 42, 60, 80, 98, 126, 151, 177];
+/** cd.mp4 = calm gameplay re-cut of the Crimson Desert footage (tools/cut_cd.py): shot start seconds. */
+const CD = { fire: 0, lakefly: 7.62, vista: 12.87, boss: 17.12, wagon: 20.87, balloon: 24.5, ride: 28.87, grass: 33.25, lake: 36.5, forest: 39.12, gallop: 46.12, village: 49.75, castle: 53.62, farm: 56.62 };
 type Src = "mob" | "hand" | "cd";
 const Foot: React.FC<{ src: Src; at: number; f: number; d: number; zoom?: [number, number]; pan?: [number, number]; dim?: number; blur?: number; sat?: number; thermal?: number; origin?: string }> = ({
   src,
@@ -283,7 +285,7 @@ const HookCD: React.FC<SceneP> = ({ f, d, o }) => {
   const tm = L(o, "h_most");
   return (
     <AbsoluteFill style={{ transform: shake(f, t5, 14, 14) }}>
-      <Foot src="cd" at={139} f={f} d={d} zoom={[1.02, 1.16]} dim={0.05} sat={1.1} />
+      <Foot src="cd" at={CD.fire} f={f} d={d} zoom={[1.02, 1.16]} dim={0.05} sat={1.1} />
       <Shade k={0.75} side="bottom" />
       <Shade k={0.6} />
       <Pos x={100} y={150}>
@@ -403,7 +405,7 @@ const HookGap: React.FC<SceneP> = ({ f, d, o }) => {
       </div>
       <div style={{ position: "absolute", left: 960, top: 0, width: 960, height: 1080, overflow: "hidden", transform: `translateX(${(1 - split) * 400}px)` }}>
         <div style={{ position: "absolute", left: -480, top: 0, width: 1920, height: 1080 }}>
-          <Foot src="cd" at={164} f={f} d={d} zoom={[1.1, 1.18]} dim={0.3} />
+          <Foot src="cd" at={CD.gallop} f={f} d={d} zoom={[1.1, 1.18]} dim={0.3} />
         </div>
       </div>
       <div style={{ position: "absolute", left: 957, top: 0, width: 6, height: 1080, background: C.ink, boxShadow: `0 0 30px ${C.ink}` }} />
@@ -444,7 +446,12 @@ const HookRan: React.FC<SceneP> = ({ f, d, o }) => {
   return (
     <AbsoluteFill style={{ transform: shake(f, tw, 16, 20) }}>
       {f < tsu ? (
-        <Foot src={cut ? "cd" : "mob"} at={cut ? 40 + (f % 300) / 30 : MSEG[2] + 3} f={f} d={d} dim={0.55} blur={2} />
+        <>
+          <Foot src="mob" at={MSEG[2] + 3} f={f} d={d} dim={0.55} blur={2} />
+          <AbsoluteFill style={{ opacity: cut }}>
+            <Foot src="cd" at={CD.grass} f={f} d={d} dim={0.55} blur={2} />
+          </AbsoluteFill>
+        </>
       ) : (
         <Foot src="hand" at={MSEG[6] + 2} f={f - tsu} d={d - tsu} zoom={[1.0, 1.15]} dim={0.4} />
       )}
@@ -1008,7 +1015,7 @@ const Brutal: React.FC<SceneP> = ({ f, d, o }) => {
   const tg = L(o, "gapb");
   return (
     <AbsoluteFill style={{ transform: shake(f, tg, 14, 16) }}>
-      <Foot src="cd" at={155} f={f} d={d} zoom={[1.05, 1.2]} dim={0.45} />
+      <Foot src="cd" at={CD.boss} f={f} d={d} zoom={[1.05, 1.2]} dim={0.45} />
       <Shade k={0.6} side="all" />
       <Center y={300}>
         <div style={{ display: "flex", alignItems: "center", gap: 50 }}>
@@ -1719,7 +1726,11 @@ const CdTricks: React.FC<SceneP> = ({ f, d, o }) => {
   const dark = f >= ttr ? 0.55 : 0.05;
   return (
     <AbsoluteFill>
-      <Foot src="cd" at={f < ttr ? 79 : 123} f={f} d={d} zoom={[1.02, 1.1]} dim={dark} />
+      {f < ttr ? (
+        <Foot key="cdA" src="cd" at={CD.lakefly} f={f} d={ttr} zoom={[1.02, 1.1]} dim={dark} />
+      ) : (
+        <Foot key="cdB" src="cd" at={CD.forest - ttr / 30} f={f - ttr} d={d - ttr} zoom={[1.04, 1.12]} dim={dark} />
+      )}
       <Shade k={0.6} side="bottom" />
       <Pos x={60} y={60}>
         <Tag f={f} at={4} color={NV} size={30}>
@@ -2004,7 +2015,7 @@ const Wins: React.FC<SceneP> = ({ f, d, o }) => {
     <AbsoluteFill>
       <div style={{ position: "absolute", left: 0, top: 0, width: 960, height: 1080, overflow: "hidden" }}>
         <div style={{ position: "absolute", left: -480, width: 1920, height: 1080 }}>
-          <Foot src="cd" at={30} f={f} d={d} dim={0.4} />
+          <Foot src="cd" at={CD.balloon} f={f} d={d} dim={0.4} />
         </div>
       </div>
       <div style={{ position: "absolute", left: 960, top: 0, width: 960, height: 1080, overflow: "hidden", opacity: ez(f, tf - 10, tf + 6) }}>
