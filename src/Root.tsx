@@ -28,6 +28,7 @@ import { Ug4ThumbA, Ug4ThumbB, Ug4ThumbC } from "./ug4/Thumbs4";
 import { UG004_FRAMES, UgFour, UgFourSheet } from "./ug4/UgFour";
 import { UG005_FRAMES, UgFive, UgFiveSheet } from "./ug5/UgFive";
 import { Ug5ThumbA, Ug5ThumbB, Ug5ThumbC } from "./ug5/Thumbs5";
+import { REEL_FRAMES, RexuzReel, RexuzYouTube, YT_FRAMES } from "./rexuz/Promo";
 
 /**
  * Every folder in projects/<id>/ (with a storyboard.json) becomes a composition "<id>".
@@ -92,6 +93,10 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="UG-005-Thumb-A" component={Ug5ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-005-Thumb-B" component={Ug5ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-005-Thumb-C" component={Ug5ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
+      </Folder>
+      <Folder name="REXUZ">
+        <Composition id="REXUZ-YouTube" component={RexuzYouTube} durationInFrames={YT_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="REXUZ-Reel" component={RexuzReel} durationInFrames={REEL_FRAMES} fps={30} width={1080} height={1920} />
       </Folder>
       <Folder name="Library-Tests">
         <Composition id="Test-Cast" component={CastGallery} durationInFrames={240} fps={30} width={1920} height={1080} />
