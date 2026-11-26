@@ -23,6 +23,7 @@ jobs:
       id: ${{ steps.p.outputs.id }}
       tag: ${{ steps.p.outputs.tag }}
       gl: ${{ steps.p.outputs.gl }}
+      scale: ${{ steps.p.outputs.scale }}
       matrix: ${{ steps.p.outputs.matrix }}
       n: ${{ steps.p.outputs.n }}
     steps:
@@ -42,6 +43,9 @@ jobs:
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           GL=$(printf '%s' "$MSG" | grep -o '\[gl:[a-z-]*\]' | head -1 | sed 's/\[gl://;s/\]//')
           echo "gl=${GL:+--gl=$GL}" >> "$GITHUB_OUTPUT"
+          # optional "[scale:0.5]" → low-res preview/animatic (default full size)
+          SC=$(printf '%s' "$MSG" | grep -o '\[scale:[0-9.]*\]' | head -1 | sed 's/\[scale://;s/\]//')
+          echo "scale=${SC:+--scale=$SC}" >> "$GITHUB_OUTPUT"
           FULL=$(npx tsx scripts/cloud-plan.ts "$ID" "${N:-12}" 0)
           echo "n=$(printf '%s' "$FULL" | python3 -c "import json,sys;print(len(json.load(sys.stdin)['chunks']))")" >> "$GITHUB_OUTPUT"
           # optional "[only:2,18]" → re-render just those chunks (others stay in the release)
@@ -68,7 +72,7 @@ jobs:
       - name: Render audio (WAV)
         run: npx remotion render "${{ needs.plan.outputs.id }}" out/audio${{ matrix.chunk.i }}.wav --codec=wav --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} --timeout=240000 --log=info
       - name: Render video (muted H.264)
-        run: npx remotion render "${{ needs.plan.outputs.id }}" out/part${{ matrix.chunk.i }}.mp4 --codec=h264 --crf=18 --muted --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} --timeout=240000 --log=info
+        run: npx remotion render "${{ needs.plan.outputs.id }}" out/part${{ matrix.chunk.i }}.mp4 --codec=h264 --crf=18 --muted --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} ${{ needs.plan.outputs.scale }} --timeout=240000 --log=info
       - name: Upload parts to release
         env:
           GH_TOKEN: ${{ github.token }}

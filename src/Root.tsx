@@ -28,6 +28,7 @@ import { Ug4ThumbA, Ug4ThumbB, Ug4ThumbC } from "./ug4/Thumbs4";
 import { UG004_FRAMES, UgFour, UgFourSheet } from "./ug4/UgFour";
 import { UG005_FRAMES, UgFive, UgFiveSheet } from "./ug5/UgFive";
 import { Ug5ThumbA, Ug5ThumbB, Ug5ThumbC } from "./ug5/Thumbs5";
+import { ASSETS_FRAMES, UgSixAssets } from "./ug6/Assets6";
 import { REEL_FRAMES, RexuzReel, RexuzYouTube, YT_FRAMES } from "./rexuz/Promo";
 
 /**
@@ -93,6 +94,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="UG-005-Thumb-A" component={Ug5ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-005-Thumb-B" component={Ug5ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-005-Thumb-C" component={Ug5ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-006-Assets" component={UgSixAssets} durationInFrames={ASSETS_FRAMES} fps={30} width={1920} height={1080} />
       </Folder>
       <Folder name="REXUZ">
         <Composition id="REXUZ-YouTube" component={RexuzYouTube} durationInFrames={YT_FRAMES} fps={30} width={1920} height={1080} />
