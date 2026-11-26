@@ -88,7 +88,7 @@ const S3Hall: React.FC<{ f: number }> = ({ f }) => (
         <AbsoluteFill>
           <AbsoluteFill style={{ background: "linear-gradient(180deg, #050506 0%, #0b0c0e 60%, #120c09 100%)" }} />
           <Stage cam={{ pos: [Math.sin(lf * 0.01) * 2, 7, z], target: [0, 9, z - 100], fov: 46 }} fog={0.0055} light={0.7}>
-            <Hall f={lf} aisles={9} len={60} />
+            <Hall f={lf} aisles={9} len={28} />
             <Particles
               n={300}
               color="#ffd0b0"
@@ -126,7 +126,7 @@ const S3Aerial: React.FC<{ f: number }> = ({ f }) => (
         <AbsoluteFill>
           <AbsoluteFill style={{ background: "#060607" }} />
           <Stage cam={{ pos: [0, camY, 60 - up * 40], target: [0, 0, -120], fov: 44 }} fog={0.003} light={0.7}>
-            <Hall f={lf} aisles={13} len={44} />
+            <Hall f={lf} aisles={13} len={24} />
             <Particles
               n={arcs * 14}
               color={P.orange}
@@ -397,7 +397,7 @@ const S3Scale: React.FC<{ f: number }> = ({ f }) => (
             <Glow p={[0, 2, 0]} s={20} color={P.orange} o={0.4} />
             {back > 0.02 ? (
               <group position={[0, -20, -60]}>
-                <Hall f={lf} aisles={17} len={50} leds={back} strips={back} />
+                <Hall f={lf} aisles={17} len={26} leds={back} strips={back} />
               </group>
             ) : null}
           </Stage>

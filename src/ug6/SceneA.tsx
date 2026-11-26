@@ -203,7 +203,7 @@ const S1Think: React.FC<{ f: number }> = ({ f }) => {
               <Tower power={0.6 * v(4)} spin={lf * 0.3} parts={{ gpu: 0, ram: v(0), cooler: v(1), psu: v(2), fans: v(3) }} />
               {back > 0 ? (
                 <group position={[0, 0, -120]}>
-                  <Hall f={lf} aisles={11} len={30} leds={back} strips={back} />
+                  <Hall f={lf} aisles={11} len={16} leds={back} strips={back} />
                 </group>
               ) : null}
             </Stage>
@@ -762,7 +762,7 @@ const S2Beyond: React.FC<{ f: number }> = ({ f }) => (
               <Shelf key={sx} p={[sx, 0, 0]} levels={4} slots={5} filled={(l, s) => hash(k * 11 + l * 5 + s) > 0.85} />
             ))}
             <group position={[0, 0, -420]}>
-              <Hall f={lf} aisles={15} len={20} leds={up} strips={up} />
+              <Hall f={lf} aisles={15} len={14} leds={up} strips={up} />
             </group>
           </Stage>
           <Center y={200}>
