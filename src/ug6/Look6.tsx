@@ -83,6 +83,7 @@ export const Kinetic: React.FC<{ f: number; at: number; text: string; size?: num
   if (f < at) return null;
   const lines = text.split("\n");
   let idx = 0;
+  let inAcc = false;
   const xo = out !== undefined ? E.io(f, out, out + 12) : 0;
   return (
     <div style={{ textAlign: align, fontFamily: HEAD, fontWeight: weight, fontSize: size, lineHeight: lh, letterSpacing: track, textTransform: "uppercase", opacity: 1 - xo, transform: `translateY(${-xo * 30}px)` }}>
@@ -90,8 +91,12 @@ export const Kinetic: React.FC<{ f: number; at: number; text: string; size?: num
         <div key={li}>
           {ln.split(" ").map((w, wi) => {
             const k = idx++;
-            const acc = w.startsWith("[") && w.endsWith("]");
-            const word = acc ? w.slice(1, -1) : w;
+            const open = w.startsWith("[");
+            const close = w.endsWith("]");
+            const acc = inAcc || open;
+            if (open && !close) inAcc = true;
+            if (close) inAcc = false;
+            const word = w.replace(/^\[/, "").replace(/\]$/, "");
             const t = E.out(f, at + k * stagger, at + k * stagger + 18);
             return (
               <span key={wi} style={{ display: "inline-block", overflow: "hidden", verticalAlign: "top", marginRight: size * 0.22, paddingBottom: size * 0.06 }}>
@@ -381,7 +386,7 @@ export const LineChart: React.FC<{
   return (
     <div style={{ position: "relative", width: w, height: h, opacity: a, transform: `translateY(${(1 - a) * 30}px)` }}>
       {title ? <div style={{ position: "absolute", left: 70, top: -6, fontFamily: MONO, fontWeight: 700, fontSize: 24, color: "rgba(244,242,238,0.7)", letterSpacing: 3 }}>{title}</div> : null}
-      <svg width={w} height={h}>
+      <svg width={w} height={h} style={{ overflow: "visible" }}>
         {[0, 0.25, 0.5, 0.75, 1].map((g) => (
           <line key={g} x1={70} x2={w - 70} y1={ys(g)} y2={ys(g)} stroke="rgba(255,255,255,0.07)" strokeWidth={1.5} />
         ))}
@@ -425,10 +430,11 @@ export const LineChart: React.FC<{
 };
 
 /** Range bar (e.g. +10% to +15%): an axis 0..max with a growing bar and highlighted band. */
-export const RangeBar: React.FC<{ f: number; at: number; lo: number; hi: number; max: number; label: string; w?: number }> = ({ f, at, lo, hi, max, label, w = 1200 }) => {
+export const RangeBar: React.FC<{ f: number; at: number; lo: number; hi: number; max: number; label: string; w?: number; growAt?: number }> = ({ f, at, lo, hi, max, label, w = 1200, growAt }) => {
   const a = E.out(f, at, at + 14);
-  const grow = E.io(f, at + 10, at + 50);
-  const band = E.out(f, at + 40, at + 60);
+  const g0 = growAt ?? at + 10;
+  const grow = E.io(f, g0, g0 + 40);
+  const band = E.out(f, g0 + 30, g0 + 50);
   const X = (v: number) => (v / max) * w;
   return (
     <div style={{ position: "relative", width: w, height: 260, opacity: a }}>

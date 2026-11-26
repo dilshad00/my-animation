@@ -26,8 +26,8 @@ const S5Card: React.FC<{ f: number }> = ({ f }) => {
         return (
           <AbsoluteFill>
             <Backdrop f={lf} warm={0.16} y={60} />
-            <Stage cam={{ pos: [x, 8, 70 - lf * 0.05], target: [x * 0.4, 6, 0], fov: 32 }} keyPos={[Math.sin(lf * 0.02) * 40, 30, 30]}>
-              <Text3D text="2030" h={22} depth={7} p={[0, 8, 0]} accent={1.2} />
+            <Stage cam={{ pos: [x * 1.6, 12, 150 - lf * 0.05], target: [x * 0.4, 14, 0], fov: 32 }} keyPos={[Math.sin(lf * 0.02) * 40, 30, 30]}>
+              <Text3D text="2030" h={18} depth={6} p={[0, 16, 0]} accent={1.2} />
               <Floor r={300} y={-8} />
             </Stage>
             <Center y={760}>
@@ -231,7 +231,7 @@ const S5Timeline: React.FC<{ f: number }> = ({ f }) => {
 const topo = usStates as unknown as Topology<{ states: GeometryCollection<{ name: string }> }>;
 const STATES = feature(topo, topo.objects.states);
 const NY = STATES.features.filter((s) => s.properties?.name === "New York");
-const PROJ = geoAlbersUsa().fitExtent([[-900, -500], [3400, 2300]], { type: "FeatureCollection", features: NY } as never);
+const PROJ = geoAlbersUsa().fitExtent([[560, 160], [1360, 900]], { type: "FeatureCollection", features: NY } as never);
 const GP = geoPath(PROJ);
 const STATE_D = STATES.features.map((s) => ({ name: s.properties?.name ?? "", d: GP(s) ?? "" }));
 const CLAY = PROJ([-76.17, 43.18]) ?? [960, 540];
@@ -371,7 +371,7 @@ const S5Diverge: React.FC<{ f: number }> = ({ f }) => (
           <LineChart
             f={lf}
             at={0}
-            w={1480}
+            w={1400}
             h={640}
             xLabels={["2026", "2027", "2028", "2029", "2030"]}
             series={[
@@ -473,11 +473,12 @@ const S6Ring: React.FC<{ f: number }> = ({ f }) => {
                 );
               })}
             </Stage>
-            {RING.filter((r) => r.cue).map((r) => {
+            {RING.filter((r) => r.cue).map((r, i, arr) => {
               const at = c(r.cue!) - a;
-              return lf >= at && lf < at + 70 ? (
+              const nx = i + 1 < arr.length ? Math.min(at + 70, c(arr[i + 1].cue!) - a) : at + 70;
+              return lf >= at && lf < nx ? (
                 <Center key={r.k} y={110}>
-                  <div style={{ fontFamily: HEAD, fontWeight: 800, fontSize: 92, color: P.white, opacity: E.out(lf, at, at + 10) * (1 - lin(lf, at + 55, at + 70)) }}>{r.name}</div>
+                  <div style={{ fontFamily: HEAD, fontWeight: 800, fontSize: 92, color: P.white, opacity: E.out(lf, at, at + 8) * (1 - lin(lf, nx - 8, nx)) }}>{r.name}</div>
                 </Center>
               ) : null;
             })}
@@ -896,7 +897,7 @@ const S7Future: React.FC<{ f: number }> = ({ f }) => {
                   <LineChart
                     f={lf}
                     at={0}
-                    w={1500}
+                    w={1400}
                     h={600}
                     xLabels={["GEN 1", "GEN 2", "GEN 3", "GEN 4", "GEN 5"]}
                     series={[
@@ -1023,6 +1024,14 @@ const S7Recap: React.FC<{ f: number }> = ({ f }) => {
         return (
           <AbsoluteFill>
             <Backdrop f={lf} warm={0.1} />
+            <Pos x={40} y={60}>
+              <Kinetic f={lf} at={4} text="Three [warning signs]" size={80} align="left" />
+            </Pos>
+            {ps.map(([t, , at], i) => (
+              <div key={`ph${t}`} style={{ position: "absolute", left: 40 + i * 620, width: 600, top: 160, height: 700, borderRadius: 22, border: "2px dashed rgba(255,181,71,0.25)", opacity: E.out(lf, 8 + i * 6, 24 + i * 6) * (1 - E.out(lf, at, at + 10)) }}>
+                <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: HEAD, fontWeight: 800, fontSize: 160, color: "rgba(255,181,71,0.18)" }}>{i + 1}</div>
+              </div>
+            ))}
             {ps.map(([t, k, at], i) => {
               const s = E.out(lf, at, at + 18);
               return (

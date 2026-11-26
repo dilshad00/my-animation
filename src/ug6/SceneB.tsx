@@ -837,7 +837,7 @@ const S4Trend: React.FC<{ f: number }> = ({ f }) => {
               <div style={{ fontFamily: MONO, fontSize: 24, color: "rgba(244,242,238,0.7)", letterSpacing: 4, marginTop: 8, opacity: E.out(lf, 14, 28) }}>SUPPLIERS PRIORITISING HIGH-PERFORMANCE SERVER PRODUCTS</div>
             </Pos>
             <Pos x={360} y={420}>
-              <RangeBar f={lf} at={c("pct1015") - a - 30} lo={10} hi={15} max={20} w={1200} label="CONVENTIONAL DRAM CONTRACT PRICES · Q4 2026 vs Q3 (QoQ)" />
+              <RangeBar f={lf} at={24} growAt={c("pct1015") - a - 20} lo={10} hi={15} max={20} w={1200} label="CONVENTIONAL DRAM CONTRACT PRICES · Q4 2026 vs Q3 (QoQ)" />
             </Pos>
             <Source f={lf} at={20}>TRENDFORCE, Q4 2026 FORECAST</Source>
           </AbsoluteFill>
