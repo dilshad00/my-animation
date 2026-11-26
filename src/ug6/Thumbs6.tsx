@@ -41,13 +41,13 @@ export const Ug6ThumbA: React.FC = () => (
 export const Ug6ThumbB: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: "#070605" }}>
     <AbsoluteFill style={{ background: "radial-gradient(circle at 68% 52%, rgba(255,181,71,0.5), rgba(0,0,0,0) 55%)" }} />
-    <Stage cam={{ pos: [0, 16, 34], target: [0, 2, 0], fov: 34 }} keyPos={[20, 40, 30]} kick={P.amber}>
-      <group position={[9, 0, 0]} rotation={[0, -0.35, 0]}>
+    <Stage cam={{ pos: [-2, 30, 95], target: [8, 4, 0], fov: 30 }} keyPos={[20, 40, 30]} kick={P.amber}>
+      <group position={[16, 0, 0]} rotation={[0.15, -0.35, 0]}>
         <JewelCase>
           <Dimm s={1.15} p={[0, 1.2, 0]} rgb={1} phase={2} />
         </JewelCase>
       </group>
-      <Glow p={[9, 4, 0]} s={34} color={P.amber} o={0.5} />
+      <Glow p={[16, 4, 0]} s={44} color={P.amber} o={0.45} />
     </Stage>
     <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 45%, transparent 70%)" }} />
     <Brand />
@@ -63,12 +63,12 @@ export const Ug6ThumbB: React.FC = () => (
 /** C — AI vs gamers: endless data-centre hall swallowing one lonely gaming PC. */
 export const Ug6ThumbC: React.FC = () => (
   <AbsoluteFill style={{ backgroundColor: "#050506" }}>
-    <Stage cam={{ pos: [0, 14, 40], target: [0, 10, -60], fov: 50 }} fog={0.008} keyPos={[0, 40, 20]} kick={P.orange}>
+    <Stage cam={{ pos: [0, 9, 44], target: [0, 9, -60], fov: 50 }} fog={0.008} keyPos={[0, 40, 20]} kick={P.orange}>
       <Hall f={0} aisles={7} len={14} leds={1} strips={1} />
-      <group position={[0, 0, 18]} scale={0.32}>
+      <group position={[0, 0, 4]} scale={0.14} rotation={[0, -0.5, 0]}>
         <Tower power={1} spin={0.5} accent={P.orange} />
       </group>
-      <Glow p={[0, 6, 18]} s={22} color={P.orange} o={0.5} />
+      <Glow p={[0, 3, 4]} s={16} color={P.orange} o={0.55} />
     </Stage>
     <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.75) 0%, transparent 40%, transparent 70%, rgba(0,0,0,0.8) 100%)" }} />
     <Brand />
