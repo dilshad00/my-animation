@@ -29,6 +29,7 @@ import { UG004_FRAMES, UgFour, UgFourSheet } from "./ug4/UgFour";
 import { UG005_FRAMES, UgFive, UgFiveSheet } from "./ug5/UgFive";
 import { Ug5ThumbA, Ug5ThumbB, Ug5ThumbC } from "./ug5/Thumbs5";
 import { ASSETS_FRAMES, UgSixAssets } from "./ug6/Assets6";
+import { SCENES as UG6_SCENES, UG006_FRAMES, UG006_SHEET_FRAMES, UgSix, UgSixSheet } from "./ug6/UgSix";
 import { REEL_FRAMES, RexuzReel, RexuzYouTube, YT_FRAMES } from "./rexuz/Promo";
 
 /**
@@ -95,6 +96,11 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="UG-005-Thumb-B" component={Ug5ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-005-Thumb-C" component={Ug5ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
         <Composition id="UG-006-Assets" component={UgSixAssets} durationInFrames={ASSETS_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-006" component={UgSix} durationInFrames={UG006_FRAMES} fps={30} width={1920} height={1080} defaultProps={{ audio: true, offset: 0 }} />
+        <Composition id="UG-006-Sheet" component={UgSixSheet} durationInFrames={UG006_SHEET_FRAMES} fps={30} width={1920} height={1080} />
+        {UG6_SCENES.map((s) => (
+          <Composition key={s.id} id={`UG-006-${s.id}`} component={UgSix} durationInFrames={s.b() - s.a()} fps={30} width={1920} height={1080} defaultProps={{ audio: true, offset: s.a() }} />
+        ))}
       </Folder>
       <Folder name="REXUZ">
         <Composition id="REXUZ-YouTube" component={RexuzYouTube} durationInFrames={YT_FRAMES} fps={30} width={1920} height={1080} />

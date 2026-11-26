@@ -99,7 +99,7 @@ export const Tower: React.FC<{ power?: number; spin?: number; parts?: Partial<To
       {/* GPU (horizontal, fans facing down; light bar faces the glass) */}
       {pt.gpu > 0 ? (
         <Fade o={pt.gpu}>
-          <FeCard cls="90" p={[-2, H / 2 - 6, -W / 2 + 8.5]} r={[Math.PI, 0, 0]} spin={fanSpin} light={power} lightColor={P.white} />
+          <FeCard cls="90" p={[-2, H / 2 - 6, -W / 2 + 8.5]} r={[Math.PI, Math.PI, 0]} spin={fanSpin} light={power} lightColor={P.white} />
         </Fade>
       ) : null}
       {/* PSU shroud + under-glow strip */}
@@ -146,8 +146,8 @@ export const Rack: React.FC<{ f?: number; leds?: number; seed?: number; open?: n
       {Array.from({ length: rows }, (_, k) =>
         k === openRow && open > 0 ? null : <Box key={k} p={[0, 1 + k * 1.02, RACK.d / 2 + 0.02]} s={[RACK.w - 0.6, 0.86, 0.04]} m={M.satin} />,
       )}
-      <Inst key={`a${ledsOn.length}`} items={ledsOn} m={on} />
-      <Inst key={`b${ledsCool.length}`} items={ledsCool} m={cool} />
+      <Inst items={ledsOn} m={on} />
+      <Inst items={ledsCool} m={cool} />
       {open > 0 ? (
         <group position={[0, 1 + openRow * 1.02, RACK.d / 2 - RACK.d / 2 + open * 9]}>
           <Box p={[0, -0.35, 0]} s={[RACK.w - 0.6, 0.12, RACK.d - 0.4]} m={M.steel} />
@@ -210,8 +210,8 @@ export const Hall: React.FC<{ f: number; aisles?: number; len?: number; leds?: n
       </mesh>
       <Inst items={racks} m={M.black} />
       <Inst items={face} m={M.satin} />
-      <Inst key={`o${lo.length}`} items={lo} m={on} />
-      <Inst key={`c${lc.length}`} items={lc} m={cool} />
+      <Inst items={lo} m={on} />
+      <Inst items={lc} m={cool} />
       <Inst items={stripItems} m={strip} />
       {/* ceiling */}
       <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, RACK.h + 9, -len * 3]}>

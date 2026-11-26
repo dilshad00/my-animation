@@ -5,7 +5,7 @@
  */
 import { useThree } from "@react-three/fiber";
 import { ThreeCanvas } from "@remotion/three";
-import React, { useLayoutEffect, useMemo } from "react";
+import React, { useEffect, useLayoutEffect, useMemo } from "react";
 import { useVideoConfig } from "remotion";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
@@ -289,25 +289,33 @@ export const Cyl: React.FC<{ p?: V3; r?: V3; rt: number; rb?: number; h: number;
     <cylinderGeometry args={[rt, rb ?? rt, h, seg]} />
   </mesh>
 );
-/** Instanced boxes from a list of transforms. */
+/** Instanced boxes from a list of transforms. Reuses one InstancedMesh (capacity grows in powers of 2)
+ * and only rewrites the matrices each frame, so per-frame item lists don't leak GPU buffers. */
+const UNIT_BOX = new THREE.BoxGeometry(1, 1, 1);
 export const Inst: React.FC<{ items: { p: V3; s?: V3; r?: V3 }[]; m: THREE.Material; geo?: THREE.BufferGeometry }> = ({ items, m, geo }) => {
+  const g = geo ?? UNIT_BOX;
+  const cap = Math.max(16, 2 ** Math.ceil(Math.log2(Math.max(1, items.length))));
   const mesh = useMemo(() => {
-    const g = geo ?? new THREE.BoxGeometry(1, 1, 1);
-    const im = new THREE.InstancedMesh(g, m, Math.max(1, items.length));
-    const o = new THREE.Object3D();
-    items.forEach((it, i) => {
-      o.position.set(...it.p);
-      o.rotation.set(...(it.r ?? [0, 0, 0]));
-      o.scale.set(...(it.s ?? [1, 1, 1]));
-      o.updateMatrix();
-      im.setMatrixAt(i, o.matrix);
-    });
-    im.count = items.length;
-    im.instanceMatrix.needsUpdate = true;
+    const im = new THREE.InstancedMesh(g, m, cap);
+    im.frustumCulled = false;
     return im;
-  }, [items, m, geo]);
+  }, [g, m, cap]);
+  useEffect(() => () => void mesh.dispose(), [mesh]);
+  const o = TMP;
+  items.forEach((it, i) => {
+    o.position.set(...it.p);
+    o.rotation.set(...(it.r ?? ZERO));
+    o.scale.set(...(it.s ?? ONE));
+    o.updateMatrix();
+    mesh.setMatrixAt(i, o.matrix);
+  });
+  mesh.count = items.length;
+  mesh.instanceMatrix.needsUpdate = true;
   return <primitive object={mesh} />;
 };
+const TMP = new THREE.Object3D();
+const ZERO: V3 = [0, 0, 0];
+const ONE: V3 = [1, 1, 1];
 
 /** Soft radial contact shadow. */
 const shadowTex = memo(() =>
@@ -350,10 +358,15 @@ export const Glow: React.FC<{ p: V3; s: number; color: string; o?: number }> = (
     </sprite>
   );
 
+const SPHERE = new THREE.SphereGeometry(1, 6, 6);
 /** Deterministic particle cloud (instanced tiny spheres), positions computed by fn(i) each frame. */
 export const Particles: React.FC<{ n: number; fn: (i: number) => { p: V3; s: number } | null; color: string; k?: number }> = ({ n, fn, color, k = 3 }) => {
   const mat = useGlow(color, k);
-  const mesh = useMemo(() => new THREE.InstancedMesh(new THREE.SphereGeometry(1, 6, 6), mat, n), [n, mat]);
+  const mesh = useMemo(() => {
+    const im = new THREE.InstancedMesh(SPHERE, mat, n);
+    im.frustumCulled = false;
+    return im;
+  }, [n, mat]);
   const o = new THREE.Object3D();
   let c = 0;
   for (let i = 0; i < n; i++) {
@@ -612,6 +625,7 @@ export const Wafer: React.FC<{ p?: V3; r?: V3; s?: number; sectors?: [number, st
     [],
   );
   mat.emissiveIntensity = glow;
+  const sk = sectors ? sectors.map(([fr, col]) => `${fr.toFixed(3)}${col}`).join("|") : "";
   const segs = useMemo(() => {
     if (!sectors) return [];
     let a = 0;
@@ -620,7 +634,9 @@ export const Wafer: React.FC<{ p?: V3; r?: V3; s?: number; sectors?: [number, st
       a += fr * Math.PI * 2;
       return { g, col };
     });
-  }, [sectors]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sk]);
+  useEffect(() => () => segs.forEach((x) => x.g.dispose()), [segs]);
   return (
     <group position={p} rotation={r} scale={s}>
       <mesh material={mat} rotation={[-Math.PI / 2, 0, 0]}>
@@ -667,8 +683,8 @@ export const DramArray: React.FC<{ n?: number; charge: (i: number, j: number) =>
     <group position={p} scale={s}>
       <Box p={[0, -0.2, 0]} s={[n + 1, 0.4, n + 1]} m={M.silicon} />
       <Inst items={lines} m={M.copper} />
-      <Inst key={`d${dark.length}`} items={dark} m={off} geo={geo} />
-      <Inst key={`o${on.length}`} items={on} m={lit} geo={geo} />
+      <Inst items={dark} m={off} geo={geo} />
+      <Inst items={on} m={lit} geo={geo} />
     </group>
   );
 };
