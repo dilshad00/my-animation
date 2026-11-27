@@ -24,7 +24,7 @@ const SFX: Sfx[] = [
   [0, S("bass_rumble"), 0.4],
   [1, S("trailer_impact"), 0.45],
   [4, N("fan_start"), 0.25, 60],
-  [c("vram") - 30, S("whoosh_metal"), 0.4],
+  [28, S("whoosh_metal"), 0.4],
   [c("vram") - 14, S("epic_impact"), 0.45],
   [c("vram") - 12, PN("elec_sparks"), 0.35],
   // double
@@ -100,7 +100,7 @@ const SFX: Sfx[] = [
 ];
 
 /** Accent words in captions. */
-const ACCENT = /^(64gb|64|gb|vram|double|twice|5090|nvidia|nvidias|insane|interesting|confirmed|officially|four|16gb|16|moore|threads|15|50|ray|tracing|benchmark|price|drivers|december|29|29th|affordable|alternative|number|china|chinese)$/i;
+const ACCENT = /^(64gb|64|gb|vram|double|twice|5090|nvidia|nvidias|insane|interesting|confirmed|officially|four|16gb|16|moore|threads|15|50|ray|tracing|raytracing|mtts80|s80|benchmark|price|drivers|december|29|29th|affordable|alternative|number|china|chinese)$/i;
 /** Hide captions while big type on screen already says the same words. */
 const hideCaps = (f: number) => (f >= c("insane") - 2 && f < c("interesting")) || (f >= c("number") && f < c("number") + 6);
 const hideChip = (f: number) => f < c("double") || f >= c("number");

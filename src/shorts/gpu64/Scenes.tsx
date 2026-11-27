@@ -88,17 +88,17 @@ const B1: React.FC<F> = ({ f }) => (
   <Beat f={f} a={0} b={c("double")} tin="cut">
     {(lf, d) => {
       const k = c("vram") - 14;
-      const inn = E.out(lf, k - 16, k);
+      const inn = E.out(lf, 30, 50);
       const [sx, sy] = shake(lf, k, 1.2);
       return (
         <>
           <Bg f={lf} kind="void" />
           <AbsoluteFill style={{ background: `radial-gradient(ellipse 70% 40% at 60% 45%, ${OR}${Math.round(40 * inn).toString(16).padStart(2, "0")}, transparent 70%)` }} />
-          <Stage cam={{ pos: [sx + path(lf, [[0, 6], [d, 0]]), 4 + sy, path(lf, [[0, 120], [k - 16, 52], [d, 74]])], target: [0, 1, 0], fov: 38 }} light={0.4 + 0.8 * E.out(lf, 0, 6)} rim={COOL} kick={OR}>
+          <Stage cam={{ pos: [sx + path(lf, [[0, 6], [d, 0]]), 4 + sy, path(lf, [[0, 120], [50, 52], [d, 74]])], target: [0, 1, 0], fov: 38 }} light={0.4 + 0.8 * E.out(lf, 0, 6)} rim={COOL} kick={OR}>
             <Upright p={[-8.6 * inn, 0, 0]} ry={0.25 * inn + lf * 0.004} s={0.9}>
               <FeCard cls="90" spin={lf * 0.5} light={1} />
             </Upright>
-            <Upright p={[path(lf, [[k - 16, 46], [k, 8.6]]), 0, 0]} ry={-0.25} s={0.9}>
+            <Upright p={[path(lf, [[30, 46], [50, 8.6]]), 0, 0]} ry={-0.25} s={0.9}>
               <LushanConcept spin={lf * 0.6} light={inn} />
             </Upright>
             <Glow p={[8.6, 0, 2]} s={30} color={OR} o={0.35 * inn} />
