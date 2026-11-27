@@ -233,7 +233,9 @@ export const useMats = () =>
       interposer: new THREE.MeshStandardMaterial({ color: "#6a7079", metalness: 0.8, roughness: 0.25 }),
       copper: new THREE.MeshStandardMaterial({ color: "#c8794a", metalness: 1, roughness: 0.26 }),
       plastic: new THREE.MeshStandardMaterial({ color: "#0f1012", metalness: 0.05, roughness: 0.75 }),
-      glass: new THREE.MeshPhysicalMaterial({ color: "#a9b6c4", metalness: 0, roughness: 0.04, transmission: 0.92, thickness: 0.4, transparent: true, opacity: 0.22, clearcoat: 1 }),
+      // No `transmission`: SwiftShader (Actions CPU render) draws the transmission pass as an opaque dark sheet,
+      // which hid everything inside the tower. Plain alpha glass + clearcoat sheen renders the same everywhere.
+      glass: new THREE.MeshPhysicalMaterial({ color: "#a9b6c4", metalness: 0, roughness: 0.04, transparent: true, opacity: 0.1, depthWrite: false, clearcoat: 1, clearcoatRoughness: 0.05 }),
       rubber: new THREE.MeshStandardMaterial({ color: "#090909", metalness: 0, roughness: 0.9 }),
       white: new THREE.MeshStandardMaterial({ color: "#e9e6e1", metalness: 0.1, roughness: 0.45 }),
       velvet: new THREE.MeshStandardMaterial({ color: "#2a0f12", metalness: 0, roughness: 1 }),

@@ -35,6 +35,8 @@ const hideCaps = (f: number) => {
   if (f < c("imagine") - 4) return true;
   for (const k of ["ch1", "ch2", "ch3", "ch4", "ch5", "ch6"]) if (f >= c(k) && f < c(k) + 75) return true;
   if (f >= c("balance") && f < c("whatthink")) return true;
+  // recap tagline "Not going away overnight" sits on the caption line
+  if (f >= c("overnight") - 20 && f < c("overnight") + 45) return true;
   if (f >= c("whatthink")) return true;
   void HIDE;
   return false;
