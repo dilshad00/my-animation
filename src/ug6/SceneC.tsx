@@ -483,7 +483,7 @@ const S6Ring: React.FC<{ f: number }> = ({ f }) => {
               ) : null;
             })}
             {share > 0 ? (
-              <Pos x={360} y={900} w={1200}>
+              <Pos x={360} y={70} w={1200}>
                 <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 22, color: "rgba(244,242,238,0.7)", letterSpacing: 3, marginBottom: 8, opacity: share }}>SHARE OF A TYPICAL GAMING BUILD · ILLUSTRATIVE</div>
                 <div style={{ display: "flex", height: 46, borderRadius: 8, overflow: "hidden", opacity: share }}>
                   {[
@@ -795,7 +795,7 @@ const S7Alt: React.FC<{ f: number }> = ({ f }) => {
               <Pos x={80} y={70}>
                 <Kinetic f={lf} at={4} text="Switching brands won't [magically] fix it" size={70} align="left" />
               </Pos>
-              <Center y={960}>
+              <Center y={860}>
                 <div style={{ fontFamily: HEAD, fontWeight: 800, fontSize: 64, letterSpacing: 10, color: P.orange, opacity: E.out(lf, ic, ic + 14) }}>INTERCONNECTED</div>
               </Center>
               <div style={{ position: "absolute", inset: 0, background: `rgba(0,0,0,${lin(lf, d - 16, d) * 0.9})` }} />
@@ -919,7 +919,7 @@ const S7Future: React.FC<{ f: number }> = ({ f }) => {
                   <Pos x={80} y={70}>
                     <Kinetic f={lf} at={bend} text="Competing for the [same] factories" size={74} align="left" />
                   </Pos>
-                  <Center y={900}>
+                  <Center y={860}>
                     <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 26, letterSpacing: 4, color: "rgba(244,242,238,0.75)" }}>
                       <span style={{ color: P.orange }}>■</span> AI COMPANIES ×6 &nbsp;&nbsp; <span style={{ color: P.white }}>🎮</span> GAMERS ×1
                     </div>

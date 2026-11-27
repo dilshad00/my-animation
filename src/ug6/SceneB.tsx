@@ -470,7 +470,7 @@ const S3Statement: React.FC<{ f: number }> = ({ f }) => {
                   </div>
                 </div>
               </Pos>
-              <Center y={920}>
+              <Center y={830}>
                 <Kinetic f={lf} at={c("difficult") - c("avail")} text="Available ≠ [easy to buy]" size={70} />
               </Center>
             </AbsoluteFill>
@@ -496,7 +496,7 @@ const S3Half: React.FC<{ f: number }> = ({ f }) => (
                 <FeCard cls="90" r={[0.6, lf * 0.006, 0]} light={1} spin={lf * 0.2} />
               </Stage>
             </div>
-            <Pos x={60} y={900}>
+            <Pos x={60} y={820}>
               <div style={{ fontFamily: HEAD, fontWeight: 800, fontSize: 60, color: P.white }}>GRAPHICS CARDS</div>
             </Pos>
           </AbsoluteFill>
@@ -508,7 +508,7 @@ const S3Half: React.FC<{ f: number }> = ({ f }) => (
                 <Floor r={200} y={-0.1} />
               </Stage>
             </div>
-            <Pos x={60} y={900}>
+            <Pos x={60} y={820}>
               <div style={{ fontFamily: HEAD, fontWeight: 800, fontSize: 60, color: P.orange }}>…AND MEMORY</div>
             </Pos>
           </AbsoluteFill>
