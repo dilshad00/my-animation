@@ -12,7 +12,7 @@
  */
 import { Audio } from "@remotion/media";
 import React from "react";
-import { AbsoluteFill, Freeze, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { clamp, E, Grain, HEAD, lin, MONO, sp, Vignette } from "../../ug6/Look6";
 import { P } from "../../ug6/Three6";
 
@@ -194,8 +194,9 @@ export type SCap = [number, number, [string, number][]];
  * Shorts captions: 1–3 words, big condensed caps, word-by-word pop. Words matching `accent` are orange,
  * the active word lifts slightly. Frames, not seconds.
  */
-export const ShortCaps: React.FC<{ caps: SCap[]; accent: RegExp; hide?: (f: number) => boolean; y?: number }> = ({ caps, accent, hide, y = CAP_Y }) => {
-  const f = useCurrentFrame();
+export const ShortCaps: React.FC<{ caps: SCap[]; accent: RegExp; hide?: (f: number) => boolean; y?: number; frame?: number }> = ({ caps, accent, hide, y = CAP_Y, frame }) => {
+  const cur = useCurrentFrame();
+  const f = frame ?? cur;
   if (hide?.(f)) return null;
   const c = caps.find((x) => f >= x[0] - 1 && f < x[1] + 2);
   if (!c) return null;
@@ -307,7 +308,7 @@ export const ShortMaster: React.FC<{
       <Hud f={f} total={total} topic={topic} hideChip={hideChip?.(f)} />
       {f < voFrames + 6 ? (
         <Sequence from={-offset} layout="none">
-          <ShortCaps caps={caps} accent={accent} hide={hideCaps} />
+          <ShortCaps caps={caps} accent={accent} hide={hideCaps} frame={f} />
         </Sequence>
       ) : null}
       {audio ? (
@@ -320,15 +321,13 @@ export const ShortMaster: React.FC<{
 };
 
 /* ===================================================================== QC sheet (one still per beat) */
-export const makeSheet = (Master: React.FC<{ audio?: boolean }>, samples: number[]) => {
+export const makeSheet = (Master: React.FC<{ audio?: boolean; offset?: number }>, samples: number[]) => {
   const Sheet: React.FC = () => {
     const f = useCurrentFrame();
     const t = samples[Math.min(f, samples.length - 1)];
     return (
       <AbsoluteFill>
-        <Freeze frame={t}>
-          <Master audio={false} />
-        </Freeze>
+        <Master audio={false} offset={t - f} />
         <div style={{ position: "absolute", right: 12, top: 40, padding: "4px 12px", background: "#ff0", color: "#000", fontFamily: MONO, fontSize: 30, fontWeight: 800 }}>
           {(t / 30).toFixed(1)}s · f{t}
         </div>

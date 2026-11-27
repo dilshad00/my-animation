@@ -21,8 +21,20 @@ const STANDALONE: Record<string, { frames: number; fps: number }> = { "Anime-Dem
   "REXUZ-YouTube": { frames: 5796, fps: 30 }, "UG-006-Assets": { frames: 1380, fps: 30 }, "UG-006": { frames: 21222, fps: 30 }, "REXUZ-Reel": { frames: 1350, fps: 30 }, };
 let full: number;
 let fps: number;
+/** Shorts engine: "SH-<NAME>" → src/shorts/<name>/data.ts (TOTAL_FRAMES, 30 fps); "-Sheet" variants use the same length. */
+const shortData = (() => {
+  const m = /^SH-([A-Za-z0-9]+)/.exec(id);
+  if (!m) return null;
+  const file = `src/shorts/${m[1].toLowerCase()}/data.ts`;
+  if (!fs.existsSync(file)) return null;
+  const t = /TOTAL_FRAMES = (\d+)/.exec(fs.readFileSync(file, "utf8"));
+  return t ? Number(t[1]) : null;
+})();
 if (STANDALONE[id]) {
   ({ frames: full, fps } = STANDALONE[id]);
+} else if (shortData) {
+  full = shortData;
+  fps = 30;
 } else {
   const project = parseProject(readJson(storyboardFile(id)));
   const captions = fs.existsSync(captionsFile(id)) ? normalizeCaptionsJson(readJson(captionsFile(id))) : null;

@@ -101,7 +101,7 @@ export const Ddr6Short: React.FC<{ audio?: boolean; offset?: number }> = ({ audi
   />
 );
 
-/** QC sheet: one still per beat (mid-beat + 1 s in). */
+/** QC sheet: one still per beat (rendered via the master's frame offset). */
 const SAMPLES = (() => {
   const s = BEAT_STARTS();
   return s.map((a, i) => Math.min(TOTAL_FRAMES - 1, Math.round(i + 1 < s.length ? a + Math.min(30, (s[i + 1] - a) * 0.6) : a + 30)));

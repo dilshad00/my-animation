@@ -55,8 +55,8 @@ const B1: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.32} />
-          <Stage cam={{ pos: [path(lf, [[0, -3], [45, 2]]), 2, path(lf, [[0, 30], [45, 24]])], target: [0, 1.2, 0], fov: 36 }} light={0.9 + 0.3 * E.out(lf, 0, 10)}>
-            <Mod gen="ddr6" p={[0, 0, 0]} r={[0.28, -0.55 + lf * 0.006, 1.05]} s={1.45} glow={1.2} phase={lf * 0.2} />
+          <Stage cam={{ pos: [path(lf, [[0, -2], [45, 2]]), 1, path(lf, [[0, 34], [45, 29]])], target: [0, 1.5, 0], fov: 36 }} light={0.9 + 0.3 * E.out(lf, 0, 10)}>
+            <Mod gen="ddr6" p={[0, -2.2, 0]} r={[0.25, -0.5 + lf * 0.008, 1.22]} s={1.0} glow={1.2} phase={lf * 0.2} />
             <pointLight position={[sw * 20, 6, 12]} intensity={1800} distance={60} color="#ffffff" />
           </Stage>
           <Mid y={250}>
@@ -85,7 +85,7 @@ const B2: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.1 + 0.2 * power} />
-          <Stage cam={{ pos: pathV(lf, [[0, [48, 30, 96]], [52, [30, 26, 74]]]), target: [0, 23, 0], fov: 36 }} light={0.35 + 0.65 * power}>
+          <Stage cam={{ pos: pathV(lf, [[0, [72, 36, 104]], [52, [56, 30, 84]]]), target: [0, 21, 0], fov: 40 }} light={0.35 + 0.65 * power}>
             <Floor9 />
             <Tower power={power} spin={lf * 0.5 * power} phase={lf * 0.1} />
           </Stage>
@@ -108,7 +108,7 @@ const B3: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.08} hue={BLUE} />
-          <Stage cam={{ pos: [4 + sx + path(lf, [[0, 4], [80, -2]]), 13 + sy, 21], target: [0, 2.5, 0], fov: 40 }} rim={BLUE}>
+          <Stage cam={{ pos: [path(lf, [[0, 15], [80, 11]]) + sx, 15 + sy, path(lf, [[0, 15], [80, 12]])], target: [0, 2.5, 0], fov: 40 }} rim={BLUE}>
             <Box p={[0, -0.1, 0]} s={[24, 0.2, 14]} m={useMats().pcb} />
             {[-2.2, 0, 2.2].map((z, i) => (
               <group key={z} position={[0, 0, z]}>
@@ -143,7 +143,7 @@ const B4: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} kind="blueprint" />
-          <Stage cam={{ pos: [path(lf, [[0, -6], [d, 4]]), 6, 26], target: [0, 1.7, 0], fov: 38 }} light={0.6}>
+          <Stage cam={{ pos: [path(lf, [[0, -3], [d, 3]]), 2.2, 33], target: [0, 2.2, 0], fov: 38, roll: -1.36 }} light={0.6}>
             <ClipOn />
             <Module gen="ddr6" wire={1} solid={0} draw={draw} glow={0} label={false} s={1.3} />
           </Stage>
@@ -243,10 +243,10 @@ const B7: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.3} />
-          <Stage cam={{ pos: [Math.sin(lf * 0.02) * 30, 9, Math.cos(lf * 0.02) * 30], target: [0, 6, 0], fov: 40 }} light={1.1}>
+          <Stage cam={{ pos: [Math.sin(lf * 0.02) * 44, 8, Math.cos(lf * 0.02) * 44], target: [0, 6, 0], fov: 40 }} light={1.1}>
             <Floor9 y={-3} />
-            <Text3D text="DDR6" h={5.2} depth={1.6} p={[0, 11 + (1 - rise) * 6, 0]} accent={1.4 * rise} />
-            <Mod gen="ddr6" p={[0, 1.6, 0]} r={[0.12, lf * 0.03, 0]} s={1.1} glow={1.3} phase={lf * 0.2} />
+            <Text3D text="DDR6" h={3.8} depth={1.3} p={[0, 11 + (1 - rise) * 6, 0]} accent={1.4 * rise} />
+            <Mod gen="ddr6" p={[0, 2, 0]} r={[0.12, lf * 0.03, 0]} s={1.0} glow={1.3} phase={lf * 0.2} />
             <Glow p={[0, 4, 0]} s={40} color={GOLD} o={0.25} />
           </Stage>
           <Mid y={1180}>
@@ -340,13 +340,13 @@ const B12: React.FC<F> = ({ f }) => (
   <Beat f={f} a={c("dev")} b={c("buy")} tin="wipe">
     {(lf, d) => {
       const solid = 0.12 + 0.5 * E.io(lf, 6, d - 6);
-      const s = 1.5;
+      const s = 1.1;
       const cutX = (-MOD_L / 2 + solid * MOD_L) * s;
       const M = useMats();
       return (
         <>
           <Bg f={lf} kind="lab" />
-          <Stage cam={{ pos: pathV(lf, [[0, [6, 12, 34]], [d, [-4, 9, 28]]]), target: [0, 2.6, 0], fov: 40 }} light={0.85} rim="#9fffe0">
+          <Stage cam={{ pos: pathV(lf, [[0, [6, 12, 40]], [d, [-3, 9, 35]]]), target: [0, 2.6, 0], fov: 40 }} light={0.85} rim="#9fffe0">
             <ClipOn />
             <Box p={[0, -0.6, 0]} s={[30, 1.2, 12]} m={M.gunmetal} />
             <Module gen="ddr6" s={s} solid={solid} glow={0.6} label={false} />
@@ -432,7 +432,7 @@ const B14: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.2 + 0.2 * up} />
-          <Stage cam={{ pos: pathV(lf, [[0, [0, 30, 44]], [42, [8, 22, 36]]]), target: [0, 9, 0], fov: 40 }}>
+          <Stage cam={{ pos: pathV(lf, [[0, [0, 36, 58]], [42, [10, 26, 50]]]), target: [0, 9, 0], fov: 40 }}>
             <Floor9 />
             <ShipBox open={open} p={[0, 0, 0]} />
             <Mod gen="ddr6" p={[0, 6 + up * 10, 0]} r={[0.2, up * 1.4, 0.1]} s={1.15} glow={0.4 + up} phase={lf * 0.2} />
@@ -481,7 +481,7 @@ const B15: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.18} />
-          <Stage cam={{ pos: pathV(lf, [[0, [0, 30, 34]], [60, [10, 24, 26]]]), target: [0, 2, 1], fov: 42 }}>
+          <Stage cam={{ pos: pathV(lf, [[0, [0, 38, 42]], [60, [12, 30, 34]]]), target: [0, 2, 1], fov: 42 }}>
             <CpuBig lift={lift} imc={imc} />
             <Glow p={[0, 2, 5]} s={22} color={GOLD} o={0.4 * imc} />
           </Stage>
@@ -520,7 +520,7 @@ const B16: React.FC<F> = ({ f }) => (
     {(lf) => (
       <>
         <Bg f={lf} warm={0.22} />
-        <Stage cam={{ pos: [Math.sin(0.6 + lf * 0.018) * 46, 34, Math.cos(0.6 + lf * 0.018) * 46], target: [0, 0, 0], fov: 40 }}>
+        <Stage cam={{ pos: [Math.sin(0.6 + lf * 0.018) * 56, 42, Math.cos(0.6 + lf * 0.018) * 56], target: [0, 0, 0], fov: 40 }}>
           <Board gen="ddr6" glow={E.out(lf, 4, 14)} />
         </Stage>
         <Mid y={330}>
@@ -547,7 +547,7 @@ const B17: React.FC<F> = ({ f }) => (
       const y = drop <= 10 ? 14 - 12.5 * Math.pow(drop / 10, 2) : 1.5 + 2.2 * Math.abs(Math.sin((drop - 10) * 0.32)) * Math.exp(-(drop - 10) * 0.08);
       const hit = m0 + 10;
       const [sx, sy] = shake(lf, hit, 0.7);
-      const cam: V3 = [sx + 0.001, mix3(42, 9, tilt) + sy, mix3(0.5, 22, tilt)];
+      const cam: V3 = [sx + 0.001, mix3(46, 11, tilt) + sy, mix3(0.5, 32, tilt)];
       return (
         <>
           <Bg f={lf} warm={0.06} hue={BLUE} />
@@ -675,7 +675,7 @@ const B23: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.12 + 0.2 * strain} hue={P.coral} />
-          <Stage cam={{ pos: [12 + sx, 26 + sy, 64], target: [0, 16, 0], fov: 42 }}>
+          <Stage cam={{ pos: [14 + sx, 28 + sy, 78], target: [0, 17, 0], fov: 42 }}>
             <Floor9 />
             <Press down={down} strain={strain}>
               <Laptop p={[-6, 0, 0]} s={0.32} screen={0.6} />
@@ -710,9 +710,9 @@ const B24: React.FC<F> = ({ f }) => (
     {(lf, d) => (
       <>
         <Bg f={lf} warm={0.3} />
-        <Stage cam={{ pos: [path(lf, [[0, 18], [d, -14]]), 8, 34], target: [0, 3, 0], fov: 38 }} light={1.1}>
+        <Stage cam={{ pos: [path(lf, [[0, 16], [d, -12]]), 8, 52], target: [0, 4, 0], fov: 38 }} light={1.1}>
           <Floor9 y={-2} />
-          <Mod gen="ddr6" p={[0, 3, 0]} r={[0, -0.3 + lf * 0.006, 0]} s={1.5} glow={1.5} phase={lf * 0.25} />
+          <Mod gen="ddr6" p={[0, 3, 0]} r={[0, -0.3 + lf * 0.006, 0]} s={1.2} glow={1.5} phase={lf * 0.25} />
           {Array.from({ length: 7 }, (_, i) => {
             const h = (4 + i * 2.6) * E.back(lf, 6 + i * 4, 20 + i * 4);
             const x = -15 + i * 5;
@@ -747,9 +747,9 @@ const B25: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.16} hue={BLUE} />
-          <Stage cam={{ pos: [path(lf, [[0, -10], [d, 8]]), 8, 36], target: [0, 4, 0], fov: 38 }} rim={BLUE}>
+          <Stage cam={{ pos: [path(lf, [[0, -10], [d, 8]]), 8, 46], target: [0, 4, 0], fov: 38 }} rim={BLUE}>
             <Floor9 y={-1} />
-            <Mod gen="ddr5" p={[0, 2, 0]} r={[0, 0.35, 0]} s={1.5} glow={0.8} />
+            <Mod gen="ddr5" p={[-1, 2, 0]} r={[0, 0.35, 0]} s={1.1} glow={0.8} />
             <Cyl p={[6.5, 9 - sag * 3.5, 1]} rt={0.05} h={6} m={useMats().steel} />
             <PriceTag p={[6.5, 5.6 - sag * 7, 1.2]} r={[0, -0.3, sag * -0.6]} s={1.2} />
           </Stage>
@@ -810,8 +810,8 @@ const B27: React.FC<F> = ({ f }) => (
           <Bg f={lf} kind="void" />
           <Half top open={E.io(lf, 0, 12)}>
             <Bg f={lf} warm={0.35} />
-            <Stage cam={{ pos: [0, 1, 28], target: [0, 10.5, 0], fov: 34 }} light={1.1}>
-              <Mod gen="ddr6" p={[0, 12, 0]} r={[0.15, -0.4 + lf * 0.01, 0.12]} s={1.3} glow={1.4} phase={lf * 0.25} />
+            <Stage cam={{ pos: [0, 0, 32], target: [0, 0, 0], fov: 34 }} light={1.1}>
+              <Mod gen="ddr6" p={[0, 4.9, 0]} r={[0.15, -0.4 + lf * 0.01, 0.12]} s={0.8} glow={1.4} phase={lf * 0.25} />
             </Stage>
             <At x={70} y={660}>
               <Impact f={lf} at={fa} text="⚡ [FASTER]" size={120} />
@@ -822,8 +822,8 @@ const B27: React.FC<F> = ({ f }) => (
           </Half>
           <Half top={false} open={E.io(lf, af - 6, af + 6)}>
             <Bg f={lf} warm={0.28} hue="#2a6aff" />
-            <Stage cam={{ pos: [0, -1, 28], target: [0, -10.5, 0], fov: 34 }} light={1} rim={BLUE}>
-              <Mod gen="ddr5" p={[0, -10, 0]} r={[0.15, 0.4 - lf * 0.01, -0.12]} s={1.3} glow={1} />
+            <Stage cam={{ pos: [0, 0, 32], target: [0, 0, 0], fov: 34 }} light={1} rim={BLUE}>
+              <Mod gen="ddr5" p={[0, -4.9, 0]} r={[0.15, 0.4 - lf * 0.01, -0.12]} s={0.8} glow={1} />
             </Stage>
             <At x={70} y={1500}>
               <Impact f={lf} at={af + 6} text="💰 [AFFORDABLE]" size={110} accent={BLUE} />
@@ -854,7 +854,7 @@ const B29: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.24} />
-          <Stage cam={{ pos: [0, 30, path(lf, [[0, 100], [90, 88]])], target: [0, 18, 0], fov: 40 }}>
+          <Stage cam={{ pos: [0, 34, path(lf, [[0, 128], [90, 112]])], target: [0, 17, 0], fov: 40 }}>
             <Floor9 />
             <Balance tilt={tilt} s={1.1} left={<Mod gen="ddr6" p={[0, 1.2, 0]} r={[0, 0, 0]} s={0.7} glow={1} label={false} />} right={<Mod gen="ddr5" p={[0, 1.2, 0]} s={0.7} glow={1} label={false} />} />
           </Stage>
