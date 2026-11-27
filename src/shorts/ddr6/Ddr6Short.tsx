@@ -81,7 +81,7 @@ const SFX: Sfx[] = [
 /** Accent words in captions. */
 const ACCENT = /^(DDR6|DDR5|50%|catch|AI|RAM|cheaper|faster|affordable|problem|development|tomorrow|compatible|magically|enormous|pressure|question|second)$/i;
 /** Hide captions where big type on screen already says the same words. */
-const hideCaps = (f: number) => (f >= c("catch") && f < c("dev")) || (f >= c("another") && f < c("waiting"));
+const hideCaps = (f: number) => (f >= c("catch") && f < c("dev")) || (f >= c("another") && f < c("waiting")) || (f >= c("aff") && f < c("because"));
 /** Topic chip is hidden while a beat uses the top band for a big title. */
 const hideChip = (f: number) => f < c("pc") || (f >= c("catch") && f < c("dev")) || f >= c("faster");
 

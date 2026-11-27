@@ -249,7 +249,7 @@ const B7: React.FC<F> = ({ f }) => (
             <Mod gen="ddr6" p={[0, 2, 0]} r={[0.12, lf * 0.03, 0]} s={1.0} glow={1.3} phase={lf * 0.2} />
             <Glow p={[0, 4, 0]} s={40} color={GOLD} o={0.25} />
           </Stage>
-          <Mid y={1180}>
+          <Mid y={1300}>
             <div style={{ opacity: lin(lf, d - 30, d - 20) }}>
               <Chip f={lf} at={d - 30}>
                 THE NEXT RAM STANDARD
@@ -689,7 +689,7 @@ const B23: React.FC<F> = ({ f }) => (
               WHOLE INDUSTRY UNDER PRESSURE
             </Chip>
           </Mid>
-          <At x={90} y={1170}>
+          <At x={90} y={1290}>
             <div style={{ width: 900, height: 26, borderRadius: 13, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
               <div style={{ width: `${20 + 78 * E.io(lf, 4, d)}%`, height: "100%", background: `linear-gradient(90deg, ${P.amber}, ${P.coral})`, boxShadow: `0 0 30px ${P.coral}` }} />
             </div>
@@ -822,16 +822,16 @@ const B27: React.FC<F> = ({ f }) => (
           </Half>
           <Half top={false} open={E.io(lf, af - 6, af + 6)}>
             <Bg f={lf} warm={0.28} hue="#2a6aff" />
-            <Stage cam={{ pos: [0, 0, 32], target: [0, 0, 0], fov: 34 }} light={1} rim={BLUE}>
+            <Stage cam={{ pos: [0, -10.2, 32], target: [0, -10.2, 0], fov: 34 }} light={1} rim={BLUE}>
               <Mod gen="ddr5" p={[0, -4.9, 0]} r={[0.15, 0.4 - lf * 0.01, -0.12]} s={0.8} glow={1} />
             </Stage>
-            <At x={70} y={1500}>
+            <At x={70} y={1390}>
               <Impact f={lf} at={af + 6} text="💰 [AFFORDABLE]" size={110} accent={BLUE} />
             </At>
-            <At x={70} y={1090}>
+            <At x={70} y={1010}>
               <div style={{ fontFamily: HEAD, fontWeight: 800, fontSize: 70, color: BLUE, opacity: E.out(lf, af, af + 8) }}>DDR5</div>
             </At>
-            <At x={640} y={1090}>
+            <At x={600} y={1020}>
               <Tag f={lf} at={buy + 10} color="#7fe0a0" size={30} icon="✔">
                 IN STOCK
               </Tag>
