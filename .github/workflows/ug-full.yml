@@ -1,0 +1,117 @@
+# UNKNOWN GAMER full-length render. Chunked like render.yml, but parts travel through a
+# GitHub Release (not Actions artifacts, whose storage quota is full) and the join step
+# masters loudness (two-pass loudnorm → −14 LUFS, −1.5 dBTP).
+# Trigger: push to a ug-* branch with "[full:<CompositionId>]" in the head commit message.
+# Optional "[chunks:N]" (default 12). Output: release "<id>-render" → <id>.mp4.
+name: UG full render
+
+on:
+  push:
+    branches: ["ug-*", "shorts"]
+
+permissions:
+  contents: write
+
+env:
+  npm_config_onnxruntime_node_install_cuda: skip
+
+jobs:
+  plan:
+    if: contains(github.event.head_commit.message, '[full:')
+    runs-on: ubuntu-24.04
+    outputs:
+      id: ${{ steps.p.outputs.id }}
+      tag: ${{ steps.p.outputs.tag }}
+      gl: ${{ steps.p.outputs.gl }}
+      scale: ${{ steps.p.outputs.scale }}
+      matrix: ${{ steps.p.outputs.matrix }}
+      n: ${{ steps.p.outputs.n }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - id: p
+        env:
+          MSG: ${{ github.event.head_commit.message }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ID=$(printf '%s' "$MSG" | grep -o '\[full:[A-Za-z0-9_-]*\]' | head -1 | sed 's/\[full://;s/\]//')
+          N=$(printf '%s' "$MSG" | grep -o '\[chunks:[0-9]*\]' | head -1 | sed 's/\[chunks://;s/\]//')
+          TAG=$(echo "$ID-render" | tr 'A-Z' 'a-z')
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          GL=$(printf '%s' "$MSG" | grep -o '\[gl:[a-z-]*\]' | head -1 | sed 's/\[gl://;s/\]//')
+          echo "gl=${GL:+--gl=$GL}" >> "$GITHUB_OUTPUT"
+          # optional "[scale:0.5]" → low-res preview/animatic (default full size)
+          SC=$(printf '%s' "$MSG" | grep -o '\[scale:[0-9.]*\]' | head -1 | sed 's/\[scale://;s/\]//')
+          echo "scale=${SC:+--scale=$SC}" >> "$GITHUB_OUTPUT"
+          FULL=$(npx tsx scripts/cloud-plan.ts "$ID" "${N:-12}" 0)
+          echo "n=$(printf '%s' "$FULL" | python3 -c "import json,sys;print(len(json.load(sys.stdin)['chunks']))")" >> "$GITHUB_OUTPUT"
+          # optional "[only:2,18]" → re-render just those chunks (others stay in the release)
+          ONLY=$(printf '%s' "$MSG" | grep -o '\[only:[0-9,]*\]' | head -1 | sed 's/\[only://;s/\]//')
+          if [ -n "$ONLY" ]; then FULL=$(printf '%s' "$FULL" | ONLY="$ONLY" python3 -c "import json,os,sys;j=json.load(sys.stdin);k={int(x) for x in os.environ['ONLY'].split(',')};j['chunks']=[c for c in j['chunks'] if c['i'] in k];print(json.dumps(j))"); fi
+          echo "matrix=$FULL" >> "$GITHUB_OUTPUT"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --prerelease --title "$ID render (QC pending)" --notes "Chunk parts and the joined render. Not final until QC'd." --target "$GITHUB_SHA"
+
+  chunk:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: ${{ fromJson(needs.plan.outputs.matrix).chunks }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx remotion browser ensure
+      - run: npm run sync
+      - name: Render audio (WAV)
+        run: npx remotion render "${{ needs.plan.outputs.id }}" out/audio${{ matrix.chunk.i }}.wav --codec=wav --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} --timeout=240000 --log=info
+      - name: Render video (muted H.264)
+        run: npx remotion render "${{ needs.plan.outputs.id }}" out/part${{ matrix.chunk.i }}.mp4 --codec=h264 --crf=18 --muted --frames=${{ matrix.chunk.range }} ${{ needs.plan.outputs.gl }} ${{ needs.plan.outputs.scale }} --timeout=240000 --log=info
+      - name: Upload parts to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ needs.plan.outputs.tag }}" out/audio${{ matrix.chunk.i }}.wav out/part${{ matrix.chunk.i }}.mp4 --clobber
+
+  join:
+    needs: [plan, chunk]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+      - name: Download parts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download "${{ needs.plan.outputs.tag }}" -p 'part*.mp4' -p 'audio*.wav' -D parts
+      - name: Join + master
+        run: |
+          set -e
+          ID="${{ needs.plan.outputs.id }}"
+          N=${{ needs.plan.outputs.n }}
+          cd parts
+          : > list.txt; : > alist.txt
+          for i in $(seq 0 $((N-1))); do echo "file 'part$i.mp4'" >> list.txt; echo "file 'audio$i.wav'" >> alist.txt; done
+          ffmpeg -nostdin -y -loglevel error -f concat -safe 0 -i alist.txt -c:a pcm_s16le audio.wav
+          ffmpeg -nostdin -y -loglevel error -f concat -safe 0 -i list.txt -c copy video.mp4
+          ffmpeg -nostdin -hide_banner -i audio.wav -af loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json -f null - 2> ln.txt
+          ARGS=$(python3 - <<'PY'
+          import json,re
+          t=open("ln.txt").read(); j=json.loads(t[t.rindex("{"):t.rindex("}")+1])
+          print(f"loudnorm=I=-14:TP=-1.5:LRA=11:measured_I={j['input_i']}:measured_TP={j['input_tp']}:measured_LRA={j['input_lra']}:measured_thresh={j['input_thresh']}:offset={j['target_offset']}:linear=true")
+          PY
+          )
+          echo "$ARGS"
+          ffmpeg -nostdin -y -loglevel error -i audio.wav -af "$ARGS" -ar 48000 audio_m.wav
+          ffmpeg -nostdin -y -loglevel error -i video.mp4 -i audio_m.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 320k -movflags +faststart "../$ID.mp4"
+          cd ..
+          ffprobe -v error -show_entries format=duration:stream=codec_type,width,height,r_frame_rate,nb_frames -of compact "$ID.mp4"
+          ffmpeg -nostdin -hide_banner -i "$ID.mp4" -af ebur128=peak=true -f null - 2>&1 | tail -12
+      - name: Publish joined render
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ needs.plan.outputs.tag }}" "${{ needs.plan.outputs.id }}.mp4" --clobber

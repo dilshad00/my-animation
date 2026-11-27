@@ -13,6 +13,25 @@ import { PROJECT_IDS } from "./projects.generated";
 import { Thumbnail } from "./compositions/Thumbnail";
 import { AnimeAssets, type AnimeSheet } from "./compositions/AnimeAssets";
 import { ANIME_DEMO_FRAMES, AnimeDemo } from "./compositions/AnimeDemo";
+import { UG_DEMO_FRAMES, UgDemo } from "./ug/UgDemo";
+import { UG001_FRAMES, UgFull, UgSheet } from "./ug/UgFull";
+import { ThumbA, ThumbB, ThumbC } from "./ug/Thumb";
+import { UG002_GFX_FRAMES, Ug002GfxReel } from "./ug2/GfxReel";
+import { ControllerTest } from "./ug2/ControllerTest";
+import { UG002_FRAMES, UgTwo, UgTwoSheet } from "./ug2/UgTwo";
+import { Ug2ThumbA, Ug2ThumbB, Ug2ThumbC, Ug2ThumbD } from "./ug2/Thumbs";
+import { Test3D, UG003_TEST_FRAMES } from "./ug3/Test3D";
+import { UG003_FRAMES, UgThree, UgThreeSheet } from "./ug3/UgThree";
+import { Ug3ThumbA, Ug3ThumbB, Ug3ThumbC } from "./ug3/Thumbs3";
+import { Ug3V2A, Ug3V2B, Ug3V2C } from "./ug3/Thumbs3v2";
+import { Ug4ThumbA, Ug4ThumbB, Ug4ThumbC } from "./ug4/Thumbs4";
+import { UG004_FRAMES, UgFour, UgFourSheet } from "./ug4/UgFour";
+import { UG005_FRAMES, UgFive, UgFiveSheet } from "./ug5/UgFive";
+import { Ug5ThumbA, Ug5ThumbB, Ug5ThumbC } from "./ug5/Thumbs5";
+import { ASSETS_FRAMES, UgSixAssets } from "./ug6/Assets6";
+import { Ug6ThumbA, Ug6ThumbB, Ug6ThumbC } from "./ug6/Thumbs6";
+import { SCENES as UG6_SCENES, UG006_FRAMES, UG006_SHEET_FRAMES, UgSix, UgSixSheet } from "./ug6/UgSix";
+import { REEL_FRAMES, RexuzReel, RexuzYouTube, YT_FRAMES } from "./rexuz/Promo";
 
 /**
  * Every folder in projects/<id>/ (with a storyboard.json) becomes a composition "<id>".
@@ -42,6 +61,54 @@ export const RemotionRoot: React.FC = () => {
       <Folder name="Style-Experiments">
         <Composition id="Anime-Demo" component={AnimeDemo} durationInFrames={ANIME_DEMO_FRAMES} fps={30} width={1920} height={1080} />
         <Composition id="Anime-Assets" component={AnimeAssets} durationInFrames={1} fps={30} width={1920} height={1080} defaultProps={{ sheet: "character" as AnimeSheet }} />
+      </Folder>
+      <Folder name="UnknownGamer">
+        <Composition id="UG-Demo" component={UgDemo} durationInFrames={UG_DEMO_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-001" component={UgFull} durationInFrames={UG001_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-001-Sheet" component={UgSheet} durationInFrames={UG001_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-001-Thumb-A" component={ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-001-Thumb-B" component={ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-001-Thumb-C" component={ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-002-GFX" component={Ug002GfxReel} durationInFrames={UG002_GFX_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-002-Pad" component={ControllerTest} durationInFrames={240} fps={30} width={1920} height={1080} />
+        <Composition id="UG-002" component={UgTwo} durationInFrames={UG002_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-002-Sheet" component={UgTwoSheet} durationInFrames={UG002_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-002-Thumb-A" component={Ug2ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-002-Thumb-B" component={Ug2ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-002-Thumb-C" component={Ug2ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-002-Thumb-D" component={Ug2ThumbD} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-3D" component={Test3D} durationInFrames={UG003_TEST_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003" component={UgThree} durationInFrames={UG003_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-Sheet" component={UgThreeSheet} durationInFrames={UG003_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-Thumb-A" component={Ug3ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-Thumb-B" component={Ug3ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-Thumb-C" component={Ug3ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-V2-A" component={Ug3V2A} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-V2-B" component={Ug3V2B} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-003-V2-C" component={Ug3V2C} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-004" component={UgFour} durationInFrames={UG004_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-004-Sheet" component={UgFourSheet} durationInFrames={UG004_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-004-Thumb-A" component={Ug4ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-004-Thumb-B" component={Ug4ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-004-Thumb-C" component={Ug4ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-005" component={UgFive} durationInFrames={UG005_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-005-Sheet" component={UgFiveSheet} durationInFrames={UG005_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-005-Thumb-A" component={Ug5ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-005-Thumb-B" component={Ug5ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-005-Thumb-C" component={Ug5ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-006-Assets" component={UgSixAssets} durationInFrames={ASSETS_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="UG-006" component={UgSix} durationInFrames={UG006_FRAMES} fps={30} width={1920} height={1080} defaultProps={{ audio: true, offset: 0 }} />
+        <Composition id="UG-006-Thumb-A" component={Ug6ThumbA} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-006-Thumb-B" component={Ug6ThumbB} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-006-Thumb-C" component={Ug6ThumbC} durationInFrames={1} fps={30} width={1920} height={1080} />
+        <Composition id="UG-006-Sheet" component={UgSixSheet} durationInFrames={UG006_SHEET_FRAMES} fps={30} width={1920} height={1080} />
+        {UG6_SCENES.map((s) => (
+          <Composition key={s.id} id={`UG-006-${s.id}`} component={UgSix} durationInFrames={s.b() - s.a()} fps={30} width={1920} height={1080} defaultProps={{ audio: true, offset: s.a() }} />
+        ))}
+      </Folder>
+      <Folder name="REXUZ">
+        <Composition id="REXUZ-YouTube" component={RexuzYouTube} durationInFrames={YT_FRAMES} fps={30} width={1920} height={1080} />
+        <Composition id="REXUZ-Reel" component={RexuzReel} durationInFrames={REEL_FRAMES} fps={30} width={1080} height={1920} />
       </Folder>
       <Folder name="Library-Tests">
         <Composition id="Test-Cast" component={CastGallery} durationInFrames={240} fps={30} width={1920} height={1080} />

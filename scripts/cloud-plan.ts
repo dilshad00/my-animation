@@ -16,7 +16,9 @@ if (!id) {
   process.exit(1);
 }
 /** Standalone compositions (style experiments) that have no projects/<id>/ folder. */
-const STANDALONE: Record<string, { frames: number; fps: number }> = { "Anime-Demo": { frames: 900, fps: 30 } };
+const STANDALONE: Record<string, { frames: number; fps: number }> = { "Anime-Demo": { frames: 900, fps: 30 }, "UG-Demo": { frames: 945, fps: 30 }, "UG-001": { frames: 18930, fps: 30 },
+  "UG-002": { frames: 9773, fps: 30 }, "UG-003": { frames: 15251, fps: 30 }, "UG-004": { frames: 12971, fps: 30 }, "UG-005": { frames: 16960, fps: 30 },
+  "REXUZ-YouTube": { frames: 5796, fps: 30 }, "UG-006-Assets": { frames: 1380, fps: 30 }, "UG-006": { frames: 21222, fps: 30 }, "REXUZ-Reel": { frames: 1350, fps: 30 }, };
 let full: number;
 let fps: number;
 if (STANDALONE[id]) {

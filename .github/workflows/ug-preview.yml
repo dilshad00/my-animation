@@ -1,0 +1,61 @@
+# UNKNOWN GAMER previews: single-job render of a standalone composition, published as a
+# (private) GitHub Release asset instead of an Actions artifact, so it does not use the
+# account's artifact-storage quota. Runs only on pushes to ug-* branches whose head commit
+# message contains "[render]" (optionally "[render:<CompositionId>]", default UG-Demo).
+name: UG preview
+
+on:
+  push:
+    branches: ["ug-*", "shorts"]
+
+permissions:
+  contents: write
+
+env:
+  npm_config_onnxruntime_node_install_cuda: skip
+
+jobs:
+  render:
+    if: contains(github.event.head_commit.message, '[render')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx remotion browser ensure
+      - run: npm run sync
+      - name: Pick composition
+        id: comp
+        env:
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          ID=$(printf '%s' "$MSG" | grep -o '\[render:[A-Za-z0-9_-]*\]' | head -1 | sed 's/\[render://;s/\]//')
+          echo "id=${ID:-UG-Demo}" >> "$GITHUB_OUTPUT"
+          FR=$(printf '%s' "$MSG" | grep -o '\[frames:[0-9]*-[0-9]*\]' | head -1 | sed 's/\[frames://;s/\]//')
+          echo "frames=${FR:+--frames=$FR}" >> "$GITHUB_OUTPUT"
+          GL=$(printf '%s' "$MSG" | grep -o '\[gl:[a-z-]*\]' | head -1 | sed 's/\[gl://;s/\]//')
+          echo "gl=${GL:+--gl=$GL}" >> "$GITHUB_OUTPUT"
+      - name: Render stills ([stills:Id1,Id2,...] -> 1280x720 PNG)
+        id: stills
+        env:
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          S=$(printf '%s' "$MSG" | grep -o '\[stills:[A-Za-z0-9_,-]*\]' | head -1 | sed 's/\[stills://;s/\]//')
+          echo "any=${S:+1}" >> "$GITHUB_OUTPUT"
+          mkdir -p out
+          for ID in $(printf '%s' "$S" | tr ',' ' '); do npx remotion still "$ID" "out/$ID.png" --frame=0 --scale=0.6666667 --image-format=png ${{ steps.comp.outputs.gl }}; done
+      - name: Render
+        if: steps.stills.outputs.any != '1'
+        run: npx remotion render "${{ steps.comp.outputs.id }}" "out/${{ steps.comp.outputs.id }}.mp4" --codec=h264 --crf=18 --concurrency=100% ${{ steps.comp.outputs.frames }} ${{ steps.comp.outputs.gl }} --log=info
+      - name: Probe
+        if: steps.stills.outputs.any != '1'
+        run: npx remotion ffprobe -v error -show_entries format=duration:stream=codec_type,width,height,r_frame_rate,nb_frames -of compact "out/${{ steps.comp.outputs.id }}.mp4"
+      - name: Publish to release "ug-previews"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          F=$(ls out/*.png out/*.mp4 2>/dev/null || true)
+          gh release view ug-previews >/dev/null 2>&1 || gh release create ug-previews --prerelease --title "UG previews" --notes "Preview renders (overwritten on each run)." --target "$GITHUB_SHA"
+          gh release upload ug-previews $F --clobber

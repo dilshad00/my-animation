@@ -1,0 +1,41 @@
+# Word-level transcript (faster-whisper) of a narration file, published to release "ug-previews".
+# Trigger: push to ug-* with "[transcribe:public/ug-XXX/audio/narration.mp3]" in the commit message.
+name: UG transcribe
+
+on:
+  push:
+    branches: ["ug-*", "shorts"]
+
+permissions:
+  contents: write
+
+jobs:
+  transcribe:
+    if: contains(github.event.head_commit.message, '[transcribe:')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.11" }
+      - name: Install
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q faster-whisper numpy
+      - name: Transcribe
+        env:
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          SRC=$(printf '%s' "$MSG" | grep -o '\[transcribe:[^]]*\]' | head -1 | sed 's/\[transcribe://;s/\]//')
+          ID=$(echo "$SRC" | cut -d/ -f2)
+          mkdir -p out
+          ffmpeg -hide_banner -loglevel error -y -i "$SRC" -ac 1 -ar 16000 out/narration16k.wav
+          ffmpeg -hide_banner -i out/narration16k.wav -af silencedetect=noise=-38dB:d=0.35 -f null - 2>&1 | grep silence_ > out/pauses.txt || true
+          python scripts/ug/transcribe.py medium.en out
+          cd out && mv narration_words.json "$ID-narration_words.json" && mv transcript_timed.txt "$ID-transcript_timed.txt" && mv pauses.txt "$ID-pauses.txt"
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view ug-previews >/dev/null 2>&1 || gh release create ug-previews --prerelease --title "UG previews" --notes "Preview renders." --target "$GITHUB_SHA"
+          gh release upload ug-previews out/*-narration_words.json out/*-transcript_timed.txt out/*-pauses.txt --clobber
