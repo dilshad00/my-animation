@@ -1,0 +1,47 @@
+# Higgs Audio v2 voice-cloned narration on CPU. Trigger: push to "shorts" with "[higgs:<project>]".
+# Output: release "shorts-voice" → <project>-higgs-t<temp>.mp3 (+ Whisper transcript for QC).
+name: Shorts voice (Higgs)
+on:
+  push:
+    branches: ["shorts"]
+permissions:
+  contents: write
+jobs:
+  speak:
+    if: contains(github.event.head_commit.message, '[higgs:')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        take: [{ temp: "0.3", seed: "11" }, { temp: "0.6", seed: "23" }]
+    steps:
+      - name: Free disk (model is ~12 GB)
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost && df -h / | tail -1
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.10" }
+      - name: Install
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          git clone -q --depth 1 https://github.com/boson-ai/higgs-audio.git /tmp/higgs
+          grep -viE '^(torch|torchaudio|torchvision)([<>=~ ].*)?$' /tmp/higgs/requirements.txt > /tmp/req.txt
+          pip install -q -r /tmp/req.txt && pip install -q -e /tmp/higgs && pip install -q faster-whisper soundfile
+      - name: Speak
+        env:
+          MSG: ${{ github.event.head_commit.message }}
+        run: |
+          ID=$(printf '%s' "$MSG" | grep -o '\[higgs:[^]]*\]' | head -1 | sed 's/\[higgs://;s/\]//')
+          echo "ID=$ID" >> "$GITHUB_ENV"
+          P=projects/$ID; mkdir -p out
+          python scripts/tts/higgs_say.py $P/voice-ref.wav $P/voice-ref.txt $P/script-natural.txt out/raw.wav ${{ matrix.take.temp }} ${{ matrix.take.seed }}
+          N="$ID-higgs-t${{ matrix.take.temp }}"
+          ffmpeg -y -loglevel error -i out/raw.wav -af "loudnorm=I=-16:TP=-1.5:LRA=11" -ar 44100 -b:a 192k "out/$N.mp3"
+          python -c "from faster_whisper import WhisperModel as W;s,_=W('base.en',device='cpu',compute_type='int8').transcribe('out/$N.mp3');open('out/$N.txt','w').write(' '.join(x.text.strip() for x in s))"
+          cat "out/$N.txt"; ffprobe -v error -show_entries format=duration -of csv=p=0 "out/$N.mp3"
+      - name: Publish
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          gh release view shorts-voice >/dev/null 2>&1 || gh release create shorts-voice --prerelease --title "Shorts voice takes" --notes "TTS takes for Shorts." --target "$GITHUB_SHA"
+          gh release upload shorts-voice out/*.mp3 out/*.txt --clobber
