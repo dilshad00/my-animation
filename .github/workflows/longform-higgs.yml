@@ -1,0 +1,100 @@
+# Long-form Higgs Audio v2 narration, generated in parallel parts on CPU, then joined.
+# Trigger: push to "shorts" with "[higgs-long:<project>]" in the commit message (the Shorts workflow keys on "[higgs:" and ignores this).
+# Uses projects/<id>/{voice-ref.wav,voice-ref.txt,script-natural.txt} and the same settings as Shorts (temp 0.6, seed 23).
+# Output: release "longform-voice" → <id>-higgs-t0.6.mp3 + Whisper transcript (.txt) + word timings (.json).
+name: Long-form voice (Higgs)
+on:
+  push:
+    branches: ["shorts"]
+permissions:
+  contents: write
+env:
+  PARTS: 12
+jobs:
+  plan:
+    if: contains(github.event.head_commit.message, '[higgs-long:')
+    runs-on: ubuntu-24.04
+    outputs:
+      id: ${{ steps.p.outputs.id }}
+      parts: ${{ steps.p.outputs.parts }}
+    steps:
+      - id: p
+        env: { MSG: "${{ github.event.head_commit.message }}" }
+        run: |
+          ID=$(printf '%s' "$MSG" | grep -o '\[higgs-long:[^]]*\]' | head -1 | sed 's/\[higgs-long://;s/\]//')
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+          echo "parts=$(python3 -c "import json;print(json.dumps(list(range($PARTS))))")" >> "$GITHUB_OUTPUT"
+  speak:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        part: ${{ fromJson(needs.plan.outputs.parts) }}
+    steps:
+      - name: Free disk (model is ~12 GB)
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost && df -h / | tail -1
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.10" }
+      - name: Install
+        run: |
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          git clone -q --depth 1 https://github.com/boson-ai/higgs-audio.git /tmp/higgs
+          grep -viE '^(torch|torchaudio|torchvision)([<>=~ ].*)?$' /tmp/higgs/requirements.txt > /tmp/req.txt
+          pip install -q -r /tmp/req.txt && pip install -q -e /tmp/higgs && pip install -q soundfile
+      - name: Speak part ${{ matrix.part }}
+        env: { ID: "${{ needs.plan.outputs.id }}", PART: "${{ matrix.part }}" }
+        run: |
+          P=projects/$ID; mkdir -p out
+          python - <<'EOF'
+          import os, re
+          P = f"projects/{os.environ['ID']}"; n = int(os.environ["PARTS"]); k = int(os.environ["PART"])
+          paras = [p.strip() for p in re.split(r"\n\s*\n", open(f"{P}/script-natural.txt", encoding="utf8").read()) if p.strip()]
+          lo, hi = len(paras) * k // n, len(paras) * (k + 1) // n
+          open("out/part.txt", "w", encoding="utf8").write("\n\n".join(paras[lo:hi]) + "\n")
+          print(f"part {k}: paragraphs {lo}..{hi - 1}")
+          EOF
+          python scripts/tts/higgs_say.py $P/voice-ref.wav $P/voice-ref.txt out/part.txt "out/part_$(printf %02d $PART).wav" 0.6 23
+      - uses: actions/upload-artifact@v4
+        with: { name: "part-${{ matrix.part }}", path: "out/part_*.wav", retention-days: 7 }
+  join:
+    needs: [plan, speak]
+    runs-on: ubuntu-24.04
+    env: { ID: "${{ needs.plan.outputs.id }}" }
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.10" }
+      - uses: actions/download-artifact@v4
+        with: { path: parts, pattern: "part-*", merge-multiple: true }
+      - name: Join, normalise, transcribe
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q numpy soundfile faster-whisper
+          mkdir -p out
+          python - <<'EOF'
+          import glob, numpy as np, soundfile as sf
+          fs = sorted(glob.glob("parts/part_*.wav")); assert len(fs) == int(__import__("os").environ["PARTS"]), fs
+          pieces = []
+          for f in fs:
+              a, sr = sf.read(f, dtype="float32"); pieces += [a, np.zeros(int(0.32 * sr), np.float32)]
+          sf.write("out/raw.wav", np.concatenate(pieces[:-1]), sr, subtype="PCM_16")
+          EOF
+          N="$ID-higgs-t0.6"
+          ffmpeg -y -loglevel error -i out/raw.wav -af "loudnorm=I=-16:TP=-1.5:LRA=11" -ar 44100 -b:a 192k "out/$N.mp3"
+          python - <<EOF
+          import json
+          from faster_whisper import WhisperModel
+          segs, _ = WhisperModel("base.en", device="cpu", compute_type="int8").transcribe("out/$N.mp3", word_timestamps=True)
+          segs = list(segs)
+          open("out/$N.txt", "w").write(" ".join(s.text.strip() for s in segs))
+          json.dump([{"w": w.word.strip(), "s": round(w.start, 3), "e": round(w.end, 3)} for s in segs for w in s.words], open("out/$N-words.json", "w"))
+          EOF
+          cat "out/$N.txt"; ffprobe -v error -show_entries format=duration -of csv=p=0 "out/$N.mp3"
+      - name: Publish
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          gh release view longform-voice >/dev/null 2>&1 || gh release create longform-voice --prerelease --title "Long-form voice takes" --notes "Higgs TTS takes for long-form videos." --target "$GITHUB_SHA"
+          gh release upload longform-voice out/*.mp3 out/*.txt out/*.json --clobber
