@@ -10,7 +10,7 @@ jobs:
   speak:
     if: contains(github.event.head_commit.message, '[higgs:')
     runs-on: ubuntu-24.04
-    timeout-minutes: 340
+    timeout-minutes: 350
     strategy:
       fail-fast: false
       matrix:
