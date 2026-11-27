@@ -559,21 +559,21 @@ const B16: React.FC<F> = ({ f }) => (
             <Gauge v={v} hot={hot} />
           </div>
           {lf >= g - 4 ? (
-            <Mid y={1060}>
+            <Mid y={1010}>
               <div style={{ transform: `scale(${1.4 - 0.4 * sp(lf, g - 4, 11, 240)})` }}>
-                <span style={{ fontFamily: HEAD, fontWeight: 800, fontSize: 150, color: AMB, textShadow: `0 0 40px ${OR}` }}>~1 GHz</span>
+                <span style={{ fontFamily: HEAD, fontWeight: 800, fontSize: 128, color: AMB, textShadow: `0 0 40px ${OR}` }}>~1 GHz</span>
               </div>
             </Mid>
           ) : null}
           <Sparks f={lf} at={g + 6} x={540} y={700} color={AMB} />
           {lf >= ms ? (
-            <Mid y={1170}>
-              <Stamp f={lf} at={ms} color={AMB} size={70} rot={-4}>
+            <Mid y={1205}>
+              <Stamp f={lf} at={ms} color={AMB} size={56} rot={-3}>
                 BUDGET CPU · MASSIVE JUMP
               </Stamp>
             </Mid>
           ) : null}
-          <At x={90} y={1335}>
+          <At x={90} y={1350}>
             <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 25, color: "rgba(244,242,238,0.7)", letterSpacing: 2, opacity: E.out(lf, g, g + 10) }}>REPORTED OVERCLOCKING RESULT — NOT GUARANTEED</div>
           </At>
           {void d}
