@@ -1,0 +1,31 @@
+Imagine making your computer faster… with nothing but a pencil.
+
+Sounds ridiculous, right?
+
+But back in the early 2000s, this was a real trick used by PC enthusiasts.
+
+Some AMD Athlon and Duron processors had tiny electrical connections on their surface called L one bridges.
+
+AMD cut these connections to lock the CPU's clock multiplier.
+
+But here's where things get crazy.
+
+Graphite inside an ordinary pencil can conduct electricity.
+
+Enthusiasts discovered they could use it to reconnect those tiny circuits, unlocking the processor's multiplier.
+
+That meant they could push the CPU beyond its original clock speed.
+
+One famous example? A cheap AMD Duron six hundred could potentially reach speeds around one gigahertz.
+
+That's a massive jump for a budget processor.
+
+But it wasn't guaranteed, and stability and cooling still mattered.
+
+And no, this won't work on your modern Ryzen or Intel CPU.
+
+Today, processors are far more sophisticated.
+
+But imagine explaining to someone that a pencil once helped overclock a computer.
+
+Would you believe it?
