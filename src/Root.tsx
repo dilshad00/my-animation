@@ -33,6 +33,7 @@ import { Ug6ThumbA, Ug6ThumbB, Ug6ThumbC } from "./ug6/Thumbs6";
 import { SCENES as UG6_SCENES, UG006_FRAMES, UG006_SHEET_FRAMES, UgSix, UgSixSheet } from "./ug6/UgSix";
 import { REEL_FRAMES, RexuzReel, RexuzYouTube, YT_FRAMES } from "./rexuz/Promo";
 import { Ddr6Sheet, Ddr6Short, SH_DDR6_FRAMES, SH_DDR6_SHEET_FRAMES } from "./shorts/ddr6/Ddr6Short";
+import { PencilShort, SH_PENCIL_FRAMES } from "./shorts/pencil/PencilShort";
 
 /**
  * Every folder in projects/<id>/ (with a storyboard.json) becomes a composition "<id>".
@@ -66,6 +67,7 @@ export const RemotionRoot: React.FC = () => {
       <Folder name="Shorts">
         <Composition id="SH-DDR6" component={Ddr6Short} durationInFrames={SH_DDR6_FRAMES} fps={30} width={1080} height={1920} />
         <Composition id="SH-DDR6-Sheet" component={Ddr6Sheet} durationInFrames={SH_DDR6_SHEET_FRAMES} fps={30} width={1080} height={1920} />
+        <Composition id="SH-PENCIL" component={PencilShort} durationInFrames={SH_PENCIL_FRAMES} fps={30} width={1080} height={1920} />
       </Folder>
       <Folder name="UnknownGamer">
         <Composition id="UG-Demo" component={UgDemo} durationInFrames={UG_DEMO_FRAMES} fps={30} width={1920} height={1080} />
