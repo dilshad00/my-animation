@@ -9,7 +9,11 @@ from boson_multimodal.data_types import ChatMLSample, Message, AudioContent
 ref_wav, ref_txt, script, out, temp, seed = sys.argv[1:7]
 torch.manual_seed(int(seed)); np.random.seed(int(seed))
 torch.set_num_threads(max(1, torch.get_num_threads()))
-eng = HiggsAudioServeEngine("bosonai/higgs-audio-v2-generation-3B-base", "bosonai/higgs-audio-v2-tokenizer", device="cpu")
+from huggingface_hub import snapshot_download
+# Pin to the original (pre "trfms-support", Apr 2026) weights/config that boson-ai/higgs-audio's code expects.
+MODEL = snapshot_download("bosonai/higgs-tts-2-3b-base", revision="10840182ca4ad5d9d9113b60b9bb3c1ef1ba3f84")
+TOKENIZER = snapshot_download("bosonai/higgs-audio-v2-tokenizer", revision="9d4988fbd4ad07b4cac3a5fa462741a41810dbec")
+eng = HiggsAudioServeEngine(MODEL, TOKENIZER, device="cpu")
 system = ("Generate audio following instruction.\n\n<|scene_desc_start|>\n"
           "An energetic, engaging YouTube tech presenter recorded in a quiet studio. Natural, expressive, conversational delivery with clear emphasis.\n"
           "<|scene_desc_end|>")
