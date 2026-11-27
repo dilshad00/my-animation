@@ -4,7 +4,7 @@ Runs on GitHub Actions (CPU). The user's PC is too old for these models.
 
 Engines
   chatterbox  Resemble AI Chatterbox (MIT). Expressive, beat ElevenLabs in blind tests.
-              voice spec: chatterbox[:ref=<wav>][:ex=<0.25-2>][:cfg=<0-1>][:temp=<t>]
+              voice spec: chatterbox[:ref=<wav>][:ex=<0.25-2>][:cfg=<0-1>][:temp=<t>][:pp=<paragraph pause s>]
   kokoro      Kokoro-82M (Apache-2.0). Very clean, fast, less emotional.
               voice spec: kokoro:<voice>[:speed=<s>]   e.g. kokoro:am_michael, kokoro:bm_george
 
@@ -233,7 +233,7 @@ def main():
             report.append({"paragraph": pi, "group": gi, "score": round(sc, 3), "text": g, "heard": heard})
             pieces.append(resample(wav, tts.sr))
             last_group = gi == len(groups) - 1
-            pause = PAUSE_PARAGRAPH if last_group else PAUSE_SENTENCE
+            pause = float(opts.get("pp", PAUSE_PARAGRAPH)) if last_group else PAUSE_SENTENCE
             pieces.append(np.zeros(int(pause * SR_OUT), np.float32))
     audio = np.concatenate(pieces) if pieces else np.zeros(SR_OUT, np.float32)
     sf.write(a.out, audio, SR_OUT, subtype="PCM_16")
