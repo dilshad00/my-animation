@@ -567,13 +567,13 @@ const B16: React.FC<F> = ({ f }) => (
           ) : null}
           <Sparks f={lf} at={g + 6} x={540} y={700} color={AMB} />
           {lf >= ms ? (
-            <Mid y={1230}>
+            <Mid y={1170}>
               <Stamp f={lf} at={ms} color={AMB} size={70} rot={-4}>
                 BUDGET CPU · MASSIVE JUMP
               </Stamp>
             </Mid>
           ) : null}
-          <At x={90} y={1340}>
+          <At x={90} y={1335}>
             <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 25, color: "rgba(244,242,238,0.7)", letterSpacing: 2, opacity: E.out(lf, g, g + 10) }}>REPORTED OVERCLOCKING RESULT — NOT GUARANTEED</div>
           </At>
           {void d}
@@ -599,7 +599,7 @@ const B17: React.FC<F> = ({ f }) => (
           <Mid y={300}>
             <Impact f={lf} at={2} text="NOT [GUARANTEED]" size={124} accent={P.coral} />
           </Mid>
-          <At x={90} y={1130}>
+          <At x={70} y={1100} style={{ padding: "22px 30px 10px", borderRadius: 24, background: "rgba(10,11,13,0.82)", border: "2px solid rgba(255,90,78,0.4)", opacity: E.out(lf, 8, 14) }}>
             {["STABILITY", "COOLING", "EACH CHIP IS DIFFERENT"].map((t, i) => (
               <div key={t} style={{ display: "flex", alignItems: "center", gap: 18, marginBottom: 14, opacity: E.out(lf, 10 + i * 10, 18 + i * 10), transform: `translateX(${(1 - E.out(lf, 10 + i * 10, 18 + i * 10)) * -40}px)` }}>
                 <div style={{ width: 38, height: 38, borderRadius: 10, border: `4px solid ${P.coral}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: HEAD, fontWeight: 800, color: P.coral, fontSize: 30 }}>!</div>
@@ -654,7 +654,7 @@ const B19: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} kind="cold" />
-          <Stage cam={{ pos: pathV(lf, [[0, [0, 40, 30]], [so, [-1.8, 3, 3]], [d, [-1.6, 1.6, 1.4]]]), target: [-1.9, 0.4, 0], fov: 42 }} light={1} rim={P.cool} kick="#3a7bff">
+          <Stage cam={{ pos: pathV(lf, [[0, [0, 40, 30]], [so, [-3, 9, 10]], [d, [-2.4, 7, 8]]]), target: [-1.1, -0.2, 0], fov: 42 }} light={1} rim={P.cool} kick="#3a7bff">
             <Mobo p={[0, -1.2, 0]} s={0.9} glow={0.5} />
             <ModernCpu p={[0, -0.6, 0]} s={0.6} lift={E.io(lf, 6, so - 4)} glow={0.6 + 0.6 * z} />
           </Stage>
@@ -678,7 +678,7 @@ const B20: React.FC<F> = ({ f }) => (
     {(lf, d) => (
       <>
         <Bg f={lf} warm={0.3} />
-        <Stage cam={{ pos: pathV(lf, [[0, [6, 8, 18]], [d, [12, 20, 56]]]), target: [0, 5, 0], fov: 40 }} light={1.1} rim={OR}>
+        <Stage cam={{ pos: pathV(lf, [[0, [8, 12, 36]], [d, [12, 20, 60]]]), target: [0, 6, 0], fov: 40 }} light={1.1} rim={OR}>
           <Floor y={-4} />
           <OldCpu p={[-5, 2, 0]} r={[0.9, 0.3 + lf * 0.01, 0]} s={0.9} cut={1} fill={1} glow={0.4} />
           <Pencil p={[6, 0, 0]} r={[0, -lf * 0.02, 0.2]} s={0.75} />
@@ -698,10 +698,10 @@ const End: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.36} />
-          <Stage cam={{ pos: [0, 10, 40 - 6 * E.out(lf, 0, 30)], target: [0, 6, 0], fov: 40 }} light={1.2} rim={OR}>
+          <Stage cam={{ pos: [0, 10, 46 - 6 * E.out(lf, 0, 30)], target: [0, 6, 0], fov: 40 }} light={1.2} rim={OR}>
             <Floor y={-2} />
-            <Pencil p={[5, 0.5, 0]} r={[0, lf * 0.06, 0.3]} s={0.7} spark={(lf % 40) / 40} />
-            <OldCpu p={[-5, 3, 0]} r={[1.1, lf * 0.02, 0]} s={0.8} cut={1} fill={1} glow={0.6 + 0.4 * Math.sin(lf * 0.2)} />
+            <Pencil p={[3.2, 0.5, 0]} r={[0, lf * 0.06, 0.18]} s={0.62} spark={(lf % 40) / 40} />
+            <OldCpu p={[-4.6, 3, 0]} r={[1.1, lf * 0.02, 0]} s={0.8} cut={1} fill={1} glow={0.6 + 0.4 * Math.sin(lf * 0.2)} />
           </Stage>
           <Mid y={290}>
             <Impact f={lf} at={0} text={"WOULD YOU\n[BELIEVE] THIS?"} size={140} />
