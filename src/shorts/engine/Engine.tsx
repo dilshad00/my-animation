@@ -248,6 +248,10 @@ export const Hud: React.FC<{ f: number; total: number; topic: string; hideChip?:
 export type Bed = [file: string, from: number, to: number, level: number];
 export type Sfx = [frame: number, file: string, vol: number, dur?: number];
 const FADE = 30;
+/** SFX never mask the voice-over: global gain, per-cue cap, and ducking under speech. */
+const SFX_GAIN = 0.8;
+const SFX_MAX = 0.45;
+const SFX_DUCK = 0.65;
 export const Mix: React.FC<{ narration: string; beds: Bed[]; sfx: Sfx[]; vox: string; total: number }> = ({ narration, beds, sfx, vox, total }) => {
   const voice = (fr: number) => {
     let s = 0;
@@ -266,7 +270,7 @@ export const Mix: React.FC<{ narration: string; beds: Bed[]; sfx: Sfx[]; vox: st
               loop
               volume={(fr) => {
                 const abs = fr + a;
-                const base = lvl * (1 - 0.5 * voice(abs));
+                const base = lvl * (1 - 0.6 * voice(abs));
                 const fin = interpolate(fr, [0, FADE], [0, 1], clamp);
                 const fout = interpolate(fr, [dur - FADE, dur], [1, 0], clamp);
                 const tail = interpolate(abs, [total - 40, total - 2], [1, 0], clamp);
@@ -278,7 +282,16 @@ export const Mix: React.FC<{ narration: string; beds: Bed[]; sfx: Sfx[]; vox: st
       })}
       {sfx.map(([at, src, v, dur], i) => (
         <Sequence key={i} from={Math.max(0, at)} durationInFrames={dur ?? 150} layout="none">
-          <Audio src={staticFile(src)} loop={dur !== undefined} volume={(fr) => (dur !== undefined ? v * interpolate(fr, [0, 12, dur - 12, dur], [0, 1, 1, 0], clamp) : v)} />
+          <Audio
+            src={staticFile(src)}
+            loop={dur !== undefined}
+            volume={(fr) => {
+              // Voice always wins: SFX are capped and dip under narration (−9 dB while speaking).
+              const env = dur !== undefined ? interpolate(fr, [0, 12, dur - 12, dur], [0, 1, 1, 0], clamp) : 1;
+              const duck = 1 - SFX_DUCK * voice(Math.max(0, at) + fr);
+              return Math.min(v, SFX_MAX) * SFX_GAIN * duck * env;
+            }}
+          />
         </Sequence>
       ))}
     </>
