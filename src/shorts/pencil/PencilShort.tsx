@@ -4,9 +4,9 @@
  * Music: Kevin MacLeod (incompetech.com, CC BY 4.0). SFX: Mixkit (Mixkit License) — see public/short-pencil/CREDITS.md.
  */
 import React from "react";
-import { Mix, ShortMaster, type Bed, type SCap, type Sfx } from "../engine/Engine";
+import { makeSheet, Mix, ShortMaster, type Bed, type SCap, type Sfx } from "../engine/Engine";
 import { CAPTIONS, TOTAL_FRAMES, VO_FRAMES, VOX } from "./data";
-import { c, Picture } from "./Scenes";
+import { BEAT_STARTS, c, Picture } from "./Scenes";
 
 export const SH_PENCIL_FRAMES = TOTAL_FRAMES;
 const S = (n: string) => `ug-006/sfx/${n}.mp3`;
@@ -80,7 +80,7 @@ const SFX: Sfx[] = [
 ];
 
 /** Accent words in captions. */
-const ACCENT = /^(pencil|graphite|L1|bridges|multiplier|unlocking|unlocked|electricity|overclock|duron|gigahertz|1|600|guaranteed|cooling|stability|ryzen|intel|crazy|ridiculous|believe|massive|cut|lock)$/i;
+const ACCENT = /^(pencil|graphite|L1|bridges|multiplier|unlocking|unlocked|electricity|overclock|duron|gigahertz|ghz|1|600|guaranteed|cooling|stability|ryzen|intel|crazy|ridiculous|believe|massive|cut|lock)$/i;
 /** Hide captions while big type on screen already says the same words. */
 const hideCaps = (f: number) => (f >= c("ridic") && f < c("back")) || (f >= c("crazy") && f < c("graphite")) || (f >= c("believe") && f < c("believe") + 40);
 const hideChip = (f: number) => f < c("ridic") || f >= c("believe");
@@ -100,3 +100,11 @@ export const PencilShort: React.FC<{ audio?: boolean; offset?: number }> = ({ au
     mix={<Mix narration="short-pencil/audio/narration.wav" beds={BEDS} sfx={SFX} vox={VOX} total={TOTAL_FRAMES} />}
   />
 );
+
+/** QC sheet: one still per beat (rendered via the master's frame offset). */
+const SAMPLES = (() => {
+  const s = [0, ...BEAT_STARTS(), VO_FRAMES];
+  return s.map((a, i) => Math.min(TOTAL_FRAMES - 1, Math.round(i + 1 < s.length ? a + Math.min(30, (s[i + 1] - a) * 0.6) : a + 30)));
+})();
+export const SH_PENCIL_SHEET_FRAMES = SAMPLES.length;
+export const PencilSheet = makeSheet(PencilShort, SAMPLES);
