@@ -102,7 +102,7 @@ const SFX: Sfx[] = [
 /** Accent words in captions. */
 const ACCENT = /^(64gb|64|gb|vram|double|twice|5090|nvidia|nvidias|insane|interesting|confirmed|officially|four|16gb|16|moore|threads|15|50|ray|tracing|raytracing|mtts80|s80|benchmark|price|drivers|december|29|29th|affordable|alternative|number|china|chinese)$/i;
 /** Hide captions while big type on screen already says the same words. */
-const hideCaps = (f: number) => (f >= c("insane") - 2 && f < c("interesting")) || (f >= c("number") && f < c("number") + 6);
+const hideCaps = (f: number) => (f >= c("insane") - 2 && f < c("interesting")) || (f >= c("number") && f < VO_FRAMES);
 const hideChip = (f: number) => f < c("double") || f >= c("number");
 
 export const Gpu64Short: React.FC<{ audio?: boolean; offset?: number }> = ({ audio = true, offset = 0 }) => (

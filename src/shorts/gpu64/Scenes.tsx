@@ -132,7 +132,7 @@ const B2: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.22} />
-          <Stage cam={{ pos: [sx, 3 + sy, path(lf, [[0, 66], [d, 58]])], target: [0, 1, 0], fov: 40 }} light={1.1} rim={COOL} kick={OR}>
+          <Stage cam={{ pos: [sx, 3 + sy, path(lf, [[0, 86], [d, 76]])], target: [0, 1, 0], fov: 40 }} light={1.1} rim={COOL} kick={OR}>
             <Upright p={[-8.8, 0, 0]} ry={0.3} s={0.85}>
               <FeCard cls="90" spin={lf * 0.4} />
             </Upright>
@@ -203,7 +203,7 @@ const B4: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.2} />
-          <Stage cam={{ pos: [path(lf, [[0, -8], [d, 6]]), path(lf, [[0, 4], [d, 9]]), 42], target: [0, 8.5, 0], fov: 40 }} light={1.1} rim={COOL} kick={OR}>
+          <Stage cam={{ pos: [path(lf, [[0, -8], [d, 6]]), path(lf, [[0, 5], [d, 10]]), 58], target: [0, 10, 0], fov: 40 }} light={1.1} rim={COOL} kick={OR}>
             <Floor y={0} />
             <GbTower n={32} shown={L} cols={2} p={[-6, 0, 0]} s={1.05} color={COOL} spin={0.5} />
             <GbTower n={64} shown={R} cols={2} p={[6, 0, 0]} s={1.05} color={AMB} spin={-0.5} />
@@ -220,8 +220,8 @@ const B4: React.FC<F> = ({ f }) => (
               {Math.round(R)}GB<span style={{ fontSize: 80 }}>?</span>
             </div>
           </At>
-          <CardLabel f={lf} at={pw - 6} x={40} y={1140} name="RTX 5090" spec="NVIDIA'S TOP GAMING GPU" color={COOL} w={480} />
-          <CardLabel f={lf} at={14} x={570} y={1140} name="LUSHAN" spec="UNCONFIRMED" w={460} />
+          <CardLabel f={lf} at={pw - 6} x={40} y={1250} name="RTX 5090" spec="NVIDIA'S TOP GAMING GPU" color={COOL} w={480} />
+          <CardLabel f={lf} at={14} x={570} y={1250} name="LUSHAN" spec="UNCONFIRMED" w={460} />
         </>
       );
     }}
@@ -320,13 +320,13 @@ const B8: React.FC<F> = ({ f }) => (
       const s4 = c("suggesting") - c("based");
       const pv = c("previous") - c("based");
       const grow = E.io(lf, pv + 16, Math.min(d - 6, pv + 50));
-      const shown = lf < pv ? 0 : 16 * E.out(lf, pv, pv + 14) + 48 * grow;
+      const shown = 16 * E.out(lf, 4, 22) + 48 * grow;
       const done = grow >= 1;
       const [sx, sy] = shake(lf, Math.min(d - 6, pv + 50), 0.8);
       return (
         <>
           <Bg f={lf} warm={0.22} />
-          <Stage cam={{ pos: [12 + sx, 13 + sy, 22], target: [0, 2.4, 0], fov: 40 }} light={1.1} rim={COOL} kick={OR}>
+          <Stage cam={{ pos: [14 + sx, 15 + sy, 28], target: [0, -1.5, 0], fov: 40 }} light={1.1} rim={COOL} kick={OR}>
             <Floor y={0} />
             <GbTower n={64} shown={shown} cols={4} p={[0, 0, 0]} s={1.25} color={AMB} solidN={16} spin={lf * 0.006} />
             <Glow p={[0, 3, 0]} s={20} color={OR} o={0.25 * grow} />
@@ -336,19 +336,19 @@ const B8: React.FC<F> = ({ f }) => (
               BASED ON EARLIER COMPANY CLAIMS
             </Chip>
           </Mid>
-          <Mid y={1000}>
+          <Mid y={1050}>
             <div style={{ display: "flex", alignItems: "baseline", gap: 26, fontFamily: HEAD, fontWeight: 800, fontSize: 118, color: P.white, textShadow: "0 6px 30px #000" }}>
-              <span style={{ opacity: E.out(lf, pv, pv + 8) }}>16GB</span>
+              <span style={{ opacity: E.out(lf, 4, 12), color: lf >= pv ? AMB : P.white }}>16GB</span>
               <span style={{ color: AMB, opacity: E.out(lf, s4, s4 + 8), transform: `scale(${lf >= s4 ? 1.6 - 0.6 * sp(lf, s4, 10, 260) : 1})`, display: "inline-block" }}>×4</span>
-              <span style={{ color: AMB, opacity: done ? 1 : 0.15 + 0.3 * grow, textShadow: done ? `0 0 40px ${OR}` : undefined }}>= 64GB</span>
+              <span style={{ color: AMB, opacity: lf < s4 ? 0 : done ? 1 : 0.2 + 0.3 * grow, textShadow: done ? `0 0 40px ${OR}` : undefined }}>= 64GB</span>
             </div>
           </Mid>
-          <At x={60} y={1150} w={960} style={{ textAlign: "center" }}>
-            <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 28, color: "rgba(244,242,238,0.8)", letterSpacing: 2, opacity: E.out(lf, pv, pv + 10) }}>
+          <At x={60} y={1190} w={960} style={{ textAlign: "center" }}>
+            <div style={{ fontFamily: MONO, fontWeight: 800, fontSize: 28, color: "rgba(244,242,238,0.8)", letterSpacing: 2, opacity: E.out(lf, 8, 18) }}>
               MTT S80 · 16GB GDDR6 &nbsp;→&nbsp; &quot;4×&quot; MEMORY CLAIM
             </div>
           </At>
-          <Note f={lf} at={pv + 10} y={1250}>
+          <Note f={lf} at={pv + 10} y={1280}>
             ESTIMATE · NOT AN OFFICIAL SPEC
           </Note>
         </>
@@ -424,10 +424,10 @@ const B10: React.FC<F> = ({ f }) => (
         <>
           <Bg f={lf} kind="blueprint" />
           <Stage cam={{ pos: [Math.sin(lf * 0.012) * 18, 8, 46], target: [0, 1, 0], fov: 40 }} light={1} rim={COOL} kick={OR}>
-            <Upright p={[0, 2, 0]} ry={-0.3 + lf * 0.008} s={0.72 * (1 - morph) + 0.0001}>
+            <Upright p={[0, 7.5, 0]} ry={-0.3 + lf * 0.008} s={0.5 * (1 - morph) + 0.0001}>
               <FeCard cls="70" spin={lf * 0.3} lightColor="#9cc8ff" />
             </Upright>
-            <Upright p={[0, 2, 0]} ry={-0.3 + lf * 0.008} s={0.0001 + 0.8 * morph}>
+            <Upright p={[0, 7.5, 0]} ry={-0.3 + lf * 0.008} s={0.0001 + 0.52 * morph}>
               <LushanConcept spin={lf * 0.8} light={0.6 + 0.6 * lin(lf, r, r + 20)} />
             </Upright>
             <Particles n={70} color={AMB} k={2.5} fn={(i) => (morph > 0 && morph < 1 ? { p: [(hash(i) - 0.5) * 30 * morph, (hash(i * 3) - 0.5) * 30, (hash(i * 5) - 0.5) * 10], s: 0.25 * (1 - Math.abs(morph - 0.5) * 2) } : null)} />
@@ -508,7 +508,7 @@ const B12: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} kind="lab" />
-          <Stage cam={{ pos: [path(lf, [[0, 22], [d, 14]]), 20, path(lf, [[0, 34], [d, 30]])], target: [0, 4, 0], fov: 40 }} light={0.95} rim="#9fe8ff" kick={OR}>
+          <Stage cam={{ pos: [path(lf, [[0, 24], [d, 16]]), 26, path(lf, [[0, 44], [d, 40]])], target: [0, 2, 0], fov: 40 }} light={0.95} rim="#9fe8ff" kick={OR}>
             <TestStand p={[0, 0, 0]} probe={0.6 + 0.4 * Math.sin(lf * 0.3)} />
             <LushanConcept p={[0, 8.6, -1]} r={[0.25, 0, 0]} s={0.85} spin={lf * 0.15} light={0.5} />
             <Glow p={[-16 + scan * 1.8, 9, 3]} s={6} color="#7fe0ff" o={0.7} />
@@ -592,7 +592,7 @@ const B14: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.3} />
-          <Stage cam={{ pos: [path(lf, [[0, 46], [d, 34]]), 30, path(lf, [[0, 56], [d, 62]])], target: [0, 22, 0], fov: 40 }} light={1} rim={COOL} kick={OR}>
+          <Stage cam={{ pos: [path(lf, [[0, 56], [d, 42]]), 34, path(lf, [[0, 82], [d, 92]])], target: [0, 20, 0], fov: 40 }} light={1} rim={COOL} kick={OR}>
             <Tower power={1} spin={lf * 0.5} accent={OR} />
             <Floor y={0} />
             <Motes f={lf} spread={70} y={24} />
@@ -653,7 +653,6 @@ const B15: React.FC<F> = ({ f }) => (
 const End: React.FC<F> = ({ f }) => (
   <Beat f={f} a={c("number")} b={VO_FRAMES + 400} tin="glitch">
     {(lf) => {
-      const js = c("just") - c("number");
       const fo = VO_FRAMES - c("number");
       const burst = E.out(lf, fo - 4, fo + 26);
       const [sx, sy] = shake(lf, fo, 1.6, 18);
@@ -672,7 +671,7 @@ const End: React.FC<F> = ({ f }) => (
             <Glow p={[0, 4, 0]} s={30} color={OR} o={0.4 * burst * (1 - burst)} />
           </Stage>
           <Mid y={300}>
-            <Impact f={lf} at={js - 4} text={"OR IS 64GB\nJUST A [NUMBER?]"} size={124} out={fo - 6} />
+            <Impact f={lf} at={2} text={"OR IS 64GB\nJUST A [NUMBER?]"} size={124} out={fo - 6} />
           </Mid>
           {lf >= fo ? (
             <>

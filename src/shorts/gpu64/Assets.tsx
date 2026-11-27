@@ -86,7 +86,7 @@ export const Cloth: React.FC<{ w: number; d: number; h: number; lift: number; f:
   const geo = useMemo(() => new THREE.PlaneGeometry(W, D, 72, 44), [W, D]);
   const base = useMemo(() => Float32Array.from(geo.attributes.position.array as Float32Array), [geo]);
   const mat = useMemo(
-    () => new THREE.MeshPhysicalMaterial({ color: "#1b1b1f", metalness: 0.05, roughness: 0.78, sheen: 1, sheenColor: new THREE.Color("#ffb070"), sheenRoughness: 0.45, side: THREE.DoubleSide }),
+    () => new THREE.MeshPhysicalMaterial({ color: "#0b0b0d", metalness: 0.0, roughness: 0.92, sheen: 0.5, sheenColor: new THREE.Color("#5a5048"), sheenRoughness: 0.6, side: THREE.DoubleSide }),
     [],
   );
   const pos = geo.attributes.position as THREE.BufferAttribute;
@@ -135,8 +135,8 @@ export const chipPos = (i: number): V3 => {
  */
 export const GpuBoard: React.FC<{ p?: V3; r?: V3; s?: number; chip?: (i: number) => number; die?: number; trace?: number; f?: number }> = ({ p = [0, 0, 0], r = [0, 0, 0], s = 1, chip = () => 0, die = 0.4, trace = 0, f = 0 }) => {
   const M = useMats();
-  const dg = useGlow(OR, die * 1.6);
-  const cg = useGlow(AMB, 2.2);
+  const dg = useGlow(OR, die * 0.55);
+  const cg = useGlow(AMB, 0.9);
   const tg = useGlow(AMB, 3);
   const caps = useMemo(() => {
     const out: { p: V3; s: V3 }[] = [];
@@ -150,7 +150,8 @@ export const GpuBoard: React.FC<{ p?: V3; r?: V3; s?: number; chip?: (i: number)
     const g = chip(i);
     const cp = chipPos(i);
     const vert = i >= 10;
-    (g > 0.5 ? lit : dark).push({ p: cp, s: vert ? [1.5, 0.22, 1.8] : [1.8, 0.22, 1.5] });
+    dark.push({ p: cp, s: vert ? [1.5, 0.22, 1.8] : [1.8, 0.22, 1.5] });
+    if (g > 0.5) lit.push({ p: [cp[0], cp[1] + 0.12, cp[2]], s: vert ? [0.9, 0.02, 1.2] : [1.2, 0.02, 0.9] });
   }
   const pulses: { p: V3; s: V3 }[] = [];
   if (trace > 0)
@@ -173,7 +174,7 @@ export const GpuBoard: React.FC<{ p?: V3; r?: V3; s?: number; chip?: (i: number)
       {/* GPU package */}
       <Box p={[0, 0.12, 0]} s={[6.2, 0.24, 6.2]} m={M.substrate} />
       <Box p={[0, 0.34, 0]} s={[4.6, 0.2, 4.6]} m={M.die} />
-      {die > 0 ? <Box p={[0, 0.45, 0]} s={[4.4, 0.02, 4.4]} m={dg} /> : null}
+      {die > 0 ? <Box p={[0, 0.45, 0]} s={[3.2, 0.02, 3.2]} m={dg} /> : null}
       {die > 0 ? <Glow p={[0, 0.8, 0]} s={9} color={OR} o={0.4 * die} /> : null}
       {/* memory */}
       <Inst items={dark} m={M.chip} />
