@@ -592,8 +592,8 @@ const B14: React.FC<F> = ({ f }) => (
       return (
         <>
           <Bg f={lf} warm={0.3} />
-          <Stage cam={{ pos: [path(lf, [[0, 56], [d, 42]]), 34, path(lf, [[0, 82], [d, 92]])], target: [0, 20, 0], fov: 40 }} light={1} rim={COOL} kick={OR}>
-            <Tower power={1} spin={lf * 0.5} accent={OR} />
+          <Stage cam={{ pos: [path(lf, [[0, 56], [d, 42]]), 34, path(lf, [[0, 82], [d, 92]])], target: [0, 9, 0], fov: 40 }} light={1} rim={COOL} kick={OR}>
+            <Tower power={1} spin={lf * 0.5} accent={OR} s={0.55} r={[0, -0.5 + lf * 0.003, 0]} />
             <Floor y={0} />
             <Motes f={lf} spread={70} y={24} />
           </Stage>
